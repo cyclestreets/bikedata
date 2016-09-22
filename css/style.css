@@ -1,0 +1,93 @@
+/* Layout */
+html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+
+/* Typography */
+body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-serif;} /* https://www.google.com/fonts */
+
+/* Global navigation */
+#globalsites {background-color: gray; height: 30px; border-top: 2px solid #ddd;}
+#globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em;}
+#globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
+#globalsites p {float: left; color: white;}
+#globalsites ul {height: 100%; margin-left: 200px;}
+#globalsites ul li {height: 100%; float: left; margin: 0; padding: 0; list-style: none;}
+#globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
+#globalsites ul li.cyclestreets a {border-color: yellow;}
+#globalsites ul li.cyclestreets a:hover {background-color: yellow;}
+#globalsites ul li.cyclescape a {border-color: green;}
+#globalsites ul li.cyclescape a:hover {background-color: green;}
+#globalsites ul li.data a {border-color: purple;}
+#globalsites ul li.data a:hover {background-color: purple;}
+#globalsites ul li.data.selected a {background: rgba(128,0,128,0.4);}
+#globalsites ul li.urbancycleparking a {border-color: red;}
+#globalsites ul li.urbancycleparking a:hover {background-color: red;}
+#globalsites ul li.blog a {border-color: #999;}
+#globalsites ul li.blog a:hover {background-color: #999;}
+
+main {width: 100%; height: calc(100% - 20px); position: relative;}
+
+nav {position: absolute; top: 0; right: 0; width: 330px; height: 100%; z-index: 2;}
+nav {color: white;}
+nav a {color: white; text-decoration: none;}
+
+
+#map {width: 100%; height: 100%; position: relative;}
+#map .leaflet-tile-container {opacity: 0.7;}
+#map .leaflet-control-attribution {margin-right: 330px;}
+
+#sponsor {position: absolute; bottom: 10px; /* right: 345px; */ left: 20px; width: 215px; height: 36px; background-color: rgba(0, 0, 255, 0.3); padding: 7px 15px; z-index: 999; color: white; opacity: 0.9;}
+#sponsor p {margin: 0; padding: 0; line-height: 36px; text-align: right;}
+#sponsor img {width: 120px; height: 36px; background-color: gray; margin-left: 5px; vertical-align: bottom;}
+
+
+h2 {margin-bottom: 2px; padding-bottom: 0;}
+
+
+
+#selector {float: left; width: 90px; height: 100%; background-color: #333; opacity: 0.85;}
+#selector ul {list-style: none; width: 100%; margin: 0; padding: 0;}
+#selector ul li {margin-left: auto; margin-right: 0;}
+#selector ul li.selected {background-color: black;}
+#selector ul li a {border-left: 4px solid gray; font-size: 0.9em; padding: 20px 10px; display: block; text-align: center;}
+#selector ul li.selected a {border-left: 4px solid brown;}
+#selector ul li:hover {background-color: #111;}
+#selector ul li.selected:hover {background-color: black;}
+#selector ul li a img {width: 40px;}
+
+
+/* Toolbar */
+#tools {width: 200px; height: calc(100% - 20px); margin-left: 90px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
+
+/* Sections */
+#tools #compare > div {opacity: 0.5;}
+#tools #compare div.enabled {opacity: 1;}
+#tools #compare div p {margin-bottom: 4px;}
+#tools #compare div .controls label {width: 45px; display: inline-block;}
+
+#tools div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 0;}
+#tools div.concern h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
+#tools div.concern > div {padding: 5px 5px;}
+
+#tools h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
+#tools .controls {padding: 0; margin: 0;}
+
+/* Header */
+header {background: rgba(255,255,255,0.2); _background-color: gray; padding: 5px 8px 20px; margin: 0; position: relative; left: -8px;}
+header h1 {padding-top: 0; font-weight: normal; margin-top: 15px; margin-bottom: 5px;}
+header p {margin: 0;}
+
+
+footer {height: 20px; background-color: #888;}
+
+
+/* Tooltips, as per http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ */
+_.tooltip {display: inline; position: relative;}
+_.tooltip:hover:after {background: #603; background: rgba(0,0,0,.8); border-radius: 5px; bottom: 26px; color: #fff; content: attr(title); left: 20%; padding: 5px 15px; position: absolute; z-index: 98; width: 220px;}
+_.tooltip:hover:before {border: solid; border-color: #333 transparent; border-width: 6px 6px 0 6px; bottom: 20px; content: ""; left: 50%; position: absolute; z-index: 99;}
+
+/* Tabs */
+ul.tabs {margin-left: 0; padding-left: 0; }
+ul.tabs li {display: inline; margin-right: 5px;}
+ul.tabs li a {padding: 2px 10px; color: gray; border: 1px solid white; border-bottom: 0;}
+ul.tabs li.ui-state-active a {background-color: #333; color: white;}
+

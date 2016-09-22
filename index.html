@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Bike data</title>
+	
+<!--
+	<link href="http://fonts.googleapis.com/css?family=Raleway:400italic,700italic,400,700" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+-->
+	<link rel="stylesheet" href="css/fonts.css" type="text/css" />
+	<link rel="stylesheet" href="js/lib/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
+	<script src="js/lib/leaflet-0.7.3/leaflet.js"></script>
+	<script src="js/lib/jquery-1.11.3/jquery-1.11.3.min.js"></script>
+	<script src="js/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<body>
+
+	<div id="globalsites">
+		<p>CycleStreets network</p>
+		<ul>
+			<li class="cyclestreets"><a href="http://www.cyclestreets.net/" title="Cycle journey planner">CycleStreets.net</a></li>
+			<li class="cyclescape"><a href="http://www.cyclescape.org/" title="Campaign toolkit">Cyclescape</a></li>
+			<li class="data selected"><a href="http://www.cyclestreets.net/collisions/" title="Campaign toolkit">Advocacy data</a></li>
+			<li class="urbancycleparking"><a href="http://www.urbancycleparking.org.uk/" title="Tell us where cycle parking is needed">Urban Cycle Parking</a></li>
+			<li class="blog"><a href="http://www.cyclestreets.net/blog/" title="News from CycleStreets">Blog</a></li>
+		</ul>
+	</div>
+	
+	<main>
+		
+		<script type="text/javascript">
+			$(function() {
+				$('nav').tabs();
+			});
+		</script>
+		<nav>
+
+			<div id="selector">
+				<ul>
+					<li><a href="#collisions" title="Collisions" class="tooltip"><img src="images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a></li>
+					<li><a href="#cyclingrates" title="Cycling rates" class="tooltip"><img src="images/icons/icon_bicycles_good.svg" alt="" /><br />Cycling rates</a></li>
+					<li><a href="#trafficcounts" title="Traffic data" class="tooltip"><img src="images/icons/icon_congestion_bad.svg" alt="" /><br />Traffic counts</a></li>
+					<li><a href="#od" title="Distance data" class="tooltip"><img src="images/icons/icon_linked_points_good.svg" alt="" /><br />Trip lengths</a></li>
+					<li><a href="#cycletheft" title="Cycle theft data" class="tooltip"><img src="images/icons/icon_enforcement_bad.svg" alt="" /><br />Cycle theft</a></li>
+<!--
+					<li><a href="#photomap" title="Photos of cycle infrastructure" class="tooltip"><img src="images/icons/photomap.svg" alt="" /> Photos</a></li>
+-->
+				</ul>
+			</div>
+			
+			<div id="tools">
+				
+				<header>
+					<h1>Advocacy data</h1>
+					<p class="about">Data to support getting more people cycling.</p>
+				</header>
+
+				<div id="collisions">
+					<h2>Collisions</h2>
+					<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure.</p>
+					
+					<div id="filter" class="concern">
+						<h3>Filter to:</h3>
+						<div class="controls">
+							
+							<h4>Casualty:</h4>
+							<div class="controls">
+								<input type="checkbox" checked="checked" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label><br />
+								<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Pedestrian</label><br />
+								<input type="checkbox" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Motor vehicle occupant</label><br />
+							</div>
+							
+							<h4>Severity:</h4>
+							<div class="controls">
+								<select name="severity" id="severity">
+									<option value="all" id="severity_____NULL">All</option>
+									<option value="fatal" id="severity_fatal">Fatal</option>
+									<option value="serious" id="severity_serious">Serious</option>
+									<option value="slight" id="severity_slight">Slight</option>
+								</select>&nbsp; collisions
+							</div>
+							
+							<h4>With a:</h4>
+							<div class="controls">
+								<input type="checkbox" checked="checked" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Driver</label>
+								<input type="checkbox" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label>
+								<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Ped</label><br />
+							</div>
+							
+							<h4>Limit to:</h4>
+							<input type="checkbox" id="junctions" /><label for="junctions"> Junctions</label><br />
+							<input type="checkbox" id="onewaystreets" /><label for="onewaystreets"> One-way streets</label><br />
+							<input type="checkbox" id="aroads" /><label for="aroads"> A-roads</label>
+							
+							<p>&#9655; More filters</p>
+		
+						</div>
+					</div>
+					
+					<div id="compare" class="concern">
+						<h3>&#10018; Comparison charts:</h3>
+					
+						<script type="text/javascript">
+							$(function() {
+								$(':checkbox.enable').on('change', function() {
+									$(this).closest('div').toggleClass('enabled', this.checked);
+								});
+							});
+						</script>
+						
+						<div id="dateRange">
+							<h4>
+								<input type="checkbox" id="enableDateRange" class="enable" />
+								<label for="enableDateRange">Changes over time:</label>
+							</h4>
+							<div class="controls">
+								<label for="dateFrom">From: </label><input type="date" name="dateFrom" /><br />
+								<label for="dateTo">To: </label><input type="date" name="dateTo" />
+							</div>
+						</div>
+						
+						<div id="localAuthorities">
+							<h4>
+								<input type="checkbox" id="enableLocalAuthorities" class="enable" />
+								<label for="enableLocalAuthorities">Local Authorities:</label>
+							</h4>
+							<div class="controls">
+
+								<select name="localAuthority1">
+									<option value="" id="localAuthority1_"></option>
+									<option value="London" id="localAuthority1_london">London</option>
+									<option value="Cambridge" id="localAuthority1_cambridge">Cambridge</option>
+									<option value="Edinburgh" id="localAuthority1_edinburgh">Edinburgh</option>
+								</select>
+								<select name="localAuthority2">
+									<option value="" id="localAuthority2_all">All</option>
+									<option value="London" id="localAuthority2_london">London</option>
+									<option value="Cambridge" id="localAuthority2_cambridge">Cambridge</option>
+									<option value="Edinburgh" id="localAuthority2_edinburgh">Edinburgh</option>
+								</select>
+							</div>
+						</div>
+					</div>	
+				</div>
+				
+				<div id="cyclingrates">
+					<h2>Cycling rates</h2>
+					<p>blurb</p>
+					<p><em>controls</em></p>
+				</div>
+				
+				<div id="trafficcounts">
+					<h2>Traffic count data</h2>
+					<p>blurb</p>
+					<p><em>controls</em></p>
+				</div>
+				
+				<div id="od">
+					<h2>Origin-Destination data</h2>
+					<p>blurb</p>
+					<p><em>controls</em></p>
+				</div>
+				
+				<div id="cycletheft">
+					<h2>Cycle theft</h2>
+					<p>blurb</p>
+					<p><em>controls</em></p>
+				</div>
+				
+<!--
+				<div id="photomap">
+					<h2>Photos</h2>
+					<p>67,421 cycling-related images/videos available of cycling infrastructure</p>
+					<p><em>controls</em></p>
+				</div>
+-->
+				
+			</div>
+		</nav>
+		
+
+			
+		<div id="map" class="map">
+			
+			<div id="sponsor">
+				<p>Supported by: <img src="images/logos/outlandish.png" title="Outlandish" alt="Logo" />
+			</div>
+		</div>
+		<script type="text/javascript" src="js/bikedata.js"></script>
+		
+		
+	</main>
+	<footer>
+		<p>Footer</p>
+	</footer>
+
+</body>
+
+</html>
