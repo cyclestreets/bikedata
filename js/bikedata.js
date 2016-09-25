@@ -65,6 +65,16 @@ bikedata = (function ($) {
 		
 		
 		// Function to manipulate the map based on form interactions
+		formInteraction: function ()
+		{
+			// Re-fetch data when form is changed
+			$('form :input').change(function() {
+				bikedata.getData ();
+			});
+		},
+		
+
+		// Function to manipulate the map based on form interactions
 		getData: function ()
 		{
 			// Start API data parameters
@@ -94,16 +104,25 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Function to manipulate the map based on form interactions
-		formInteraction: function ()
+		// Function to construct the popup content
+		popupHtml: function (feature)
 		{
-			// Re-fetch data when form is changed
-			$('form :input').change(function() {
-				bikedata.getData ();
-			});
+			// Construct the HTML
+			var html = '<table>';
+			for (var key in feature.properties) {
+				if (feature.properties[key] === null) {
+					feature.properties[key] = '[null]';
+				}
+				var value = feature.properties[key].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				html += '<tr><td>' + key + ':</td><td><strong>' + value + '</strong></td></tr>';
+			}
+			html += '</table>';
+			
+			// Return the content
+			return html;
 		},
 		
-
+		
 		// Function to show the data
 		showCurrentData: function (data)
 		{
@@ -120,6 +139,12 @@ bikedata = (function ($) {
 						})
 					});
 					return icon;
+				},
+				
+				// Set popup
+				onEachFeature: function (feature, layer) {
+					var popupContent = bikedata.popupHtml (feature);
+					layer.bindPopup(popupContent);
 				}
 			});
 			
