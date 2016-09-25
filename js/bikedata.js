@@ -23,6 +23,8 @@ bikedata = (function ($) {
 			// Load the tabs
 			bikedata.loadTabs ();
 			
+			// Add map interactions from the form
+			bikedata.formInteraction ();
 		},
 		
 		
@@ -50,6 +52,15 @@ bikedata = (function ($) {
 		loadTabs: function ()
 		{
 			$('nav').tabs();
+		},
+		
+		
+		// Function to manipulate the map based on form interactions
+		formInteraction: function ()
+		{
+			$('form :input').change(function() {
+				alert('Form changed!');
+			});
 		}
 	}
 } (jQuery));

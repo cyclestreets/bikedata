@@ -65,91 +65,93 @@
 				</header>
 
 				<div id="collisions">
-					<h2>Collisions</h2>
-					<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure.</p>
-					
-					<div id="filter" class="concern">
-						<h3>Filter to:</h3>
-						<div class="controls">
-							
-							<h4>Casualty:</h4>
+					<form id="form_collisions">
+						<h2>Collisions</h2>
+						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure.</p>
+						
+						<div id="filter" class="concern">
+							<h3>Filter to:</h3>
 							<div class="controls">
-								<input type="checkbox" checked="checked" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label><br />
-								<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Pedestrian</label><br />
-								<input type="checkbox" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Motor vehicle occupant</label><br />
+								
+								<h4>Casualty:</h4>
+								<div class="controls">
+									<input type="checkbox" checked="checked" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label><br />
+									<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Pedestrian</label><br />
+									<input type="checkbox" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Motor vehicle occupant</label><br />
+								</div>
+								
+								<h4>Severity:</h4>
+								<div class="controls">
+									<select name="severity" id="severity">
+										<option value="all" id="severity_____NULL">All</option>
+										<option value="fatal" id="severity_fatal">Fatal</option>
+										<option value="serious" id="severity_serious">Serious</option>
+										<option value="slight" id="severity_slight">Slight</option>
+									</select>&nbsp; collisions
+								</div>
+								
+								<h4>With a:</h4>
+								<div class="controls">
+									<input type="checkbox" checked="checked" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Driver</label>
+									<input type="checkbox" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label>
+									<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Ped</label><br />
+								</div>
+								
+								<h4>Limit to:</h4>
+								<input type="checkbox" id="junctions" /><label for="junctions"> Junctions</label><br />
+								<input type="checkbox" id="onewaystreets" /><label for="onewaystreets"> One-way streets</label><br />
+								<input type="checkbox" id="aroads" /><label for="aroads"> A-roads</label>
+								
+								<p>&#9655; More filters</p>
+			
 							</div>
-							
-							<h4>Severity:</h4>
-							<div class="controls">
-								<select name="severity" id="severity">
-									<option value="all" id="severity_____NULL">All</option>
-									<option value="fatal" id="severity_fatal">Fatal</option>
-									<option value="serious" id="severity_serious">Serious</option>
-									<option value="slight" id="severity_slight">Slight</option>
-								</select>&nbsp; collisions
-							</div>
-							
-							<h4>With a:</h4>
-							<div class="controls">
-								<input type="checkbox" checked="checked" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Driver</label>
-								<input type="checkbox" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label>
-								<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Ped</label><br />
-							</div>
-							
-							<h4>Limit to:</h4>
-							<input type="checkbox" id="junctions" /><label for="junctions"> Junctions</label><br />
-							<input type="checkbox" id="onewaystreets" /><label for="onewaystreets"> One-way streets</label><br />
-							<input type="checkbox" id="aroads" /><label for="aroads"> A-roads</label>
-							
-							<p>&#9655; More filters</p>
-		
 						</div>
-					</div>
-					
-					<div id="compare" class="concern">
-						<h3>&#10018; Comparison charts:</h3>
-					
-						<script type="text/javascript">
-							$(function() {
-								$(':checkbox.enable').on('change', function() {
-									$(this).closest('div').toggleClass('enabled', this.checked);
+						
+						<div id="compare" class="concern">
+							<h3>&#10018; Comparison charts:</h3>
+						
+							<script type="text/javascript">
+								$(function() {
+									$(':checkbox.enable').on('change', function() {
+										$(this).closest('div').toggleClass('enabled', this.checked);
+									});
 								});
-							});
-						</script>
-						
-						<div id="dateRange">
-							<h4>
-								<input type="checkbox" id="enableDateRange" class="enable" />
-								<label for="enableDateRange">Changes over time:</label>
-							</h4>
-							<div class="controls">
-								<label for="dateFrom">From: </label><input type="date" name="dateFrom" /><br />
-								<label for="dateTo">To: </label><input type="date" name="dateTo" />
+							</script>
+							
+							<div id="dateRange">
+								<h4>
+									<input type="checkbox" id="enableDateRange" class="enable" />
+									<label for="enableDateRange">Changes over time:</label>
+								</h4>
+								<div class="controls">
+									<label for="dateFrom">From: </label><input type="date" name="dateFrom" /><br />
+									<label for="dateTo">To: </label><input type="date" name="dateTo" />
+								</div>
+							</div>
+							
+							<div id="localAuthorities">
+								<h4>
+									<input type="checkbox" id="enableLocalAuthorities" class="enable" />
+									<label for="enableLocalAuthorities">Local Authorities:</label>
+								</h4>
+								<div class="controls">
+	
+									<select name="localAuthority1">
+										<option value="" id="localAuthority1_"></option>
+										<option value="London" id="localAuthority1_london">London</option>
+										<option value="Cambridge" id="localAuthority1_cambridge">Cambridge</option>
+										<option value="Edinburgh" id="localAuthority1_edinburgh">Edinburgh</option>
+									</select>
+									<select name="localAuthority2">
+										<option value="" id="localAuthority2_all">All</option>
+										<option value="London" id="localAuthority2_london">London</option>
+										<option value="Cambridge" id="localAuthority2_cambridge">Cambridge</option>
+										<option value="Edinburgh" id="localAuthority2_edinburgh">Edinburgh</option>
+									</select>
+								</div>
 							</div>
 						</div>
-						
-						<div id="localAuthorities">
-							<h4>
-								<input type="checkbox" id="enableLocalAuthorities" class="enable" />
-								<label for="enableLocalAuthorities">Local Authorities:</label>
-							</h4>
-							<div class="controls">
-
-								<select name="localAuthority1">
-									<option value="" id="localAuthority1_"></option>
-									<option value="London" id="localAuthority1_london">London</option>
-									<option value="Cambridge" id="localAuthority1_cambridge">Cambridge</option>
-									<option value="Edinburgh" id="localAuthority1_edinburgh">Edinburgh</option>
-								</select>
-								<select name="localAuthority2">
-									<option value="" id="localAuthority2_all">All</option>
-									<option value="London" id="localAuthority2_london">London</option>
-									<option value="Cambridge" id="localAuthority2_cambridge">Cambridge</option>
-									<option value="Edinburgh" id="localAuthority2_edinburgh">Edinburgh</option>
-								</select>
-							</div>
-						</div>
-					</div>	
+					</form>
 				</div>
 				
 				<div id="cyclingrates">
