@@ -19,6 +19,15 @@
 
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
+	// Load and run the application
+	<script type="text/javascript" src="js/bikedata.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			bikedata.initialise ({
+				option: 'value'
+			});
+		});
+	</script>
 <body>
 
 	<div id="globalsites">
@@ -33,12 +42,6 @@
 	</div>
 	
 	<main>
-		
-		<script type="text/javascript">
-			$(function() {
-				$('nav').tabs();
-			});
-		</script>
 		<nav>
 
 			<div id="selector">
@@ -192,7 +195,6 @@
 				<p>Supported by: <img src="images/logos/outlandish.png" title="Outlandish" alt="Logo" />
 			</div>
 		</div>
-		<script type="text/javascript" src="js/bikedata.js"></script>
 		
 		
 	</main>
