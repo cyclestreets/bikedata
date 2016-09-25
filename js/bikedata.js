@@ -7,6 +7,13 @@ bikedata = (function ($) {
 	var _settings = {};
 	var _map = null;
 	
+	// Icons
+	var _icons = {
+		'slight': 'images/icons/icon_collision_slight.svg',
+		'serious': 'images/icons/icon_collision_serious.svg',
+		'fatal': 'images/icons/icon_collision_fatal.svg',
+	};
+	
 	
 	return {
 		
@@ -100,7 +107,24 @@ bikedata = (function ($) {
 		// Function to show the data
 		showCurrentData: function (data)
 		{
-			L.geoJson(data).addTo(_map);
+			// Define the data layer
+			var dataLayer = L.geoJson(data, {
+				
+				// Set icon type
+				pointToLayer: function (feature, latlng) {
+					var icon = L.marker (latlng, {
+						// Icon properties as per: http://leafletjs.com/reference.html#icon
+						icon: L.icon({
+							iconUrl: _icons[feature.properties.severity],
+							iconSize: [38, 95],
+						})
+					});
+					return icon;
+				}
+			});
+			
+			// Add to the map
+			dataLayer.addTo(_map);
 		}
 	}
 } (jQuery));
