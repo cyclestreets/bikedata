@@ -67,11 +67,11 @@ bikedata = (function ($) {
 			apiData.bbox = _map.getBounds().toBBoxString();
 			
 			// Add the key
-			apiData.key = 'c047ed46f7b50b18';
+			apiData.key = _settings.apiKey;
 			
 			// Fetch data
 			$.ajax({
-				url: 'https://api.cyclestreets.net/v2/collisions.locations',
+				url: config.apiBaseUrl + '/v2/collisions.locations',
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,

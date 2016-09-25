@@ -1,5 +1,9 @@
 var config = {};
 
+// CycleStreets API base URL (not slash-terminated) and key
+config.apiBaseUrl = 'https://api.cyclestreets.net';
+config.apiKey = 'YOUR_API_KEY';		// Obtain at https://www.cyclestreets.net/api/apply/
+
 // Tileserver URL
 config.tileUrl = 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}@2x.png';
 
