@@ -1,0 +1,5 @@
+var config = {};
+
+// Tileserver URL
+config.tileUrl = 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}@2x.png';
+

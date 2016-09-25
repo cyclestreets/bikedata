@@ -13,10 +13,10 @@ bikedata = (function ($) {
 	// Public functions
 		
 		// Main function
-		initialise: function (settings)
+		initialise: function (config)
 		{
-			// Obtain the settings
-			_settings = settings;
+			// Obtain the configuration and allocate as settings
+			_settings = config;
 			
 			// Create the map
 			bikedata.createMap ();
@@ -36,8 +36,7 @@ bikedata = (function ($) {
 			_map = L.map('map').setView([51.505, -0.09], 13);
 			
 			// Add the tile layer
-			var tileUrl = 'https://tile.cyclestreets.net/opencyclemap/{z}/{x}/{y}.png';
-			L.tileLayer(tileUrl, {
+			L.tileLayer(_settings.tileUrl, {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'
 			}).addTo(_map);
 			
