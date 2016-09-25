@@ -5,6 +5,7 @@ bikedata = (function ($) {
 	
 	// Internal class properties
 	var _settings = {};
+	var _map = null;
 	
 	
 	return {
@@ -32,19 +33,21 @@ bikedata = (function ($) {
 		createMap: function ()
 		{
 			// create a map in the "map" div, set the view to a given place and zoom
-			var map = L.map('map').setView([51.505, -0.09], 13);
+			_map = L.map('map').setView([51.505, -0.09], 13);
 			
-			// add an OpenStreetMap tile layer
+			// Add the tile layer
 			var tileUrl = 'https://tile.cyclestreets.net/opencyclemap/{z}/{x}/{y}.png';
 			L.tileLayer(tileUrl, {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'
-			}).addTo(map);
+			}).addTo(_map);
 			
-			// add a marker in the given location, attach some popup content to it and open the popup
-			L.marker([51.5, -0.09]).addTo(map)
-			    .bindPopup('A pretty CSS3 popup.<br />Easily customizable.')
-			    .openPopup();
+			// Get the data on initial load
+			bikedata.getData ();
 			
+			// Register to refresh data on map move
+			_map.on ('moveend', function (e) {
+				bikedata.getData ();
+			});
 		},
 		
 		
@@ -56,11 +59,49 @@ bikedata = (function ($) {
 		
 		
 		// Function to manipulate the map based on form interactions
+		getData: function ()
+		{
+			// Start API data parameters
+			var apiData = {};
+			
+			// Get the bbox
+			apiData.bbox = _map.getBounds().toBBoxString();
+			
+			// Add the key
+			apiData.key = 'c047ed46f7b50b18';
+			
+			// Fetch data
+			$.ajax({
+				url: 'https://api.cyclestreets.net/v2/collisions.locations',
+				dataType: 'json',
+				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
+				data: apiData,
+				error: function (jqXHR, error, exception) {
+					// #!# Need proper handling
+					alert('Could not get data');
+					console.log(error);
+				},
+				success: function (data, textStatus, jqXHR) {
+					return bikedata.showCurrentData(data);
+				}
+			});
+		},
+		
+		
+		// Function to manipulate the map based on form interactions
 		formInteraction: function ()
 		{
+			// Re-fetch data when form is changed
 			$('form :input').change(function() {
-				alert('Form changed!');
+				bikedata.getData ();
 			});
+		},
+		
+
+		// Function to show the data
+		showCurrentData: function (data)
+		{
+			L.geoJson(data).addTo(_map);
 		}
 	}
 } (jQuery));
