@@ -16,10 +16,14 @@
 	<script src="js/lib/leaflet-0.7.3/leaflet.js"></script>
 	<script src="js/lib/jquery-1.11.3/jquery-1.11.3.min.js"></script>
 	<script src="js/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	
+	<script src="https://code.jquery.com/ui/1.11.4/css/base/jquery-ui.css"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/css/base/jquery.ui.autocomplete.css"></script>
+	<script type="text/javascript" src="js/geocoder.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
-	// Load and run the application with the supplied config
+	<!-- Bike data application and its config -->
 	<script type="text/javascript" src=".config.js"></script>
 	<script type="text/javascript" src="js/bikedata.js"></script>
 	<script type="text/javascript">
@@ -188,8 +192,11 @@
 			</div>
 		</nav>
 		
-
-			
+		
+		<div id="geocoder">
+			<input type="text" name="location" autocomplete="off"  placeholder="Search locations and move map" />
+		</div>
+		
 		<div id="map" class="map">
 			
 			<div id="sponsor">

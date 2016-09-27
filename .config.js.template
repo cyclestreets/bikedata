@@ -7,3 +7,5 @@ config.apiKey = 'YOUR_API_KEY';		// Obtain at https://www.cyclestreets.net/api/a
 // Tileserver URL
 config.tileUrl = 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}@2x.png';
 
+// BBOX for autocomplete
+config.autocompleteBbox = '-6.6577,49.9370,1.7797,57.6924'

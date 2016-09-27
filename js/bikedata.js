@@ -47,12 +47,31 @@ bikedata = (function ($) {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'
 			}).addTo(_map);
 			
+			// Add geolocation control
+			bikedata.geolocation ();
+			
 			// Get the data on initial load
 			bikedata.getData ();
 			
 			// Register to refresh data on map move
 			_map.on ('moveend', function (e) {
 				bikedata.getData ();
+			});
+		},
+		
+		
+		// Wrapper function to add a geolocation control
+		geolocation: function ()
+		{
+			// Attach the autocomplete library behaviour to the location control
+			autocomplete.addTo ("input[name='location']", {
+				sourceUrl: _settings.apiBaseUrl + '/v2/geocoder' + '?key=' + _settings.apiKey + '&bounded=1&bbox=' + _settings.autocompleteBbox,
+				select: function (event, ui) {
+					var result = ui.item;
+					var geojsonItemLayer = L.geoJson(result.feature);
+					_map.fitBounds(geojsonItemLayer.getBounds ());
+					event.preventDefault();
+				}
 			});
 		},
 		
