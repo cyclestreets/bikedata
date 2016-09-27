@@ -25,6 +25,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 #globalsites ul li.blog a:hover {background-color: #999;}
 
 main {width: 100%; height: calc(100% - 20px); position: relative;}
+main form {width: 100%; height: 100%;}
 
 nav {position: absolute; top: 0; right: 0; width: 330px; height: 100%; z-index: 2;}
 nav {color: white;}
@@ -62,20 +63,20 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 
 
 /* Toolbar */
-#tools {width: 200px; height: calc(100% - 20px); margin-left: 90px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
+#sections {width: 200px; height: calc(100% - 20px); margin-left: 90px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
 
 /* Sections */
-#tools #compare > div {opacity: 0.5;}
-#tools #compare div.enabled {opacity: 1;}
-#tools #compare div p {margin-bottom: 4px;}
-#tools #compare div .controls label {width: 45px; display: inline-block;}
+#sections #compare > div {opacity: 0.5;}
+#sections #compare div.enabled {opacity: 1;}
+#sections #compare div p {margin-bottom: 4px;}
+#sections #compare div .controls label {width: 45px; display: inline-block;}
 
-#tools div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 0;}
-#tools div.concern h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
-#tools div.concern > div {padding: 5px 5px;}
+#sections div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 0;}
+#sections div.concern h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
+#sections div.concern > div {padding: 5px 5px;}
 
-#tools h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
-#tools .controls {padding: 0; margin: 0;}
+#sections h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
+#sections .controls {padding: 0; margin: 0;}
 
 /* Header */
 header {background: rgba(255,255,255,0.2); _background-color: gray; padding: 5px 8px 20px; margin: 0; position: relative; left: -8px;}

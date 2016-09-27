@@ -96,7 +96,7 @@ bikedata = (function ($) {
 			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
-			$('form :input').change(function() {
+			$('form #sections :input').change (function() {
 				_parameters = bikedata.parseFormValues ();
 				bikedata.getData (_parameters);
 			});

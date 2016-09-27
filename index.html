@@ -47,30 +47,44 @@
 	</div>
 	
 	<main>
-		<nav>
-
-			<div id="selector">
-				<ul>
-					<li><a href="#collisions" title="Collisions" class="tooltip"><img src="images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a></li>
-					<li><a href="#cyclingrates" title="Cycling rates" class="tooltip"><img src="images/icons/icon_bicycles_good.svg" alt="" /><br />Cycling rates</a></li>
-					<li><a href="#trafficcounts" title="Traffic data" class="tooltip"><img src="images/icons/icon_congestion_bad.svg" alt="" /><br />Traffic counts</a></li>
-					<li><a href="#od" title="Distance data" class="tooltip"><img src="images/icons/icon_linked_points_good.svg" alt="" /><br />Trip lengths</a></li>
-					<li><a href="#cycletheft" title="Cycle theft data" class="tooltip"><img src="images/icons/icon_enforcement_bad.svg" alt="" /><br />Cycle theft</a></li>
-<!--
-					<li><a href="#photomap" title="Photos of cycle infrastructure" class="tooltip"><img src="images/icons/photomap.svg" alt="" /> Photos</a></li>
--->
-				</ul>
-			</div>
-			
-			<div id="tools">
+		
+		<form id="form_collisions">
+		
+			<nav>
+	
+				<div id="selector">
+					<ul>
+						<li>
+							<a href="#collisions" title="Collisions" class="tooltip"><img src="images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a>
+						</li>
+						<li>
+							<a href="#cyclingrates" title="Cycling rates" class="tooltip"><img src="images/icons/icon_bicycles_good.svg" alt="" /><br />Cycling rates</a>
+						</li>
+						<li>
+							<a href="#trafficcounts" title="Traffic data" class="tooltip"><img src="images/icons/icon_congestion_bad.svg" alt="" /><br />Traffic counts</a>
+						</li>
+						<li>
+							<a href="#od" title="Distance data" class="tooltip"><img src="images/icons/icon_linked_points_good.svg" alt="" /><br />Trip lengths</a>
+						</li>
+						<li>
+							<a href="#cycletheft" title="Cycle theft data" class="tooltip"><img src="images/icons/icon_enforcement_bad.svg" alt="" /><br />Cycle theft</a>
+						</li>
+	<!--
+						<li>
+							<a href="#photomap" title="Photos of cycle infrastructure" class="tooltip"><img src="images/icons/photomap.svg" alt="" /> Photos</a>
+						</li>
+	-->
+					</ul>
+				</div>
 				
-				<header>
-					<h1>Advocacy data</h1>
-					<p class="about">Data to support getting more people cycling.</p>
-				</header>
-
-				<div id="collisions">
-					<form id="form_collisions">
+				<div id="sections">
+					
+					<header>
+						<h1>Advocacy data</h1>
+						<p class="about">Data to support getting more people cycling.</p>
+					</header>
+					
+					<div id="collisions">
 						<h2>Collisions</h2>
 						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure.</p>
 						
@@ -157,58 +171,59 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					</div>
+					
+					<div id="cyclingrates">
+						<h2>Cycling rates</h2>
+						<p>blurb</p>
+						<p><em>controls</em></p>
+					</div>
+					
+					<div id="trafficcounts">
+						<h2>Traffic count data</h2>
+						<p>blurb</p>
+						<p><em>controls</em></p>
+					</div>
+					
+					<div id="od">
+						<h2>Origin-Destination data</h2>
+						<p>blurb</p>
+						<p><em>controls</em></p>
+					</div>
+					
+					<div id="cycletheft">
+						<h2>Cycle theft</h2>
+						<p>blurb</p>
+						<p><em>controls</em></p>
+					</div>
+					
+	<!--
+					<div id="photomap">
+						<h2>Photos</h2>
+						<p>67,421 cycling-related images/videos available of cycling infrastructure</p>
+						<p><em>controls</em></p>
+					</div>
+	-->
+					
 				</div>
-				
-				<div id="cyclingrates">
-					<h2>Cycling rates</h2>
-					<p>blurb</p>
-					<p><em>controls</em></p>
-				</div>
-				
-				<div id="trafficcounts">
-					<h2>Traffic count data</h2>
-					<p>blurb</p>
-					<p><em>controls</em></p>
-				</div>
-				
-				<div id="od">
-					<h2>Origin-Destination data</h2>
-					<p>blurb</p>
-					<p><em>controls</em></p>
-				</div>
-				
-				<div id="cycletheft">
-					<h2>Cycle theft</h2>
-					<p>blurb</p>
-					<p><em>controls</em></p>
-				</div>
-				
-<!--
-				<div id="photomap">
-					<h2>Photos</h2>
-					<p>67,421 cycling-related images/videos available of cycling infrastructure</p>
-					<p><em>controls</em></p>
-				</div>
--->
-				
-			</div>
-		</nav>
-		
-		
-		<div id="geocoder">
-			<input type="text" name="location" autocomplete="off" placeholder="Search locations and move map" />
-		</div>
-		
-		<div id="map" class="map">
+			</nav>
 			
-			<div id="sponsor">
-				<p>Supported by: <img src="images/logos/outlandish.png" title="Outlandish" alt="Logo" />
+			
+			<div id="geocoder">
+				<input type="text" name="location" autocomplete="off" placeholder="Search locations and move map" />
 			</div>
-		</div>
-		
+			
+			<div id="map" class="map">
+				
+				<div id="sponsor">
+					<p>Supported by: <img src="images/logos/outlandish.png" title="Outlandish" alt="Logo" />
+				</div>
+			</div>
+			
+		</form>
 		
 	</main>
+	
 	<footer>
 		<p>Footer</p>
 	</footer>
