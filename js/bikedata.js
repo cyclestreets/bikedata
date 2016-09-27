@@ -9,9 +9,9 @@ bikedata = (function ($) {
 	
 	// Icons
 	var _icons = {
-		'slight': 'images/icons/icon_collision_slight.svg',
+		'slight':  'images/icons/icon_collision_slight.svg',
 		'serious': 'images/icons/icon_collision_serious.svg',
-		'fatal': 'images/icons/icon_collision_fatal.svg',
+		'fatal':   'images/icons/icon_collision_fatal.svg',
 	};
 	
 	
@@ -88,7 +88,7 @@ bikedata = (function ($) {
 			
 			// Fetch data
 			$.ajax({
-				url: config.apiBaseUrl + '/v2/collisions.locations',
+				url: _settings.apiBaseUrl + '/v2/collisions.locations',
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
