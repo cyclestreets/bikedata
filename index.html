@@ -76,19 +76,18 @@
 						
 						<div id="filter" class="concern">
 							<h3>Filter to:</h3>
-							<div class="controls">
 								
 								<h4>Casualty:</h4>
 								<div class="controls">
-									<input type="checkbox" checked="checked" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label><br />
-									<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Pedestrian</label><br />
-									<input type="checkbox" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Motor vehicle occupant</label><br />
+									<input type="checkbox" checked="checked" name="casualties[]" id="casualties_Cyclist" value="Cyclist" /><label for="casualties_Cyclist">Cyclist</label><br />
+									<input type="checkbox" name="casualties[]" id="casualties_Pedestrian" value="Pedestrian" /><label for="casualties_Pedestrian">Pedestrian</label><br />
+									<input type="checkbox" name="casualties[]" id="casualties_Car_occupant" value="Motor vehicle occupant" /><label for="casualties_Car_occupant">Motor vehicle occupant</label><br />
 								</div>
 								
 								<h4>Severity:</h4>
 								<div class="controls">
 									<select name="severity" id="severity">
-										<option value="all" id="severity_____NULL">All</option>
+										<option value="" id="severity___NULL">All</option>
 										<option value="fatal" id="severity_fatal">Fatal</option>
 										<option value="serious" id="severity_serious">Serious</option>
 										<option value="slight" id="severity_slight">Slight</option>
@@ -97,15 +96,17 @@
 								
 								<h4>With a:</h4>
 								<div class="controls">
-									<input type="checkbox" checked="checked" name="casualties[Car occupant]" id="casualties_Car_occupant" value="true" /><label for="casualties_Car_occupant">Driver</label>
-									<input type="checkbox" name="casualties[Cyclist]" id="casualties_Cyclist" value="true" /><label for="casualties_Cyclist">Cyclist</label>
-									<input type="checkbox" name="casualties[Pedestrian]" id="casualties_Pedestrian" value="true" /><label for="casualties_Pedestrian">Ped</label><br />
+									<input type="checkbox" checked="checked" name="involved[]" id="involved_Car_occupant" value="Driver" /><label for="involved_Car_occupant">Driver</label>
+									<input type="checkbox" name="involved[]" id="involved_Cyclist" value="Cyclist" /><label for="involved_Cyclist">Cyclist</label>
+									<input type="checkbox" name="involved[]" id="involved_Pedestrian" value="Pedestrian" /><label for="involved_Pedestrian">Ped</label><br />
 								</div>
 								
 								<h4>Limit to:</h4>
-								<input type="checkbox" id="junctions" /><label for="junctions"> Junctions</label><br />
-								<input type="checkbox" id="onewaystreets" /><label for="onewaystreets"> One-way streets</label><br />
-								<input type="checkbox" id="aroads" /><label for="aroads"> A-roads</label>
+								<div class="controls">
+									<input type="checkbox" value="Junctions" id="junctions" /><label for="junctions"> Junctions</label><br />
+									<input type="checkbox" value="One-way streets" id="onewaystreets" /><label for="onewaystreets"> One-way streets</label><br />
+									<input type="checkbox" value="A-roads" id="aroads" /><label for="aroads"> A-roads</label>
+								</div>
 								
 								<p>&#9655; More filters</p>
 			
@@ -196,7 +197,7 @@
 		
 		
 		<div id="geocoder">
-			<input type="text" name="location" autocomplete="off"  placeholder="Search locations and move map" />
+			<input type="text" name="location" autocomplete="off" placeholder="Search locations and move map" />
 		</div>
 		
 		<div id="map" class="map">

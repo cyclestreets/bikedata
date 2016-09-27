@@ -89,16 +89,71 @@ bikedata = (function ($) {
 		// Function to manipulate the map based on form interactions
 		formInteraction: function ()
 		{
-			// Re-fetch data when form is changed
+			// Get the form parameters on load
+			var parameters = bikedata.parseFormValues ();
+			
+			// Fetch the data
+			bikedata.getData (parameters);
+			
+			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form :input').change(function() {
-				bikedata.getData ();
+				parameters = bikedata.parseFormValues ();
+				bikedata.getData (parameters);
 			});
+		},
+		
+		
+		// Function to parse the form values, returning the minimal required set of key/value pairs
+		parseFormValues: function ()
+		{
+			// Start a list of parameters that have a value
+			var parameters = {};
+			
+			// Define the delimiter used for combining groups
+			var delimiter = ',';	// Should match the delimiter defined by the API
+			
+			// Loop through list of inputs (e.g. checkboxes, select, etc.)
+			$(':input').each(function() {
+				
+				// Determine the input type
+				var tagName = this.tagName.toLowerCase();	// Examples: 'input', 'select'
+				var type = $(this).prop('type');			// Examples: 'text', 'checkbox', 'select-one'
+				
+				// Obtain the element name
+				var name = $(this).attr('name');
+				
+				// For checkboxes, degroup them by creating/adding a value that is checked, split by the delimiter
+				if (tagName == 'input' && type == 'checkbox') {
+					if (this.checked) {
+						name = name.replace(/\[\]$/g, ''); // Get name of this checkbox, stripping any trailing grouping indicator '[]' (e.g. values for 'foo[]' are registered to 'foo')
+						var value = $(this).val();
+						if (parameters[name]) {
+							parameters[name] += delimiter + value; // Add value
+						} else {
+							parameters[name] = value; // Set value
+						}
+					}
+					return;	// Continue to next input
+				}
+				
+				// For all other input types, if there is a value, register it
+				var value = $(this).val();
+				if (value.length > 0) {
+					parameters[name] = value;	// Set value
+					return;	// Continue to next input
+				}
+			});
+			
+			// Return the parameters
+			return parameters;
 		},
 		
 
 		// Function to manipulate the map based on form interactions
-		getData: function ()
+		getData: function (parameters)
 		{
+			//console.log(parameters);
+			
 			// Start API data parameters
 			var apiData = {};
 			
