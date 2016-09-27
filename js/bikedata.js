@@ -6,6 +6,7 @@ bikedata = (function ($) {
 	// Internal class properties
 	var _settings = {};
 	var _map = null;
+	var _parameters = {};
 	
 	// Icons
 	var _icons = {
@@ -25,14 +26,21 @@ bikedata = (function ($) {
 			// Obtain the configuration and allocate as settings
 			_settings = config;
 			
-			// Create the map
-			bikedata.createMap ();
-			
 			// Load the tabs
 			bikedata.loadTabs ();
 			
-			// Add map interactions from the form
-			bikedata.formInteraction ();
+			// Create the map
+			bikedata.createMap ();
+			
+			// Load the data, and add map interactions and form interactions
+			bikedata.loadData ();
+		},
+		
+		
+		// Function to load the tabs
+		loadTabs: function ()
+		{
+			$('nav').tabs();
 		},
 		
 		
@@ -51,15 +59,8 @@ bikedata = (function ($) {
 			bikedata.geocoder ();
 			
 			// Add hash support
+			// #!# Note that this causes a map move, causing a second data request
 			new L.Hash (_map);
-			
-			// Get the data on initial load
-			bikedata.getData ();
-			
-			// Register to refresh data on map move
-			_map.on ('moveend', function (e) {
-				bikedata.getData ();
-			});
 		},
 		
 		
@@ -79,26 +80,24 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Function to load the tabs
-		loadTabs: function ()
-		{
-			$('nav').tabs();
-		},
-		
-		
 		// Function to manipulate the map based on form interactions
-		formInteraction: function ()
+		loadData: function ()
 		{
 			// Get the form parameters on load
-			var parameters = bikedata.parseFormValues ();
+			_parameters = bikedata.parseFormValues ();
 			
 			// Fetch the data
-			bikedata.getData (parameters);
+			bikedata.getData (_parameters);
+			
+			// Register to refresh data on map move
+			_map.on ('moveend', function (e) {
+				bikedata.getData (_parameters);
+			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form :input').change(function() {
-				parameters = bikedata.parseFormValues ();
-				bikedata.getData (parameters);
+				_parameters = bikedata.parseFormValues ();
+				bikedata.getData (_parameters);
 			});
 		},
 		
