@@ -157,8 +157,9 @@ bikedata = (function ($) {
 			// Start API data parameters
 			var apiData = {};
 			
-			// Get the bbox
+			// Get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
 			apiData.bbox = _map.getBounds().toBBoxString();
+			apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
 			
 			// Add the key
 			apiData.key = _settings.apiKey;
@@ -177,6 +178,39 @@ bikedata = (function ($) {
 					return bikedata.showCurrentData(data);
 				}
 			});
+		},
+		
+		
+		// Function to reduce co-ordinate accuracy of a bbox string
+		reduceBboxAccuracy: function (bbox)
+		{
+			// Split by comma
+			var coordinates = bbox.split(',');
+			
+			// Reduce accuracy of each coordinate
+			coordinates = bikedata.reduceCoordinateAccuracy (coordinates);
+			
+			// Recombine
+			bbox = coordinates.join(',');
+			
+			// Return the string
+			return bbox;
+		},
+		
+		
+		// Function to reduce co-ordinate accuracy to avoid pointlessly long URLs
+		reduceCoordinateAccuracy: function (coordinates)
+		{
+			// Set 0.1m accuracy; see: https://en.wikipedia.org/wiki/Decimal_degrees
+			var accuracy = 6;
+			
+			// Reduce each value
+			for (var i=0; i < coordinates.length; i++) {
+				coordinates[i] = parseFloat(coordinates[i]).toFixed(accuracy);
+			}
+			
+			// Return the modified set
+			return coordinates;
 		},
 		
 		
