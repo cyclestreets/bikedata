@@ -41,7 +41,13 @@ bikedata = (function ($) {
 		// Function to load the tabs
 		loadTabs: function ()
 		{
+			// Enable tabbing of main menu
 			$('nav').tabs();
+			
+			// Toggle checked sections as selected
+			$('nav #selector input').change (function() {
+				$(this).parent('li').toggleClass('selected', this.checked);
+			});
 		},
 		
 		

@@ -62,6 +62,8 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #selector ul li.selected:hover {background-color: black;}
 #selector ul li a img {width: 40px;}
 
+#selector input {position: fixed; margin-left: 8px; margin-top: 15px;}
+
 
 /* Toolbar */
 #sections {width: 200px; height: calc(100% - 20px); margin-left: 90px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
