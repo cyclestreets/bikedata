@@ -53,12 +53,11 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 
 #selector {float: left; width: 90px; height: 100%; background-color: #333; opacity: 0.85;}
 
-#selector ul {height: 100%; list-style: none; width: 100%; margin: 0; padding: 0; border-left: 4px solid gray;}
-#selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray;}
+#selector ul {height: 100%; list-style: none; width: 100%; margin: 0; padding: 0;}
+#selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray; border-left: 4px solid gray;}
 #selector ul li:last-child {border-bottom: 1px solid gray;}
-#selector ul li.selected {background-color: black;}
+#selector ul li.selected {background-color: black; border-left: 4px solid brown;}
 #selector ul li a {font-size: 0.9em; padding: 20px 10px; display: block; text-align: center;}
-#selector ul li.selected a {border-left: 4px solid brown;}
 #selector ul li:hover {background-color: #111;}
 #selector ul li.selected:hover {background-color: black;}
 #selector ul li a img {width: 40px;}
