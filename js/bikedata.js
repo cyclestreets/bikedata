@@ -6,6 +6,7 @@ bikedata = (function ($) {
 	// Internal class properties
 	var _settings = {};
 	var _map = null;
+	var _currentDataLayer = null;
 	var _parameters = {};
 	
 	// Icons
@@ -239,8 +240,13 @@ bikedata = (function ($) {
 		// Function to show the data
 		showCurrentData: function (data)
 		{
+			// If there is already a layer, remove it
+			if (_currentDataLayer) {
+				_map.removeLayer (_currentDataLayer);
+			}
+			
 			// Define the data layer
-			var dataLayer = L.geoJson(data, {
+			_currentDataLayer = L.geoJson(data, {
 				
 				// Set icon type
 				pointToLayer: function (feature, latlng) {
@@ -262,7 +268,7 @@ bikedata = (function ($) {
 			});
 			
 			// Add to the map
-			dataLayer.addTo(_map);
+			_currentDataLayer.addTo(_map);
 		}
 	}
 } (jQuery));
