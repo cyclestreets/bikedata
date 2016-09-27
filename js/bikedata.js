@@ -47,8 +47,8 @@ bikedata = (function ($) {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'
 			}).addTo(_map);
 			
-			// Add geolocation control
-			bikedata.geolocation ();
+			// Add geocoder control
+			bikedata.geocoder ();
 			
 			// Add hash support
 			new L.Hash (_map);
@@ -63,8 +63,8 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Wrapper function to add a geolocation control
-		geolocation: function ()
+		// Wrapper function to add a geocoder control
+		geocoder: function ()
 		{
 			// Attach the autocomplete library behaviour to the location control
 			autocomplete.addTo ("input[name='location']", {
