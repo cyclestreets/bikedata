@@ -50,6 +50,9 @@ bikedata = (function ($) {
 			// Add geolocation control
 			bikedata.geolocation ();
 			
+			// Add hash support
+			new L.Hash (_map);
+			
 			// Get the data on initial load
 			bikedata.getData ();
 			
