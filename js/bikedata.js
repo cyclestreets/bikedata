@@ -151,17 +151,21 @@ bikedata = (function ($) {
 		// Function to manipulate the map based on form interactions
 		getData: function (parameters)
 		{
-			//console.log(parameters);
-			
 			// Start API data parameters
 			var apiData = {};
+			
+			// Add the key
+			apiData.key = _settings.apiKey;
 			
 			// Get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
 			apiData.bbox = _map.getBounds().toBBoxString();
 			apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
 			
-			// Add the key
-			apiData.key = _settings.apiKey;
+			// Add in the parameters from the form, namespaced with 'field:' as documented at https://www.cyclestreets.net/api/v2/collisions.locations/
+			$.each(parameters, function (parameter, value) {
+				var field = 'field:' + parameter;
+				apiData[field] = encodeURIComponent(value);
+			});
 			
 			// Fetch data
 			$.ajax({
