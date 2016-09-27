@@ -93,9 +93,8 @@ bikedata = (function ($) {
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
 				error: function (jqXHR, error, exception) {
-					// #!# Need proper handling
-					alert('Could not get data');
-					console.log(error);
+					var data = $.parseJSON(jqXHR.responseText);
+					alert('Error: ' + data.error);
 				},
 				success: function (data, textStatus, jqXHR) {
 					return bikedata.showCurrentData(data);
