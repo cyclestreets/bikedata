@@ -47,11 +47,11 @@ bikedata = (function ($) {
 			// Obtain the configuration and allocate as settings
 			_settings = config;
 			
-			// Load the tabs and determine the enabled layers
-			var enabledLayers = bikedata.loadTabs ();
-			
 			// Create the map
 			bikedata.createMap ();
+			
+			// Load the tabs and determine the enabled layers
+			var enabledLayers = bikedata.loadTabs ();
 			
 			// Load the data, and add map interactions and form interactions
 			for (var index in enabledLayers) {
