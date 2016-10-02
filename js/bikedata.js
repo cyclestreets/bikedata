@@ -190,7 +190,7 @@ bikedata = (function ($) {
 			// Add fixed parameters if present
 			if (_layers[layerId]['apiFixedParameters']) {
 				$.each(_layers[layerId]['apiFixedParameters'], function (field, value) {
-					apiData[field] = encodeURIComponent(value);
+					apiData[field] = value;
 				});
 			}
 			
@@ -200,7 +200,7 @@ bikedata = (function ($) {
 			
 			// Add in the parameters from the form
 			$.each(parameters, function (field, value) {
-				apiData[field] = encodeURIComponent(value);
+				apiData[field] = value;
 			});
 			
 			// Fetch data
@@ -294,7 +294,6 @@ bikedata = (function ($) {
 						var iconUrl = _layers[layerId]['icons'][feature.properties[field]];
 					} else {
 						var iconUrl = feature.properties[field];
-						console.log(iconUrl);
 					}
 					
 					var icon = L.marker (latlng, {
