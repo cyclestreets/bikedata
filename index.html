@@ -20,11 +20,14 @@
 	<script src="https://code.jquery.com/ui/1.11.4/css/base/jquery-ui.css"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/css/base/jquery.ui.autocomplete.css"></script>
 	<script type="text/javascript" src="js/geocoder.js"></script>
-
+	
 	<script type="text/javascript" src="js/lib/leaflet-hash/leaflet-hash.js"></script>
-
+	
+	<script type="text/javascript" src="js/lib/Leaflet.draw-0.3.2/dist/leaflet.draw.js"></script>
+	<link rel="stylesheet" href="js/lib/Leaflet.draw-0.3.2/dist/leaflet.draw.css" rel="stylesheet" />
+	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-
+	
 	<!-- Bike data application and its config -->
 	<script type="text/javascript" src=".config.js"></script>
 	<script type="text/javascript" src="js/bikedata.js"></script>
@@ -78,6 +81,29 @@
 							<input type="checkbox" name="show[]" id="show_photomap" checked="checked" />
 							<a href="#photomap" title="Cycle infrastructure photos" class="tooltip"><img src="images/icons/icon_other_neutral.svg" alt="" /><br />Photos</a>
 						</li>
+					</ul>
+				</div>
+				
+				<div id="drawing">
+					<div class="panes">
+						<div class="pane">
+							<h3>Draw area to limit results</h3>
+							<div id="drawingcontrols">
+								<ul>
+									<li><a><span class="draw area"></span>draw area</a></li>
+								</ul>
+							</div>
+							<!--
+							<p>Click the points to mark an area on the map.</p>
+							<p>Double-click to complete the shape.</p>
+							<p>Zoom in and pan to select the correct area.</p>
+							-->
+							<input id="geometry" name="loc_json" type="hidden" value="" />
+						</div>
+					</div>
+					<ul class="undo-clear">
+						<!--<li><a class="edit-undo"><span class="icon-undo"></span><span class="txt">undo</span></a></li>-->
+						<li><a class="edit-clear"><span class="icon-clear"></span><span class="txt">clear</span></a></li>
 					</ul>
 				</div>
 				

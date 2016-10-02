@@ -112,6 +112,9 @@ bikedata = (function ($) {
 			// Add geocoder control
 			bikedata.geocoder ();
 			
+			// Add drawing support
+			bikedata.drawing ('#geometry', true, '');
+			
 			// Add hash support
 			// #!# Note that this causes a map move, causing a second data request
 			new L.Hash (_map);
@@ -360,6 +363,107 @@ bikedata = (function ($) {
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
 			}
+		},
+		
+		
+		// Drawing functionality, wrapping Leaflet.draw
+		drawing: function (targetField, fragmentOnly, defaultValueString)
+		{
+			// Options for polygon drawing
+			var polygon_options = {
+				showArea: false,
+				shapeOptions: {
+					stroke: true,
+					color: 'blue',
+					weight: 4,
+					opacity: 0.5,
+					fill: true,
+					fillColor: null, //same as color by default
+					fillOpacity: 0.2,
+					clickable: true
+				}
+			}
+			
+			// Create a map drawing layer
+			var drawnItems = new L.FeatureGroup();
+			
+			// Add default value if supplied; currently only polygon type supplied
+			if (defaultValueString) {
+				
+				// Convert the string to an array of L.latLng(lat,lon) values
+				var polygonPoints = JSON.parse(defaultValueString);
+				if (polygonPoints) {
+					defaultPolygon = new Array();
+					for (var i = 0; i < polygonPoints.length; i++) {
+						point = polygonPoints[i];
+						defaultPolygon.push (L.latLng(point[1], point[0]));
+					}
+				}
+				
+				// Create the polygon and style it
+				var defaultPolygonFeature = L.polygon(defaultPolygon, polygon_options.shapeOptions);
+				
+				// Create the layer and add the polygon to the layer
+				var defaultLayer = new L.layerGroup();
+				defaultLayer.addLayer(defaultPolygonFeature);
+				
+				// Add the layer to the drawing canvas
+				drawnItems.addLayer(defaultLayer);
+			}
+			
+			// Add the drawing layer to the map
+			_map.addLayer(drawnItems);
+			
+			// Enable the polygon drawing when the button is clicked
+			var drawControl = new L.Draw.Polygon(_map, polygon_options);
+			$('.draw.area').click(function() {
+				drawControl.enable();
+				
+				// Allow only a single polygon at present
+				// #!# Remove this when the server-side allows multiple polygons
+				drawnItems.clearLayers();
+			});
+			
+			// Handle created polygons
+			_map.on('draw:created', function (e) {
+				var type = e.layerType,
+				layer = e.layer;
+				drawnItems.addLayer(layer);
+				
+				// Convert to GeoJSON value
+				var geojsonValue = drawnItems.toGeoJSON();
+				
+				// Reduce coordinate accuracy to 6dp (c. 1m) to avoid over-long URLs
+				// #!# Ideally this would be native within Leaflet.draw: https://github.com/Leaflet/Leaflet.draw/issues/581
+				var coordinates = geojsonValue.features[0].geometry.coordinates[0];
+				var accuracy = 6;	// Decimal points; gives 0.1m accuracy; see: https://en.wikipedia.org/wiki/Decimal_degrees
+				for (var i=0; i < coordinates.length; i++) {
+					for (var j=0; j < coordinates[i].length; j++) {
+						coordinates[i][j] = +coordinates[i][j].toFixed(accuracy);
+					}
+				}
+				geojsonValue.features[0].geometry.coordinates[0] = coordinates;
+				
+				// If required, send only the coordinates fragment
+				if (fragmentOnly) {
+					geojsonValue = coordinates;
+				}
+				
+				// Send to receiving input form
+				$(targetField).val(JSON.stringify(geojsonValue));
+			});
+			
+			// Cancel button clears drawn polygon and clears the form value
+			$('.edit-clear').click(function() {
+				drawnItems.clearLayers();
+				$(targetField).val('');
+			});
+			
+			// Undo button
+			$('.edit-undo').click(function() {
+				drawnItems.revertLayers();
+			});
 		}
 	}
+	
 } (jQuery));
