@@ -57,6 +57,17 @@ bikedata = (function ($) {
 			for (var index in enabledLayers) {
 				bikedata.enableLayer (enabledLayers[index]);
 			};
+			
+			// Toggle map sections on/off when checkboxes changed
+			$('nav #selector input').change (function() {
+				var layerId = this.id.replace('show_', '')
+				if (this.checked) {
+					bikedata.enableLayer (layerId);
+				} else {
+					bikedata.removeLayer (layerId);
+				}
+			});
+			
 		},
 		
 		
