@@ -21,6 +21,18 @@ bikedata = (function ($) {
 				'serious': 'images/icons/icon_collision_serious.svg',
 				'fatal':   'images/icons/icon_collision_fatal.svg',
 			}
+		},
+		
+		'photomap': {
+			'apiCall': '/v2/photomap.locations',
+			'apiFixedParameters': {
+				'fields': 'id,caption,hasPhoto,thumbnailUrl,username,licenseName,iconUrl',
+				'limit': 150,
+				'thumbnailsize': 200,
+				'suppressplaceholders': '1',
+			},
+			'iconField': 'iconUrl'
+			// icons specified in the field value
 		}
 	};
 	
@@ -43,6 +55,7 @@ bikedata = (function ($) {
 			
 			// Load the data, and add map interactions and form interactions
 			bikedata.loadData ('collisions');
+			bikedata.loadData ('photomap');
 		},
 		
 		
