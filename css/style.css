@@ -62,7 +62,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #selector ul li.selected:hover {background-color: black;}
 #selector ul li a img {width: 40px;}
 
-#selector input {position: fixed; margin-left: 8px; margin-top: 15px;}
+#selector input {float: left; margin-left: 8px; margin-top: 15px;}
 
 
 /* Toolbar */
