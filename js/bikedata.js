@@ -6,14 +6,25 @@ bikedata = (function ($) {
 	// Internal class properties
 	var _settings = {};
 	var _map = null;
-	var _currentDataLayer = null;
+	var _currentDataLayer = {};
 	var _parameters = {};
+	
+	// API endpoints
+	var _apiCalls = {
+		'collisions': '/v2/collisions.locations',
+		'photomap':   '/v2/photomap.locations'
+	};
 	
 	// Icons
 	var _icons = {
-		'slight':  'images/icons/icon_collision_slight.svg',
-		'serious': 'images/icons/icon_collision_serious.svg',
-		'fatal':   'images/icons/icon_collision_fatal.svg',
+		'collisions': {
+			'field': 'severity',
+			'images': {
+				'slight':  'images/icons/icon_collision_slight.svg',
+				'serious': 'images/icons/icon_collision_serious.svg',
+				'fatal':   'images/icons/icon_collision_fatal.svg',
+			}
+		}
 	};
 	
 	
@@ -34,7 +45,7 @@ bikedata = (function ($) {
 			bikedata.createMap ();
 			
 			// Load the data, and add map interactions and form interactions
-			bikedata.loadData ();
+			bikedata.loadData ('collisions');
 		},
 		
 		
@@ -93,29 +104,29 @@ bikedata = (function ($) {
 		
 		
 		// Function to manipulate the map based on form interactions
-		loadData: function ()
+		loadData: function (layerId)
 		{
 			// Get the form parameters on load
-			_parameters = bikedata.parseFormValues ();
+			_parameters = bikedata.parseFormValues (layerId);
 			
 			// Fetch the data
-			bikedata.getData (_parameters);
+			bikedata.getData (layerId, _parameters);
 			
 			// Register to refresh data on map move
 			_map.on ('moveend', function (e) {
-				bikedata.getData (_parameters);
+				bikedata.getData (layerId, _parameters);
 			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form #sections :input').change (function() {
-				_parameters = bikedata.parseFormValues ();
-				bikedata.getData (_parameters);
+				_parameters = bikedata.parseFormValues (layerId);
+				bikedata.getData (layerId, _parameters);
 			});
 		},
 		
 		
 		// Function to parse the form values, returning the minimal required set of key/value pairs
-		parseFormValues: function ()
+		parseFormValues: function (layerId)
 		{
 			// Start a list of parameters that have a value
 			var parameters = {};
@@ -123,8 +134,8 @@ bikedata = (function ($) {
 			// Define the delimiter used for combining groups
 			var delimiter = ',';	// Should match the delimiter defined by the API
 			
-			// Loop through list of inputs (e.g. checkboxes, select, etc.)
-			$(':input').each(function() {
+			// Loop through list of inputs (e.g. checkboxes, select, etc.) for the selected layer
+			$('form#data #' + layerId + ' :input').each(function() {
 				
 				// Determine the input type
 				var tagName = this.tagName.toLowerCase();	// Examples: 'input', 'select'
@@ -155,13 +166,23 @@ bikedata = (function ($) {
 				}
 			});
 			
+			// For collisions, namespace each fieldname with 'field:' as documented at https://www.cyclestreets.net/api/v2/collisions.locations/
+			if (layerId == 'collisions') {
+				var parametersNamespaced = {};
+				$.each(parameters, function (field, value) {
+					var field = 'field:' + field;
+					parametersNamespaced[field] = value;
+				});
+				parameters = parametersNamespaced;
+			}
+			
 			// Return the parameters
 			return parameters;
 		},
 		
-
+		
 		// Function to manipulate the map based on form interactions
-		getData: function (parameters)
+		getData: function (layerId, parameters)
 		{
 			// Start API data parameters
 			var apiData = {};
@@ -173,15 +194,14 @@ bikedata = (function ($) {
 			apiData.bbox = _map.getBounds().toBBoxString();
 			apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
 			
-			// Add in the parameters from the form, namespaced with 'field:' as documented at https://www.cyclestreets.net/api/v2/collisions.locations/
-			$.each(parameters, function (parameter, value) {
-				var field = 'field:' + parameter;
+			// Add in the parameters from the form
+			$.each(parameters, function (field, value) {
 				apiData[field] = encodeURIComponent(value);
 			});
 			
 			// Fetch data
 			$.ajax({
-				url: _settings.apiBaseUrl + '/v2/collisions.locations',
+				url: _settings.apiBaseUrl + _apiCalls[layerId],
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
@@ -190,7 +210,7 @@ bikedata = (function ($) {
 					alert('Error: ' + data.error);
 				},
 				success: function (data, textStatus, jqXHR) {
-					return bikedata.showCurrentData(data);
+					return bikedata.showCurrentData(layerId, data);
 				}
 			});
 		},
@@ -249,22 +269,25 @@ bikedata = (function ($) {
 		
 		
 		// Function to show the data
-		showCurrentData: function (data)
+		showCurrentData: function (layerId, data)
 		{
 			// If there is already a layer, remove it
-			if (_currentDataLayer) {
-				_map.removeLayer (_currentDataLayer);
+			if (_currentDataLayer[layerId]) {
+				_map.removeLayer (_currentDataLayer[layerId]);
 			}
 			
+			// Determine the field in the feature.properties data that specifies the icon to use
+			var field = _icons[layerId]['field'];
+			
 			// Define the data layer
-			_currentDataLayer = L.geoJson(data, {
+			_currentDataLayer[layerId] = L.geoJson(data, {
 				
 				// Set icon type
 				pointToLayer: function (feature, latlng) {
 					var icon = L.marker (latlng, {
 						// Icon properties as per: http://leafletjs.com/reference.html#icon
 						icon: L.icon({
-							iconUrl: _icons[feature.properties.severity],
+							iconUrl: _icons[layerId]['images'][feature.properties[field]],
 							iconSize: [38, 95],
 						})
 					});
@@ -279,7 +302,7 @@ bikedata = (function ($) {
 			});
 			
 			// Add to the map
-			_currentDataLayer.addTo(_map);
+			_currentDataLayer[layerId].addTo(_map);
 		}
 	}
 } (jQuery));
