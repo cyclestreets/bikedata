@@ -262,7 +262,10 @@ bikedata = (function ($) {
 				if (feature.properties[key] === null) {
 					feature.properties[key] = '[null]';
 				}
-				var value = feature.properties[key].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				var value = feature.properties[key];
+				if (typeof value == 'string') {
+					value = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				}
 				html += '<tr><td>' + key + ':</td><td><strong>' + value + '</strong></td></tr>';
 			}
 			html += '</table>';
