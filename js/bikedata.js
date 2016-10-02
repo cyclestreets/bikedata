@@ -9,17 +9,13 @@ bikedata = (function ($) {
 	var _currentDataLayer = {};
 	var _parameters = {};
 	
-	// API endpoints
-	var _apiCalls = {
-		'collisions': '/v2/collisions.locations',
-		'photomap':   '/v2/photomap.locations'
-	};
-	
-	// Icons
-	var _icons = {
+	// Layer definitions
+	var _layers = {
+		
 		'collisions': {
-			'field': 'severity',
-			'images': {
+			'apiCall': '/v2/collisions.locations',
+			'iconField': 'severity',
+			'icons': {
 				'slight':  'images/icons/icon_collision_slight.svg',
 				'serious': 'images/icons/icon_collision_serious.svg',
 				'fatal':   'images/icons/icon_collision_fatal.svg',
@@ -201,7 +197,7 @@ bikedata = (function ($) {
 			
 			// Fetch data
 			$.ajax({
-				url: _settings.apiBaseUrl + _apiCalls[layerId],
+				url: _settings.apiBaseUrl + _layers[layerId]['apiCall'],
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
@@ -277,17 +273,26 @@ bikedata = (function ($) {
 			}
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
-			var field = _icons[layerId]['field'];
+			var field = _layers[layerId]['iconField'];
 			
 			// Define the data layer
 			_currentDataLayer[layerId] = L.geoJson(data, {
 				
 				// Set icon type
 				pointToLayer: function (feature, latlng) {
+					
+					// Determine whether to use local icons, or an icon field in the data
+					if (_layers[layerId]['icons']) {
+						var iconUrl = _layers[layerId]['icons'][feature.properties[field]];
+					} else {
+						var iconUrl = feature.properties[field];
+						console.log(iconUrl);
+					}
+					
 					var icon = L.marker (latlng, {
 						// Icon properties as per: http://leafletjs.com/reference.html#icon
 						icon: L.icon({
-							iconUrl: _icons[layerId]['images'][feature.properties[field]],
+							iconUrl: iconUrl,
 							iconSize: [38, 95],
 						})
 					});
