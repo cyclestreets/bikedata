@@ -251,6 +251,15 @@ bikedata = (function ($) {
 					alert('Error: ' + data.error);
 				},
 				success: function (data, textStatus, jqXHR) {
+					
+					// Show API-level error if one occured
+					// #!# This is done here because the API still returns Status code 200
+					if (data.error) {
+						alert('Error from ' + layerId + ' layer: ' + data.error);
+						return {};
+					}
+					
+					// Otherwise return the data
 					return bikedata.showCurrentData(layerId, data);
 				}
 			});
