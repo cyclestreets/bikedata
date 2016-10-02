@@ -187,6 +187,13 @@ bikedata = (function ($) {
 			// Add the key
 			apiData.key = _settings.apiKey;
 			
+			// Add fixed parameters if present
+			if (_layers[layerId]['apiFixedParameters']) {
+				$.each(_layers[layerId]['apiFixedParameters'], function (field, value) {
+					apiData[field] = encodeURIComponent(value);
+				});
+			}
+			
 			// Get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
 			apiData.bbox = _map.getBounds().toBBoxString();
 			apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
