@@ -15,7 +15,8 @@ bikedata = (function ($) {
 		'collisions': {
 			'apiCall': '/v2/collisions.locations',
 			'apiFixedParameters': {
-				'jitter': '1'
+				'jitter': '1',
+				'datetime': 'friendly'
 			},
 			'parameterNamespace': 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
 			'iconField': 'severity',
@@ -33,6 +34,7 @@ bikedata = (function ($) {
 				'limit': 150,
 				'thumbnailsize': 200,
 				'suppressplaceholders': '1',
+				'datetime': 'friendly'
 			},
 			'iconField': 'iconUrl'
 			// icons specified in the field value
@@ -71,7 +73,6 @@ bikedata = (function ($) {
 					bikedata.removeLayer (layerId);
 				}
 			});
-			
 		},
 		
 		
