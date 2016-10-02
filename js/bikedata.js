@@ -47,15 +47,16 @@ bikedata = (function ($) {
 			// Obtain the configuration and allocate as settings
 			_settings = config;
 			
-			// Load the tabs
-			bikedata.loadTabs ();
+			// Load the tabs and determine the enabled layers
+			var enabledLayers = bikedata.loadTabs ();
 			
 			// Create the map
 			bikedata.createMap ();
 			
 			// Load the data, and add map interactions and form interactions
-			bikedata.loadData ('collisions');
-			bikedata.loadData ('photomap');
+			for (var index in enabledLayers) {
+				bikedata.loadData (enabledLayers[index]);
+			};
 		},
 		
 		
@@ -74,6 +75,15 @@ bikedata = (function ($) {
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
 			});
+			
+			// Create a list of the enabled layers
+			var enabledLayers = [];
+			$('nav #selector input:checked').map (function () {
+				enabledLayers.push (this.id.replace('show_', ''));
+			});
+			
+			// Return the enabled layers list
+			return enabledLayers;
 		},
 		
 		
