@@ -14,6 +14,9 @@ bikedata = (function ($) {
 		
 		'collisions': {
 			'apiCall': '/v2/collisions.locations',
+			'apiFixedParameters': {
+				'jitter': '1'
+			},
 			'parameterNamespace': 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
 			'iconField': 'severity',
 			'icons': {
