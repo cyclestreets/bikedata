@@ -14,6 +14,7 @@ bikedata = (function ($) {
 		
 		'collisions': {
 			'apiCall': '/v2/collisions.locations',
+			'parameterNamespace': 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
 			'iconField': 'severity',
 			'icons': {
 				'slight':  'images/icons/icon_collision_slight.svg',
@@ -162,11 +163,11 @@ bikedata = (function ($) {
 				}
 			});
 			
-			// For collisions, namespace each fieldname with 'field:' as documented at https://www.cyclestreets.net/api/v2/collisions.locations/
-			if (layerId == 'collisions') {
+			// If the layer requires that query fields are prefixed with a namespace, prefix each fieldname
+			if (_layers[layerId]['parameterNamespace']) {
 				var parametersNamespaced = {};
 				$.each(parameters, function (field, value) {
-					var field = 'field:' + field;
+					var field = _layers[layerId]['parameterNamespace'] + field;
 					parametersNamespaced[field] = value;
 				});
 				parameters = parametersNamespaced;
