@@ -157,7 +157,7 @@ bikedata = (function ($) {
 			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
-			$('form #sections :input').change (function() {
+			$('form#data #sections :input, form#data #drawing :input').change (function() {
 				_parameters[layerId] = bikedata.parseFormValues (layerId);
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
@@ -215,6 +215,12 @@ bikedata = (function ($) {
 				parameters = parametersNamespaced;
 			}
 			
+			// Add in boundary data if drawn; this will override bbox (added later)
+			var boundary = $('form#data #drawing :input').val();
+			if (boundary) {
+				parameters['boundary'] = boundary;
+			}
+			
 			// Return the parameters
 			return parameters;
 		},
@@ -236,9 +242,11 @@ bikedata = (function ($) {
 				});
 			}
 			
-			// Get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
-			apiData.bbox = _map.getBounds().toBBoxString();
-			apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+			// Unless a boundary is supplied, get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
+			if (!parameters.boundary) {
+				apiData.bbox = _map.getBounds().toBBoxString();
+				apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+			}
 			
 			// Add in the parameters from the form
 			$.each(parameters, function (field, value) {
@@ -465,6 +473,10 @@ bikedata = (function ($) {
 				
 				// Send to receiving input form
 				$(targetField).val(JSON.stringify(geojsonValue));
+				
+				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: http://stackoverflow.com/a/8965804
+				// #!# Note that this fires twice for some reason - see notes to the answer in the above URL
+				$(targetField).trigger('change');
 			});
 			
 			// Cancel button clears drawn polygon and clears the form value
