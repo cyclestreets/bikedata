@@ -127,20 +127,20 @@ bikedata = (function ($) {
 		loadData: function (layerId)
 		{
 			// Get the form parameters on load
-			_parameters = bikedata.parseFormValues (layerId);
+			_parameters[layerId] = bikedata.parseFormValues (layerId);
 			
 			// Fetch the data
-			bikedata.getData (layerId, _parameters);
+			bikedata.getData (layerId, _parameters[layerId]);
 			
 			// Register to refresh data on map move
 			_map.on ('moveend', function (e) {
-				bikedata.getData (layerId, _parameters);
+				bikedata.getData (layerId, _parameters[layerId]);
 			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form #sections :input').change (function() {
-				_parameters = bikedata.parseFormValues (layerId);
-				bikedata.getData (layerId, _parameters);
+				_parameters[layerId] = bikedata.parseFormValues (layerId);
+				bikedata.getData (layerId, _parameters[layerId]);
 			});
 		},
 		
