@@ -55,7 +55,7 @@ bikedata = (function ($) {
 			
 			// Load the data, and add map interactions and form interactions
 			for (var index in enabledLayers) {
-				bikedata.loadData (enabledLayers[index]);
+				bikedata.enableLayer (enabledLayers[index]);
 			};
 		},
 		
@@ -123,8 +123,8 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Function to manipulate the map based on form interactions
-		loadData: function (layerId)
+		// Function to enable a data layer
+		enableLayer: function (layerId)
 		{
 			// Get the form parameters on load
 			_parameters[layerId] = bikedata.parseFormValues (layerId);
@@ -298,13 +298,11 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Function to show the data
+		// Function to show the data for a layer
 		showCurrentData: function (layerId, data)
 		{
-			// If there is already a layer, remove it
-			if (_currentDataLayer[layerId]) {
-				_map.removeLayer (_currentDataLayer[layerId]);
-			}
+			// If this layer already exists, remove it so that it can be redrawn
+			bikedata.removeLayer (layerId);
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
 			var field = _layers[layerId]['iconField'];
@@ -341,6 +339,16 @@ bikedata = (function ($) {
 			
 			// Add to the map
 			_currentDataLayer[layerId].addTo(_map);
+		},
+		
+		
+		// Function to remove a layer
+		removeLayer: function (layerId)
+		{
+			// Remove the layer, checking first to ensure it exists
+			if (_currentDataLayer[layerId]) {
+				_map.removeLayer (_currentDataLayer[layerId]);
+			}
 		}
 	}
 } (jQuery));
