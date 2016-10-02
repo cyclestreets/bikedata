@@ -48,6 +48,11 @@ bikedata = (function ($) {
 			$('nav #selector input').change (function() {
 				$(this).parent('li').toggleClass('selected', this.checked);
 			});
+			
+			// Allow double-clicking of each menu item (surrounding each checkbox) as implicit selection of its checkbox
+			$('nav #selector li a').dblclick(function() {
+				$(this).parent().find('input').click();
+			});
 		},
 		
 		
