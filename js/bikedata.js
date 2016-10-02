@@ -19,6 +19,7 @@ bikedata = (function ($) {
 				'datetime': 'friendly'
 			},
 			'parameterNamespace': 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
+			'sendZoom': true,	// Needed for jitter support
 			'iconField': 'severity',
 			'icons': {
 				'slight':  'images/icons/icon_collision_slight.svg',
@@ -246,6 +247,11 @@ bikedata = (function ($) {
 			if (!parameters.boundary) {
 				apiData.bbox = _map.getBounds().toBBoxString();
 				apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+			}
+			
+			// Send zoom if required
+			if (_layers[layerId]['sendZoom']) {
+				apiData['zoom'] = _map.getZoom();
 			}
 			
 			// Add in the parameters from the form
