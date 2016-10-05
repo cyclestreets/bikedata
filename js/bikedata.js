@@ -56,8 +56,11 @@ bikedata = (function ($) {
 			// Create the map
 			bikedata.createMap ();
 			
-			// Load the tabs and determine the enabled layers
-			var enabledLayers = bikedata.loadTabs ();
+			// Load the tabs
+			bikedata.loadTabs ();
+			
+			// Determine the enabled layers
+			var enabledLayers = bikedata.enabledLayers ();
 			
 			// Load the data, and add map interactions and form interactions
 			for (var index in enabledLayers) {
@@ -92,7 +95,12 @@ bikedata = (function ($) {
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
 			});
-			
+		},
+		
+		
+		// Function to determine the enabled layers
+		enabledLayers: function ()
+		{
 			// Create a list of the enabled layers
 			var enabledLayers = [];
 			$('nav #selector input:checked').map (function () {
