@@ -68,7 +68,6 @@ bikedata = (function ($) {
 			};
 			
 			// Toggle map sections on/off when checkboxes changed
-			// #!# It appears that layers are still being triggered when unticked, as unticked Photomap still results in boundary unsupported error
 			$('nav #selector input').change (function() {
 				var layerId = this.id.replace('show_', '')
 				if (this.checked) {
@@ -161,12 +160,13 @@ bikedata = (function ($) {
 			bikedata.getData (layerId, _parameters[layerId]);
 			
 			// Register to refresh data on map move
+			// #!# This (and the following event) causes layers to be triggered even after being unticked, as the layer is removed but its events remain
 			_map.on ('moveend', function (e) {
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
-			$('form#data #sections :input, form#data #drawing :input').change (function() {
+			$('form#data #sections :input, form#data #drawing :input').change (function () {
 				_parameters[layerId] = bikedata.parseFormValues (layerId);
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
