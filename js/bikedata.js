@@ -507,6 +507,9 @@ bikedata = (function ($) {
 			$('.edit-clear').click(function() {
 				drawnItems.clearLayers();
 				$(targetField).val('');
+			
+				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: http://stackoverflow.com/a/8965804
+				$(targetField).trigger('change');
 			});
 			
 			// Undo button
