@@ -35,7 +35,6 @@ bikedata = (function ($) {
 				'fields': 'id,caption,hasPhoto,thumbnailUrl,username,licenseName,iconUrl',
 				'limit': 150,
 				'thumbnailsize': 300,
-				'suppressplaceholders': '1',
 				'datetime': 'friendly'
 			},
 			'iconField': 'iconUrl'
@@ -356,7 +355,9 @@ bikedata = (function ($) {
 			var html = '<table>';
 			for (var key in feature.properties) {
 				if (key == 'thumbnailUrl') {
-					html += '<p><img src="' + feature.properties[key] + '" /></p>';
+					if (feature.properties.hasPhoto) {
+						html += '<p><img src="' + feature.properties[key] + '" /></p>';
+					}
 				}
 				if (feature.properties[key] === null) {
 					feature.properties[key] = '[null]';
