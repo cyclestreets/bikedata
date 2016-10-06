@@ -168,7 +168,6 @@ bikedata = (function ($) {
 			bikedata.getData (layerId, _parameters[layerId]);
 			
 			// Register to refresh data on map move
-			// #!# This (and the following event) causes layers to be triggered even after being unticked, as the layer is removed but its events remain
 			_map.on ('moveend', function (e) {
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
@@ -246,6 +245,9 @@ bikedata = (function ($) {
 		// Function to manipulate the map based on form interactions
 		getData: function (layerId, parameters)
 		{
+			// End if the layer has been disabled (as the event handler from _map.on('moveend', ...) may still be firing)
+			if (!_layers[layerId]) {return;}
+			
 			// Start API data parameters
 			var apiData = {};
 			
