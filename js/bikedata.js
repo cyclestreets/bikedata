@@ -90,6 +90,15 @@ bikedata = (function ($) {
 			// Enable tabbing of main menu
 			$('nav').tabs();
 			
+			/*
+			// Remove jQuery UI styles for tabs; see: https://gist.github.com/jhilden/3497023
+			var jquery_ui_classes = [".ui-tabs", ".ui-tabs-nav", ".ui-tabs-panel", ".ui-widget", ".ui-widget-header", ".ui-widget-content", ".ui-corner-all", ".ui-corner-top", ".ui-corner-bottom", ".ui-helper-clearfix", ".ui-helper-reset", ".ui-state-default"];
+			$('nav').tabs(). each (function () {
+				var elements = $(this).find( jquery_ui_classes.join(", ") ).andSelf();
+				elements.removeClass( jquery_ui_classes.join(" ").replace(/\./g, "") );
+			});
+			*/
+			
 			// Toggle checked sections as selected
 			$('nav #selector input').change (function() {
 				$(this).parent('li').toggleClass('selected', this.checked);
