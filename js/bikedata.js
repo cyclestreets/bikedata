@@ -313,6 +313,7 @@ bikedata = (function ($) {
 					// Show API-level error if one occured
 					// #!# This is done here because the API still returns Status code 200
 					if (data.error) {
+						bikedata.removeLayer (layerId);
 						alert('Error from ' + layerId + ' layer: ' + data.error);
 						return {};
 					}
