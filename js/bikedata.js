@@ -134,8 +134,8 @@ bikedata = (function ($) {
 			
 			// Create the map in the "map" div, set the view to a given place and zoom
 			_map = L.map('map', {
-				center: [51.505, -0.09],
-				zoom: 13,
+				center: [51.51137, -0.10498],
+				zoom: 17,
 				layers: tileLayers[0]	// Documentation suggests tileLayers is all that is needed, but that shows all together
 			});
 			
