@@ -6,6 +6,7 @@ bikedata = (function ($) {
 	// Internal class properties
 	var _settings = {};
 	var _map = null;
+	var _layers = {};	// Layer status registry
 	var _currentDataLayer = {};
 	var _parameters = {};
 	
@@ -60,19 +61,23 @@ bikedata = (function ($) {
 			bikedata.loadTabs ();
 			
 			// Determine the enabled layers
-			var enabledLayers = bikedata.enabledLayers ();
+			bikedata.determineLayerStatus ();
 			
 			// Load the data, and add map interactions and form interactions
-			for (var index in enabledLayers) {
-				bikedata.enableLayer (enabledLayers[index]);
+			for (var layerId in _layers) {
+				if (_layers[layerId]) {
+					bikedata.enableLayer (layerId);
+				}
 			};
 			
 			// Toggle map sections on/off when checkboxes changed
 			$('nav #selector input').change (function() {
 				var layerId = this.id.replace('show_', '')
 				if (this.checked) {
+					_layers[layerId] = true;
 					bikedata.enableLayer (layerId);
 				} else {
+					_layers[layerId] = false;
 					bikedata.removeLayer (layerId);
 				}
 			});
@@ -97,17 +102,20 @@ bikedata = (function ($) {
 		},
 		
 		
-		// Function to determine the enabled layers
-		enabledLayers: function ()
+		// Function to determine the layer status
+		determineLayerStatus: function ()
 		{
+			// Initialise the registry
+			for (var layerId in _layerConfig) {
+				_layers[layerId] = false;
+			}
+			
 			// Create a list of the enabled layers
 			var enabledLayers = [];
 			$('nav #selector input:checked').map (function () {
-				enabledLayers.push (this.id.replace('show_', ''));
+				var layerId = this.id.replace('show_', '');
+				_layers[layerId] = true;
 			});
-			
-			// Return the enabled layers list
-			return enabledLayers;
 		},
 		
 		
