@@ -10,7 +10,7 @@ bikedata = (function ($) {
 	var _parameters = {};
 	
 	// Layer definitions
-	var _layers = {
+	var _layerConfig = {
 		
 		'collisions': {
 			'apiCall': '/v2/collisions.locations',
@@ -215,10 +215,10 @@ bikedata = (function ($) {
 			});
 			
 			// If the layer requires that query fields are prefixed with a namespace, prefix each fieldname
-			if (_layers[layerId]['parameterNamespace']) {
+			if (_layerConfig[layerId]['parameterNamespace']) {
 				var parametersNamespaced = {};
 				$.each(parameters, function (field, value) {
-					var field = _layers[layerId]['parameterNamespace'] + field;
+					var field = _layerConfig[layerId]['parameterNamespace'] + field;
 					parametersNamespaced[field] = value;
 				});
 				parameters = parametersNamespaced;
@@ -245,8 +245,8 @@ bikedata = (function ($) {
 			apiData.key = _settings.apiKey;
 			
 			// Add fixed parameters if present
-			if (_layers[layerId]['apiFixedParameters']) {
-				$.each(_layers[layerId]['apiFixedParameters'], function (field, value) {
+			if (_layerConfig[layerId]['apiFixedParameters']) {
+				$.each(_layerConfig[layerId]['apiFixedParameters'], function (field, value) {
 					apiData[field] = value;
 				});
 			}
@@ -258,7 +258,7 @@ bikedata = (function ($) {
 			}
 			
 			// Send zoom if required
-			if (_layers[layerId]['sendZoom']) {
+			if (_layerConfig[layerId]['sendZoom']) {
 				apiData['zoom'] = _map.getZoom();
 			}
 			
@@ -269,7 +269,7 @@ bikedata = (function ($) {
 			
 			// Fetch data
 			$.ajax({
-				url: _settings.apiBaseUrl + _layers[layerId]['apiCall'],
+				url: _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'],
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
@@ -355,7 +355,7 @@ bikedata = (function ($) {
 			bikedata.removeLayer (layerId);
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
-			var field = _layers[layerId]['iconField'];
+			var field = _layerConfig[layerId]['iconField'];
 			
 			// Define the data layer
 			_currentDataLayer[layerId] = L.geoJson(data, {
@@ -364,8 +364,8 @@ bikedata = (function ($) {
 				pointToLayer: function (feature, latlng) {
 					
 					// Determine whether to use local icons, or an icon field in the data
-					if (_layers[layerId]['icons']) {
-						var iconUrl = _layers[layerId]['icons'][feature.properties[field]];
+					if (_layerConfig[layerId]['icons']) {
+						var iconUrl = _layerConfig[layerId]['icons'][feature.properties[field]];
 					} else {
 						var iconUrl = feature.properties[field];
 					}
