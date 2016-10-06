@@ -122,13 +122,25 @@ bikedata = (function ($) {
 		// Create the map
 		createMap: function ()
 		{
-			// create a map in the "map" div, set the view to a given place and zoom
-			_map = L.map('map').setView([51.505, -0.09], 13);
+			// Add the tile layers
+			var tileLayers = [];	// Background tile layers
+			var baseLayers = {};	// Labels
+			for (var tileLayerId in _settings.tileUrls) {
+				var layer = L.tileLayer(_settings.tileUrls[tileLayerId][0], _settings.tileUrls[tileLayerId][1]);
+				tileLayers.push (layer);
+				var name = _settings.tileUrls[tileLayerId][2];
+				baseLayers[name] = layer;
+			}
 			
-			// Add the tile layer
-			L.tileLayer(_settings.tileUrl, {
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'
-			}).addTo(_map);
+			// Create the map in the "map" div, set the view to a given place and zoom
+			_map = L.map('map', {
+				center: [51.505, -0.09],
+				zoom: 13,
+				layers: tileLayers[0]	// Documentation suggests tileLayers is all that is needed, but that shows all together
+			});
+			
+			// Add the base (background) layer switcher
+			L.control.layers(baseLayers, null).addTo(_map);
 			
 			// Add geocoder control
 			bikedata.geocoder ();
