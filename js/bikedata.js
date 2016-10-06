@@ -34,7 +34,7 @@ bikedata = (function ($) {
 			'apiFixedParameters': {
 				'fields': 'id,caption,hasPhoto,thumbnailUrl,username,licenseName,iconUrl',
 				'limit': 150,
-				'thumbnailsize': 200,
+				'thumbnailsize': 300,
 				'suppressplaceholders': '1',
 				'datetime': 'friendly'
 			},
@@ -355,6 +355,9 @@ bikedata = (function ($) {
 			// Construct the HTML
 			var html = '<table>';
 			for (var key in feature.properties) {
+				if (key == 'thumbnailUrl') {
+					html += '<p><img src="' + feature.properties[key] + '" /></p>';
+				}
 				if (feature.properties[key] === null) {
 					feature.properties[key] = '[null]';
 				}
