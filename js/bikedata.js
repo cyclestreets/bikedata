@@ -9,6 +9,7 @@ bikedata = (function ($) {
 	var _layers = {};	// Layer status registry
 	var _currentDataLayer = {};
 	var _parameters = {};
+	var _requestCache = {};
 	
 	// Layer definitions
 	var _layerConfig = {
@@ -77,7 +78,7 @@ bikedata = (function ($) {
 					bikedata.enableLayer (layerId);
 				} else {
 					_layers[layerId] = false;
-					bikedata.removeLayer (layerId);
+					bikedata.removeLayer (layerId, false);
 				}
 			});
 		},
@@ -288,6 +289,15 @@ bikedata = (function ($) {
 				apiData[field] = value;
 			});
 			
+			// If no change (e.g. map move while boundary set, and no other changes), avoid re-requesting data
+			var requestSerialised = JSON.stringify(apiData);
+			if (_requestCache[layerId]) {
+				if (requestSerialised == _requestCache[layerId]) {
+					return;
+				}
+			}
+			_requestCache[layerId] = requestSerialised;     // Update cache
+			
 			// Fetch data
 			$.ajax({
 				url: _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'],
@@ -303,7 +313,7 @@ bikedata = (function ($) {
 					// Show API-level error if one occured
 					// #!# This is done here because the API still returns Status code 200
 					if (data.error) {
-						bikedata.removeLayer (layerId);
+						bikedata.removeLayer (layerId, false);
 						alert('Error from ' + layerId + ' layer: ' + data.error);
 						return {};
 					}
@@ -379,7 +389,7 @@ bikedata = (function ($) {
 		showCurrentData: function (layerId, data)
 		{
 			// If this layer already exists, remove it so that it can be redrawn
-			bikedata.removeLayer (layerId);
+			bikedata.removeLayer (layerId, true);
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
 			var field = _layerConfig[layerId]['iconField'];
@@ -420,11 +430,16 @@ bikedata = (function ($) {
 		
 		
 		// Function to remove a layer
-		removeLayer: function (layerId)
+		removeLayer: function (layerId, temporaryRedrawing)
 		{
 			// Remove the layer, checking first to ensure it exists
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
+			}
+			
+			// Reset cache entry
+			if (!temporaryRedrawing) {
+				_requestCache[layerId] = '';
 			}
 		},
 		
