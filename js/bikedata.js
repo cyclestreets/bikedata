@@ -395,6 +395,7 @@ bikedata = (function ($) {
 			var field = _layerConfig[layerId]['iconField'];
 			
 			// Define the data layer
+			var totalItems = 0;
 			_currentDataLayer[layerId] = L.geoJson(data, {
 				
 				// Set icon type
@@ -419,16 +420,19 @@ bikedata = (function ($) {
 				
 				// Set popup
 				onEachFeature: function (feature, layer) {
+					totalItems++;
 					var popupContent = bikedata.popupHtml (feature);
 					layer.bindPopup(popupContent);
 				}
 			});
 			
-			// Enable/update CSV export link
-			if ( $('#sections #' + layerId + ' div.export p a').length == 0) {	// i.e. currently unlinked
-				var exportUrl = _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'] + '?' + requestSerialised + '&format=csv';
-				$('#sections #' + layerId + ' div.export p').contents().wrap('<a href="' + exportUrl + '"></a>');
-				$('#sections #' + layerId + ' div.export p').addClass('enabled');
+			// Enable/update CSV export link, if there are items
+			if (totalItems) {
+				if ( $('#sections #' + layerId + ' div.export p a').length == 0) {	// i.e. currently unlinked
+					var exportUrl = _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'] + '?' + requestSerialised + '&format=csv';
+					$('#sections #' + layerId + ' div.export p').contents().wrap('<a href="' + exportUrl + '"></a>');
+					$('#sections #' + layerId + ' div.export p').addClass('enabled');
+				}
 			}
 			
 			// Add to the map
