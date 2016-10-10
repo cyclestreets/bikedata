@@ -290,7 +290,7 @@ bikedata = (function ($) {
 			});
 			
 			// If no change (e.g. map move while boundary set, and no other changes), avoid re-requesting data
-			var requestSerialised = JSON.stringify(apiData);
+			var requestSerialised = $.param(apiData);
 			if (_requestCache[layerId]) {
 				if (requestSerialised == _requestCache[layerId]) {
 					return;
