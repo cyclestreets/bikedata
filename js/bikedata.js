@@ -430,6 +430,9 @@ bikedata = (function ($) {
 				}
 			});
 			
+			// Update the total count
+			$('nav #selector li.' + layerId + ' p.total').html(totalItems);
+			
 			// Enable/update CSV export link, if there are items
 			if (totalItems) {
 				if ( $('#sections #' + layerId + ' div.export p a').length == 0) {	// i.e. currently unlinked
@@ -451,6 +454,9 @@ bikedata = (function ($) {
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
 			}
+			
+			// Remove the total count
+			$('nav #selector li.' + layerId + ' p.total').html('');
 			
 			// Remove/reset the export link
 			if ($('#sections #' + layerId + ' div.export p a').length) {	// i.e. currently linked
