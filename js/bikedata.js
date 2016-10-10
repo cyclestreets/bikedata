@@ -319,7 +319,7 @@ bikedata = (function ($) {
 					}
 					
 					// Otherwise return the data
-					return bikedata.showCurrentData(layerId, data);
+					return bikedata.showCurrentData(layerId, data, requestSerialised);
 				}
 			});
 		},
@@ -386,7 +386,7 @@ bikedata = (function ($) {
 		
 		
 		// Function to show the data for a layer
-		showCurrentData: function (layerId, data)
+		showCurrentData: function (layerId, data, requestSerialised)
 		{
 			// If this layer already exists, remove it so that it can be redrawn
 			bikedata.removeLayer (layerId, true);
@@ -424,6 +424,13 @@ bikedata = (function ($) {
 				}
 			});
 			
+			// Enable/update CSV export link
+			if ( $('#sections #' + layerId + ' div.export p a').length == 0) {	// i.e. currently unlinked
+				var exportUrl = _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'] + '?' + requestSerialised + '&format=csv';
+				$('#sections #' + layerId + ' div.export p').contents().wrap('<a href="' + exportUrl + '"></a>');
+				$('#sections #' + layerId + ' div.export p').addClass('enabled');
+			}
+			
 			// Add to the map
 			_currentDataLayer[layerId].addTo(_map);
 		},
@@ -435,6 +442,12 @@ bikedata = (function ($) {
 			// Remove the layer, checking first to ensure it exists
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
+			}
+			
+			// Remove/reset the export link
+			if ($('#sections #' + layerId + ' div.export p a').length) {	// i.e. currently linked
+				$('#sections #' + layerId + ' div.export p a').contents().unwrap();
+				$('#sections #' + layerId + ' div.export p').removeClass('enabled');
 			}
 			
 			// Reset cache entry
