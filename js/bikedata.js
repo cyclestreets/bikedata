@@ -70,7 +70,7 @@ bikedata = (function ($) {
 				}
 			};
 			
-			// Toggle map sections on/off when checkboxes changed
+			// Toggle map data layers on/off when checkboxes changed
 			$('nav #selector input').change (function() {
 				var layerId = this.id.replace('show_', '')
 				if (this.checked) {
@@ -93,6 +93,10 @@ bikedata = (function ($) {
 			// Toggle checked sections as selected
 			$('nav #selector input').change (function() {
 				$(this).parent('li').toggleClass('selected', this.checked);
+				
+				// Switch to the tab whose checkbox is being manipulated
+				var index = $(this).parent().index();
+				$('nav').tabs('option', 'active', index);
 			});
 			
 			// Allow double-clicking of each menu item (surrounding each checkbox) as implicit selection of its checkbox
