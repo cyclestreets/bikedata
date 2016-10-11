@@ -384,6 +384,9 @@ bikedata = (function ($) {
 			}
 			html += '</table>';
 			
+			// Street View container
+			html += '<div id="streetview"></div>';
+			
 			// Return the content
 			return html;
 		},
@@ -428,6 +431,19 @@ bikedata = (function ($) {
 					var popupContent = bikedata.popupHtml (feature);
 					layer.bindPopup(popupContent);
 				}
+			});
+			
+			// Add Street View within popup; see: https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+			_map.on('popupopen', function (e) {
+				var feature = e.popup._source.feature;
+				var panorama = new google.maps.StreetViewPanorama (
+					document.getElementById('streetview'),
+					{
+						position: {lat: feature.geometry.coordinates[1], lng: feature.geometry.coordinates[0]},
+						//pov: {heading: 165, pitch: 0},
+						zoom: 1
+					}
+				);
 			});
 			
 			// Update the total count
