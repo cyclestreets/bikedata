@@ -10,6 +10,7 @@ bikedata = (function ($) {
 	var _currentDataLayer = {};
 	var _parameters = {};
 	var _requestCache = {};
+	var _panorama = null;
 	
 	// Layer definitions
 	var _layerConfig = {
@@ -62,6 +63,16 @@ bikedata = (function ($) {
 			
 			// Determine the enabled layers
 			bikedata.determineLayerStatus ();
+			
+			// Set up Street View; see: https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+			_panorama = new google.maps.StreetViewPanorama (
+				document.getElementById('streetview'),
+				{
+					position: {lat: 51.51137, lng: -0.10498},
+					//pov: {heading: 165, pitch: 0},
+					zoom: 1
+				}
+			);
 			
 			// Load the data, and add map interactions and form interactions
 			for (var layerId in _layers) {
@@ -384,8 +395,8 @@ bikedata = (function ($) {
 			}
 			html += '</table>';
 			
-			// Street View container
-			html += '<div id="streetview"></div>';
+			// Street View container, into which the Street View instance will be moved
+			html += '<div id="streetviewcontainer"></div>';
 			
 			// Return the content
 			return html;
@@ -433,17 +444,21 @@ bikedata = (function ($) {
 				}
 			});
 			
-			// Add Street View within popup; see: https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+			// Move Street View into popup
+			// See: http://stackoverflow.com/questions/10485582/what-is-the-proper-way-to-destroy-a-map-instance
+			// See: https://developers.google.com/maps/documentation/javascript/streetview#StreetViewOverlays
 			_map.on('popupopen', function (e) {
+				
+				// Detach the Street View from its current div and move into the popup container; see: http://stackoverflow.com/questions/1279957/how-to-move-an-element-into-another-element
+				$('#streetview').detach().appendTo('#streetviewcontainer');
 				var feature = e.popup._source.feature;
-				var panorama = new google.maps.StreetViewPanorama (
-					document.getElementById('streetview'),
-					{
-						position: {lat: feature.geometry.coordinates[1], lng: feature.geometry.coordinates[0]},
-						//pov: {heading: 165, pitch: 0},
-						zoom: 1
-					}
-				);
+				_panorama.setPosition({lat: feature.geometry.coordinates[1], lng: feature.geometry.coordinates[0]});
+				// _panorama.setVisible(true);
+			});
+			
+			_map.on('popupclose', function (e) {
+				$('#streetview').detach().appendTo('#streetviewcontainerinitial');
+				// _panorama.setVisible(false);
 			});
 			
 			// Update the total count
