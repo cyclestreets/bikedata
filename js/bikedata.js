@@ -291,10 +291,25 @@ bikedata = (function ($) {
 				});
 			}
 			
-			// Unless a boundary is supplied, get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
+			// Determine which retrieval strategy is needed - bbox (default) or lat/lon
+			var retrievalStrategy = (_layerConfig[layerId]['retrievalStrategy'] ? _layerConfig[layerId]['retrievalStrategy'] : 'bbox');
+			
+			// Unless a boundary is supplied, supply a bbox or lat/lon
 			if (!parameters.boundary) {
-				apiData.bbox = _map.getBounds().toBBoxString();
-				apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+				
+				// For bbox, get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
+				if (retrievalStrategy == 'bbox') {
+					apiData.bbox = _map.getBounds().toBBoxString();
+					apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+				}
+				
+				// For latlng, obtain and add these
+				if (retrievalStrategy == 'latlng') {
+					var centre = _map.getCenter();
+					centre = bikedata.reduceCoordinateAccuracy (centre);
+					apiData.lat = centre.lat;
+					apiData.lng = centre.lng;
+				}
 			}
 			
 			// Send zoom if required
