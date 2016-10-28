@@ -278,8 +278,11 @@ bikedata = (function ($) {
 			// Start API data parameters
 			var apiData = {};
 			
-			// Add the key
-			apiData.key = _settings.apiKey;
+			// Add the key, unless disabled
+			var sendApiKey = (_layerConfig[layerId].hasOwnProperty('apiKey') ? _layerConfig[layerId]['apiKey'] : true);
+			if (sendApiKey) {
+				apiData.key = _settings.apiKey;
+			}
 			
 			// Add fixed parameters if present
 			if (_layerConfig[layerId]['apiFixedParameters']) {
