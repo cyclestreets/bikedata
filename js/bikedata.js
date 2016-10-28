@@ -313,9 +313,15 @@ bikedata = (function ($) {
 			}
 			_requestCache[layerId] = requestSerialised;     // Update cache
 			
+			// Determine the API URL to use
+			var apiUrl = _layerConfig[layerId]['apiCall'];
+			if (! /https?:\/\//.test (apiUrl)) {
+				apiUrl = _settings.apiBaseUrl + apiUrl;
+			}
+			
 			// Fetch data
 			$.ajax({
-				url: _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'],
+				url: apiUrl,
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
