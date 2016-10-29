@@ -190,7 +190,7 @@ bikedata = (function ($) {
 		{
 			// If the layer is not available, give a dialog
 			if ($('#selector li.' + layerId).hasClass('unavailable')) {
-				alert('Sorry, the ' + $('#selector li.' + layerId + ' a').text().toLowerCase() + ' layer is not available yet.');
+				vex.dialog.alert('Sorry, the ' + $('#selector li.' + layerId + ' a').text().toLowerCase() + ' layer is not available yet.');
 				return;
 			}
 			
