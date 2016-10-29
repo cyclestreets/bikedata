@@ -69,6 +69,11 @@
 							<input type="checkbox" name="show[]" id="show_collisions" checked="checked" />
 							<a href="#collisions" title="Collisions" class="tooltip"><img src="images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a>
 						</li>
+						<li class="planningapplications">
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_planningapplications" />
+							<a href="#planningapplications" title="Planning applications" class="tooltip"><img src="images/icons/signs_neutral.svg" alt="" /><br />Planning applications</a>
+						</li>
 						<li class="cyclingrates unavailable">
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_cyclingrates" />
@@ -235,6 +240,30 @@
 						</div>
 					</div>
 					
+					<div id="planningapplications">
+						<h2>Planning applications</h2>
+						<p>New developments have the potential to worsen traffic conditions, but can also bring opportunities to fund infrastructure improvements.</p>
+						
+						<div id="filter" class="concern">
+
+							<div id="dateRange">
+								<h4>
+									<label for="enableDateRange">Between dates:</label>
+								</h4>
+								<div class="controls">
+									<label for="start_date">From: </label><input type="date" name="start_date" /><br />
+									<label for="end_date">To: </label><input type="date" name="end_date" />
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="export">
+							<p><img src="images/page_excel.png" alt="Spreadsheet" /> Export</p>
+						</div>
+						
+					</div>
+					
 					<div id="cyclingrates">
 						<h2>Cycling rates</h2>
 						<p>blurb</p>
@@ -258,6 +287,7 @@
 						<p>blurb</p>
 						<p><em>controls</em></p>
 					</div>
+					
 					<div id="photomap">
 						<h2>Cycle infrastructure photos</h2>
 						<p>67,421 cycling-related images/videos available of cycling infrastructure, added by users.</p>

@@ -31,6 +31,17 @@ bikedata = (function ($) {
 			}
 		},
 		
+		'planningapplications': {
+			'apiCall': 'http://www.planit.org.uk/api/applics/geojson',
+			'apiFixedParameters': {
+				'pg_sz': 100,
+				'limit': 100
+			},
+			'retrievalStrategy': 'latlng',
+			'apiKey': false,
+			'iconUrl': 'images/icons/signs_neutral.svg'
+		},
+		
 		'photomap': {
 			'apiCall': '/v2/photomap.locations',
 			'apiFixedParameters': {
