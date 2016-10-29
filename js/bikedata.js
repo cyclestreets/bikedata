@@ -449,8 +449,10 @@ bikedata = (function ($) {
 				// Set icon type
 				pointToLayer: function (feature, latlng) {
 					
-					// Determine whether to use local icons, or an icon field in the data
-					if (_layerConfig[layerId]['icons']) {
+					// Determine whether to use a local fixed icon, a local icon set, or an icon field in the data
+					if (_layerConfig[layerId]['iconUrl']) {
+						var iconUrl = _layerConfig[layerId]['iconUrl'];
+					} else if (_layerConfig[layerId]['icons']) {
 						var iconUrl = _layerConfig[layerId]['icons'][feature.properties[field]];
 					} else {
 						var iconUrl = feature.properties[field];
