@@ -327,6 +327,15 @@ bikedata = (function ($) {
 					apiData.lat = centre.lat;
 					apiData.lng = centre.lng;
 				}
+				
+				// For poly, convert map extents to a boundary listing
+				if (retrievalStrategy == 'poly') {	// As lat1,lon1:lat2,lon2:...
+					var sw = _map.getBounds().getSouthWest(),
+					    se = _map.getBounds().getSouthEast(),
+					    ne = _map.getBounds().getNorthEast(),
+					    nw = _map.getBounds().getNorthWest();
+					apiData.poly = sw.lat + ',' + sw.lng + ':' + se.lat + ',' + se.lng + ':' + ne.lat + ',' + ne.lng + ':' + nw.lat + ',' + nw.lng + ':' + sw.lat + ',' + sw.lng;
+				}
 			}
 			
 			// Send zoom if required
