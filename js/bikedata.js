@@ -188,6 +188,12 @@ bikedata = (function ($) {
 		// Function to enable a data layer
 		enableLayer: function (layerId)
 		{
+			// If the layer is not available, give a dialog
+			if ($('#selector li.' + layerId).hasClass('unavailable')) {
+				alert('Sorry, the ' + $('#selector li.' + layerId + ' a').text().toLowerCase() + ' layer is not available yet.');
+				return;
+			}
+			
 			// Get the form parameters on load
 			_parameters[layerId] = bikedata.parseFormValues (layerId);
 			
