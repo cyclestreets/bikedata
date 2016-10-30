@@ -462,6 +462,11 @@ bikedata = (function ($) {
 			// Determine the field in the feature.properties data that specifies the icon to use
 			var field = _layerConfig[layerId]['iconField'];
 			
+			// Convert from flat JSON to GeoJSON if required
+			if (_layerConfig[layerId]['flatJson']) {
+				data = GeoJSON.parse(data, {Point: _layerConfig[layerId]['flatJson']});
+			}
+			
 			// Define the data layer
 			var totalItems = 0;
 			_currentDataLayer[layerId] = L.geoJson(data, {
