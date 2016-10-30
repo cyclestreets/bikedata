@@ -50,6 +50,7 @@ bikedata = (function ($) {
 			'flatJson': ['location.latitude', 'location.longitude'],
 			'apiKey': false,
 			'apiBoundaryField': 'poly',
+			'apiBoundaryFormat': 'latlon-comma-colons',
 			'iconUrl': 'images/icons/icon_enforcement_bad.svg'
 		},
 		
@@ -319,6 +320,13 @@ bikedata = (function ($) {
 				});
 			}
 			
+			// If required for this layer, reformat a drawn boundary, leaving it unchanged for other layers
+			if (parameters.boundary) {
+				if (_layerConfig[layerId].hasOwnProperty('apiBoundaryFormat')) {
+					parameters.boundary = bikedata.reformatBoundary (parameters.boundary, _layerConfig[layerId]['apiBoundaryFormat']);
+				}
+			}
+			
 			// Determine which retrieval strategy is needed - bbox (default) or lat/lon
 			var retrievalStrategy = (_layerConfig[layerId]['retrievalStrategy'] ? _layerConfig[layerId]['retrievalStrategy'] : 'bbox');
 			
@@ -440,6 +448,22 @@ bikedata = (function ($) {
 			
 			// Return the modified set
 			return coordinates;
+		},
+		
+		
+		// Function to reformat the boundary data for a specific layer
+		reformatBoundary: function (boundary, format)
+		{
+			// For latlon-comma-colons format, order as lat,lon pairs, separated by colons
+			if (format == 'latlon-comma-colons') {
+				var boundaryUnpacked = JSON.parse(boundary);
+				var boundaryPoints = [];
+				for (var i=0; i < boundaryUnpacked.length; i++) {
+					boundaryPoints[i] = boundaryUnpacked[i][1] + ',' + boundaryUnpacked[i][0];	// lat,lon
+				}
+				boundary = boundaryPoints.join(':');
+				return boundary;
+			}
 		},
 		
 		
