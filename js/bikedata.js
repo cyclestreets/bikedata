@@ -42,6 +42,16 @@ bikedata = (function ($) {
 			'iconUrl': 'images/icons/signs_neutral.svg'
 		},
 		
+		// https://data.police.uk/docs/method/crime-street/
+		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
+		'cycletheft': {
+			'apiCall': 'https://data.police.uk/api/crimes-street/bicycle-theft',
+			'retrievalStrategy': 'poly',
+			'flatJson': ['location.latitude', 'location.longitude'],
+			'apiKey': false,
+			'iconUrl': 'images/icons/icon_enforcement_bad.svg'
+		},
+		
 		'photomap': {
 			'apiCall': '/v2/photomap.locations',
 			'apiFixedParameters': {
