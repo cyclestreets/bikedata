@@ -49,6 +49,7 @@ bikedata = (function ($) {
 			'retrievalStrategy': 'polygon',
 			'flatJson': ['location.latitude', 'location.longitude'],
 			'apiKey': false,
+			'apiBoundaryField': 'poly',
 			'iconUrl': 'images/icons/icon_enforcement_bad.svg'
 		},
 		
@@ -326,16 +327,16 @@ bikedata = (function ($) {
 				
 				// For bbox, get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
 				if (retrievalStrategy == 'bbox') {
-					apiData.bbox = _map.getBounds().toBBoxString();
-					apiData.bbox = bikedata.reduceBboxAccuracy (apiData.bbox);
+					parameters.bbox = _map.getBounds().toBBoxString();
+					parameters.bbox = bikedata.reduceBboxAccuracy (parameters.bbox);
 				}
 				
 				// For latlng, obtain and add these
 				if (retrievalStrategy == 'latlng') {
 					var centre = _map.getCenter();
 					centre = bikedata.reduceCoordinateAccuracy (centre);
-					apiData.lat = centre.lat;
-					apiData.lng = centre.lng;
+					parameters.lat = centre.lat;
+					parameters.lng = centre.lng;
 				}
 				
 				// For poly, convert map extents to a boundary listing
@@ -344,7 +345,16 @@ bikedata = (function ($) {
 					    se = _map.getBounds().getSouthEast(),
 					    ne = _map.getBounds().getNorthEast(),
 					    nw = _map.getBounds().getNorthWest();
-					apiData.poly = sw.lat + ',' + sw.lng + ':' + se.lat + ',' + se.lng + ':' + ne.lat + ',' + ne.lng + ':' + nw.lat + ',' + nw.lng + ':' + sw.lat + ',' + sw.lng;
+					parameters.boundary = sw.lat + ',' + sw.lng + ':' + se.lat + ',' + se.lng + ':' + ne.lat + ',' + ne.lng + ':' + nw.lat + ',' + nw.lng + ':' + sw.lat + ',' + sw.lng;
+				}
+			}
+			
+			// If required, rename the boundary field, as some APIs use a different fieldname to 'boundary'
+			if (parameters.boundary) {
+				if (_layerConfig[layerId]['apiBoundaryField']) {
+					var apiBoundaryField = _layerConfig[layerId]['apiBoundaryField'];
+					parameters[apiBoundaryField] = parameters.boundary;
+					delete parameters.boundary;
 				}
 			}
 			
