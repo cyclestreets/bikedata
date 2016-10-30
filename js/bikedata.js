@@ -46,7 +46,7 @@ bikedata = (function ($) {
 		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
 		'cycletheft': {
 			'apiCall': 'https://data.police.uk/api/crimes-street/bicycle-theft',
-			'retrievalStrategy': 'poly',
+			'retrievalStrategy': 'polygon',
 			'flatJson': ['location.latitude', 'location.longitude'],
 			'apiKey': false,
 			'iconUrl': 'images/icons/icon_enforcement_bad.svg'
@@ -339,7 +339,7 @@ bikedata = (function ($) {
 				}
 				
 				// For poly, convert map extents to a boundary listing
-				if (retrievalStrategy == 'poly') {	// As lat1,lon1:lat2,lon2:...
+				if (retrievalStrategy == 'polygon') {	// As lat1,lon1:lat2,lon2:...
 					var sw = _map.getBounds().getSouthWest(),
 					    se = _map.getBounds().getSouthEast(),
 					    ne = _map.getBounds().getNorthEast(),
