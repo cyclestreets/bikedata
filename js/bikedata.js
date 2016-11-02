@@ -42,6 +42,11 @@ bikedata = (function ($) {
 			'iconUrl': 'images/icons/signs_neutral.svg'
 		},
 		
+		'od': {
+			'apiCall': '/v2/usage.journeylengths',
+			'iconUrl': 'images/icons/icon_linked_points_good.svg'
+		},
+		
 		// https://data.police.uk/docs/method/crime-street/
 		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
 		'cycletheft': {
