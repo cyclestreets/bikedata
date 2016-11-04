@@ -473,26 +473,45 @@ bikedata = (function ($) {
 		
 		
 		// Function to construct the popup content
-		popupHtml: function (feature)
+		popupHtml: function (layerId, feature)
 		{
-			// Construct the HTML
-			var html = '<table>';
-			for (var key in feature.properties) {
-				if (key == 'thumbnailUrl') {
-					if (feature.properties.hasPhoto) {
-						html += '<p><img src="' + feature.properties[key] + '" /></p>';
+			// Use a template if this has been defined in the layer config
+			if (_layerConfig[layerId]['popupHtml']) {
+				var template = _layerConfig[layerId]['popupHtml'];
+				
+				// Define a path parser, so that the template can define properties.foo which would obtain feature.properties.foo; see: http://stackoverflow.com/a/22129960
+				Object.resolve = function(path, obj) {
+					return path.split('.').reduce(function(prev, curr) {
+						return prev ? prev[curr] : undefined
+					}, obj || self)
+				}
+				
+				// Replace template placeholders; see: http://stackoverflow.com/a/378000
+				var html = template.replace (/{[^{}]+}/g, function(path){
+					return Object.resolve ( path.replace(/[{}]+/g, '') , feature);
+				});
+				
+			// Otherwise, create an HTML table dynamically
+			} else {
+				
+				var html = '<table>';
+				for (var key in feature.properties) {
+					if (key == 'thumbnailUrl') {
+						if (feature.properties.hasPhoto) {
+							html += '<p><img src="' + feature.properties[key] + '" /></p>';
+						}
 					}
+					if (feature.properties[key] === null) {
+						feature.properties[key] = '[null]';
+					}
+					var value = feature.properties[key];
+					if (typeof value == 'string') {
+						value = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+					}
+					html += '<tr><td>' + key + ':</td><td><strong>' + value + '</strong></td></tr>';
 				}
-				if (feature.properties[key] === null) {
-					feature.properties[key] = '[null]';
-				}
-				var value = feature.properties[key];
-				if (typeof value == 'string') {
-					value = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-				}
-				html += '<tr><td>' + key + ':</td><td><strong>' + value + '</strong></td></tr>';
+				html += '</table>';
 			}
-			html += '</table>';
 			
 			// Street View container, into which the Street View instance will be moved
 			html += '<div id="streetviewcontainer"></div>';
@@ -545,7 +564,7 @@ bikedata = (function ($) {
 				// Set popup
 				onEachFeature: function (feature, layer) {
 					totalItems++;
-					var popupContent = bikedata.popupHtml (feature);
+					var popupContent = bikedata.popupHtml (layerId, feature);
 					layer.bindPopup(popupContent);
 				}
 			});
