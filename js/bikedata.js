@@ -68,7 +68,15 @@ bikedata = (function ($) {
 			'apiKey': false,
 			'apiBoundaryField': 'poly',
 			'apiBoundaryFormat': 'latlon-comma-colons',
-			'iconUrl': 'images/icons/icon_enforcement_bad.svg'
+			'iconUrl': 'images/icons/icon_enforcement_bad.svg',
+			'popupHtml':
+				  '<p>Crime no.: <strong>{properties.persistent_id}</strong></p>'
+				+ '<p>'
+				+ 'Date: <strong>{properties.month}</strong><br />'
+				+ 'Location: <strong>{properties.location.street.name}</strong><br />'
+				+ 'Outcome: <strong>{properties.outcome_status.category}</strong><br />'
+				+ '</p>'
+				+ '<p>Note: The location given in the police data is <a href="https://data.police.uk/about/#location-anonymisation" target="_blank" title="See more details [link opens in a new window]">approximate</a>, for anonymity reasons.</p>'
 		},
 		
 		'photomap': {
@@ -545,6 +553,7 @@ bikedata = (function ($) {
 			// Convert from flat JSON to GeoJSON if required
 			if (_layerConfig[layerId]['flatJson']) {
 				data = GeoJSON.parse(data, {Point: _layerConfig[layerId]['flatJson']});
+				//console.log(data);
 			}
 			
 			// Define the data layer
