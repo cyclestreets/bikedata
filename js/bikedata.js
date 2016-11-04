@@ -28,7 +28,17 @@ bikedata = (function ($) {
 				'slight':  'images/icons/icon_collision_slight.svg',
 				'serious': 'images/icons/icon_collision_serious.svg',
 				'fatal':   'images/icons/icon_collision_fatal.svg',
-			}
+			},
+			'popupHtml':
+				  '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
+				+ '<p>Reference: <strong>{properties.id}</strong></p>'
+				+ '<p>'
+				+ 'Date and time: <strong>{properties.datetime}</strong><br />'
+				+ 'Severity: <strong>{properties.severity}</strong><br />'
+				+ 'Casualties: <strong>{properties.casualties}</strong><br />'
+				+ 'No. of Casualties: <strong>{properties.Number_of_Casualties}</strong><br />'
+				+ 'No. of Vehicles: <strong>{properties.Number_of_Vehicles}</strong>'
+				+ '</p>'
 		},
 		
 		'planningapplications': {
