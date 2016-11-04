@@ -54,7 +54,9 @@ bikedata = (function ($) {
 		
 		'od': {
 			'apiCall': '/v2/usage.journeylengths',
-			'iconUrl': 'images/icons/icon_linked_points_good.svg'
+			'iconUrl': 'images/icons/icon_linked_points_good.svg',
+			'popupHtml':
+				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
 		
 		// https://data.police.uk/docs/method/crime-street/
