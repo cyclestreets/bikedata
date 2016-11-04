@@ -587,6 +587,15 @@ bikedata = (function ($) {
 					totalItems++;
 					var popupContent = bikedata.popupHtml (layerId, feature);
 					layer.bindPopup(popupContent);
+				},
+				
+				// Set polygon fill style
+				style: function (feature) {
+					return {
+						fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
+						weight: 1,
+						dashArray: [5, 5]
+					};
 				}
 			});
 			
