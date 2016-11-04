@@ -52,7 +52,7 @@ bikedata = (function ($) {
 			'iconUrl': 'images/icons/signs_neutral.svg'
 		},
 		
-		'od': {
+		'triplengths': {
 			'apiCall': '/v2/usage.journeylengths',
 			'iconUrl': 'images/icons/icon_linked_points_good.svg',
 			'popupHtml':
