@@ -354,21 +354,13 @@ bikedata = (function ($) {
 			// Determine which retrieval strategy is needed - bbox (default) or lat/lon
 			var retrievalStrategy = (_layerConfig[layerId]['retrievalStrategy'] ? _layerConfig[layerId]['retrievalStrategy'] : 'bbox');
 			
-			// Unless a boundary is supplied, supply a bbox or lat/lon
+			// Unless a boundary is drawn in, supply a bbox or lat/lon
 			if (!parameters.boundary) {
 				
 				// For bbox, get the bbox, and reduce the co-ordinate accuracy to avoid over-long URLs
 				if (retrievalStrategy == 'bbox') {
 					parameters.bbox = _map.getBounds().toBBoxString();
 					parameters.bbox = bikedata.reduceBboxAccuracy (parameters.bbox);
-				}
-				
-				// For latlng, obtain and add these
-				if (retrievalStrategy == 'latlng') {
-					var centre = _map.getCenter();
-					centre = bikedata.reduceCoordinateAccuracy (centre);
-					parameters.lat = centre.lat;
-					parameters.lng = centre.lng;
 				}
 				
 				// For poly, convert map extents to a boundary listing
