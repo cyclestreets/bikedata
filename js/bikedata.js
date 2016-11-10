@@ -47,7 +47,6 @@ bikedata = (function ($) {
 				'pg_sz': 100,
 				'limit': 100
 			},
-			'retrievalStrategy': 'latlng',
 			'apiKey': false,
 			'iconUrl': 'images/icons/signs_neutral.svg'
 		},
