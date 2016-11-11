@@ -88,6 +88,11 @@ bikedata = (function ($) {
 			},
 			'iconField': 'iconUrl'
 			// icons specified in the field value
+		},
+		
+		'groups': {
+			'apiCall': 'http://www.cyclescape.org/groups/all_geometries.json?bbox=-10.8,49.8,2.1,59.5',
+			'iconUrl': 'images/icons/bicycle_good.svg',
 		}
 	};
 	
