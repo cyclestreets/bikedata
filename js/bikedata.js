@@ -253,9 +253,11 @@ bikedata = (function ($) {
 			bikedata.getData (layerId, _parameters[layerId]);
 			
 			// Register to refresh data on map move
-			_map.on ('moveend', function (e) {
-				bikedata.getData (layerId, _parameters[layerId]);
-			});
+			if (!_layerConfig[layerId]['static']) {	// Unless marked as static, i.e. no change based on map location
+				_map.on ('moveend', function (e) {
+					bikedata.getData (layerId, _parameters[layerId]);
+				});
+			}
 			
 			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form#data #sections :input, form#data #drawing :input').change (function () {
