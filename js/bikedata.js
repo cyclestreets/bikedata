@@ -48,7 +48,14 @@ bikedata = (function ($) {
 				'limit': 100
 			},
 			'apiKey': false,
-			'iconUrl': 'images/icons/signs_neutral.svg'
+			'iconUrl': 'images/icons/signs_neutral.svg',
+			'popupHtml':
+				  '<p><strong>{properties.description}</strong></p>'
+				+ '<p>{properties.address}</p>'
+				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
+				+ 'Local Authority: {properties.authority_name}<br />'
+				+ 'Date: {properties.start_date}</p>'
+				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
 		'triplengths': {
