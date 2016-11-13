@@ -124,6 +124,9 @@ bikedata = (function ($) {
 			// Load the tabs
 			bikedata.loadTabs ();
 			
+			// Show first-run welcome message
+			bikedata.welcomeFirstRun ();
+			
 			// Determine the enabled layers
 			bikedata.determineLayerStatus ();
 			
@@ -177,6 +180,27 @@ bikedata = (function ($) {
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
 			});
+		},
+		
+		
+		// Function to show a welcome message on first run
+		welcomeFirstRun: function ()
+		{
+			// End if cookie already set
+			var name = 'welcome';
+			if (Cookies.get(name)) {return;}
+			
+			// Set the cookie
+			Cookies.set(name, '1', {expires: 14});
+			
+			// Define a welcome message
+			var message =
+			   '<p>Welcome to Bikedata, from CycleStreets.</p>'
+			 + '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
+			 + '<p>Please note that this site is work-in-progress beta.</p>';
+			
+			// Show the popup
+			vex.dialog.alert ({unsafeMessage: message});
 		},
 		
 		
