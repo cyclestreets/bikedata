@@ -98,7 +98,7 @@ bikedata = (function ($) {
 		},
 		
 		'groups': {
-			'apiCall': 'https://www.cyclescape.org/groups/all_geometries.json?bbox=-10.8,49.8,2.1,59.5',
+			'apiCall': 'https://www.cyclescape.org/groups/all_geometries.json',
 			'iconUrl': 'images/icons/bicycle_good.svg',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
