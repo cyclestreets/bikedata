@@ -100,7 +100,6 @@ bikedata = (function ($) {
 		'groups': {
 			'apiCall': 'http://www.cyclescape.org/groups/all_geometries.json?bbox=-10.8,49.8,2.1,59.5',
 			'iconUrl': 'images/icons/bicycle_good.svg',
-			'static': true,
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
