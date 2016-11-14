@@ -97,7 +97,7 @@ bikedata = (function ($) {
 		},
 		
 		'groups': {
-			'apiCall': 'https://www.cyclescape.org/groups/all_geometries.json',
+			'apiCall': 'https://www.cyclescape.org/api/groups.json',
 			'apiKey': false,
 			'iconUrl': 'images/icons/bicycle_good.svg',
 			'popupHtml':
