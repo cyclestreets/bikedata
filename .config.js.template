@@ -25,3 +25,7 @@ config.tileUrls = {
 
 // BBOX for autocomplete
 config.autocompleteBbox = '-6.6577,49.9370,1.7797,57.6924'
+
+// Google Maps API key (for Street View)
+config.gmapApiKey = 'YOUR_API_KEY';
+

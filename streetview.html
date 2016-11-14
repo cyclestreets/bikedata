@@ -6,8 +6,21 @@
 		<style>
 			html, body, #map-canvas {height: 100%; margin: 0px; padding: 0px;}
 		</style>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		
+		<script type="text/javascript" src=".config.js"></script>
 		<script>
+			
+			// Function to load the Google Maps API with the key specified dynamically from the config; see: http://stackoverflow.com/a/31342500
+			function loadGmaps () {
+				var apiKey = config.gmapApiKey;
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?v=3&key=' + apiKey + '&callback=streetviewWithDirection';
+				document.body.appendChild(script);
+			}
+			
+			// Load Google Maps API when ready
+			window.onload = loadGmaps;
 			
 			// Function to parse query string arguments: see: http://stackoverflow.com/a/2880929
 			function getQueryParameters ()
@@ -99,10 +112,6 @@
 					panorama.setVisible(true);
 				});
 			}
-			
-			// Create the panel
-			google.maps.event.addDomListener(window, 'load', streetviewWithDirection);
-	
 		</script>
 	</head>
 		
