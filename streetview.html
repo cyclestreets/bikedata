@@ -1,0 +1,87 @@
+<?php
+
+# Short script to make an embeddable StreetView iframe
+# https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+# http://stackoverflow.com/a/11950935/180733
+# http://stackoverflow.com/a/8381895/180733
+
+function isValidLatitude ($latitude)
+{
+	return preg_match ('/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,12}$/', $latitude);
+}
+
+function isValidLongitude ($longitude)
+{
+	return preg_match ('/^-?([1]?[1-7][1-9]|[1]?[1-8][0]|[1-9]?[0-9])\.{1}\d{1,12}$/', $longitude);
+}
+
+if (!isSet ($_GET['latitude']) ||!isValidLatitude ($_GET['latitude'])) {return false;}
+if (!isSet ($_GET['longitude']) ||!isValidLongitude ($_GET['longitude'])) {return false;}
+
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Street View</title>
+		<style>
+			html, body, #map-canvas {height: 100%; margin: 0px; padding: 0px;}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script>
+			
+			// Function to create a Street View panel which looks in the correct direction
+			// Effectively this gets the nearest Street View panorama to a specified point, then adjusts the camera angle to face that point (which is not done by default)
+			function streetviewWithDirection() {
+				
+				// Parameters
+				var _lat = <?php echo htmlspecialchars ($_GET['latitude']); ?>;
+				var _lng = <?php echo htmlspecialchars ($_GET['longitude']); ?>;
+				var streetViewMaxDistance = 100;
+				
+				// Create a point
+				var point = new google.maps.LatLng(_lat, _lng);
+				
+				// Initialise (but do not immediately display) the panorama at the specified location
+				var panoramaOptions = {
+					position: point,
+					visible: false
+				};
+				var panorama = new google.maps.StreetViewPanorama(document.getElementById("map-canvas"), panoramaOptions);
+				
+				// Instantiate the Street View service so that the heading can be looked up
+				var streetViewService = new google.maps.StreetViewService();
+				streetViewService.getPanoramaByLocation(point, streetViewMaxDistance, function (streetViewPanoramaData, status) {
+					
+					// If the panorama has been found, determine the direction ('heading'); this is basically the angle of the resolved streetview image location from the initial requested point
+					if(status === google.maps.StreetViewStatus.OK){
+						var oldPoint = point;
+						point = streetViewPanoramaData.location.latLng;
+						var heading = google.maps.geometry.spherical.computeHeading(point,oldPoint);
+					} else {
+						var heading = 90;	// Arbitrary
+						//alert('Not found, using fixed heading direction.');
+					}
+					
+					// Show the panorama, at the specified location and direction ('heading'), and set it to be visible
+					panorama.setPosition(point);
+					panorama.setPov({
+						heading: heading,
+						zoom: 1,
+						pitch: 0
+					});
+					panorama.setVisible(true);
+				});
+				
+			}
+			
+			// Create the panel
+			google.maps.event.addDomListener(window, 'load', streetviewWithDirection);
+	
+		</script>
+	</head>
+	
+	<body>
+		<div id="map-canvas"></div>
+	</body>
+</html>
