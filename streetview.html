@@ -1,24 +1,3 @@
-<?php
-
-# Short script to make an embeddable StreetView iframe
-# https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
-# http://stackoverflow.com/a/11950935/180733
-# http://stackoverflow.com/a/8381895/180733
-
-function isValidLatitude ($latitude)
-{
-	return preg_match ('/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,12}$/', $latitude);
-}
-
-function isValidLongitude ($longitude)
-{
-	return preg_match ('/^-?([1]?[1-7][1-9]|[1]?[1-8][0]|[1-9]?[0-9])\.{1}\d{1,12}$/', $longitude);
-}
-
-if (!isSet ($_GET['latitude']) ||!isValidLatitude ($_GET['latitude'])) {return false;}
-if (!isSet ($_GET['longitude']) ||!isValidLongitude ($_GET['longitude'])) {return false;}
-
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,17 +9,64 @@ if (!isSet ($_GET['longitude']) ||!isValidLongitude ($_GET['longitude'])) {retur
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script>
 			
+			// Function to parse query string arguments: see: http://stackoverflow.com/a/2880929
+			function getQueryParameters ()
+			{
+				var urlParams;
+				(window.onpopstate = function () {
+					var match,
+					    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+					    search = /([^&=]+)=?([^&]*)/g,
+					    decode = function (s) { return decodeURIComponent(s.replace(pl, ' ')); },
+					    query  = window.location.search.substring(1);
+
+					urlParams = {};
+					while (match = search.exec(query)) {
+						urlParams[decode(match[1])] = decode(match[2]);
+					}
+				})();
+				return urlParams;
+			}
+
+			// Functions to validate a lat/lon; see: http://stackoverflow.com/a/39842070
+			function isLatitude (lat) {
+				return isFinite(lat) && Math.abs(lat) <= 90;
+			}
+			function isLongitude (lng) {
+				return isFinite(lng) && Math.abs(lng) <= 180;
+			}			
+			
 			// Function to create a Street View panel which looks in the correct direction
 			// Effectively this gets the nearest Street View panorama to a specified point, then adjusts the camera angle to face that point (which is not done by default)
-			function streetviewWithDirection() {
+			// See: https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+			// See: http://stackoverflow.com/a/11950935/180733
+			// See: http://stackoverflow.com/a/8381895/180733
+			function streetviewWithDirection ()
+			{
+				// Get the query string parameters
+				var get = getQueryParameters ();
 				
-				// Parameters
-				var _lat = <?php echo htmlspecialchars ($_GET['latitude']); ?>;
-				var _lng = <?php echo htmlspecialchars ($_GET['longitude']); ?>;
+				// Ensure a latitude and longitude are specified
+				if (!get['latitude'] || !get['longitude']) {
+					alert ('Error: No latitude/longitude pair supplied.');
+					return false;
+				}
+				
+				// Valid the latitude and longitude
+				if (!isLatitude (get['latitude']) || !isLongitude (get['longitude'])) {
+					alert ('Error: Invalid latitude/longitude pair supplied.');
+					return false;
+				}
+				
+				// Convert to float
+				get['latitude'] = parseFloat(get['latitude']);
+				get['longitude'] = parseFloat(get['longitude']);
+				
+				// Set max distance
 				var streetViewMaxDistance = 100;
 				
 				// Create a point
-				var point = new google.maps.LatLng(_lat, _lng);
+				var point = new google.maps.LatLng(get['latitude'], get['longitude']);
 				
 				// Initialise (but do not immediately display) the panorama at the specified location
 				var panoramaOptions = {
@@ -72,7 +98,6 @@ if (!isSet ($_GET['longitude']) ||!isValidLongitude ($_GET['longitude'])) {retur
 					});
 					panorama.setVisible(true);
 				});
-				
 			}
 			
 			// Create the panel
@@ -80,7 +105,7 @@ if (!isSet ($_GET['longitude']) ||!isValidLongitude ($_GET['longitude'])) {retur
 	
 		</script>
 	</head>
-	
+		
 	<body>
 		<div id="map-canvas"></div>
 	</body>
