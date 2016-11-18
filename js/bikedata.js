@@ -267,7 +267,7 @@ bikedata = (function ($) {
 		{
 			// If the layer is not available, give a dialog
 			if ($('#selector li.' + layerId).hasClass('unavailable')) {
-				vex.dialog.alert('Sorry, the ' + $('#selector li.' + layerId + ' a').text().toLowerCase() + ' layer is not available yet.');
+				vex.dialog.alert ('Sorry, the ' + $('#selector li.' + layerId + ' a').text().toLowerCase() + ' layer is not available yet.');
 				return;
 			}
 			
@@ -464,7 +464,7 @@ bikedata = (function ($) {
 					// #!# This is done here because the API still returns Status code 200
 					if (data.error) {
 						bikedata.removeLayer (layerId, false);
-						alert('Error from ' + layerId + ' layer: ' + data.error);
+						vex.dialog.alert ('Error from ' + layerId + ' layer: ' + data.error);
 						return {};
 					}
 					
