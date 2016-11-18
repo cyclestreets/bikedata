@@ -100,6 +100,7 @@ bikedata = (function ($) {
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',
 			'apiKey': false,
+			'polygonStyle' : 'green',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
@@ -653,6 +654,14 @@ bikedata = (function ($) {
 									fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
 									weight: 1,
 									dashArray: [5, 5]
+								}
+								break;
+							
+							// Red
+							case 'green':
+								return {
+									color: 'green',
+									fillColor: '#090'
 								}
 								break;
 						}
