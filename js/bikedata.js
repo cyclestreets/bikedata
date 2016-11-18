@@ -60,7 +60,6 @@ bikedata = (function ($) {
 		
 		'triplengths': {
 			'apiCall': '/v2/usage.journeylengths',
-			'iconUrl': 'images/icons/icon_linked_points_good.svg',
 			'popupHtml':
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
@@ -100,7 +99,6 @@ bikedata = (function ($) {
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',
 			'apiKey': false,
-			'iconUrl': 'images/icons/bicycle_good.svg',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
