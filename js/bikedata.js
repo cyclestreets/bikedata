@@ -9,6 +9,7 @@ bikedata = (function ($) {
 	var _layers = {};	// Layer status registry
 	var _currentDataLayer = {};
 	var _parameters = {};
+	var _xhrRequests = {};
 	var _requestCache = {};
 	
 	// Layer definitions
@@ -145,6 +146,9 @@ bikedata = (function ($) {
 					bikedata.enableLayer (layerId);
 				} else {
 					_layers[layerId] = false;
+					if (_xhrRequests[layerId]) {
+						_xhrRequests[layerId].abort();
+					}
 					bikedata.removeLayer (layerId, false);
 				}
 			});
@@ -439,23 +443,39 @@ bikedata = (function ($) {
 				apiUrl = _settings.apiBaseUrl + apiUrl;
 			}
 			
+			// If an outstanding layer request is still active, cancel it
+			if (_xhrRequests[layerId] != null) {
+				_xhrRequests[layerId].abort();
+				_xhrRequests[layerId] = null;
+			}
+			
 			// Start data loading spinner for this layer
 			$('#selector li.' + layerId + ' img.loading').show();
 			
 			// Fetch data
-			$.ajax({
+			_xhrRequests[layerId] = $.ajax({
 				url: apiUrl,
 				dataType: 'json',
 				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
 				data: apiData,
 				error: function (jqXHR, error, exception) {
-					var data = $.parseJSON(jqXHR.responseText);
-					alert('Error: ' + data.error);
+					
+					// Deregister from the request registry
+					_xhrRequests[layerId] = null;
 					
 					// Stop data loading spinner for this layer
 					$('#selector li.' + layerId + ' img.loading').hide();
+					
+					// Show error, unless deliberately aborted
+					if (jqXHR.statusText != 'abort') {
+						var data = $.parseJSON(jqXHR.responseText);
+						vex.dialog.alert ('Error: ' + data.error);
+					}
 				},
 				success: function (data, textStatus, jqXHR) {
+					
+					// Deregister from the request registry
+					_xhrRequests[layerId] = null;
 					
 					// Stop data loading spinner for this layer
 					$('#selector li.' + layerId + ' img.loading').hide();
@@ -468,7 +488,7 @@ bikedata = (function ($) {
 						return {};
 					}
 					
-					// Otherwise return the data
+					// Return the data successfully
 					return bikedata.showCurrentData(layerId, data, requestSerialised);
 				}
 			});
