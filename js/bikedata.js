@@ -60,6 +60,7 @@ bikedata = (function ($) {
 		
 		'triplengths': {
 			'apiCall': '/v2/usage.journeylengths',
+			'polygonStyle' : 'grid',
 			'popupHtml':
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
@@ -641,13 +642,21 @@ bikedata = (function ($) {
 					layer.bindPopup(popupContent);
 				},
 				
-				// Set polygon fill style
+				// Set polygon style if required
 				style: function (feature) {
-					return {
-						fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
-						weight: 1,
-						dashArray: [5, 5]
-					};
+					if (_layerConfig[layerId]['polygonStyle']) {
+						switch (_layerConfig[layerId]['polygonStyle']) {
+							
+							// Blue boxes with dashed lines, intended for data that is likely to tessellate, e.g. adjacent box grid
+							case 'grid':
+								return {
+									fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
+									weight: 1,
+									dashArray: [5, 5]
+								}
+								break;
+						}
+					}
 				}
 			});
 			
