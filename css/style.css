@@ -27,7 +27,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 main {width: 100%; height: calc(100% - 20px); position: relative;}
 main form {width: 100%; height: 100%;}
 
-nav {position: absolute; top: 0; right: 0; width: 330px; height: 100%; z-index: 500;}
+nav {position: absolute; top: 0; right: 0; width: 335px; height: 100%; z-index: 500;}
 nav {color: white;}
 nav a {color: white; text-decoration: none;}
 
@@ -64,7 +64,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray; border-left: 4px solid gray; position: relative;}
 #selector ul li:last-child {border-bottom: 1px solid gray;}
 #selector ul li.selected {background-color: black; border-left: 4px solid brown;}
-#selector ul li a {font-size: 0.9em; padding: 20px 10px; display: block; text-align: center;}
+#selector ul li a {font-size: 0.9em; padding: 17px 7px; display: block; text-align: center;}
 #selector ul li:hover {background-color: #111;}
 #selector ul li.selected:hover {background-color: black;}
 #selector ul li a img {width: 40px;}
@@ -75,7 +75,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 
 
 /* Toolbar */
-#sections {width: 200px; height: calc(100% - 20px); margin-left: 90px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
+#sections {width: 200px; height: calc(100% - 20px); margin-left: 95px; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
 
 /* Sections */
 #sections #compare > div {opacity: 0.5;}
@@ -83,7 +83,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections #compare div p {margin-bottom: 4px;}
 #sections #compare div .controls label {width: 45px; display: inline-block;}
 
-#sections div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 0;}
+#sections div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 15px;}
 #sections div.concern h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
 #sections div.concern > div {padding: 5px 5px;}
 
