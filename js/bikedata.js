@@ -439,6 +439,9 @@ bikedata = (function ($) {
 				apiUrl = _settings.apiBaseUrl + apiUrl;
 			}
 			
+			// Start data loading spinner for this layer
+			$('#selector li.' + layerId + ' img.loading').show();
+			
 			// Fetch data
 			$.ajax({
 				url: apiUrl,
@@ -448,8 +451,14 @@ bikedata = (function ($) {
 				error: function (jqXHR, error, exception) {
 					var data = $.parseJSON(jqXHR.responseText);
 					alert('Error: ' + data.error);
+					
+					// Stop data loading spinner for this layer
+					$('#selector li.' + layerId + ' img.loading').hide();
 				},
 				success: function (data, textStatus, jqXHR) {
+					
+					// Stop data loading spinner for this layer
+					$('#selector li.' + layerId + ' img.loading').hide();
 					
 					// Show API-level error if one occured
 					// #!# This is done here because the API still returns Status code 200
