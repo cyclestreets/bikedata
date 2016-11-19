@@ -25,9 +25,9 @@ bikedata = (function ($) {
 			'sendZoom': true,	// Needed for jitter support
 			'iconField': 'severity',
 			'icons': {
-				'slight':  'images/icons/icon_collision_slight.svg',
-				'serious': 'images/icons/icon_collision_serious.svg',
-				'fatal':   'images/icons/icon_collision_fatal.svg',
+				'slight':  '/images/icons/icon_collision_slight.svg',
+				'serious': '/images/icons/icon_collision_serious.svg',
+				'fatal':   '/images/icons/icon_collision_fatal.svg',
 			},
 			'popupHtml':
 				  '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
@@ -48,7 +48,7 @@ bikedata = (function ($) {
 				'limit': 100
 			},
 			'apiKey': false,
-			'iconUrl': 'images/icons/signs_neutral.svg',
+			'iconUrl': '/images/icons/signs_neutral.svg',
 			'popupHtml':
 				  '<p><strong>{properties.description}</strong></p>'
 				+ '<p>{properties.address}</p>'
@@ -74,7 +74,7 @@ bikedata = (function ($) {
 			'apiKey': false,
 			'apiBoundaryField': 'poly',
 			'apiBoundaryFormat': 'latlon-comma-colons',
-			'iconUrl': 'images/icons/icon_enforcement_bad.svg',
+			'iconUrl': '/images/icons/icon_enforcement_bad.svg',
 			'popupHtml':
 				  '<p>Crime no.: <strong>{properties.persistent_id}</strong></p>'
 				+ '<p>'

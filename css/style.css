@@ -40,7 +40,7 @@ nav a {color: white; text-decoration: none;}
 /* Geocoder */
 #geocoder {position: absolute; top: 10px; left: 55px; z-index: 500;}
 #geocoder input {padding: 5px; font-size: 1em; color: #603; width: 250px;}
-#geocoder input.ui-autocomplete-loading {background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;}
+#geocoder input.ui-autocomplete-loading {background: white url('/images/ui-anim_basic_16x16.gif') right center no-repeat;}
 #geocoder input, .ui-autocomplete {border: 1px solid #eee; box-shadow: 5px 5px 10px 0px rgba(28,28,28,0.5);}
 .ui-autocomplete {background-color: white; z-index: 1000; width: 200px; list-style: none; margin-left: 0; padding-left: 0;}
 .ui-autocomplete li {list-style: none; margin-left: 0; padding-left: 0;}
@@ -125,7 +125,7 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 #drawing #drawingcontrols ul li {list-style-type:none;padding:0;margin:0;border:0;float:left;display:inline}
 #drawing #drawingcontrols ul li a {float:left;display:block}
 #drawing #drawingcontrols ul li a {display:block;color:#e6e6e6;height:80px;width:50px;cursor:pointer;font-weight:bold;font-size:10px;text-align:center;text-transform:uppercase;letter-spacing:1px}
-#drawing #drawingcontrols ul li a span {width:50px;height:50px;display:block;border:1px solid #1a1a1a;background:#e6e6e6 url(../images/geometrydrawing.png) 4px -534px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
+#drawing #drawingcontrols ul li a span {width:50px;height:50px;display:block;border:1px solid #1a1a1a;background:#e6e6e6 url(/images/geometrydrawing.png) 4px -534px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
 #drawing #drawingcontrols ul li a span.area {background-position:4px -534px}
 #drawing #drawingcontrols ul li a span.route {background-position:4px -616px}
 #drawing #drawingcontrols ul li a span.point {background-position:13px -706px}
@@ -142,7 +142,7 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 #drawing ul.undo-clear li {float:left;margin-right:10px}
 #drawing ul.undo-clear li a {display:block;width:80px;height:32px;cursor:pointer}
 #drawing ul.undo-clear li a span.txt {color:#e6e6e6;float:right;margin-top:5px;font-weight:bold;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-align:right}
-#drawing ul.undo-clear li a span.icon-undo,#drawing ul.undo-clear li a span.icon-clear {float:left;width:30px;height:30px;display:block;border:1px solid #999;background:url(../images/geometrydrawing.png) 3px -780px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
+#drawing ul.undo-clear li a span.icon-undo,#drawing ul.undo-clear li a span.icon-clear {float:left;width:30px;height:30px;display:block;border:1px solid #999;background:url(/images/geometrydrawing.png) 3px -780px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
 #drawing ul.undo-clear li a span.icon-clear {background-position:4px -825px}
 #drawing ul.undo-clear li a:hover {text-decoration:none}
 #drawing ul.undo-clear li a:hover span.icon-undo,#drawing ul.undo-clear li a:hover span.icon-clear {border:1px solid #e6e6e6}
