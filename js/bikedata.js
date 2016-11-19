@@ -12,6 +12,9 @@ bikedata = (function ($) {
 	var _xhrRequests = {};
 	var _requestCache = {};
 	
+	// Default layers enabled
+	var _defaultLayers = ['collisions', 'photomap'];
+	
 	// Layer definitions
 	var _layerConfig = {
 		
@@ -123,7 +126,7 @@ bikedata = (function ($) {
 			bikedata.createMap ();
 			
 			// Load the tabs
-			bikedata.loadTabs ();
+			bikedata.loadTabs (_defaultLayers);
 			
 			// Show first-run welcome message
 			bikedata.welcomeFirstRun ();
@@ -156,16 +159,29 @@ bikedata = (function ($) {
 		
 		
 		// Function to load the tabs
-		loadTabs: function ()
+		loadTabs: function (defaultLayers)
 		{
+			// Set each default layer and add background
+			for (var i in defaultLayers) {
+				var layerId = defaultLayers[i];
+				
+				// Add background highlight to this tab
+				$('nav li.' + layerId).addClass('selected');
+				
+				// Enable tab
+				$('nav li.' + layerId + ' input').click();
+			};
+			
 			// Enable tabbing of main menu
 			$('nav').tabs();
 			
-			// Toggle checked sections as selected
+			// Handle selection/deselection of section checkboxes
 			$('nav #selector input').change (function() {
+				
+				// Add background highlight to this tab
 				$(this).parent('li').toggleClass('selected', this.checked);
 				
-				// Switch to the tab whose checkbox is being manipulated
+				// Switch to its tab contents
 				var index = $(this).parent().index();
 				$('nav').tabs('option', 'active', index);
 			});
