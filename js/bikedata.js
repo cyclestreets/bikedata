@@ -315,9 +315,8 @@ bikedata = (function ($) {
 			autocomplete.addTo ('#geocoder input', {
 				sourceUrl: _settings.apiBaseUrl + '/v2/geocoder' + '?key=' + _settings.apiKey + '&bounded=1&bbox=' + _settings.autocompleteBbox,
 				select: function (event, ui) {
-					var result = ui.item;
-					var geojsonItemLayer = L.geoJson(result.feature);
-					_map.fitBounds(geojsonItemLayer.getBounds ());
+					var bbox = ui.item.feature.properties.bbox.split(',');
+					_map.fitBounds([ [bbox[1], bbox[0]], [bbox[3], bbox[2]] ]);
 					event.preventDefault();
 				}
 			});

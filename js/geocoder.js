@@ -124,8 +124,7 @@ var autocomplete = (function ($) {
 	    // http://www.cyclestreets.net/api/v2/geocoder/
 	    var urlParams = {
 			q: request.term, // I.e. the search string
-			limit: 12,	// Ideally this and perhaps other parameters that are sent to the geocoder could be settings
-			geometries: '1'
+			limit: 12	// Ideally this and perhaps other parameters that are sent to the geocoder could be settings
 	    },
 
 	    // Useful var to help determine any bounding box for the geocoding search
