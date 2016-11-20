@@ -125,8 +125,14 @@ bikedata = (function ($) {
 			// Create the map
 			bikedata.createMap ();
 			
+			// Get the query string parameters
+			var urlParameters = bikedata.getUrlParameters ();
+			
+			// Determine layers to use
+			var initialLayers = (urlParameters['sections'] ? urlParameters['sections'] : _defaultLayers);
+			
 			// Load the tabs
-			bikedata.loadTabs (_defaultLayers);
+			bikedata.loadTabs (initialLayers);
 			
 			// Show first-run welcome message
 			bikedata.welcomeFirstRun ();
@@ -155,6 +161,30 @@ bikedata = (function ($) {
 					bikedata.removeLayer (layerId, false);
 				}
 			});
+		},
+		
+		
+		// Function to parse the URL
+		getUrlParameters: function ()
+		{
+			// Start a list of parameters
+			var urlParameters = {};
+			
+			// Split by slash; see: http://stackoverflow.com/a/8086637
+			var pathComponents = window.location.pathname.split('/').slice(1);
+			
+			// End if none
+			if (!pathComponents) {return {};}
+			
+			// Obtain the section
+			var section = pathComponents[0];
+			if (_layerConfig[section]) {
+				urlParameters['sections'] = new Array ();
+				urlParameters['sections'].push (section);
+			}
+			
+			// Return the parameters
+			return urlParameters;
 		},
 		
 		

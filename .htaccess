@@ -1,0 +1,10 @@
+# Normalise with trailing slash
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)$ /$1/ [L,QSA,R=301]
+
+# Route all virtual requests to main page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L,QSA]
+
