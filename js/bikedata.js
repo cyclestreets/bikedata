@@ -131,6 +131,17 @@ bikedata = (function ($) {
 			// Determine layers to use
 			var initialLayers = (urlParameters['sections'] ? urlParameters['sections'] : _defaultLayers);
 			
+			// If cookie state is provided, use that to select the sections
+			var state = Cookies.getJSON('state');
+			if (state) {
+				initialLayers = [];
+				for (var layerId in state) {
+					if (_layerConfig[layerId]) {
+						initialLayers.push (layerId);
+					}
+				}
+			}
+				
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
 			
@@ -159,6 +170,7 @@ bikedata = (function ($) {
 						_xhrRequests[layerId].abort();
 					}
 					bikedata.removeLayer (layerId, false);
+					bikedata.setStateCookie ();	// Update to catch deletion of cache entry
 				}
 			});
 		},
@@ -483,6 +495,9 @@ bikedata = (function ($) {
 			}
 			_requestCache[layerId] = requestSerialised;     // Update cache
 			
+			// Set/update a cookie containing the full request state
+			bikedata.setStateCookie ();
+			
 			// Determine the API URL to use
 			var apiUrl = _layerConfig[layerId]['apiCall'];
 			if (! /https?:\/\//.test (apiUrl)) {
@@ -587,6 +602,13 @@ bikedata = (function ($) {
 				boundary = boundaryPoints.join(':');
 				return boundary;
 			}
+		},
+		
+		
+		// Function to set/update a cookie containing the full request state
+		setStateCookie: function ()
+		{
+			Cookies.set ('state', _requestCache, {expires: 14})
 		},
 		
 		
@@ -753,7 +775,7 @@ bikedata = (function ($) {
 			
 			// Reset cache entry
 			if (!temporaryRedrawing) {
-				_requestCache[layerId] = '';
+				delete _requestCache[layerId];
 			}
 		},
 		
