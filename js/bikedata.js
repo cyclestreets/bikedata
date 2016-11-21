@@ -1,5 +1,9 @@
 // Bike data application code
-bikedata = (function ($) {
+
+/*jslint browser: true, white: true, single: true, for: true */
+/*global $, jQuery, L, autocomplete, Cookies, vex, GeoJSON, alert, console, window */
+
+var bikedata = (function ($) {
 	
 	'use strict';
 	
@@ -30,7 +34,7 @@ bikedata = (function ($) {
 			'icons': {
 				'slight':  '/images/icons/icon_collision_slight.svg',
 				'serious': '/images/icons/icon_collision_serious.svg',
-				'fatal':   '/images/icons/icon_collision_fatal.svg',
+				'fatal':   '/images/icons/icon_collision_fatal.svg'
 			},
 			'popupHtml':
 				  '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
@@ -129,13 +133,14 @@ bikedata = (function ($) {
 			var urlParameters = bikedata.getUrlParameters ();
 			
 			// Determine layers to use
-			var initialLayers = (urlParameters['sections'] ? urlParameters['sections'] : _defaultLayers);
+			var initialLayers = (urlParameters.sections ? urlParameters.sections : _defaultLayers);
 			
 			// If cookie state is provided, use that to select the sections
 			var state = Cookies.getJSON('state');
+			var layerId;
 			if (state) {
 				initialLayers = [];
-				for (var layerId in state) {
+				for (layerId in state) {
 					if (_layerConfig[layerId]) {
 						initialLayers.push (layerId);
 					}
@@ -155,15 +160,15 @@ bikedata = (function ($) {
 			bikedata.determineLayerStatus ();
 			
 			// Load the data, and add map interactions and form interactions
-			for (var layerId in _layers) {
+			for (layerId in _layers) {
 				if (_layers[layerId]) {
 					bikedata.enableLayer (layerId);
 				}
-			};
+			}
 			
 			// Toggle map data layers on/off when checkboxes changed
 			$('nav #selector input').change (function() {
-				var layerId = this.id.replace('show_', '')
+				var layerId = this.id.replace('show_', '');
 				if (this.checked) {
 					_layers[layerId] = true;
 					bikedata.enableLayer (layerId);
@@ -194,8 +199,8 @@ bikedata = (function ($) {
 			// Obtain the section
 			var section = pathComponents[0];
 			if (_layerConfig[section]) {
-				urlParameters['sections'] = new Array ();
-				urlParameters['sections'].push (section);
+				urlParameters.sections = [];
+				urlParameters.sections.push (section);
 			}
 			
 			// Return the parameters
@@ -207,15 +212,17 @@ bikedata = (function ($) {
 		loadTabs: function (defaultLayers)
 		{
 			// Set each default layer and add background
-			for (var i in defaultLayers) {
-				var layerId = defaultLayers[i];
+			var i;
+			var layerId;
+			for (i in defaultLayers) {
+				layerId = defaultLayers[i];
 				
 				// Add background highlight to this tab
 				$('nav li.' + layerId).addClass('selected');
 				
 				// Enable tab
 				$('nav li.' + layerId + ' input').click();
-			};
+			}
 			
 			// Enable tabbing of main menu
 			$('nav').tabs();
@@ -246,14 +253,18 @@ bikedata = (function ($) {
 			$('select[data-monthly-since]').val(function() {	// See: http://stackoverflow.com/a/16086337
 				var since = $(this).data('monthly-since');
 				since = since.split('-');
-				var sinceYear = since[0], sinceMonth = since[1];
+				var sinceYear = since[0];
+				var sinceMonth = since[1];
 				var html = '';
 				var yearToday = new Date().getFullYear();
 				var monthToday = new Date().getMonth() + 1;	// Index from 1
-				for (var year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
+				var year;
+				var month;
+				var month1Indexed;
+				for (year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
 					html += '<optgroup label="' + year + '">';
-					for (var month = months.length - 1; month >= 0; month--) {	// Loop through backwards reliably; see: http://stackoverflow.com/a/4956313
-						var month1Indexed = month + 1;
+					for (month = months.length - 1; month >= 0; month--) {	// Loop through backwards reliably; see: http://stackoverflow.com/a/4956313
+						month1Indexed = month + 1;
 						if ((year == yearToday) && (month1Indexed >= monthToday)) {continue;}	// Skip months not yet completed
 						var monthPadded = (month1Indexed < 10 ? '0' : '') + month1Indexed;	// Pad zeroes and cast as string
 						html += '<option value="' + year + '-' + monthPadded + '">' + months[month] + ' ' + year + '</option>';
@@ -291,12 +302,12 @@ bikedata = (function ($) {
 		determineLayerStatus: function ()
 		{
 			// Initialise the registry
-			for (var layerId in _layerConfig) {
+			var layerId;
+			for (layerId in _layerConfig) {
 				_layers[layerId] = false;
 			}
 			
 			// Create a list of the enabled layers
-			var enabledLayers = [];
 			$('nav #selector input:checked').map (function () {
 				var layerId = this.id.replace('show_', '');
 				_layers[layerId] = true;
@@ -310,10 +321,13 @@ bikedata = (function ($) {
 			// Add the tile layers
 			var tileLayers = [];	// Background tile layers
 			var baseLayers = {};	// Labels
-			for (var tileLayerId in _settings.tileUrls) {
-				var layer = L.tileLayer(_settings.tileUrls[tileLayerId][0], _settings.tileUrls[tileLayerId][1]);
+			var tileLayerId;
+			var layer;
+			var name;
+			for (tileLayerId in _settings.tileUrls) {
+				layer = L.tileLayer(_settings.tileUrls[tileLayerId][0], _settings.tileUrls[tileLayerId][1]);
 				tileLayers.push (layer);
-				var name = _settings.tileUrls[tileLayerId][2];
+				name = _settings.tileUrls[tileLayerId][2];
 				baseLayers[name] = layer;
 			}
 			
@@ -371,7 +385,7 @@ bikedata = (function ($) {
 			bikedata.getData (layerId, _parameters[layerId]);
 			
 			// Register to refresh data on map move
-			if (!_layerConfig[layerId]['static']) {	// Unless marked as static, i.e. no change based on map location
+			if (!_layerConfig[layerId].static) {	// Unless marked as static, i.e. no change based on map location
 				_map.on ('moveend', function (e) {
 					bikedata.getData (layerId, _parameters[layerId]);
 				});
@@ -401,14 +415,14 @@ bikedata = (function ($) {
 				var tagName = this.tagName.toLowerCase();	// Examples: 'input', 'select'
 				var type = $(this).prop('type');			// Examples: 'text', 'checkbox', 'select-one'
 				
-				// Obtain the element name
+				// Obtain the element name and value
 				var name = $(this).attr('name');
+				var value = $(this).val();
 				
 				// For checkboxes, degroup them by creating/adding a value that is checked, split by the delimiter
 				if (tagName == 'input' && type == 'checkbox') {
 					if (this.checked) {
 						name = name.replace(/\[\]$/g, ''); // Get name of this checkbox, stripping any trailing grouping indicator '[]' (e.g. values for 'foo[]' are registered to 'foo')
-						var value = $(this).val();
 						if (parameters[name]) {
 							parameters[name] += delimiter + value; // Add value
 						} else {
@@ -419,7 +433,6 @@ bikedata = (function ($) {
 				}
 				
 				// For all other input types, if there is a value, register it
-				var value = $(this).val();
 				if (value.length > 0) {
 					parameters[name] = value;	// Set value
 					return;	// Continue to next input
@@ -427,10 +440,10 @@ bikedata = (function ($) {
 			});
 			
 			// If the layer requires that query fields are prefixed with a namespace, prefix each fieldname
-			if (_layerConfig[layerId]['parameterNamespace']) {
+			if (_layerConfig[layerId].parameterNamespace) {
 				var parametersNamespaced = {};
 				$.each(parameters, function (field, value) {
-					var field = _layerConfig[layerId]['parameterNamespace'] + field;
+					field = _layerConfig[layerId].parameterNamespace + field;
 					parametersNamespaced[field] = value;
 				});
 				parameters = parametersNamespaced;
@@ -439,7 +452,7 @@ bikedata = (function ($) {
 			// Add in boundary data if drawn; this will override bbox (added later)
 			var boundary = $('form#data #drawing :input').val();
 			if (boundary) {
-				parameters['boundary'] = boundary;
+				parameters.boundary = boundary;
 			}
 			
 			// Return the parameters
@@ -457,14 +470,14 @@ bikedata = (function ($) {
 			var apiData = {};
 			
 			// Add the key, unless disabled
-			var sendApiKey = (_layerConfig[layerId].hasOwnProperty('apiKey') ? _layerConfig[layerId]['apiKey'] : true);
+			var sendApiKey = (_layerConfig[layerId].hasOwnProperty('apiKey') ? _layerConfig[layerId].apiKey : true);
 			if (sendApiKey) {
 				apiData.key = _settings.apiKey;
 			}
 			
 			// Add fixed parameters if present
-			if (_layerConfig[layerId]['apiFixedParameters']) {
-				$.each(_layerConfig[layerId]['apiFixedParameters'], function (field, value) {
+			if (_layerConfig[layerId].apiFixedParameters) {
+				$.each(_layerConfig[layerId].apiFixedParameters, function (field, value) {
 					apiData[field] = value;
 				});
 			}
@@ -472,12 +485,12 @@ bikedata = (function ($) {
 			// If required for this layer, reformat a drawn boundary, leaving it unchanged for other layers
 			if (parameters.boundary) {
 				if (_layerConfig[layerId].hasOwnProperty('apiBoundaryFormat')) {
-					parameters.boundary = bikedata.reformatBoundary (parameters.boundary, _layerConfig[layerId]['apiBoundaryFormat']);
+					parameters.boundary = bikedata.reformatBoundary (parameters.boundary, _layerConfig[layerId].apiBoundaryFormat);
 				}
 			}
 			
 			// Determine which retrieval strategy is needed - bbox (default) or lat/lon
-			var retrievalStrategy = (_layerConfig[layerId]['retrievalStrategy'] ? _layerConfig[layerId]['retrievalStrategy'] : 'bbox');
+			var retrievalStrategy = (_layerConfig[layerId].retrievalStrategy ? _layerConfig[layerId].retrievalStrategy : 'bbox');
 			
 			// Unless a boundary is drawn in, supply a bbox or lat/lon
 			if (!parameters.boundary) {
@@ -490,26 +503,26 @@ bikedata = (function ($) {
 				
 				// For poly, convert map extents to a boundary listing
 				if (retrievalStrategy == 'polygon') {	// As lat1,lon1:lat2,lon2:...
-					var sw = _map.getBounds().getSouthWest(),
-					    se = _map.getBounds().getSouthEast(),
-					    ne = _map.getBounds().getNorthEast(),
-					    nw = _map.getBounds().getNorthWest();
+					var sw = _map.getBounds().getSouthWest();
+					var se = _map.getBounds().getSouthEast();
+					var ne = _map.getBounds().getNorthEast();
+					var nw = _map.getBounds().getNorthWest();
 					parameters.boundary = sw.lat + ',' + sw.lng + ':' + se.lat + ',' + se.lng + ':' + ne.lat + ',' + ne.lng + ':' + nw.lat + ',' + nw.lng + ':' + sw.lat + ',' + sw.lng;
 				}
 			}
 			
 			// If required, rename the boundary field, as some APIs use a different fieldname to 'boundary'
 			if (parameters.boundary) {
-				if (_layerConfig[layerId]['apiBoundaryField']) {
-					var apiBoundaryField = _layerConfig[layerId]['apiBoundaryField'];
+				if (_layerConfig[layerId].apiBoundaryField) {
+					var apiBoundaryField = _layerConfig[layerId].apiBoundaryField;
 					parameters[apiBoundaryField] = parameters.boundary;
 					delete parameters.boundary;
 				}
 			}
 			
 			// Send zoom if required
-			if (_layerConfig[layerId]['sendZoom']) {
-				apiData['zoom'] = _map.getZoom();
+			if (_layerConfig[layerId].sendZoom) {
+				apiData.zoom = _map.getZoom();
 			}
 			
 			// Add in the parameters from the form
@@ -530,8 +543,8 @@ bikedata = (function ($) {
 			bikedata.setStateCookie ();
 			
 			// Determine the API URL to use
-			var apiUrl = _layerConfig[layerId]['apiCall'];
-			if (! /https?:\/\//.test (apiUrl)) {
+			var apiUrl = _layerConfig[layerId].apiCall;
+			if (! (/https?:\/\//).test (apiUrl)) {
 				apiUrl = _settings.apiBaseUrl + apiUrl;
 			}
 			
@@ -611,7 +624,8 @@ bikedata = (function ($) {
 			var accuracy = 6;
 			
 			// Reduce each value
-			for (var i=0; i < coordinates.length; i++) {
+			var i;
+			for (i = 0; i < coordinates.length; i++) {
 				coordinates[i] = parseFloat(coordinates[i]).toFixed(accuracy);
 			}
 			
@@ -627,7 +641,8 @@ bikedata = (function ($) {
 			if (format == 'latlon-comma-colons') {
 				var boundaryUnpacked = JSON.parse(boundary);
 				var boundaryPoints = [];
-				for (var i=0; i < boundaryUnpacked.length; i++) {
+				var i;
+				for (i = 0; i < boundaryUnpacked.length; i++) {
 					boundaryPoints[i] = boundaryUnpacked[i][1] + ',' + boundaryUnpacked[i][0];	// lat,lon
 				}
 				boundary = boundaryPoints.join(':');
@@ -639,7 +654,7 @@ bikedata = (function ($) {
 		// Function to set/update a cookie containing the full request state
 		setStateCookie: function ()
 		{
-			Cookies.set ('state', _requestCache, {expires: 14})
+			Cookies.set ('state', _requestCache, {expires: 14});
 		},
 		
 		
@@ -647,26 +662,28 @@ bikedata = (function ($) {
 		popupHtml: function (layerId, feature)
 		{
 			// Use a template if this has been defined in the layer config
-			if (_layerConfig[layerId]['popupHtml']) {
-				var template = _layerConfig[layerId]['popupHtml'];
+			var html;
+			if (_layerConfig[layerId].popupHtml) {
+				var template = _layerConfig[layerId].popupHtml;
 				
 				// Define a path parser, so that the template can define properties.foo which would obtain feature.properties.foo; see: http://stackoverflow.com/a/22129960
 				Object.resolve = function(path, obj) {
 					return path.split('.').reduce(function(prev, curr) {
-						return prev ? prev[curr] : undefined
-					}, obj || self)
-				}
+						return (prev ? prev[curr] : undefined);
+					}, obj || self);
+				};
 				
 				// Replace template placeholders; see: http://stackoverflow.com/a/378000
-				var html = template.replace (/{[^{}]+}/g, function(path){
+				html = template.replace (/\{[^{}]+\}/g, function(path){
 					return Object.resolve ( path.replace(/[{}]+/g, '') , feature);
 				});
 				
 			// Otherwise, create an HTML table dynamically
 			} else {
 				
-				var html = '<table>';
-				for (var key in feature.properties) {
+				html = '<table>';
+				var key;
+				for (key in feature.properties) {
 					if (key == 'thumbnailUrl') {
 						if (feature.properties.hasPhoto) {
 							html += '<p><img src="' + feature.properties[key] + '" /></p>';
@@ -701,11 +718,11 @@ bikedata = (function ($) {
 			bikedata.removeLayer (layerId, true);
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
-			var field = _layerConfig[layerId]['iconField'];
+			var field = _layerConfig[layerId].iconField;
 			
 			// Convert from flat JSON to GeoJSON if required
-			if (_layerConfig[layerId]['flatJson']) {
-				data = GeoJSON.parse(data, {Point: _layerConfig[layerId]['flatJson']});
+			if (_layerConfig[layerId].flatJson) {
+				data = GeoJSON.parse(data, {Point: _layerConfig[layerId].flatJson});
 				//console.log(data);
 			}
 			
@@ -717,19 +734,20 @@ bikedata = (function ($) {
 				pointToLayer: function (feature, latlng) {
 					
 					// Determine whether to use a local fixed icon, a local icon set, or an icon field in the data
-					if (_layerConfig[layerId]['iconUrl']) {
-						var iconUrl = _layerConfig[layerId]['iconUrl'];
-					} else if (_layerConfig[layerId]['icons']) {
-						var iconUrl = _layerConfig[layerId]['icons'][feature.properties[field]];
+					var iconUrl;
+					if (_layerConfig[layerId].iconUrl) {
+						iconUrl = _layerConfig[layerId].iconUrl;
+					} else if (_layerConfig[layerId].icons) {
+						iconUrl = _layerConfig[layerId].icons[feature.properties[field]];
 					} else {
-						var iconUrl = feature.properties[field];
+						iconUrl = feature.properties[field];
 					}
 					
 					var icon = L.marker (latlng, {
 						// Icon properties as per: http://leafletjs.com/reference.html#icon
 						icon: L.icon({
 							iconUrl: iconUrl,
-							iconSize: [38, 95],
+							iconSize: [38, 95]
 						})
 					});
 					return icon;
@@ -744,8 +762,8 @@ bikedata = (function ($) {
 				
 				// Set polygon style if required
 				style: function (feature) {
-					if (_layerConfig[layerId]['polygonStyle']) {
-						switch (_layerConfig[layerId]['polygonStyle']) {
+					if (_layerConfig[layerId].polygonStyle) {
+						switch (_layerConfig[layerId].polygonStyle) {
 							
 							// Blue boxes with dashed lines, intended for data that is likely to tessellate, e.g. adjacent box grid
 							case 'grid':
@@ -753,16 +771,14 @@ bikedata = (function ($) {
 									fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
 									weight: 1,
 									dashArray: [5, 5]
-								}
-								break;
+								};
 							
 							// Red
 							case 'green':
 								return {
 									color: 'green',
 									fillColor: '#090'
-								}
-								break;
+								};
 						}
 					}
 				}
@@ -774,7 +790,7 @@ bikedata = (function ($) {
 			// Enable/update CSV export link, if there are items, and show its count
 			if (totalItems) {
 				if ( $('#sections #' + layerId + ' div.export p a').length == 0) {	// i.e. currently unlinked
-					var exportUrl = _settings.apiBaseUrl + _layerConfig[layerId]['apiCall'] + '?' + requestSerialised + '&format=csv';
+					var exportUrl = _settings.apiBaseUrl + _layerConfig[layerId].apiCall + '?' + requestSerialised + '&format=csv';
 					$('#sections #' + layerId + ' div.export p').contents().wrap('<a href="' + exportUrl + '"></a>');
 					$('#sections #' + layerId + ' div.export p').addClass('enabled');
 					$('#sections #' + layerId + ' div.export p').append(' <span>(' + totalItems + ')</span>');
@@ -827,7 +843,7 @@ bikedata = (function ($) {
 					fillOpacity: 0.2,
 					clickable: true
 				}
-			}
+			};
 			
 			// Create a map drawing layer
 			var drawnItems = new L.FeatureGroup();
@@ -837,9 +853,11 @@ bikedata = (function ($) {
 				
 				// Convert the string to an array of L.latLng(lat,lon) values
 				var polygonPoints = JSON.parse(defaultValueString);
+				var defaultPolygon = [];
 				if (polygonPoints) {
-					defaultPolygon = new Array();
-					for (var i = 0; i < polygonPoints.length; i++) {
+					var i;
+					var point;
+					for (i = 0; i < polygonPoints.length; i++) {
 						point = polygonPoints[i];
 						defaultPolygon.push (L.latLng(point[1], point[0]));
 					}
@@ -871,8 +889,7 @@ bikedata = (function ($) {
 			
 			// Handle created polygons
 			_map.on('draw:created', function (e) {
-				var type = e.layerType,
-				layer = e.layer;
+				var layer = e.layer;
 				drawnItems.addLayer(layer);
 				
 				// Convert to GeoJSON value
@@ -882,8 +899,10 @@ bikedata = (function ($) {
 				// #!# Ideally this would be native within Leaflet.draw: https://github.com/Leaflet/Leaflet.draw/issues/581
 				var coordinates = geojsonValue.features[0].geometry.coordinates[0];
 				var accuracy = 6;	// Decimal points; gives 0.1m accuracy; see: https://en.wikipedia.org/wiki/Decimal_degrees
-				for (var i=0; i < coordinates.length; i++) {
-					for (var j=0; j < coordinates[i].length; j++) {
+				var i;
+				var j;
+				for (i = 0; i < coordinates.length; i++) {
+					for (j = 0; j < coordinates[i].length; j++) {
 						coordinates[i][j] = +coordinates[i][j].toFixed(accuracy);
 					}
 				}
@@ -916,6 +935,6 @@ bikedata = (function ($) {
 				drawnItems.revertLayers();
 			});
 		}
-	}
+	};
 	
 } (jQuery));
