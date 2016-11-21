@@ -145,7 +145,10 @@ bikedata = (function ($) {
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
 			
-			// Show first-run welcome message
+			// Populate dynamic form controls
+			bikedata.populateDynamicFormControls ();
+			
+			// Show first-run welcome message if the user is new to the site
 			bikedata.welcomeFirstRun ();
 			
 			// Determine the enabled layers
@@ -231,6 +234,34 @@ bikedata = (function ($) {
 			// Allow double-clicking of each menu item (surrounding each checkbox) as implicit selection of its checkbox
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
+			});
+		},
+		
+		
+		// Function to populate dynamic form controls
+		populateDynamicFormControls: function ()
+		{
+			// Support for "data-monthly-since" (e.g. = '2013-07') macro which populates a select with an option list of each month, grouped by optgroup years
+			var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+			$('select[data-monthly-since]').val(function() {	// See: http://stackoverflow.com/a/16086337
+				var since = $(this).data('monthly-since');
+				since = since.split('-');
+				var sinceYear = since[0], sinceMonth = since[1];
+				var html = '';
+				var yearToday = new Date().getFullYear();
+				var monthToday = new Date().getMonth() + 1;	// Index from 1
+				for (var year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
+					html += '<optgroup label="' + year + '">';
+					for (var month = months.length - 1; month >= 0; month--) {	// Loop through backwards reliably; see: http://stackoverflow.com/a/4956313
+						var month1Indexed = month + 1;
+						if ((year == yearToday) && (month1Indexed >= monthToday)) {continue;}	// Skip months not yet completed
+						var monthPadded = (month1Indexed < 10 ? '0' : '') + month1Indexed;	// Pad zeroes and cast as string
+						html += '<option value="' + year + '-' + monthPadded + '">' + months[month] + ' ' + year + '</option>';
+						if ((year == sinceYear) && (monthPadded == sinceMonth)) {break;}	// End at last year and since month
+					}
+					html += '</optgroup>';
+				}
+				$(this).append(html);
 			});
 		},
 		
