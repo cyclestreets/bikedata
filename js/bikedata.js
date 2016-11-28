@@ -133,7 +133,7 @@ var bikedata = (function ($) {
 			var urlParameters = bikedata.getUrlParameters ();
 			
 			// Determine layers to use
-			var initialLayers = (urlParameters.sections ? urlParameters.sections : _defaultLayers);
+			var initialLayers = urlParameters.sections || _defaultLayers;
 			
 			// If cookie state is provided, use that to select the sections
 			var state = Cookies.getJSON('state');
@@ -484,7 +484,7 @@ var bikedata = (function ($) {
 			}
 			
 			// Determine which retrieval strategy is needed - bbox (default) or lat/lon
-			var retrievalStrategy = (_layerConfig[layerId].retrievalStrategy ? _layerConfig[layerId].retrievalStrategy : 'bbox');
+			var retrievalStrategy = _layerConfig[layerId].retrievalStrategy || 'bbox';
 			
 			// Unless a boundary is drawn in, supply a bbox or lat/lon
 			if (!parameters.boundary) {
