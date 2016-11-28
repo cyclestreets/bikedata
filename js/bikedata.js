@@ -137,16 +137,15 @@ var bikedata = (function ($) {
 			
 			// If cookie state is provided, use that to select the sections
 			var state = Cookies.getJSON('state');
-			var layerId;
 			if (state) {
 				initialLayers = [];
-				for (layerId in state) {
+				$.each (state, function (layerId, parameters) {
 					if (_layerConfig[layerId]) {
 						initialLayers.push (layerId);
 					}
-				}
+				});
 			}
-				
+			
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
 			
@@ -160,11 +159,11 @@ var bikedata = (function ($) {
 			bikedata.determineLayerStatus ();
 			
 			// Load the data, and add map interactions and form interactions
-			for (layerId in _layers) {
-				if (_layers[layerId]) {
+			$.each (_layers, function (layerId, layerEnabled) {
+				if (layerEnabled) {
 					bikedata.enableLayer (layerId);
 				}
-			}
+			});
 			
 			// Toggle map data layers on/off when checkboxes changed
 			$('nav #selector input').change (function() {
@@ -212,17 +211,14 @@ var bikedata = (function ($) {
 		loadTabs: function (defaultLayers)
 		{
 			// Set each default layer and add background
-			var i;
-			var layerId;
-			for (i in defaultLayers) {
-				layerId = defaultLayers[i];
+			$.each (defaultLayers, function (index, layerId) {
 				
 				// Add background highlight to this tab
 				$('nav li.' + layerId).addClass('selected');
 				
 				// Enable tab
 				$('nav li.' + layerId + ' input').click();
-			}
+			});
 			
 			// Enable tabbing of main menu
 			$('nav').tabs();
@@ -302,10 +298,9 @@ var bikedata = (function ($) {
 		determineLayerStatus: function ()
 		{
 			// Initialise the registry
-			var layerId;
-			for (layerId in _layerConfig) {
+			$.each (_layerConfig, function (layerId, parameters) {
 				_layers[layerId] = false;
-			}
+			});
 			
 			// Create a list of the enabled layers
 			$('nav #selector input:checked').map (function () {
@@ -321,15 +316,14 @@ var bikedata = (function ($) {
 			// Add the tile layers
 			var tileLayers = [];	// Background tile layers
 			var baseLayers = {};	// Labels
-			var tileLayerId;
 			var layer;
 			var name;
-			for (tileLayerId in _settings.tileUrls) {
-				layer = L.tileLayer(_settings.tileUrls[tileLayerId][0], _settings.tileUrls[tileLayerId][1]);
+			$.each (_settings.tileUrls, function (tileLayerId, tileLayerAttributes) {
+				layer = L.tileLayer(tileLayerAttributes[0], tileLayerAttributes[1]);
 				tileLayers.push (layer);
-				name = _settings.tileUrls[tileLayerId][2];
+				name = tileLayerAttributes[2];
 				baseLayers[name] = layer;
-			}
+			});
 			
 			// Create the map in the "map" div, set the view to a given place and zoom
 			_map = L.map('map', {
@@ -682,22 +676,20 @@ var bikedata = (function ($) {
 			} else {
 				
 				html = '<table>';
-				var key;
-				for (key in feature.properties) {
+				$.each (feature.properties, function (key, value) {
 					if (key == 'thumbnailUrl') {
 						if (feature.properties.hasPhoto) {
-							html += '<p><img src="' + feature.properties[key] + '" /></p>';
+							html += '<p><img src="' + value + '" /></p>';
 						}
 					}
-					if (feature.properties[key] === null) {
-						feature.properties[key] = '[null]';
+					if (value === null) {
+						value = '[null]';
 					}
-					var value = feature.properties[key];
 					if (typeof value == 'string') {
 						value = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 					}
 					html += '<tr><td>' + key + ':</td><td><strong>' + value + '</strong></td></tr>';
-				}
+				});
 				html += '</table>';
 			}
 			
