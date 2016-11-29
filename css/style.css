@@ -58,7 +58,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 
 
 
-#selector {float: left; width: 95px; height: 100%; background-color: #333; opacity: 0.85; overflow-y: scroll;}
+#selector {float: left; width: 95px; height: 100%; background-color: #333; opacity: 0.85; overflow-y: auto;}
 
 #selector ul {height: 100%; list-style: none; width: 100%; margin: 0; padding: 0;}
 #selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray; border-left: 4px solid gray; position: relative;}
