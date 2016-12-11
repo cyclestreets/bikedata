@@ -92,6 +92,7 @@ var bikedata = (function ($) {
 				+ '<p>Note: The location given in the police data is <a href="https://data.police.uk/about/#location-anonymisation" target="_blank" title="See more details [link opens in a new window]">approximate</a>, for anonymity reasons.</p>'
 		},
 		
+		// https://www.cyclescape.org/api
 		'issues': {
 			'apiCall': 'https://www.cyclescape.org/api/issues',
 			'apiKey': false,
@@ -118,6 +119,7 @@ var bikedata = (function ($) {
 			// icons specified in the field value
 		},
 		
+		// https://www.cyclescape.org/api
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',
 			'apiKey': false,
