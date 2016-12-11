@@ -92,6 +92,20 @@ var bikedata = (function ($) {
 				+ '<p>Note: The location given in the police data is <a href="https://data.police.uk/about/#location-anonymisation" target="_blank" title="See more details [link opens in a new window]">approximate</a>, for anonymity reasons.</p>'
 		},
 		
+		'issues': {
+			'apiCall': 'https://www.cyclescape.org/api/issues',
+			'apiKey': false,
+			'apiFixedParameters': {
+				'page': 1,
+				'per_page': 100
+			},
+			'iconUrl': '/images/icons/icon_other_neutral.svg',
+			'popupHtml':
+				  '<p><strong>{properties.title}</strong></p>'
+				+ '<p>{properties.description}</p>'
+				+ '<p><a href="{properties.cyclescape_url}">Full details</a></p>'
+		},
+		
 		'photomap': {
 			'apiCall': '/v2/photomap.locations',
 			'apiFixedParameters': {

@@ -106,6 +106,12 @@
 							<input type="checkbox" name="show[]" id="show_cycletheft" />
 							<a href="#cycletheft" title="Cycle theft data" class="tooltip"><img src="/images/icons/icon_enforcement_bad.svg" alt="" /><br />Cycle theft</a>
 						</li>
+						<li class="issues">
+							<img src="/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_issues" />
+							<a href="#issues" title="Reported issues" class="tooltip"><img src="/images/icons/icon_other_neutral.svg" alt="" /><br />Issues</a>
+						</li>
 						<li class="photomap">
 							<img src="/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -254,6 +260,25 @@
 										<option value="Cambridge" id="localAuthority2_cambridge">Cambridge</option>
 										<option value="Edinburgh" id="localAuthority2_edinburgh">Edinburgh</option>
 									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="issues">
+						<h2>Issues</h2>
+						<p>Issues reported by Cyclescape users, representing problems on the cycle network. These include traffic schemes, planning applications, and more.</p>
+						
+						<div id="filter" class="concern">
+							<h3>Filter:</h3>
+							
+							<div id="dateRange">
+								<h4>
+									<label for="enableDateRange">Between dates:</label>
+								</h4>
+								<div class="controls">
+									<label for="start_date">From: </label><input type="date" name="start_date" /><br />
+									<label for="end_date">To: </label><input type="date" name="end_date" />
 								</div>
 							</div>
 						</div>
