@@ -67,7 +67,7 @@ var bikedata = (function ($) {
 		
 		'triplengths': {
 			'apiCall': '/v2/usage.journeylengths',
-			'polygonStyle' : 'grid',
+			'polygonStyle': 'grid',
 			'popupHtml':
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
@@ -101,6 +101,7 @@ var bikedata = (function ($) {
 				'per_page': 100
 			},
 			'iconUrl': '/images/icons/icon_other_neutral.svg',
+			'polygonStyle': 'red',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
@@ -123,7 +124,7 @@ var bikedata = (function ($) {
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',
 			'apiKey': false,
-			'polygonStyle' : 'green',
+			'polygonStyle': 'green',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
@@ -805,11 +806,18 @@ var bikedata = (function ($) {
 									dashArray: [5, 5]
 								};
 							
-							// Red
+							// Green
 							case 'green':
 								return {
 									color: 'green',
 									fillColor: '#090'
+								};
+							
+							// Red
+							case 'red':
+								return {
+									color: 'red',
+									fillColor: 'red'
 								};
 						}
 					}
