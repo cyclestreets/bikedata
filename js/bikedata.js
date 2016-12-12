@@ -419,6 +419,8 @@ var bikedata = (function ($) {
 			var delimiter = ',';	// Should match the delimiter defined by the API
 			
 			// Loop through list of inputs (e.g. checkboxes, select, etc.) for the selected layer
+			var processing = {};
+			var processingStrategy;
 			$('form#data #' + layerId + ' :input').each(function() {
 				
 				// Determine the input type
@@ -432,8 +434,21 @@ var bikedata = (function ($) {
 				// For checkboxes, degroup them by creating/adding a value that is checked, split by the delimiter
 				if (tagName == 'input' && type == 'checkbox') {
 					if (this.checked) {
-						name = name.replace(/\[\]$/g, ''); // Get name of this checkbox, stripping any trailing grouping indicator '[]' (e.g. values for 'foo[]' are registered to 'foo')
-						if (parameters[name]) {
+						
+						// Get name of this checkbox, stripping any trailing grouping indicator '[]' (e.g. values for 'foo[]' are registered to 'foo')
+						name = name.replace(/\[\]$/g, '');
+						
+						// Determine if there is a post-processing instruction
+						processingStrategy = $(this).parent().attr('data-processing');
+						if (processingStrategy) {
+							processing[name] = processingStrategy;
+						}
+						
+						// Register the value
+						if (processingStrategy && (processingStrategy == 'array')) {
+							if (!parameters.hasOwnProperty('name')) {parameters[name] = [];}	// Initialise if required
+							parameters[name].push (value);
+						} else if (parameters[name]) {
 							parameters[name] += delimiter + value; // Add value
 						} else {
 							parameters[name] = value; // Set value
@@ -446,6 +461,15 @@ var bikedata = (function ($) {
 				if (value.length > 0) {
 					parameters[name] = value;	// Set value
 					return;	// Continue to next input
+				}
+			});
+			
+			// Handle processing when enabled
+			$.each(processing, function (name, processingStrategy) {
+				
+				// Array strategy: convert values list to '["value1", "value2", ...]'
+				if (processingStrategy == 'array') {
+					parameters[name] = '["' + parameters[name].join('", "') + '"]';
 				}
 			});
 			
