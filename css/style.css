@@ -37,6 +37,10 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-control-attribution {margin-right: 330px;}
 #map .leaflet-control-layers {right: 330px;}
 
+#map .leaflet-popup .scrollable {max-height: 200px; overflow-y: auto; margin-top: 0;}
+#map .leaflet-popup .scrollable p:first-child {margin-top: 0;}
+
+
 /* Geocoder */
 #geocoder {position: absolute; top: 10px; left: 55px; z-index: 500;}
 #geocoder input {padding: 5px; font-size: 1em; color: #603; width: 250px;}

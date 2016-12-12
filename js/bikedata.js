@@ -1,4 +1,4 @@
-// Bike data application code
+// Bikedata application code
 
 /*jslint browser: true, white: true, single: true, for: true */
 /*global $, jQuery, L, autocomplete, Cookies, vex, GeoJSON, alert, console, window */
@@ -103,8 +103,10 @@ var bikedata = (function ($) {
 			'iconUrl': '/images/icons/destinations_bad.svg',
 			'polygonStyle': 'red',
 			'popupHtml':
-				  '<p><strong>{properties.title}</strong></p>'
-				+ '<p>{properties.description}</p>'
+				  '<p><strong><a href="{properties.cyclescape_url}">{properties.title}</a></strong></p>'
+				+ '<div class="scrollable">'
+				+ '{properties.description}'	// Already HTML
+				+ '</div>'
 				+ '<p><a href="{properties.cyclescape_url}">Full details</a></p>'
 		},
 		
