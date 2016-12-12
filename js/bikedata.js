@@ -100,7 +100,7 @@ var bikedata = (function ($) {
 				'page': 1,
 				'per_page': 100
 			},
-			'iconUrl': '/images/icons/icon_other_neutral.svg',
+			'iconUrl': '/images/icons/destinations_bad.svg',
 			'polygonStyle': 'red',
 			'popupHtml':
 				  '<p><strong>{properties.title}</strong></p>'
