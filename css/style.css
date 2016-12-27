@@ -27,7 +27,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 main {width: 100%; height: calc(100% - 20px); position: relative;}
 main form {width: 100%; height: 100%;}
 
-nav {position: absolute; top: 0; right: 0; width: 335px; height: 100%; z-index: 500;}
+nav {position: fixed; top: 30px; right: 0; width: 335px; height: 100%; z-index: 1000;}
 nav {color: white;}
 nav a {color: white; text-decoration: none;}
 
@@ -102,7 +102,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections div.export img {vertical-align: middle;}
 
 /* Header */
-header {background: rgba(255,255,255,0.2); _background-color: gray; padding: 5px 8px 20px; margin: 0; position: relative; left: -8px;}
+header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
 header h1 {padding-top: 0; font-weight: normal; margin-top: 15px; margin-bottom: 5px;}
 header p {margin: 0;}
 
