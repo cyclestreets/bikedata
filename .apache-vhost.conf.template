@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+
+	# Available URL(s)
+	ServerName bikedata.cyclestreets.net
+	
+	# Logging
+	CustomLog /var/log/apache2/bikedata-access.log combined
+	ErrorLog /var/log/apache2/bikedata-error.log
+
+	# Where the files are
+	DocumentRoot /var/www/bikedata/
+	
+	# Allow access
+	<Directory />
+		Require all granted
+	</Directory>
+
+	# Allow redirects in .htaccess
+	<Directory />
+		AllowOverride FileInfo
+	</Directory>
+	
+</VirtualHost>
+
