@@ -11,8 +11,8 @@ var bikedata = (function ($) {
 	var _settings = {};
 	var _map = null;
 	var _layers = {};	// Layer status registry
-	var _tileOverlayLayers = {};
 	var _currentDataLayer = {};
+	var _tileOverlayLayers = {};
 	var _parameters = {};
 	var _xhrRequests = {};
 	var _requestCache = {};
@@ -517,8 +517,25 @@ var bikedata = (function ($) {
 			
 			// If the layer is a tile layer rather than an API call, add it and end
 			if (_layerConfig[layerId].tileLayer) {
-				var tileLayer = _layerConfig[layerId].tileLayer;
-				_tileOverlayLayers[layerId] = L.tileLayer(tileLayer[0], tileLayer[1]);
+				var tileUrl = _layerConfig[layerId].tileLayer[0];
+				var tileOptions = _layerConfig[layerId].tileLayer[1];
+				
+				// Substitute placeholder values, e.g. style switcher
+				if (parameters) {
+					var placeholder;
+					$.each(parameters, function (field, value) {
+						placeholder = '{%' + field + '}';
+						tileUrl = tileUrl.replace(placeholder, value);
+					});
+				}
+				
+				// Force redraw if already present, e.g. with different style options
+				if (_tileOverlayLayers[layerId]) {
+					_map.removeLayer(_tileOverlayLayers[layerId]);
+				}
+				
+				// Add to the map
+				_tileOverlayLayers[layerId] = L.tileLayer(tileUrl, tileOptions);
 				_map.addLayer(_tileOverlayLayers[layerId]);
 				
 				// No further action, e.g. API calls
