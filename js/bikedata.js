@@ -11,6 +11,7 @@ var bikedata = (function ($) {
 	var _settings = {};
 	var _map = null;
 	var _layers = {};	// Layer status registry
+	var _tileOverlayLayers = {};
 	var _currentDataLayer = {};
 	var _parameters = {};
 	var _xhrRequests = {};
@@ -503,6 +504,16 @@ var bikedata = (function ($) {
 			// End if the layer has been disabled (as the event handler from _map.on('moveend', ...) may still be firing)
 			if (!_layers[layerId]) {return;}
 			
+			// If the layer is a tile layer rather than an API call, add it and end
+			if (_layerConfig[layerId].tileLayer) {
+				var tileLayer = _layerConfig[layerId].tileLayer;
+				_tileOverlayLayers[layerId] = L.tileLayer(tileLayer[0], tileLayer[1]);
+				_map.addLayer(_tileOverlayLayers[layerId]);
+				
+				// No further action, e.g. API calls
+				return;
+			}
+			
 			// Start API data parameters
 			var apiData = {};
 			
@@ -847,6 +858,16 @@ var bikedata = (function ($) {
 		// Function to remove a layer
 		removeLayer: function (layerId, temporaryRedrawing)
 		{
+			// If the layer is a tile layer rather than an API call, remove it and end
+			if (_layerConfig[layerId].tileLayer) {
+				if (_tileOverlayLayers[layerId]) {
+					_map.removeLayer(_tileOverlayLayers[layerId]);
+				}
+				
+				// No further action, e.g. API calls
+				return;
+			}
+			
 			// Remove the layer, checking first to ensure it exists
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
