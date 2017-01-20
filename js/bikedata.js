@@ -128,7 +128,7 @@ var bikedata = (function ($) {
 			'apiCall': false,
 			'apiKey': false,
 			'tileLayer': [
-				'https://globalheat.strava.com/tiles/cycling/color1/{z}/{x}/{y}.png',   // E.g. https://globalheat.strava.com/tiles/cycling/color1/15/16370/10922.png
+				'https://globalheat.strava.com/tiles/cycling/{%style}/{z}/{x}/{y}.png',   // E.g. https://globalheat.strava.com/tiles/cycling/color1/15/16370/10922.png
 				{maxZoom: 17, attribution: 'Strava heatmap (used experimentally), not for tracing'},
 				'Strava heatmap'
 			]
