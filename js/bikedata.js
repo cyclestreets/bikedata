@@ -123,6 +123,17 @@ var bikedata = (function ($) {
 			// icons specified in the field value
 		},
 		
+		// http://wiki.openstreetmap.org/wiki/Strava
+		'strava': {
+			'apiCall': false,
+			'apiKey': false,
+			'tileLayer': [
+				'https://globalheat.strava.com/tiles/cycling/color1/{z}/{x}/{y}.png',   // E.g. https://globalheat.strava.com/tiles/cycling/color1/15/16370/10922.png
+				{maxZoom: 17, attribution: 'Strava heatmap (used experimentally), not for tracing'},
+				'Strava heatmap'
+			]
+		},
+		
 		// https://www.cyclescape.org/api
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',
