@@ -40,6 +40,8 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-popup .scrollable {max-height: 200px; overflow-y: auto; margin-top: 0;}
 #map .leaflet-popup .scrollable p:first-child {margin-top: 0;}
 
+/* Form styling */
+input[type=checkbox] {margin-right: 5px;}
 
 /* Geocoder */
 #geocoder {position: absolute; top: 10px; left: 55px; z-index: 500;}
