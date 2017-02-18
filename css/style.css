@@ -37,8 +37,10 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-control-attribution {margin-right: 330px;}
 #map .leaflet-control-layers {right: 330px;}
 
+#map .leaflet-popup {min-width: 350px;}
 #map .leaflet-popup .scrollable {max-height: 200px; overflow-y: auto; margin-top: 0;}
 #map .leaflet-popup .scrollable p:first-child {margin-top: 0;}
+#map .leaflet-popup p {margin: 0.5em 0; padding: 0; border: 1px solid red;}
 
 /* Form styling */
 input[type=checkbox] {margin-right: 5px;}
