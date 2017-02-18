@@ -118,7 +118,6 @@ var bikedata = (function ($) {
 				'limit': 150,
 				'thumbnailsize': 300,
 				'datetime': 'friendlydate'
-				'suppressplaceholders': 1
 			},
 			'iconField': 'iconUrl',		// icons specified in the field value
 			'popupHtml':
