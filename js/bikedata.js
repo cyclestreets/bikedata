@@ -114,13 +114,24 @@ var bikedata = (function ($) {
 		'photomap': {
 			'apiCall': '/v2/photomap.locations',
 			'apiFixedParameters': {
-				'fields': 'id,caption,hasPhoto,thumbnailUrl,username,licenseName,iconUrl',
+				'fields': 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime',
 				'limit': 150,
 				'thumbnailsize': 300,
-				'datetime': 'friendly'
+				'datetime': 'friendlydate'
+				'suppressplaceholders': 1
 			},
-			'iconField': 'iconUrl'
-			// icons specified in the field value
+			'iconField': 'iconUrl',		// icons specified in the field value
+			'popupHtml':
+				  '<p><img src="{properties.thumbnailUrl}" /></p>'
+				+ '<div class="scrollable">'
+				+ '<strong>{properties.captionHtml}</strong>'
+				+ '</div>'
+				+ '<table>'
+				+ '<tr><td>Date:</td><td>{properties.datetime}</td></tr>'
+				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
+				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
+				+ '</table>'
+				+ '<p><a href="{properties.url}">Full details</a></p>'
 		},
 		
 		// http://wiki.openstreetmap.org/wiki/Strava
