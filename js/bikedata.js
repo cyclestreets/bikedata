@@ -133,7 +133,7 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}">Full details</a></p>'
 		},
 		
-		// http://wiki.openstreetmap.org/wiki/Strava
+		// https://wiki.openstreetmap.org/wiki/Strava
 		'strava': {
 			'apiCall': false,
 			'apiKey': false,
@@ -230,7 +230,7 @@ var bikedata = (function ($) {
 			// Start a list of parameters
 			var urlParameters = {};
 			
-			// Split by slash; see: http://stackoverflow.com/a/8086637
+			// Split by slash; see: https://stackoverflow.com/a/8086637
 			var pathComponents = window.location.pathname.split('/').slice(1);
 			
 			// End if none
@@ -287,7 +287,7 @@ var bikedata = (function ($) {
 		{
 			// Support for "data-monthly-since" (e.g. = '2013-07') macro which populates a select with an option list of each month, grouped by optgroup years
 			var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-			$('select[data-monthly-since]').val(function() {	// See: http://stackoverflow.com/a/16086337
+			$('select[data-monthly-since]').val(function() {	// See: https://stackoverflow.com/a/16086337
 				var since = $(this).data('monthly-since');
 				since = since.split('-');
 				var sinceYear = since[0];
@@ -298,9 +298,9 @@ var bikedata = (function ($) {
 				var year;
 				var month;
 				var month1Indexed;
-				for (year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
+				for (year = yearToday; year >= sinceYear; year--) {	// See: https://stackoverflow.com/a/26511699
 					html += '<optgroup label="' + year + '">';
-					for (month = months.length - 1; month >= 0; month--) {	// Loop through backwards reliably; see: http://stackoverflow.com/a/4956313
+					for (month = months.length - 1; month >= 0; month--) {	// Loop through backwards reliably; see: https://stackoverflow.com/a/4956313
 						month1Indexed = month + 1;
 						if ((year == yearToday) && (month1Indexed >= monthToday)) {continue;}	// Skip months not yet completed
 						var monthPadded = (month1Indexed < 10 ? '0' : '') + month1Indexed;	// Pad zeroes and cast as string
@@ -319,8 +319,8 @@ var bikedata = (function ($) {
 				var html = '';
 				var year;
 				var unixtime;
-				for (year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
-					unixtime = parseInt((new Date(year + '.01.01').getTime() / 1000).toFixed(0));	// http://stackoverflow.com/a/28683720/180733
+				for (year = yearToday; year >= sinceYear; year--) {	// See: https://stackoverflow.com/a/26511699
+					unixtime = parseInt((new Date(year + '.01.01').getTime() / 1000).toFixed(0));	// https://stackoverflow.com/a/28683720/180733
 					html += '<option value="' + unixtime + '">' + year + '</option>';
 				}
 				$(this).append(html);
@@ -661,7 +661,7 @@ var bikedata = (function ($) {
 			_xhrRequests[layerId] = $.ajax({
 				url: apiUrl,
 				dataType: 'json',
-				crossDomain: true,	// Needed for IE<=9; see: http://stackoverflow.com/a/12644252/180733
+				crossDomain: true,	// Needed for IE<=9; see: https://stackoverflow.com/a/12644252/180733
 				data: apiData,
 				error: function (jqXHR, error, exception) {
 					
@@ -766,14 +766,14 @@ var bikedata = (function ($) {
 			if (_layerConfig[layerId].popupHtml) {
 				var template = _layerConfig[layerId].popupHtml;
 				
-				// Define a path parser, so that the template can define properties.foo which would obtain feature.properties.foo; see: http://stackoverflow.com/a/22129960
+				// Define a path parser, so that the template can define properties.foo which would obtain feature.properties.foo; see: https://stackoverflow.com/a/22129960
 				Object.resolve = function(path, obj) {
 					return path.split('.').reduce(function(prev, curr) {
 						return (prev ? prev[curr] : undefined);
 					}, obj || self);
 				};
 				
-				// Replace template placeholders; see: http://stackoverflow.com/a/378000
+				// Replace template placeholders; see: https://stackoverflow.com/a/378000
 				html = template.replace (/\{[^{}]+\}/g, function(path){
 					return Object.resolve ( path.replace(/[{}]+/g, '') , feature);
 				});
@@ -1031,7 +1031,7 @@ var bikedata = (function ($) {
 				// Send to receiving input form
 				$(targetField).val(JSON.stringify(geojsonValue));
 				
-				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: http://stackoverflow.com/a/8965804
+				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: https://stackoverflow.com/a/8965804
 				// #!# Note that this fires twice for some reason - see notes to the answer in the above URL
 				$(targetField).trigger('change');
 			});
@@ -1041,7 +1041,7 @@ var bikedata = (function ($) {
 				drawnItems.clearLayers();
 				$(targetField).val('');
 			
-				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: http://stackoverflow.com/a/8965804
+				// Trigger jQuery change event, so that .change() behaves as expected for the hidden field; see: https://stackoverflow.com/a/8965804
 				$(targetField).trigger('change');
 			});
 			
