@@ -842,10 +842,10 @@ var bikedata = (function ($) {
 					}
 					
 					var icon = L.marker (latlng, {
-						// Icon properties as per: http://leafletjs.com/reference.html#icon
+						// Icon properties as per: http://leafletjs.com/reference.html#icon and http://leafletjs.com/examples/custom-icons/
 						icon: L.icon({
 							iconUrl: iconUrl,
-							iconSize: [38, 95]
+							iconSize: [38, 42]
 						})
 					});
 					return icon;
