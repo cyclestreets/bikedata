@@ -311,6 +311,20 @@ var bikedata = (function ($) {
 				}
 				$(this).append(html);
 			});
+			
+			// Support for "data-yearly-since-unixtime" macro which populates a select with an option list of each year, expressed as Unixtime
+			$('select[data-yearly-since-unixtime]').val(function() {
+				var sinceYear = $(this).data('yearly-since-unixtime');
+				var yearToday = new Date().getFullYear();
+				var html = '';
+				var year;
+				var unixtime;
+				for (year = yearToday; year >= sinceYear; year--) {	// See: http://stackoverflow.com/a/26511699
+					unixtime = parseInt((new Date(year + '.01.01').getTime() / 1000).toFixed(0));	// http://stackoverflow.com/a/28683720/180733
+					html += '<option value="' + unixtime + '">' + year + '</option>';
+				}
+				$(this).append(html);
+			});
 		},
 		
 		
