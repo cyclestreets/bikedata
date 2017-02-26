@@ -13,6 +13,7 @@ var bikedata = (function ($) {
 	var _layers = {};	// Layer status registry
 	var _currentDataLayer = {};
 	var _tileOverlayLayers = {};
+	var _heatmapOverlayLayers = {};
 	var _parameters = {};
 	var _xhrRequests = {};
 	var _requestCache = {};
@@ -812,6 +813,12 @@ var bikedata = (function ($) {
 		// Function to show the data for a layer
 		showCurrentData: function (layerId, data, requestSerialised)
 		{
+			// If a heatmap, divert to this
+			if (_layerConfig[layerId].heatmap) {
+				bikedata.heatmap(layerId, data);
+				return;
+			}
+			
 			// If this layer already exists, remove it so that it can be redrawn
 			bikedata.removeLayer (layerId, true);
 			
@@ -904,6 +911,27 @@ var bikedata = (function ($) {
 			
 			// Add to the map
 			_currentDataLayer[layerId].addTo(_map);
+		},
+		
+		
+		// Heatmap; see: https://github.com/Leaflet/Leaflet.heat
+		heatmap: function (layerId, data)
+		{
+			// Parse the address points
+			var points = data.map(function (point) {
+				return [ point[0], point[1] ];
+			});
+			
+			// Redraw if required
+			if (_heatmapOverlayLayers[layerId]) {
+				_map.removeLayer(_heatmapOverlayLayers[layerId]);
+			}
+			
+			// Create the heatmap
+			_heatmapOverlayLayers[layerId] = L.heatLayer(points);
+			
+			// Add to map
+			_heatmapOverlayLayers[layerId].addTo(_map);
 		},
 		
 		
