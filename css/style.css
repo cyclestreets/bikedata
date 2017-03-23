@@ -8,7 +8,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 #globalsites {background-color: gray; height: 30px; border-top: 2px solid #ddd;}
 #globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}
 #globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
-#globalsites p {float: left; color: white;}
+#globalsites p {float: left; color: white; padding: 4px 11px 0;}
 #globalsites ul {height: 100%; margin-left: 200px;}
 #globalsites ul li {height: 100%; float: left; margin: 0; padding: 0; list-style: none;}
 #globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
