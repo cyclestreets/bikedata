@@ -17,6 +17,7 @@ var bikedata = (function ($) {
 	var _parameters = {};
 	var _xhrRequests = {};
 	var _requestCache = {};
+	var _embedMode = false;
 	
 	// Default layers enabled
 	var _defaultLayers = ['collisions', 'photomap'];
@@ -174,6 +175,9 @@ var bikedata = (function ($) {
 			// Get the query string parameters
 			var urlParameters = bikedata.getUrlParameters ();
 			
+			// Hide unwanted UI elements in embed mode if required
+			bikedata.embedMode ();
+			
 			// Determine layers to use
 			var initialLayers = urlParameters.sections || _defaultLayers;
 			
@@ -244,8 +248,42 @@ var bikedata = (function ($) {
 				urlParameters.sections.push (section);
 			}
 			
+			// Obtain embed mode if present
+			if (pathComponents[1]) {
+				if (pathComponents[1] == 'embed') {
+					_embedMode = true;
+				}
+			}
+			
 			// Return the parameters
 			return urlParameters;
+		},
+		
+		
+		// Function to support embed mode, which disables various UI elements
+		embedMode: function ()
+		{
+			// End if not enabled
+			if (!_embedMode) {return;}
+			
+			// If the site is being iframed, force target of each link to parent
+			var inIframe = bikedata.inIframe ();
+			if (inIframe) {
+				$('a').attr('target', '_parent');
+			}
+			
+			// Add CSS
+			$('body').addClass('embed');
+		},
+		
+		
+		// Helper function to determine if the site is being iframed; see: http://stackoverflow.com/a/326076/180733
+		inIframe: function () {
+			try {
+				return window.self !== window.top;
+			} catch (e) {
+				return true;
+			}
 		},
 		
 		

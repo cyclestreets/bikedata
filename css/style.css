@@ -6,7 +6,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 
 /* Global navigation */
 #globalsites {background-color: gray; height: 30px; border-top: 2px solid #ddd;}
-#globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em;}
+#globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}
 #globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
 #globalsites p {float: left; color: white;}
 #globalsites ul {height: 100%; margin-left: 200px;}
@@ -168,3 +168,7 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 
 /* Street View */
 #streetview {margin-top: 20px; width: 100%; height: 150px; border: 1px solid #ccc;}
+
+/* Embed view */
+.embed #drawing, .embed #selector, .embed header, .embed #sponsor, .embed .export {display: none;}
+.embed #map .leaflet-control-layers {right: calc(335px - 95px);}
