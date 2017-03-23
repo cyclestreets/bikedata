@@ -105,10 +105,10 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
 #sections .controls {padding: 0; margin: 0;}
 
-#sections div.export {height: 20px;}
-#sections div.export p {line-height: 20px; opacity: 0.2; border: 1px solid gray; padding: 2px 5px; float: right; margin: 0; font-size: 0.9em;}
-#sections div.export p.enabled {opacity: 1;}
-#sections div.export img {vertical-align: middle;}
+#sections .button {height: 20px;}
+#sections .button p {line-height: 20px; opacity: 0.2; border: 1px solid gray; padding: 2px 5px; float: right; margin: 0; font-size: 0.9em;}
+#sections .button p.enabled {opacity: 1;}
+#sections .button p img {vertical-align: middle;}
 
 /* Header */
 header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
