@@ -97,8 +97,9 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections #compare div p {margin-bottom: 4px;}
 #sections #compare div .controls label {width: 45px; display: inline-block;}
 
-#sections div.concern {background: rgba(255,255,255,0.1); padding: 0; margin: 20px 0 15px;}
+#sections div.concern {background: rgba(255,255,255,0.1); padding: 0 0 5px; margin: 20px 0 15px;}
 #sections div.concern h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
+#sections div.concern p {margin: 0;}
 #sections div.concern > div {padding: 5px 5px;}
 
 #sections h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
