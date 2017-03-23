@@ -265,13 +265,19 @@ var bikedata = (function ($) {
 			// Enable tabbing of main menu
 			$('nav').tabs();
 			
+			// If a default tab is defined, switch to its contents (controls); see: http://stackoverflow.com/a/7916955/180733
+			if (defaultLayers[0]) {
+				var index = $('nav li.' + defaultLayers[0]).index();
+				$('nav').tabs('option', 'active', index);
+			}
+			
 			// Handle selection/deselection of section checkboxes
 			$('nav #selector input').change (function() {
 				
 				// Add background highlight to this tab
 				$(this).parent('li').toggleClass('selected', this.checked);
 				
-				// Switch to its tab contents
+				// Switch to its tab contents (controls)
 				var index = $(this).parent().index();
 				$('nav').tabs('option', 'active', index);
 			});
