@@ -109,6 +109,7 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections .button p {line-height: 20px; opacity: 0.2; border: 1px solid gray; padding: 2px 5px; float: right; margin: 0; font-size: 0.9em;}
 #sections .button p.enabled {opacity: 1;}
 #sections .button p img {vertical-align: middle;}
+#sections .button p span.symbol {font-size: 1.4em;}
 
 /* Header */
 header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
