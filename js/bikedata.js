@@ -414,8 +414,9 @@ var bikedata = (function ($) {
 		createMap: function ()
 		{
 			// Add the tile layers
-			var tileLayers = [];	// Background tile layers
-			var baseLayers = {};	// Labels
+			var tileLayers = [];		// Background tile layers
+			var baseLayers = {};		// Labels
+			var baseLayersById = {};	// Layers, by id
 			var layer;
 			var name;
 			$.each (_settings.tileUrls, function (tileLayerId, tileLayerAttributes) {
@@ -423,6 +424,7 @@ var bikedata = (function ($) {
 				tileLayers.push (layer);
 				name = tileLayerAttributes[2];
 				baseLayers[name] = layer;
+				baseLayersById[tileLayerId] = layer;
 			});
 			
 			// Create the map in the "map" div, set the view to a given place and zoom
@@ -443,7 +445,7 @@ var bikedata = (function ($) {
 			
 			// Add hash support
 			// #!# Note that this causes a map move, causing a second data request
-			new L.Hash (_map);
+			new L.Hash (_map, baseLayersById);
 		},
 		
 		
