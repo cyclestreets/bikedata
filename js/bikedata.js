@@ -846,10 +846,10 @@ var bikedata = (function ($) {
 				html += '</table>';
 			}
 			
-			// Street View container, for Point types (as not really applicable to areas)
-			if (feature.geometry.type == 'Point') {
-				html += '<iframe id="streetview" src="/streetview.html?latitude=' + feature.geometry.coordinates[1] + '&longitude=' + feature.geometry.coordinates[0] + '">Street View loading &hellip;</div>';
-			}
+			// // Street View container, for Point types (as not really applicable to areas)
+			// if (feature.geometry.type == 'Point') {
+			// 	html += '<iframe id="streetview" src="/streetview.html?latitude=' + feature.geometry.coordinates[1] + '&longitude=' + feature.geometry.coordinates[0] + '">Street View loading &hellip;</div>';
+			// }
 			
 			// Return the content
 			return html;
