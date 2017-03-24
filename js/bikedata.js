@@ -994,6 +994,13 @@ var bikedata = (function ($) {
 				return;
 			}
 			
+			// If the layer is a heatmap layer rather than an API call, remove it and end
+			if (_layerConfig[layerId].heatmap) {
+				if (_heatmapOverlayLayers[layerId]) {
+					_map.removeLayer(_heatmapOverlayLayers[layerId]);
+				}
+			}
+			
 			// Remove the layer, checking first to ensure it exists
 			if (_currentDataLayer[layerId]) {
 				_map.removeLayer (_currentDataLayer[layerId]);
