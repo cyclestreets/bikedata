@@ -146,6 +146,26 @@ var bikedata = (function ($) {
 			]
 		},
 		
+		// https://www.cyclestreets.net/api/v2/mapdata/
+		'cycleability': {
+			'apiCall': 'https://api.cyclestreets.net/v2/mapdata',
+			'apiFixedParameters': {
+				'limit': 400,
+				'fields': 'ways',
+			},
+			'sendZoom': true,
+			'popupHtml':
+				  '<table>'
+				+ '<tr><td>Name:</td><td><strong>{properties.name}</strong></td></tr>'
+				+ '<tr><td>OSM ID:</td><td><a href="https://www.openstreetmap.org/way/{properties.id}" target="_blank" title="[Link opens in a new window]">{properties.id}</a></td></tr>'
+				+ '<tr><td>Cycleable?</td><td>{properties.cyclableText}</td></tr>'
+				+ '<tr><td>Quietness:</td><td><strong>{properties.quietness}</strong></td></tr>'
+				+ '<tr><td>Speed rating</td><td>{properties.speed}</td></tr>'
+				+ '<tr><td>Pause</td><td>{properties.pause}</td></tr>'
+				+ '<tr><td>Type</td><td>{properties.ridingSurface}</td></tr>'
+				+ '</table>'
+		},
+		
 		// https://www.cyclescape.org/api
 		'groups': {
 			'apiCall': 'https://www.cyclescape.org/api/groups.json',

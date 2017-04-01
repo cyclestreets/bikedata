@@ -127,6 +127,12 @@
 							<input type="checkbox" name="show[]" id="show_strava" />
 							<a href="#strava" title="Strava heatmap layer" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Strava heatmap</a>
 						</li>
+						<li class="cycleability">
+							<img src="/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_cycleability" />
+							<a href="#cycleability" title="Cycleability ratings layer" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Cycleability ratings</a>
+						</li>
 						<li class="groups">
 							<img src="/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -470,6 +476,11 @@
 							</div>
 						</div>
 
+					</div>
+					
+					<div id="cycleability">
+						<h2>Cycleability ratings</h2>
+						<p>This layer shows ratings of the cycleability rating of every street and path. Data comes from the CycleStreets routing engine.</p>
 					</div>
 					
 					<div id="groups">
