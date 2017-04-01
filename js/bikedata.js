@@ -911,8 +911,10 @@ var bikedata = (function ($) {
 					layer.bindPopup(popupContent);
 				},
 				
-				// Set polygon style if required
+				// Rendering style
 				style: function (feature) {
+					
+					// Set polygon style if required
 					if (_layerConfig[layerId].polygonStyle) {
 						switch (_layerConfig[layerId].polygonStyle) {
 							
@@ -937,6 +939,13 @@ var bikedata = (function ($) {
 									color: 'red',
 									fillColor: 'red'
 								};
+						}
+					}
+					
+					// Use supplied colour if present
+					if (feature.properties.hasOwnProperty('color')) {
+						return {
+							color: feature.properties.color
 						}
 					}
 				}
@@ -1134,3 +1143,4 @@ var bikedata = (function ($) {
 	};
 	
 } (jQuery));
+
