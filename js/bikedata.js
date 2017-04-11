@@ -51,6 +51,13 @@ var bikedata = (function ($) {
 				+ '</p>'
 		},
 		
+		'taxidata': {
+			'apiCall': '/v2/taxidata.heatmap',
+			'apiKey': false,
+			'iconUrl': '/images/icons/road_neutral.svg',
+			'heatmap': true
+		},
+		
 		'planningapplications': {
 			'apiCall': 'http://www.planit.org.uk/api/applics/geojson',
 			'apiFixedParameters': {

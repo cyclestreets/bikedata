@@ -83,6 +83,12 @@
 							<input type="checkbox" name="show[]" id="show_planningapplications" />
 							<a href="#planningapplications" title="Planning applications" class="tooltip"><img src="/images/icons/signs_neutral.svg" alt="" /><br />Planning applications</a>
 						</li>
+						<li class="taxidata">
+							<img src="/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_taxidata" />
+							<a href="#taxidata" title="Taxi data" class="tooltip"><img src="/images/icons/road_neutral.svg" alt="" /><br />Taxi data</a>
+						</li>
 						<!--
 						<li class="cyclingrates unavailable">
 							<img src="/images/spinner.svg" class="loading" />
@@ -348,6 +354,46 @@
 							<p><img src="/images/page_excel.png" alt="Spreadsheet" /> Export</p>
 						</div>
 						
+					</div>
+					
+					<div id="taxidata">
+						<h2>Taxi data</h2>
+						<p>Where are taxis travelling? An experimental layer created at Cambridge Hack Transport (2017).</p>
+
+						<div class="filters">
+							<h3>Filter to:</h3>
+							
+							<h4>Vehicle speed:</h4>
+							<select name="vehicleSpeed">
+								<option value="">All</option>
+								<option value="&lt; 4">Idling</option>
+								<option value="&gt;= 4">Driving</option>
+								<option value="&gt; 20">Speeding (&gt;20mph)</option>
+								<option value="&gt; 30">Speeding (&gt;30mph)</option>
+							</select>
+							
+							<h4>Vehicle status:</h4>
+							<select name="status">
+								<option value="">All</option>
+								<option value="tFree">Free</option>
+								<option value="tAllocated">Allocated (driving to pickup)</option>
+								<option value="tBusy">Busy (with passenger)</option>
+							</select>
+							
+							<h4>Time:</h4>
+							<select name="time">
+								<option value="">All</option>
+								<option value="07:00:00-10:00:00">Morning peak (7-10am)</option>
+								<option value="15:00:00-21:00:00">Evening peak (3-7pm)</option>
+								<option value="20:00:00-23:59:59">Evening (8pm-midnight)</option>
+								<option value="00:00:00-03:00:00">Late night (midnight-3am)</option>
+							</select>
+							
+							<h4>Date:</h4>
+							<select name="date" data-monthly-since="2014-06">
+								<option value="">All reports (since June 2014)</option>
+							</select>
+						</div>
 					</div>
 					
 					<!--
