@@ -409,7 +409,7 @@ var bikedata = (function ($) {
 			 + '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
 			 + '<p>Please note that this site is work-in-progress beta.</p>';
 			
-			// Show the popup
+			// Show the dialog
 			vex.dialog.alert ({unsafeMessage: message});
 		},
 		
@@ -928,7 +928,7 @@ var bikedata = (function ($) {
 				onEachFeature: function (feature, layer) {
 					totalItems++;
 					var popupContent = bikedata.popupHtml (layerId, feature);
-					layer.bindPopup(popupContent);
+					layer.bindPopup(popupContent, {autoPan: false});
 				},
 				
 				// Rendering style
