@@ -17,6 +17,7 @@ var bikedata = (function ($) {
 	var _parameters = {};
 	var _xhrRequests = {};
 	var _requestCache = {};
+	var _title = false;
 	var _embedMode = false;
 	
 	// Default layers enabled
@@ -219,6 +220,16 @@ var bikedata = (function ($) {
 				});
 			}
 			
+			/* Doesn't work yet, as is asyncronous - need to restructure the initialisation
+			// If HTML5 History state is provided, use that to select the sections
+			$(window).on('popstate', function (e) {
+				var popstate = e.originalEvent.state;
+				if (popstate !== null) {
+					initialLayers = popstate;
+				}
+			});
+			*/
+			
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
 			
@@ -346,6 +357,13 @@ var bikedata = (function ($) {
 				// Add background highlight to this tab
 				$(this).parent('li').toggleClass('selected', this.checked);
 				
+				// Update the URL using HTML5 History pushState
+				var enabledLayers = [];
+				$('nav #selector input:checked').map (function () {
+					enabledLayers.push (this.id.replace('show_', ''));
+				});
+				bikedata.updateUrl (enabledLayers);
+				
 				// If enabling, switch to its tab contents (controls)
 				if (this.checked) {
 					var index = $(this).parent().index();
@@ -357,6 +375,30 @@ var bikedata = (function ($) {
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
 			});
+		},
+		
+		
+		// Function to update the URL, to provide persistency when a link is circulated
+		updateUrl (enabledLayers)
+		{
+			// Construct the URL
+			var url = '/';		// Absolute URL
+			url += enabledLayers.join(',') + (enabledLayers.length ? '/' : '');
+			url += window.location.hash;
+			
+			// Construct the page title
+			if (!_title) {_title = document.title;}		// Obtain and cache the original page title
+			var title = _title;
+			var layerTitles = [];
+			$.each (enabledLayers, function (index, layerId) {
+				layerTitles.push ($('#selector li.' + layerId + ' a').text().toLowerCase());
+			});
+			if (layerTitles) {
+				title += ': ' + layerTitles.join(', ');
+			}
+			
+			// Push the URL state
+			history.pushState (enabledLayers, title, url);
 		},
 		
 		
