@@ -755,6 +755,12 @@ var bikedata = (function ($) {
 					// Stop data loading spinner for this layer
 					$('#selector li.' + layerId + ' img.loading').hide();
 					
+					// Catch cases of being unable to access the server, e.g. no internet access; avoids "Unexpected token u in JSON at position 0" errors
+					if (jqXHR.status == 0) {
+						vex.dialog.alert ('Error: Could not contact the server; perhaps your internet connection is not working?');
+						return;
+					}
+					
 					// Show error, unless deliberately aborted
 					if (jqXHR.statusText != 'abort') {
 						var data = $.parseJSON(jqXHR.responseText);
