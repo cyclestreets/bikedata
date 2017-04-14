@@ -268,11 +268,15 @@ var bikedata = (function ($) {
 			// End if none
 			if (!pathComponents) {return {};}
 			
-			// Obtain the section
-			var section = pathComponents[0];
-			if (_layerConfig[section]) {
-				urlParameters.sections = [];
-				urlParameters.sections.push (section);
+			// Obtain the section(s), checking against the available sections in the settings
+			urlParameters.sections = [];
+			if (pathComponents[0]) {
+				var sections = pathComponents[0].split(',');
+				$.each (sections, function (index, section) {
+					if (_layerConfig[section]) {
+						urlParameters.sections.push (section);
+					}
+				});
 			}
 			
 			// Obtain embed mode if present
