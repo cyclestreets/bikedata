@@ -519,6 +519,10 @@ var bikedata = (function ($) {
 				_parameters[layerId] = bikedata.parseFormValues (layerId);
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
+			$('form#data #sections :text').on ('input', function() {	// Also include text input changes as-you-type; see: https://gist.github.com/brandonaaskov/1596867
+				_parameters[layerId] = bikedata.parseFormValues (layerId);
+				bikedata.getData (layerId, _parameters[layerId]);
+			});
 		},
 		
 		
