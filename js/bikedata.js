@@ -206,29 +206,30 @@ var bikedata = (function ($) {
 			// Hide unwanted UI elements in embed mode if required
 			bikedata.embedMode ();
 			
-			// Determine layers to use
-			var initialLayers = urlParameters.sections || _defaultLayers;
+			// If HTML5 History state is provided, use that to select the sections
+			var initialLayersPopstate = false;
+			/* Doesn't work yet, as is asyncronous - need to restructure the initialisation
+			$(window).on('popstate', function (e) {
+				var popstate = e.originalEvent.state;
+				if (popstate !== null) {
+					initialLayersPopstate = popstate;
+				}
+			});
+			*/
 			
 			// If cookie state is provided, use that to select the sections
 			var state = Cookies.getJSON('state');
+			var initialLayersCookies = [];
 			if (state) {
-				initialLayers = [];
 				$.each (state, function (layerId, parameters) {
 					if (_layerConfig[layerId]) {
-						initialLayers.push (layerId);
+						initialLayersCookies.push (layerId);
 					}
 				});
 			}
 			
-			/* Doesn't work yet, as is asyncronous - need to restructure the initialisation
-			// If HTML5 History state is provided, use that to select the sections
-			$(window).on('popstate', function (e) {
-				var popstate = e.originalEvent.state;
-				if (popstate !== null) {
-					initialLayers = popstate;
-				}
-			});
-			*/
+			// Determine layers to use, checking for data in order of precedence
+			var initialLayers = initialLayersPopstate || urlParameters.sections || initialLayersCookies || _defaultLayers;
 			
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
@@ -345,7 +346,7 @@ var bikedata = (function ($) {
 			// Enable tabbing of main menu
 			$('nav').tabs();
 			
-			// If a default tab is defined, switch to its contents (controls); see: http://stackoverflow.com/a/7916955/180733
+			// If a default tab is defined (or several, in which case use the first), switch to its contents (controls); see: http://stackoverflow.com/a/7916955/180733
 			if (defaultLayers[0]) {
 				var index = $('nav li.' + defaultLayers[0]).index();
 				$('nav').tabs('option', 'active', index);
