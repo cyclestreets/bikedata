@@ -346,9 +346,11 @@ var bikedata = (function ($) {
 				// Add background highlight to this tab
 				$(this).parent('li').toggleClass('selected', this.checked);
 				
-				// Switch to its tab contents (controls)
-				var index = $(this).parent().index();
-				$('nav').tabs('option', 'active', index);
+				// If enabling, switch to its tab contents (controls)
+				if (this.checked) {
+					var index = $(this).parent().index();
+					$('nav').tabs('option', 'active', index);
+				}
 			});
 			
 			// Allow double-clicking of each menu item (surrounding each checkbox) as implicit selection of its checkbox
