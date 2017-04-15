@@ -237,6 +237,9 @@ var bikedata = (function ($) {
 			// Populate dynamic form controls
 			bikedata.populateDynamicFormControls ();
 			
+			// Set form values specified in the URL
+			bikedata.setFormValues (urlParameters.queryString);
+			
 			// Show first-run welcome message if the user is new to the site
 			bikedata.welcomeFirstRun ();
 			
@@ -459,6 +462,39 @@ var bikedata = (function ($) {
 					html += '<option value="' + unixtime + '">' + year + '</option>';
 				}
 				$(this).append(html);
+			});
+		},
+		
+		
+		// Function to set form values specified in the URL
+		setFormValues: function (parameters)
+		{
+			// Loop through each parameter; valid matches are in the form 'layerId:inputId', e.g. photomap:tags=cycleparking
+			var formParameters = {};
+			$.each (parameters, function (identifier, value) {
+				var identifierParts;
+				var layerId;
+				var inputName;
+				if (identifier.match (/^(.+):(.+)$/)) {
+					identifierParts = identifier.split (':', 2);
+					layerId = identifierParts[0];
+					inputName = identifierParts[1];
+					if (!formParameters[layerId]) {formParameters[layerId] = {};}	// Initialise nested array if not already present
+					formParameters[layerId][inputName] = value;
+				}
+			});
+			
+			// Set form values, where they exist
+			var elementPath;
+			$.each (formParameters, function (layerId, values) {
+				if (_layerConfig[layerId]) {	// Validate against layer registry
+					$.each (values, function (inputName, value) {
+						elementPath = '#sections #' + layerId + ' :input[name="' + inputName + '"]';
+						if ($(elementPath).length) {
+							$(elementPath).val(value);
+						}
+					});
+				}
 			});
 		},
 		
