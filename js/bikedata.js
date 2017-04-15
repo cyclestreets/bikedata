@@ -200,7 +200,7 @@ var bikedata = (function ($) {
 			// Create the map
 			bikedata.createMap ();
 			
-			// Get the query string parameters
+			// Parse the URL
 			var urlParameters = bikedata.getUrlParameters ();
 			
 			// Hide unwanted UI elements in embed mode if required
@@ -298,8 +298,22 @@ var bikedata = (function ($) {
 				}
 			}
 			
+			// Obtain query string parameters, which are used for presetting form values
+			urlParameters.queryString = bikedata.parseQueryString ();
+			
 			// Return the parameters
 			return urlParameters;
+		},
+		
+		
+		// Function to parse the query string into key/value pairs
+		parseQueryString: function ()
+		{
+			// See: http://stackoverflow.com/a/8649003/180733
+			if (!location.search.length) {return {};}
+			var queryString = location.search.substring(1);
+			var parameters = JSON.parse('{"' + decodeURI(queryString).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+			return parameters;
 		},
 		
 		
