@@ -53,8 +53,7 @@ var bikedata = (function ($) {
 		},
 		
 		'taxidata': {
-			'apiCall': '/v2/taxidata.heatmap',
-			'apiKey': false,
+			'apiCall': '/v2/advocacydata.taxis',
 			'iconUrl': '/images/icons/road_neutral.svg',
 			'heatmap': true
 		},
