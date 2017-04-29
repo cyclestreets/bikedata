@@ -20,6 +20,26 @@ config.tileUrls = {
 		'http://os.openstreetmap.org/sv/{z}/{x}/{y}.png',
 		{maxZoom: 19, attribution: 'Contains Ordnance Survey data &copy; Crown copyright and database right 2010'},
 		'OS Open Data'
+	],
+	'bartholomew': [
+		'https://{s}.tile.cyclestreets.net/bartholomew/{z}/{x}/{-y}@2x.png',
+		{maxZoom: 15, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
+		'NLS - Bartholomew Half Inch, 1897-1907'
+	],
+	'os6inch': [
+		'https://{s}.tile.cyclestreets.net/os6inch/{z}/{x}/{-y}@2x.png',
+		{maxZoom: 15, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
+		'NLS - OS 6-inch County Series 1888-1913'
+	],
+	'os1to25k1stseries': [
+		'https://{s}.tile.cyclestreets.net/os1to25k1stseries/{z}/{x}/{-y}@2x.png',
+		{maxZoom: 16, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
+		'NLS - OS 1:25,000 Provisional / First Series 1937-1961',
+	],
+	'os1inch7thseries': [
+		'https://{s}.tile.cyclestreets.net/os1inch7thseries/{z}/{x}/{-y}@2x.png',
+		{maxZoom: 16, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
+		'NLS - OS 1-inch 7th Series 1955-1961'
 	]
 }
 
