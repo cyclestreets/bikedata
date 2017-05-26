@@ -58,6 +58,28 @@ var bikedata = (function ($) {
 			'heatmap': true
 		},
 		
+		'trafficcounts': {
+			'apiCall': 'https://api.cyclestreets.net/v2/trafficcounts.locations',
+			'iconUrl': '/images/icons/icon_congestion_bad.svg',
+			'popupHtml':	// Popup code thanks to http://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
+				  '<p>Count Point {properties.cp} on {properties.road}, a {properties.road_type}<br />'
+				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
+				+ '<table class="small">'
+				+ '<tr><th>Year</th><th>2003</th><th>2004</th><th>2005</th><th>2006</th><th>2007</th><th>2008</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th></tr>'
+				+ '<tr><td>Cycles</td><td>{properties.cycles_03}</td><td>{properties.cycles_04}</td><td>{properties.cycles_05}</td><td>{properties.cycles_06}</td><td>{properties.cycles_07}</td><td>{properties.cycles_08}</td><td>{properties.cycles_09}</td><td>{properties.cycles_10}</td><td>{properties.cycles_11}</td><td>{properties.cycles_12}</td><td>{properties.cycles_13}</td><td>{properties.cycles_14}</td><td>{properties.cycles_15}</td><td>{properties.cycles_16}</td></tr>'
+				+ '<tr><td>P2W</td><td>{properties.p2w_03}</td><td>{properties.p2w_04}</td><td>{properties.p2w_05}</td><td>{properties.p2w_06}</td><td>{properties.p2w_07}</td><td>{properties.p2w_08}</td><td>{properties.p2w_09}</td><td>{properties.p2w_10}</td><td>{properties.p2w_11}</td><td>{properties.p2w_12}</td><td>{properties.p2w_13}</td><td>{properties.p2w_14}</td><td>{properties.p2w_15}</td><td>{properties.p2w_16}</td></tr>'
+				+ '<tr><td>Cars</td><td>{properties.cars_03}</td><td>{properties.cars_04}</td><td>{properties.cars_05}</td><td>{properties.cars_06}</td><td>{properties.cars_07}</td><td>{properties.cars_08}</td><td>{properties.cars_09}</td><td>{properties.cars_10}</td><td>{properties.cars_11}</td><td>{properties.cars_12}</td><td>{properties.cars_13}</td><td>{properties.cars_14}</td><td>{properties.cars_15}</td><td>{properties.cars_16}</td></tr>'
+				+ '<tr><td>Buses</td><td>{properties.buses_03}</td><td>{properties.buses_04}</td><td>{properties.buses_05}</td><td>{properties.buses_06}</td><td>{properties.buses_07}</td><td>{properties.buses_08}</td><td>{properties.buses_09}</td><td>{properties.buses_10}</td><td>{properties.buses_11}</td><td>{properties.buses_12}</td><td>{properties.buses_13}</td><td>{properties.buses_14}</td><td>{properties.buses_15}</td><td>{properties.buses_16}</td></tr>'
+				+ '<tr><td>LGVs</td><td>{properties.lgvs_03}</td><td>{properties.lgvs_04}</td><td>{properties.lgvs_05}</td><td>{properties.lgvs_06}</td><td>{properties.lgvs_07}</td><td>{properties.lgvs_08}</td><td>{properties.lgvs_09}</td><td>{properties.lgvs_10}</td><td>{properties.lgvs_11}</td><td>{properties.lgvs_12}</td><td>{properties.lgvs_13}</td><td>{properties.lgvs_14}</td><td>{properties.lgvs_15}</td><td>{properties.lgvs_16}</td></tr>'
+				+ '<tr><td>MGVs</td><td>{properties.mgvs_03}</td><td>{properties.mgvs_04}</td><td>{properties.mgvs_05}</td><td>{properties.mgvs_06}</td><td>{properties.mgvs_07}</td><td>{properties.mgvs_08}</td><td>{properties.mgvs_09}</td><td>{properties.mgvs_10}</td><td>{properties.mgvs_11}</td><td>{properties.mgvs_12}</td><td>{properties.mgvs_13}</td><td>{properties.mgvs_14}</td><td>{properties.mgvs_15}</td><td>{properties.mgvs_16}</td></tr>'
+				+ '<tr><td>hgvs</td><td>{properties.hgvs_03}</td><td>{properties.hgvs_04}</td><td>{properties.hgvs_05}</td><td>{properties.hgvs_06}</td><td>{properties.hgvs_07}</td><td>{properties.hgvs_08}</td><td>{properties.hgvs_09}</td><td>{properties.hgvs_10}</td><td>{properties.hgvs_11}</td><td>{properties.hgvs_12}</td><td>{properties.hgvs_13}</td><td>{properties.hgvs_14}</td><td>{properties.hgvs_15}</td><td>{properties.hgvs_16}</td></tr>'
+				+ '<tr><td>Motors</td><td>{properties.all_motors_03}</td><td>{properties.all_motors_04}</td><td>{properties.all_motors_05}</td><td>{properties.all_motors_06}</td><td>{properties.all_motors_07}</td><td>{properties.all_motors_08}</td><td>{properties.all_motors_09}</td><td>{properties.all_motors_10}</td><td>{properties.all_motors_11}</td><td>{properties.all_motors_12}</td><td>{properties.all_motors_13}</td><td>{properties.all_motors_14}</td><td>{properties.all_motors_15}</td><td>{properties.all_motors_16}</td></tr>'
+				+ '<tr><td>Motor PCU</td><td>{properties.all_motors_pcu_03}</td><td>{properties.all_motors_pcu_04}</td><td>{properties.all_motors_pcu_05}</td><td>{properties.all_motors_pcu_06}</td><td>{properties.all_motors_pcu_07}</td><td>{properties.all_motors_pcu_08}</td><td>{properties.all_motors_pcu_09}</td><td>{properties.all_motors_pcu_10}</td><td>{properties.all_motors_pcu_11}</td><td>{properties.all_motors_pcu_12}</td><td>{properties.all_motors_pcu_13}</td><td>{properties.all_motors_pcu_14}</td><td>{properties.all_motors_pcu_15}</td><td>{properties.all_motors_pcu_16}</td></tr>'
+				+ '</table>'
+				+ '<p><strong>{properties.maxyear} PCU breakdown -</strong> Cycles: {properties.cycle_pcu}, P2W: {properties.p2w_pcu}, Cars: {properties.car_pcu}, Buses: {properties.bus_pcu}, LGVs: {properties.lgv_pcu}, MGVs: {properties.mgv_pcu}, HGVs: {properties.hgv_pcu}</p>'
+				+ '</div>'
+		},
+		
 		'planningapplications': {
 			'apiCall': 'http://www.planit.org.uk/api/applics/geojson',
 			'apiFixedParameters': {
