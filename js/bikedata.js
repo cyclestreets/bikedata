@@ -97,11 +97,6 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
-		'trafficcounts': {
-			'apiCall': '/v2/trafficcounts.locations',
-			'iconUrl': '/images/icons/icon_congestion_bad.svg'
-		},
-		
 		'triplengths': {
 			'apiCall': '/v2/usage.journeylengths',
 			'polygonStyle': 'grid',
