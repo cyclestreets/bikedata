@@ -46,6 +46,8 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-popup table tr:first-child {border-top: 1px solid #e9e9e9;}
 
 /* Layer-specific popup styling */
+#map .leaflet-popup.trafficcounts {min-width: 500px; max-width: 1000px;}
+#map .leaflet-popup.trafficcounts .leaflet-popup-content-wrapper {overflow-y: scroll;}
 #map .leaflet-popup.trafficcounts table td, #map .leaflet-popup.trafficcounts table th {font-size: 0.83em;}
 
 /* Form styling */
