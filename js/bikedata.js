@@ -1119,6 +1119,7 @@ var bikedata = (function ($) {
 				
 				// Rendering style
 				style: function (feature) {
+					var styles = {};
 					
 					// Set polygon style if required
 					if (_layerConfig[layerId].polygonStyle) {
@@ -1126,48 +1127,42 @@ var bikedata = (function ($) {
 							
 							// Blue boxes with dashed lines, intended for data that is likely to tessellate, e.g. adjacent box grid
 							case 'grid':
-								return {
-									fillColor: (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f'),
-									weight: 1,
-									dashArray: [5, 5]
-								};
+								styles.fillColor = (feature.properties.hasOwnProperty('colour') ? feature.properties.colour : '#03f');
+								styles.weight = 1;
+								styles.dashArray = [5, 5];
+								break;
 							
 							// Green
 							case 'green':
-								return {
-									color: 'green',
-									fillColor: '#090'
-								};
+								styles.color = 'green';
+								styles.fillColor = '#090';
+								break;
 							
 							// Red
 							case 'red':
-								return {
-									color: 'red',
-									fillColor: 'red'
-								};
+								styles.color = 'red';
+								styles.fillColor = 'red';
+								break;
 						}
 					}
 					
 					// Set line colour if required
 					if (_layerConfig[layerId].lineColourField && _layerConfig[layerId].lineColourStops) {
-						return {
-							color: bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineColourField], _layerConfig[layerId].lineColourStops),
-						}
+						styles.color = bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineColourField], _layerConfig[layerId].lineColourStops);
 					}
 					
 					// Set line width if required
 					if (_layerConfig[layerId].lineWidthField && _layerConfig[layerId].lineWidthStops) {
-						return {
-							weight: bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineWidthField], _layerConfig[layerId].lineWidthStops),
-						}
+						styles.weight = bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineWidthField], _layerConfig[layerId].lineWidthStops);
 					}
 					
 					// Use supplied colour if present
 					if (feature.properties.hasOwnProperty('color')) {
-						return {
-							color: feature.properties.color
-						}
+						styles.color = feature.properties.color;
 					}
+					
+					// Return the styles that have been defined, if any
+					return styles;
 				}
 			});
 			
