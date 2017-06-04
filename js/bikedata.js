@@ -1045,18 +1045,23 @@ var bikedata = (function ($) {
 			var html = '<table>';
 			html += '<tr>';
 			html += '<th>Year:</th>';
-			$.each (years, function (yearIndex, year) {
-				html += '<th>' + year + '</th>';
+			$.each (fields, function (fieldIndex, field) {
+				html += '<th>' + labels[fieldIndex] + '</th>';
 			});
 			html += '</tr>';
 			
-			// Add each field's data row
+			// Index the fields by field then year index
+			var fieldsByYear = [];
 			$.each (fields, function (fieldIndex, field) {
-				var fieldYears = feature.properties[field].split(',');
+				fieldsByYear[field] = feature.properties[field].split(',');
+			});
+			
+			// Add each field's data row
+			$.each (years, function (yearIndex, year) {
 				html += '<tr>';
-				html += '<td><strong>' + labels[fieldIndex] + ':</strong></td>';
-				$.each (fieldYears, function (yearIndex, year) {
-					html += '<td>' + fieldYears[yearIndex] + '</td>';
+				html += '<td><strong>' + year + ':</strong></td>';
+				$.each (fields, function (fieldIndex, field) {
+					html += '<td>' + fieldsByYear[field][yearIndex] + '</td>';
 				});
 				html += '</tr>';
 			});
