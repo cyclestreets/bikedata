@@ -81,7 +81,7 @@ var bikedata = (function ($) {
 				[0, 1],
 			],
 			'popupHtml':	// Popup code thanks to http://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
-				  '<p>Count Point {properties.cp} on {properties.road}, a {properties.road_type}<br />'
+				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
 				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
 				+ '[macro:yearstable({properties.minyear}, {properties.maxyear}, cycles;p2w;cars;buses;lgvs;mgvs;hgvs;all_motors;all_motors_pcu, Cycles;P2W;Cars;Buses;LGVs;MGVs;HGVs;Motors;Motor PCU)]'
 				+ '<p><strong>{properties.maxyear} PCU breakdown -</strong> Cycles: {properties.cycle_pcu}, P2W: {properties.p2w_pcu}, Cars: {properties.car_pcu}, Buses: {properties.bus_pcu}, LGVs: {properties.lgv_pcu}, MGVs: {properties.mgv_pcu}, HGVs: {properties.hgv_pcu}</p>'
