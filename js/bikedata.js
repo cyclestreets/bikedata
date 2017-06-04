@@ -1148,6 +1148,20 @@ var bikedata = (function ($) {
 						}
 					}
 					
+					// Set line colour if required
+					if (_layerConfig[layerId].lineColourField && _layerConfig[layerId].lineColourStops) {
+						return {
+							color: bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineColourField], _layerConfig[layerId].lineColourStops),
+						}
+					}
+					
+					// Set line width if required
+					if (_layerConfig[layerId].lineWidthField && _layerConfig[layerId].lineWidthStops) {
+						return {
+							weight: bikedata.lookupStyleValue (feature.properties[_layerConfig[layerId].lineWidthField], _layerConfig[layerId].lineWidthStops),
+						}
+					}
+					
 					// Use supplied colour if present
 					if (feature.properties.hasOwnProperty('color')) {
 						return {
@@ -1172,6 +1186,23 @@ var bikedata = (function ($) {
 			
 			// Add to the map
 			_currentDataLayer[layerId].addTo(_map);
+		},
+		
+		
+		// Assign style from lookup table
+		lookupStyleValue: function (value, lookupTable)
+		{
+			// Loop through each style stop until found
+			var styleStop;
+			for (var i = 0; i < lookupTable.length; i++) {	// NB $.each doesn't seem to work - it doesn't seem to reset the array pointer for each iteration
+				styleStop = lookupTable[i];
+				if (value >= styleStop[0]) {
+					return styleStop[1];
+				}
+			}
+			
+			// Fallback to final colour in the list
+			return styleStop[1];
 		},
 		
 		
