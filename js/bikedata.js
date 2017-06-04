@@ -1061,7 +1061,8 @@ var bikedata = (function ($) {
 				html += '<tr>';
 				html += '<td><strong>' + year + ':</strong></td>';
 				$.each (fields, function (fieldIndex, field) {
-					html += '<td>' + fieldsByYear[field][yearIndex] + '</td>';
+					var value = fieldsByYear[field][yearIndex];
+					html += '<td>' + (bikedata.isNumeric (value) ? Number(value).toLocaleString() : value) + '</td>';
 				});
 				html += '</tr>';
 			});
@@ -1081,6 +1082,13 @@ var bikedata = (function ($) {
 				range.push(i);
 			}
 			return range;
+		},
+		
+		
+		// Helper function to check if a value is numeric; see: https://stackoverflow.com/a/9716515
+		isNumeric: function (value)
+		{
+			return !isNaN (parseFloat (value)) && isFinite (value);
 		},
 		
 		
