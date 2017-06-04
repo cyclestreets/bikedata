@@ -1067,7 +1067,7 @@ var bikedata = (function ($) {
 				onEachFeature: function (feature, layer) {
 					totalItems++;
 					var popupContent = bikedata.popupHtml (layerId, feature);
-					layer.bindPopup(popupContent, {autoPan: false});
+					layer.bindPopup(popupContent, {autoPan: false, className: layerId});
 				},
 				
 				// Rendering style
