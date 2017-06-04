@@ -984,7 +984,13 @@ var bikedata = (function ($) {
 					return Object.resolve ( path.replace(/[{}]+/g, '') , feature);
 				});
 				
-			// Otherwise, create an HTML table dynamically
+				// Support 'yearstable' macro, which generates a table of fields for each year, with parameters: first year, last year, fieldslist split by semicolon, labels for each field split by semicolon
+				var matches = html.match (/\[macro:yearstable\((.+), (.+), (.+), (.+)\)\]/);
+				if (matches) {
+					html = html.replace (matches[0], bikedata.macroYearstable (matches, feature));
+				}
+				
+			// Otherwise, create a simple key/value pair HTML table dynamically
 			} else {
 				
 				html = '<table>';
@@ -1012,6 +1018,56 @@ var bikedata = (function ($) {
 			
 			// Return the content
 			return html;
+		},
+		
+		
+		// Helper function to process a macro
+		macroYearstable: function (matches, feature)
+		{
+			// Extract the matches
+			var minYear = matches[1];
+			var maxYear = matches[2];
+			var fields = matches[3].split (';');
+			var labels = matches[4].split (';');
+			
+			// Create a year range
+			var years = bikedata.range (parseInt(minYear), parseInt(maxYear));
+			
+			// Build the table, starting with the headings, representing the years
+			var html = '<table>';
+			html += '<tr>';
+			html += '<th>Year:</th>';
+			$.each (years, function (yearIndex, year) {
+				html += '<th>' + year + '</th>';
+			});
+			html += '</tr>';
+			
+			// Add each field's data row
+			$.each (fields, function (fieldIndex, field) {
+				var fieldYears = feature.properties[field].split(',');
+				html += '<tr>';
+				html += '<td><strong>' + labels[fieldIndex] + ':</strong></td>';
+				$.each (fieldYears, function (yearIndex, year) {
+					html += '<td>' + fieldYears[yearIndex] + '</td>';
+				});
+				html += '</tr>';
+			});
+			html += '</table>';
+			
+			// Return the table HTML
+			return html;
+		},
+		
+		
+		// Helper function to create a number range; see: https://stackoverflow.com/a/3746752
+		range: function (start, end)
+		{
+			if (start > end) {return [];}	// Prevent accidental infinite iteration
+			var range = [];
+			for (var i = start; i <= end; i++) {
+				range.push(i);
+			}
+			return range;
 		},
 		
 		
