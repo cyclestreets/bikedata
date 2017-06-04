@@ -64,7 +64,7 @@ var bikedata = (function ($) {
 			'popupHtml':	// Popup code thanks to http://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.cp} on {properties.road}, a {properties.road_type}<br />'
 				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
-				+ '<table class="small">'
+ 				+ '<table>'
 				+ '<tr><th>Year</th><th>2003</th><th>2004</th><th>2005</th><th>2006</th><th>2007</th><th>2008</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th></tr>'
 				+ '<tr><td>Cycles</td><td>{properties.cycles_03}</td><td>{properties.cycles_04}</td><td>{properties.cycles_05}</td><td>{properties.cycles_06}</td><td>{properties.cycles_07}</td><td>{properties.cycles_08}</td><td>{properties.cycles_09}</td><td>{properties.cycles_10}</td><td>{properties.cycles_11}</td><td>{properties.cycles_12}</td><td>{properties.cycles_13}</td><td>{properties.cycles_14}</td><td>{properties.cycles_15}</td><td>{properties.cycles_16}</td></tr>'
 				+ '<tr><td>P2W</td><td>{properties.p2w_03}</td><td>{properties.p2w_04}</td><td>{properties.p2w_05}</td><td>{properties.p2w_06}</td><td>{properties.p2w_07}</td><td>{properties.p2w_08}</td><td>{properties.p2w_09}</td><td>{properties.p2w_10}</td><td>{properties.p2w_11}</td><td>{properties.p2w_12}</td><td>{properties.p2w_13}</td><td>{properties.p2w_14}</td><td>{properties.p2w_15}</td><td>{properties.p2w_16}</td></tr>'
