@@ -63,6 +63,23 @@ var bikedata = (function ($) {
 				'groupyears': '1'
 			},
 			'iconUrl': '/images/icons/icon_congestion_bad.svg',
+			'lineColourField': 'car_pcu',	// #!# Fixme - currently no compiled all_motors_pcu value
+			'lineColourStops': [
+				[40000, '#ff0000'],	// Colour and line values based on GMCC site
+				[20000, '#d43131'],
+				[10000, '#e27474'],
+				[5000, '#f6b879'],
+				[2000, '#fce8af'],
+				[0, '#61fa61']
+			],
+			'lineWidthField': 'cycle_pcu',	// #!# Fixme - should be Daily cycles
+			'lineWidthStops': [
+				[1000, 5],
+				[500, 4],
+				[100, 3],
+				[10, 2],
+				[0, 1],
+			],
 			'popupHtml':	// Popup code thanks to http://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.cp} on {properties.road}, a {properties.road_type}<br />'
 				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
