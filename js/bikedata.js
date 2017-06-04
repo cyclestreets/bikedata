@@ -59,6 +59,7 @@ var bikedata = (function ($) {
 		},
 		
 		'trafficcounts': {
+			'apiCall': '/v2/trafficcounts.locations',
 			'apiFixedParameters': {
 				'groupyears': '1'
 			},
