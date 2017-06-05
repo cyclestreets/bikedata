@@ -189,7 +189,7 @@ var bikedata = (function ($) {
 			'apiCall': 'https://api.cyclestreets.net/v2/mapdata',
 			'apiFixedParameters': {
 				'limit': 400,
-				'fields': 'ways',
+				'types': 'way'
 			},
 			'sendZoom': true,
 			'popupHtml':
