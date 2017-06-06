@@ -4,6 +4,9 @@ html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
 /* Typography */
 body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-serif;} /* https://www.google.com/fonts */
 
+/* IE9 image link fix */
+a img {border: 0;}
+
 /* Global navigation */
 #globalsites {background-color: gray; height: 30px; border-top: 2px solid #ddd;}
 #globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}

@@ -427,8 +427,11 @@ var bikedata = (function ($) {
 		
 		
 		// Function to update the URL, to provide persistency when a link is circulated
-		updateUrl (enabledLayers)
+		updateUrl: function (enabledLayers)
 		{
+			// End if not supported, e.g. IE9
+			if (!history.pushState) {return;}
+			
 			// Construct the URL
 			var url = '/';		// Absolute URL
 			url += enabledLayers.join(',') + (enabledLayers.length ? '/' : '');
@@ -867,7 +870,7 @@ var bikedata = (function ($) {
 			// Fetch data
 			_xhrRequests[layerId] = $.ajax({
 				url: apiUrl,
-				dataType: 'json',
+				dataType: (bikedata.browserSupportsCors () ? 'json' : 'jsonp'),		// Fall back to JSON-P for IE9
 				crossDomain: true,	// Needed for IE<=9; see: https://stackoverflow.com/a/12644252/180733
 				data: apiData,
 				error: function (jqXHR, error, exception) {
@@ -912,6 +915,13 @@ var bikedata = (function ($) {
 					return bikedata.showCurrentData(layerId, data, requestSerialised);
 				}
 			});
+		},
+		
+		
+		// Helper function to enable fallback to JSON-P for older browsers like IE9; see: https://stackoverflow.com/a/1641582
+		browserSupportsCors: function ()
+		{
+			return ('withCredentials' in new XMLHttpRequest ());
 		},
 		
 		
