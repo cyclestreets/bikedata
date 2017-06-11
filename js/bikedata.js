@@ -41,7 +41,7 @@ var bikedata = (function ($) {
 				'fatal':   '/images/icons/icon_collision_fatal.svg'
 			},
 			'popupHtml':
-				  '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
+				  '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
 				+ '<p>Reference: <strong>{properties.id}</strong></p>'
 				+ '<p>'
 				+ 'Date and time: <strong>{properties.datetime}</strong><br />'
