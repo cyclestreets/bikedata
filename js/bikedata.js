@@ -135,7 +135,7 @@ var bikedata = (function ($) {
 		
 		// https://www.cyclescape.org/api
 		'issues': {
-			'apiCall': 'https://www.cyclescape.org/api/issues',
+			'apiCall': 'https://www.cyclescape.org/api/issues.json',
 			'apiKey': false,
 			'apiFixedParameters': {
 				'page': 1,
