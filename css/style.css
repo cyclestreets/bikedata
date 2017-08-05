@@ -128,7 +128,8 @@ header p {margin: 0;}
 
 
 footer {background-color: gray;}
-footer p {margin: 0; padding: 0;}
+footer p {margin: 5px 20px 0 0; padding: 0; text-align: right; color: #eee; font-size: 0.78em;}
+footer p a {color: #ccc; text-decoration: none;}
 
 
 /* Tooltips, as per http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ */
