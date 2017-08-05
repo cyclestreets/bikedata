@@ -1,5 +1,11 @@
 /* Layout */
 html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+#globalsites {height: 30px; border-top: 2px solid #ddd;}
+main {width: 100%; height: calc(100% - 20px); position: relative;}
+main form {width: 100%; height: 100%;}
+#map {width: 100%; height: 100%; position: relative;}
+nav {position: fixed; top: 30px; right: 0; width: 335px; height: 100%; z-index: 1000;}
+footer {height: 20px;}
 
 /* Typography */
 body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-serif;} /* https://www.google.com/fonts */
@@ -8,7 +14,7 @@ body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-se
 a img {border: 0;}
 
 /* Global navigation */
-#globalsites {background-color: gray; height: 30px; border-top: 2px solid #ddd;}
+#globalsites {background-color: gray;}
 #globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}
 #globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
 #globalsites p {float: left; color: white; padding: 4px 11px 0;}
@@ -27,15 +33,11 @@ a img {border: 0;}
 #globalsites ul li.blog a {border-color: #999;}
 #globalsites ul li.blog a:hover {background-color: #999;}
 
-main {width: 100%; height: calc(100% - 20px); position: relative;}
-main form {width: 100%; height: 100%;}
 
-nav {position: fixed; top: 30px; right: 0; width: 335px; height: 100%; z-index: 1000;}
 nav {color: white;}
 nav a {color: white; text-decoration: none;}
 
 
-#map {width: 100%; height: 100%; position: relative;}
 #map .leaflet-tile-container {opacity: 0.7;}
 #map .leaflet-control-attribution {margin-right: 330px;}
 #map .leaflet-control-layers {right: 335px;}
@@ -74,7 +76,6 @@ input[type=checkbox] {margin-right: 5px;}
 
 
 h2 {margin-bottom: 2px; padding-bottom: 0;}
-
 
 
 #selector {float: left; width: 95px; height: 100%; background-color: #333; opacity: 0.85; overflow-y: auto;}
@@ -126,7 +127,7 @@ header h1 {padding-top: 0; font-weight: normal; margin-top: 15px; margin-bottom:
 header p {margin: 0;}
 
 
-footer {height: 20px; background-color: #888;}
+footer {background-color: #888;}
 
 
 /* Tooltips, as per http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ */
