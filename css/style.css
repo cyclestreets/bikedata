@@ -69,11 +69,6 @@ input[type=checkbox] {margin-right: 5px;}
 .ui-autocomplete li a span {color: gray; font-size: 0.81em;}
 .ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #f7f7f7;}
 
-/* Sponsor */
-#sponsor {position: absolute; bottom: 10px; /* right: 345px; */ left: 20px; width: 215px; height: 36px; background-color: rgba(0, 0, 255, 0.3); padding: 7px 15px; z-index: 999; color: white; opacity: 0.9;}
-#sponsor p {margin: 0; padding: 0; line-height: 36px; text-align: right;}
-#sponsor img {width: 120px; height: 36px; background-color: gray; margin-left: 5px; vertical-align: bottom;}
-
 
 h2 {margin-bottom: 2px; padding-bottom: 0;}
 
