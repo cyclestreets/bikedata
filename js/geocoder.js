@@ -68,7 +68,7 @@ var autocomplete = (function ($) {
 			
  		// Add the autocomplete to the element
 		$(inputElement).autocomplete({
-		    appendTo: '#cyclestreets-content',	// Ensures this is within the CSS scopes defined by the application, rather than being attached to the surrounding GUI's body which may have different CSS
+		    appendTo: '#geocoder',	// Ensures this is within the CSS scopes defined by the application, rather than being attached to the surrounding GUI's body which may have different CSS
 		    source: options.source,
 		    minLength: 3,
 		    focus: function (event, ui) {
