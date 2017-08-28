@@ -117,13 +117,14 @@ var bikedata = (function ($) {
 			'apiCall': '/v2/pois.locations',
 			'apiFixedParameters': {
 				'type': 'cycleparking',
-				'fields': 'id,name,osmTags[capacity,bicycle_parking,covered]',
+				'fields': 'id,name,osmTags[capacity,access,bicycle_parking,covered]',
 			},
 			'iconUrl': '/images/icons/cycleparking_good.svg',
 			'popupHtml':
 				  '<p><strong>Cycle parking</strong></p>'
 				+ '<table>'
 				+ '<tr><td>Spaces:</td><td>{properties.Capacity}</td></tr>'
+				+ '<tr><td>Access:</td><td>{properties.Access}</tr>'
 				+ '<tr><td>Type:</td><td>{properties.Bicycle_parking}</tr>'
 				+ '<tr><td>Covered?:</td><td>{properties.Covered}</tr>'
 				+ '</table>'
