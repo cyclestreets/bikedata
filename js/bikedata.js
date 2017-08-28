@@ -113,6 +113,22 @@ var bikedata = (function ($) {
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
 		
+		'cycleparking': {
+			'apiCall': '/v2/pois.locations',
+			'apiFixedParameters': {
+				'type': 'cycleparking',
+				'fields': 'id,name,osmTags[capacity,bicycle_parking,covered]',
+			},
+			'iconUrl': '/images/icons/cycleparking_good.svg',
+			'popupHtml':
+				  '<p><strong>Cycle parking</strong></p>'
+				+ '<table>'
+				+ '<tr><td>Spaces:</td><td>{properties.Capacity}</td></tr>'
+				+ '<tr><td>Type:</td><td>{properties.Bicycle_parking}</tr>'
+				+ '<tr><td>Covered?:</td><td>{properties.Covered}</tr>'
+				+ '</table>'
+		},
+		
 		// https://data.police.uk/docs/method/crime-street/
 		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
 		'cycletheft': {
