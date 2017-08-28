@@ -117,7 +117,7 @@ var bikedata = (function ($) {
 			'apiCall': '/v2/pois.locations',
 			'apiFixedParameters': {
 				'type': 'cycleparking',
-				'fields': 'id,name,osmTags[capacity,access,bicycle_parking,covered]',
+				'fields': 'id,name,osmTags[capacity,access,bicycle_parking,covered],nodeId',
 				'limit': 400
 			},
 			'iconUrl': '/images/icons/cycleparking_good.svg',
@@ -129,6 +129,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>Type:</td><td>{properties.Bicycle_parking}</tr>'
 				+ '<tr><td>Covered?:</td><td>{properties.Covered}</tr>'
 				+ '</table>'
+				+ '<p class="edit"><a href="https://www.openstreetmap.org/edit?node={properties.nodeId}" target="_blank">Add/edit details</a></p>'
 		},
 		
 		// https://data.police.uk/docs/method/crime-street/
