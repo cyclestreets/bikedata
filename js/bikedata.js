@@ -118,6 +118,7 @@ var bikedata = (function ($) {
 			'apiFixedParameters': {
 				'type': 'cycleparking',
 				'fields': 'id,name,osmTags[capacity,access,bicycle_parking,covered]',
+				'limit': 400
 			},
 			'iconUrl': '/images/icons/cycleparking_good.svg',
 			'popupHtml':
