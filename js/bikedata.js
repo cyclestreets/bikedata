@@ -998,6 +998,13 @@ var bikedata = (function ($) {
 					}, obj || self);
 				};
 				
+				// If any property is null, show '?' instead
+				$.each (feature.properties, function (key, value) {
+					if (value === null) {
+						feature.properties[key] = '<span class="unknown">?</span>';
+					}
+				});
+				
 				// Replace template placeholders; see: https://stackoverflow.com/a/378000
 				html = template.replace (/\{[^{}]+\}/g, function(path){
 					return Object.resolve ( path.replace(/[{}]+/g, '') , feature);

@@ -49,6 +49,7 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-popup table {border-collapse: collapse; margin: 10px 0 15px;}
 #map .leaflet-popup table td {border-bottom: 1px solid #e9e9e9; padding: 2px 10px 2px 0; vertical-align: top; text-align: left;}
 #map .leaflet-popup table tr:first-child {border-top: 1px solid #e9e9e9;}
+#map .leaflet-popup span.unknown {color: #ccc; font-style: italic;}
 
 /* Layer-specific popup styling */
 #map .leaflet-popup.trafficcounts {min-width: 500px;}
