@@ -1002,13 +1002,12 @@ var bikedata = (function ($) {
 		},
 		
 		
-		// Function to construct the popup content
-		popupHtml: function (layerId, feature)
+		// Function to construct the popup/overlay content
+		renderDetails: function (feature, template)
 		{
 			// Use a template if this has been defined in the layer config
 			var html;
-			if (_layerConfig[layerId].popupHtml) {
-				var template = _layerConfig[layerId].popupHtml;
+			if (template) {
 				
 				// Define a path parser, so that the template can define properties.foo which would obtain feature.properties.foo; see: https://stackoverflow.com/a/22129960
 				Object.resolve = function(path, obj) {
@@ -1180,7 +1179,8 @@ var bikedata = (function ($) {
 				// Set popup
 				onEachFeature: function (feature, layer) {
 					totalItems++;
-					var popupContent = bikedata.popupHtml (layerId, feature);
+					var template = (_layerConfig[layerId].popupHtml ? _layerConfig[layerId].popupHtml : false);
+					var popupContent = bikedata.renderDetails (feature, template);
 					layer.bindPopup(popupContent, {autoPan: false, className: layerId});
 				},
 				
