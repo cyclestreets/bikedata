@@ -1016,6 +1016,9 @@ var bikedata = (function ($) {
 					}, obj || self);
 				};
 				
+				// Convert Street View macro
+				template = template.replace ('{%streetview}', bikedata.streetViewTemplate (feature));
+				
 				// If any property is null, show '?' instead
 				$.each (feature.properties, function (key, value) {
 					if (value === null) {
@@ -1055,13 +1058,15 @@ var bikedata = (function ($) {
 				html += '</table>';
 			}
 			
-			// // Street View container, for Point types (as not really applicable to areas)
-			// if (feature.geometry.type == 'Point') {
-			// 	html += '<iframe id="streetview" src="/streetview.html?latitude=' + feature.geometry.coordinates[1] + '&longitude=' + feature.geometry.coordinates[0] + '">Street View loading &hellip;</div>';
-			// }
-			
 			// Return the content
 			return html;
+		},
+		
+		
+		// Street View container template
+		streetViewTemplate: function (feature)
+		{
+			return '<iframe id="streetview" src="/streetview.html?latitude=' + feature.geometry.coordinates[1] + '&longitude=' + feature.geometry.coordinates[0] + '">Street View loading &hellip;</div>';
 		},
 		
 		
