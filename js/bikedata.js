@@ -655,6 +655,11 @@ var bikedata = (function ($) {
 			// Get the form parameters on load
 			_parameters[layerId] = bikedata.parseFormValues (layerId);
 			
+			// Register a dialog box handler for showing additional details if required
+			if (_layerConfig[layerId].detailsOverlay) {
+				bikedata.detailsOverlayHandler ('#details', layerId);
+			}
+			
 			// Fetch the data
 			bikedata.getData (layerId, _parameters[layerId]);
 			
@@ -933,6 +938,35 @@ var bikedata = (function ($) {
 					// Return the data successfully
 					return bikedata.showCurrentData(layerId, data, requestSerialised);
 				}
+			});
+		},
+		
+		
+		// Details dialog box handler
+		detailsOverlayHandler: function (triggerElement, layerId)
+		{
+			// Register a handler; note that the HTML in bindPopup doesn't exist yet, so $(triggerElement) can't be used; instead, this listens for click events on the map element which will bubble up from the tooltip, once it's created and someone clicks on it; see: https://stackoverflow.com/questions/13698975/
+			$('#map').on('click', triggerElement, function (e) {
+				
+				// Load the data, using the specified data-id attribute set in the popup HTML dynamically
+				var apiUrl = $(this).attr('data-url') + '&key=' + _settings.apiKey;
+				$.get(apiUrl, function (data) {
+					
+					// Access the data
+					var feature = data.features[0];
+					
+					// Render the data into the overlay template
+					var template = (_layerConfig[layerId].overlayHtml ? _layerConfig[layerId].overlayHtml : false);
+					var html = bikedata.renderDetails (feature, template);
+					
+					// Create the dialog box and its contents
+					var divId = layerId + 'details';
+					html = '<div id="' + divId + '">' + html + '</div>';
+					vex.dialog.buttons.YES.text = 'Close';
+					vex.dialog.alert ({unsafeMessage: html, showCloseButton: true, className: 'vex vex-theme-plain wider'});
+				});
+				
+				e.preventDefault ();
 			});
 		},
 		
