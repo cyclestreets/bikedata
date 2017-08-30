@@ -173,14 +173,14 @@ var bikedata = (function ($) {
 		'photomap': {
 			'apiCall': '/v2/photomap.locations',
 			'apiFixedParameters': {
-				'fields': 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime',
+				'fields': 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl',
 				'limit': 150,
 				'thumbnailsize': 300,
 				'datetime': 'friendlydate'
 			},
 			'iconField': 'iconUrl',		// icons specified in the field value
 			'popupHtml':
-				  '<p><img src="{properties.thumbnailUrl}" /></p>'
+				  '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
 				+ '<div class="scrollable">'
 				+ '<strong>{properties.captionHtml}</strong>'
 				+ '</div>'
@@ -189,7 +189,27 @@ var bikedata = (function ($) {
 				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
 				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
 				+ '</table>'
-				+ '<p><a href="{properties.url}">Full details</a></p>'
+				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
+			'detailsOverlay': 'apiUrl',
+			'overlayHtml':
+				  '<table class="fullimage">'
+				+ '<tr>'
+				+ '<td>'
+				+ '<p><img src="{properties.thumbnailUrl}" /></p>'
+				+ '</td>'
+				+ '<td>'
+				+ '<p>'
+				+ '<strong>{properties.caption}</strong>'
+				+ '</p>'
+				+ '<table>'
+				// + '<tr><td>Date:</td><td>{properties.datetime}</td></tr>'
+				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
+				// + '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+				+ '</td>'
+				+ '</tr>'
+				+ '</table>'
 		},
 		
 		// https://wiki.openstreetmap.org/wiki/Strava
