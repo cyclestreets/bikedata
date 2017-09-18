@@ -309,6 +309,9 @@ var bikedata = (function ($) {
 			// Set form values specified in the URL
 			bikedata.setFormValues (urlParameters.queryString);
 			
+			// Add tooltip support
+			bikedata.tooltips ();
+			
 			// Show first-run welcome message if the user is new to the site
 			bikedata.welcomeFirstRun ();
 			
@@ -567,6 +570,16 @@ var bikedata = (function ($) {
 						}
 					});
 				}
+			});
+		},
+		
+		
+		// Function to add tooltips, using the title value
+		tooltips: function ()
+		{
+			// Use jQuery tooltips; see: https://jqueryui.com/tooltip/
+			$('nav').tooltip ({
+				track: true
 			});
 		},
 		
