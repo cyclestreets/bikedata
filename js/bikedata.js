@@ -1084,7 +1084,9 @@ var bikedata = (function ($) {
 				};
 				
 				// Convert Street View macro
-				template = template.replace ('{%streetview}', bikedata.streetViewTemplate (feature));
+				if (template.indexOf ('{%streetview}') >= 0) {
+					template = template.replace ('{%streetview}', bikedata.streetViewTemplate (feature));
+				}
 				
 				// If any property is null, show '?' instead
 				$.each (feature.properties, function (key, value) {
