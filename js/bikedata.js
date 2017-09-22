@@ -81,7 +81,7 @@ var bikedata = (function ($) {
 				[10, 2],
 				[0, 1],
 			],
-			'popupHtml':	// Popup code thanks to http://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
+			'popupHtml':	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
 				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
 				+ '[macro:yearstable({properties.minyear}, {properties.maxyear}, cycles;p2w;cars;buses;lgvs;mgvs;hgvs;all_motors;all_motors_pcu, Cycles;P2W;Cars;Buses;LGVs;MGVs;HGVs;Motors;Motor PCU)]'
@@ -384,7 +384,7 @@ var bikedata = (function ($) {
 		// Function to parse the query string into key/value pairs
 		parseQueryString: function ()
 		{
-			// See: http://stackoverflow.com/a/8649003/180733
+			// See: https://stackoverflow.com/a/8649003/180733
 			if (!location.search.length) {return {};}
 			var queryString = location.search.substring(1);
 			var parameters = JSON.parse('{"' + decodeURI(queryString).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
@@ -409,7 +409,7 @@ var bikedata = (function ($) {
 		},
 		
 		
-		// Helper function to determine if the site is being iframed; see: http://stackoverflow.com/a/326076/180733
+		// Helper function to determine if the site is being iframed; see: https://stackoverflow.com/a/326076/180733
 		inIframe: function () {
 			try {
 				return window.self !== window.top;
@@ -435,7 +435,7 @@ var bikedata = (function ($) {
 			// Enable tabbing of main menu
 			$('nav').tabs();
 			
-			// If a default tab is defined (or several, in which case use the first), switch to its contents (controls); see: http://stackoverflow.com/a/7916955/180733
+			// If a default tab is defined (or several, in which case use the first), switch to its contents (controls); see: https://stackoverflow.com/a/7916955/180733
 			if (defaultLayers[0]) {
 				var index = $('nav li.' + defaultLayers[0]).index();
 				$('nav').tabs('option', 'active', index);
