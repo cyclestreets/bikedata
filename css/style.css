@@ -190,9 +190,11 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 	#geocoder {top: 14px; left: 64px; right: 25px;}
 	#geocoder input {width: 100%;}
 	nav {display: none;}	/* Default, toggled in JS */
-	nav {width: 260px;}
+	nav {width: 260px; z-index: 1001;}
 	#selector {width: 90px;}
 	#selector ul li a {font-size: 0.83em;}
 	#sections {width: 150px; padding: 0 10px 20px; font-size: 0.83em;}
+	.leaflet-control-locate {position: fixed; top: 80px; right: 15px;}
+	.leaflet-control-locate.leaflet-bar, .leaflet-control-locate.leaflet-bar a:first-child, .leaflet-control-locate.leaflet-bar a:last-child {border-radius: 20px;}
 }
 
