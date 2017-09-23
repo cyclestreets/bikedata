@@ -61,7 +61,7 @@ nav a {color: white; text-decoration: none;}
 input[type=checkbox] {margin-right: 5px;}
 
 /* Geocoder */
-#geocoder {position: absolute; top: 10px; left: 55px; z-index: 500;}
+#geocoder {position: absolute; top: 10px; left: 55px; z-index: 1001;}
 #geocoder input {padding: 5px; font-size: 1em; color: #603; width: 250px;}
 #geocoder input.ui-autocomplete-loading {background: white url('/images/ui-anim_basic_16x16.gif') right center no-repeat;}
 #geocoder input, .ui-autocomplete {border: 1px solid #eee; box-shadow: 5px 5px 10px 0px rgba(28,28,28,0.5);}
@@ -190,7 +190,7 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 	#geocoder {top: 14px; left: 64px; right: 25px;}
 	#geocoder input {width: 100%;}
 	nav {display: none;}	/* Default, toggled in JS */
-	nav {width: 260px; z-index: 1001;}
+	nav {width: 260px; z-index: 1002;}
 	#selector {width: 90px;}
 	#selector ul li a {font-size: 0.83em;}
 	#sections {width: 150px; padding: 0 10px 20px; font-size: 0.83em;}
