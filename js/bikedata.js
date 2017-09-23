@@ -494,6 +494,13 @@ var bikedata = (function ($) {
 					});
 				};
 			};
+			
+			// Enable closing menu on slide right
+			if ($('#nav-mobile').is(':visible')) {
+				$('nav').on('swiperight', function () {
+					$('nav').hide ('slide', {direction: 'right'}, 250);
+				});
+			};
 		},
 		
 		
