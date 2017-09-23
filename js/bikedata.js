@@ -479,14 +479,18 @@ var bikedata = (function ($) {
 			
 			// Toggle visibility clickable
 			$('#nav-mobile').click(function () {
-				$('nav').toggle ();
+				if ($('nav').is(':visible')) {
+					$('nav').hide ('slide', {direction: 'right'}, 250);
+				} else {
+					$('nav').animate ({width:'toggle'}, 250);
+				}
 			});
 			
-			// Enable implicit click/touch on map as toggling menu
+			// Enable implicit click/touch on map as close menu
 			if ($('#nav-mobile').is(':visible')) {
 				if (!$('nav').is(':visible')) {
 					$('.map').click(function () {
-						$('nav').hide ();
+						$('nav').hide ('slide', {direction: 'right'}, 250);
 					});
 				};
 			};
