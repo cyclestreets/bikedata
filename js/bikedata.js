@@ -696,9 +696,8 @@ var bikedata = (function ($) {
 			
 			// Add geolocation control
 			_map.addControl(L.control.locate({
-				locateOptions: {
-					maxZoom: 17
-				}
+				icon: 'fa fa-location-arrow',
+				locateOptions: {maxZoom: 17}
 			}));
 		},
 		
