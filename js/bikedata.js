@@ -695,7 +695,11 @@ var bikedata = (function ($) {
 			new L.Hash (_map, baseLayersById);
 			
 			// Add geolocation control
-			L.control.locate().addTo(_map);
+			_map.addControl(L.control.locate({
+				locateOptions: {
+					maxZoom: 17
+				}
+			}));
 		},
 		
 		
