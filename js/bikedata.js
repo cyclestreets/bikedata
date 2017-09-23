@@ -303,6 +303,9 @@ var bikedata = (function ($) {
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
 			
+			// Create mobile navigation
+			bikedata.createMobileNavigation ();
+			
 			// Populate dynamic form controls
 			bikedata.populateDynamicFormControls ();
 			
@@ -465,6 +468,28 @@ var bikedata = (function ($) {
 			$('nav #selector li a').dblclick(function() {
 				$(this).parent().find('input').click();
 			});
+		},
+		
+		
+		// Create mobile navigation
+		createMobileNavigation: function ()
+		{
+			// Add hamburger menu
+			$('body').append ('<div id="nav-mobile"></div>');
+			
+			// Toggle visibility clickable
+			$('#nav-mobile').click(function () {
+				$('nav').toggle ();
+			});
+			
+			// Enable implicit click/touch on map as toggling menu
+			if ($('#nav-mobile').is(':visible')) {
+				if (!$('nav').is(':visible')) {
+					$('.map').click(function () {
+						$('nav').hide ();
+					});
+				};
+			};
 		},
 		
 		
