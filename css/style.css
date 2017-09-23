@@ -21,8 +21,8 @@ a img {border: 0;}
 #globalsites ul {height: 100%; margin-left: 200px;}
 #globalsites ul li {height: 100%; float: left; margin: 0; padding: 0; list-style: none;}
 #globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
-#globalsites ul li.cyclestreets a {border-color: yellow;}
-#globalsites ul li.cyclestreets a:hover {background-color: yellow;}
+#globalsites ul li.cyclestreets a {border-color: LightGoldenRodYellow;}
+#globalsites ul li.cyclestreets a:hover {background-color: LightGoldenRodYellow; color: gray;}
 #globalsites ul li.cyclescape a {border-color: green;}
 #globalsites ul li.cyclescape a:hover {background-color: green;}
 #globalsites ul li.bikedata a {border-color: purple;}
