@@ -25,9 +25,9 @@ a img {border: 0;}
 #globalsites ul li.cyclestreets a:hover {background-color: yellow;}
 #globalsites ul li.cyclescape a {border-color: green;}
 #globalsites ul li.cyclescape a:hover {background-color: green;}
-#globalsites ul li.data a {border-color: purple;}
-#globalsites ul li.data a:hover {background-color: purple;}
-#globalsites ul li.data.selected a {background: rgba(128,0,128,0.4);}
+#globalsites ul li.bikedata a {border-color: purple;}
+#globalsites ul li.bikedata a:hover {background-color: purple;}
+#globalsites ul li.bikedata.selected a {background: rgba(128,0,128,0.4);}
 #globalsites ul li.urbancycleparking a {border-color: red;}
 #globalsites ul li.urbancycleparking a:hover {background-color: red;}
 #globalsites ul li.blog a {border-color: #999;}
