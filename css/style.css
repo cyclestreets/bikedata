@@ -37,7 +37,6 @@ a img {border: 0;}
 nav {color: white;}
 nav a {color: white; text-decoration: none;}
 
-
 #map .leaflet-tile-container {opacity: 0.7;}
 #map .leaflet-control-attribution {margin-right: 335px;}
 #map .leaflet-control-layers {right: 335px;}
@@ -128,12 +127,6 @@ header p {margin: 0;}
 footer {background-color: gray;}
 footer p {margin: 5px 20px 0 0; padding: 0; text-align: right; color: #eee; font-size: 0.78em;}
 footer p a {color: #ccc; text-decoration: none;}
-
-
-/* Tooltips, as per http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ */
-_.tooltip {display: inline; position: relative;}
-_.tooltip:hover:after {background: #603; background: rgba(0,0,0,.8); border-radius: 5px; bottom: 26px; color: #fff; content: attr(title); left: 20%; padding: 5px 15px; position: absolute; z-index: 98; width: 220px;}
-_.tooltip:hover:before {border: solid; border-color: #333 transparent; border-width: 6px 6px 0 6px; bottom: 20px; content: ""; left: 50%; position: absolute; z-index: 99;}
 
 /* Tabs */
 ul.tabs {margin-left: 0; padding-left: 0; }
