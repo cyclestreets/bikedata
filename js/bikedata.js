@@ -7,7 +7,7 @@ var bikedata = (function ($) {
 	
 	'use strict';
 	
-	// Settings
+	// Settings defaults
 	var _settings = {
 		
 		// CycleStreets API; obtain a key at https://www.cyclestreets.net/api/apply/
@@ -18,6 +18,9 @@ var bikedata = (function ($) {
 		defaultLatitude: 51.51137,
 		defaultLongitude: -0.10498,
 		defaultZoom: 17,
+		
+		// Default layers ticked
+		defaultLayers: ['collisions', 'photomap'],
 		
 		// BBOX for autocomplete results biasing
 		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
@@ -76,9 +79,6 @@ var bikedata = (function ($) {
 	var _requestCache = {};
 	var _title = false;
 	var _embedMode = false;
-	
-	// Default layers enabled
-	var _defaultLayers = ['collisions', 'photomap'];
 	
 	// Layer definitions
 	var _layerConfig = {
@@ -359,7 +359,7 @@ var bikedata = (function ($) {
 			}
 			
 			// Determine layers to use, checking for data in order of precedence
-			var initialLayers = initialLayersPopstate || urlParameters.sections || initialLayersCookies || _defaultLayers;
+			var initialLayers = initialLayersPopstate || urlParameters.sections || initialLayersCookies || _settings.defaultLayers;
 			
 			// Load the tabs
 			bikedata.loadTabs (initialLayers);
