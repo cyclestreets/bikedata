@@ -15,9 +15,11 @@ var bikedata = (function ($) {
 		apiKey: 'YOUR_API_KEY',
 		
 		// Initial lat/lon/zoom of map
-		defaultLatitude: 51.51137,
-		defaultLongitude: -0.10498,
-		defaultZoom: 17,
+		defaultLocation: {
+			latitude: 51.51137,
+			longitude: -0.10498,
+			zoom: 17
+		},
 		
 		// Default layers ticked
 		defaultLayers: ['collisions', 'photomap'],
@@ -327,11 +329,14 @@ var bikedata = (function ($) {
 				}
 			});
 			
-			// Create the map
-			bikedata.createMap ();
-			
 			// Parse the URL
 			var urlParameters = bikedata.getUrlParameters ();
+			
+			// Set the initial location
+			var defaultLocation = (urlParameters.defaultLocation || _settings.defaultLocation);
+			
+			// Create the map
+			bikedata.createMap (defaultLocation);
 			
 			// Hide unwanted UI elements in embed mode if required
 			bikedata.embedMode ();
@@ -438,6 +443,19 @@ var bikedata = (function ($) {
 			
 			// Obtain query string parameters, which are used for presetting form values
 			urlParameters.queryString = bikedata.parseQueryString ();
+			
+			// Get the location from the URL
+			urlParameters.defaultLocation = null;
+			if (window.location.hash) {
+				var hashParts = window.location.hash.match (/^#([0-9]{1,2})\/([-.0-9]+)\/([-.0-9]+)\/([a-z0-9]+)$/);	// E.g. #17/51.51137/-0.10498/opencyclemap
+				if (hashParts) {
+					urlParameters.defaultLocation = {
+						latitude: hashParts[2],
+						longitude: hashParts[3],
+						zoom: hashParts[1]
+					}
+				}
+			}
 			
 			// Return the parameters
 			return urlParameters;
@@ -718,7 +736,7 @@ var bikedata = (function ($) {
 		
 		
 		// Create the map
-		createMap: function ()
+		createMap: function (defaultLocation)
 		{
 			// Add the tile layers
 			var tileLayers = [];		// Background tile layers
@@ -736,8 +754,8 @@ var bikedata = (function ($) {
 			
 			// Create the map in the "map" div, set the view to a given place and zoom
 			_map = L.map('map', {
-				center: [_settings.defaultLatitude, _settings.defaultLongitude],
-				zoom: _settings.defaultZoom,
+				center: [defaultLocation.latitude, defaultLocation.longitude],
+				zoom: defaultLocation.zoom,
 				layers: tileLayers[0]	// Documentation suggests tileLayers is all that is needed, but that shows all together
 			});
 			
