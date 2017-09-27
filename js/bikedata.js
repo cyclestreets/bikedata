@@ -9,14 +9,24 @@ var bikedata = (function ($) {
 	
 	// Settings
 	var _settings = {
+		
+		// CycleStreets API; obtain a key at https://www.cyclestreets.net/api/apply/
 		apiBaseUrl: 'https://api.cyclestreets.net',
-		apiKey: 'YOUR_API_KEY',	// Obtain at https://www.cyclestreets.net/api/apply/
-		tileUrls: {},
-		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
-		gmapApiKey: 'YOUR_API_KEY',
+		apiKey: 'YOUR_API_KEY',
+		
+		// Initial lat/lon/zoom of map
 		defaultLatitude: 51.51137,
 		defaultLongitude: -0.10498,
-		defaultZoom: 17
+		defaultZoom: 17,
+		
+		// BBOX for autocomplete results biasing
+		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
+		
+		// Google API key for Street View images
+		gmapApiKey: 'YOUR_API_KEY',
+		
+		// Tileserver URLs, each as [path, options, label]
+		tileUrls: {}
 	};
 	
 	// Internal class properties
