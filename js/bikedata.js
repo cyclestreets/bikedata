@@ -415,25 +415,24 @@ var bikedata = (function ($) {
 			
 			// Split by slash; see: https://stackoverflow.com/a/8086637
 			var pathComponents = window.location.pathname.split('/').slice(1);
-			
-			// End if none
-			if (!pathComponents) {return {};}
-			
-			// Obtain the section(s), checking against the available sections in the settings
-			urlParameters.sections = [];
-			if (pathComponents[0]) {
-				var sections = pathComponents[0].split(',');
-				$.each (sections, function (index, section) {
-					if (_layerConfig[section]) {
-						urlParameters.sections.push (section);
+			if (pathComponents) {
+				
+				// Obtain the section(s), checking against the available sections in the settings
+				urlParameters.sections = [];
+				if (pathComponents[0]) {
+					var sections = pathComponents[0].split(',');
+					$.each (sections, function (index, section) {
+						if (_layerConfig[section]) {
+							urlParameters.sections.push (section);
+						}
+					});
+				}
+				
+				// Obtain embed mode if present
+				if (pathComponents[1]) {
+					if (pathComponents[1] == 'embed') {
+						_embedMode = true;
 					}
-				});
-			}
-			
-			// Obtain embed mode if present
-			if (pathComponents[1]) {
-				if (pathComponents[1] == 'embed') {
-					_embedMode = true;
 				}
 			}
 			
