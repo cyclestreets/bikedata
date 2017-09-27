@@ -14,12 +14,13 @@ var bikedata = (function ($) {
 		apiBaseUrl: 'https://api.cyclestreets.net',
 		apiKey: 'YOUR_API_KEY',
 		
-		// Initial lat/lon/zoom of map
+		// Initial lat/lon/zoom of map and tile layer
 		defaultLocation: {
 			latitude: 51.51137,
 			longitude: -0.10498,
 			zoom: 17
 		},
+		defaultTileLayer: 'opencyclemap',
 		
 		// Default layers ticked
 		defaultLayers: ['collisions', 'photomap'],
@@ -332,11 +333,12 @@ var bikedata = (function ($) {
 			// Parse the URL
 			var urlParameters = bikedata.getUrlParameters ();
 			
-			// Set the initial location
+			// Set the initial location and tile layer
 			var defaultLocation = (urlParameters.defaultLocation || _settings.defaultLocation);
+			var defaultTileLayer = (urlParameters.defaultTileLayer || _settings.defaultTileLayer);
 			
 			// Create the map
-			bikedata.createMap (defaultLocation);
+			bikedata.createMap (defaultLocation, defaultTileLayer);
 			
 			// Hide unwanted UI elements in embed mode if required
 			bikedata.embedMode ();
@@ -446,6 +448,7 @@ var bikedata = (function ($) {
 			
 			// Get the location from the URL
 			urlParameters.defaultLocation = null;
+			urlParameters.defaultTileLayer = null;
 			if (window.location.hash) {
 				var hashParts = window.location.hash.match (/^#([0-9]{1,2})\/([-.0-9]+)\/([-.0-9]+)\/([a-z0-9]+)$/);	// E.g. #17/51.51137/-0.10498/opencyclemap
 				if (hashParts) {
@@ -454,6 +457,7 @@ var bikedata = (function ($) {
 						longitude: hashParts[3],
 						zoom: hashParts[1]
 					}
+					urlParameters.defaultTileLayer = hashParts[4];
 				}
 			}
 			
@@ -736,7 +740,7 @@ var bikedata = (function ($) {
 		
 		
 		// Create the map
-		createMap: function (defaultLocation)
+		createMap: function (defaultLocation, defaultTileLayer)
 		{
 			// Add the tile layers
 			var tileLayers = [];		// Background tile layers
@@ -756,7 +760,7 @@ var bikedata = (function ($) {
 			_map = L.map('map', {
 				center: [defaultLocation.latitude, defaultLocation.longitude],
 				zoom: defaultLocation.zoom,
-				layers: tileLayers[0]	// Documentation suggests tileLayers is all that is needed, but that shows all together
+				layers: baseLayersById[defaultTileLayer]	// Documentation suggests tileLayers is all that is needed, but that shows all together
 			});
 			
 			// Add the base (background) layer switcher
