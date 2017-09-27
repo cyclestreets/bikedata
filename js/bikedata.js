@@ -13,7 +13,10 @@ var bikedata = (function ($) {
 		apiKey: 'YOUR_API_KEY',	// Obtain at https://www.cyclestreets.net/api/apply/
 		tileUrls: {},
 		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
-		gmapApiKey: 'YOUR_API_KEY'
+		gmapApiKey: 'YOUR_API_KEY',
+		defaultLatitude: 51.51137,
+		defaultLongitude: -0.10498,
+		defaultZoom: 17
 	};
 	
 	// Internal class properties
@@ -688,8 +691,8 @@ var bikedata = (function ($) {
 			
 			// Create the map in the "map" div, set the view to a given place and zoom
 			_map = L.map('map', {
-				center: [51.51137, -0.10498],
-				zoom: 17,
+				center: [_settings.defaultLatitude, _settings.defaultLongitude],
+				zoom: _settings.defaultZoom,
 				layers: tileLayers[0]	// Documentation suggests tileLayers is all that is needed, but that shows all together
 			});
 			
