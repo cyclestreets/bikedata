@@ -1,11 +1,7 @@
 var config = {};
 
-// CycleStreets API base URL (not slash-terminated) and key
-config.apiBaseUrl = 'https://api.cyclestreets.net';
+// CycleStreets key
 config.apiKey = 'YOUR_API_KEY';		// Obtain at https://www.cyclestreets.net/api/apply/
-
-// BBOX for autocomplete
-config.autocompleteBbox = '-6.6577,49.9370,1.7797,57.6924'
 
 // Google Maps API key (for Street View)
 config.gmapApiKey = 'YOUR_API_KEY';
