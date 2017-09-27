@@ -7,8 +7,16 @@ var bikedata = (function ($) {
 	
 	'use strict';
 	
+	// Settings
+	var _settings = {
+		apiBaseUrl: 'https://api.cyclestreets.net',
+		apiKey: 'YOUR_API_KEY',	// Obtain at https://www.cyclestreets.net/api/apply/
+		tileUrls: {},
+		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
+		gmapApiKey: 'YOUR_API_KEY'
+	};
+	
 	// Internal class properties
-	var _settings = {};
 	var _map = null;
 	var _layers = {};	// Layer status registry
 	var _currentDataLayer = {};
@@ -263,8 +271,12 @@ var bikedata = (function ($) {
 		// Main function
 		initialise: function (config)
 		{
-			// Obtain the configuration and allocate as settings
-			_settings = config;
+			// Merge the configuration into the settings
+			$.each (_settings, function (setting, value) {
+				if (config.hasOwnProperty(setting)) {
+					_settings[setting] = config[setting];
+				}
+			});
 			
 			// Create the map
 			bikedata.createMap ();
