@@ -34,17 +34,17 @@ var bikedata = (function ($) {
 		// Tileserver URLs, each as [path, options, label]
 		tileUrls: {
 			'opencyclemap': [
-				'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}@2x.png',
+				'https://{s}.tile.cyclestreets.net/opencyclemap/{z}/{x}/{y}@2x.png',
 				{maxZoom: 21, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'},
 				'OpenCycleMap'
 			],
 			'mapnik': [
-				'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+				'https://{s}.tile.cyclestreets.net/mapnik/{z}/{x}/{y}.png',
 				{maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'},
 				'OpenStreetMap style'
 			],
 			'osopendata': [
-				'http://os.openstreetmap.org/sv/{z}/{x}/{y}.png',
+				'https://{s}.tile.cyclestreets.net/osopendata/sv/{z}/{x}/{y}.png',
 				{maxZoom: 19, attribution: 'Contains Ordnance Survey data &copy; Crown copyright and database right 2010'},
 				'OS Open Data'
 			],
