@@ -82,6 +82,7 @@ var bikedata = (function ($) {
 	var _requestCache = {};
 	var _title = false;
 	var _embedMode = false;
+	var _message = null;
 	
 	// Layer definitions
 	var _layerConfig = {
@@ -385,6 +386,9 @@ var bikedata = (function ($) {
 			
 			// Show first-run welcome message if the user is new to the site
 			bikedata.welcomeFirstRun ();
+			
+			// Create a message area, and provide methods to manipulate it
+			bikedata.messageArea ();
 			
 			// Determine the enabled layers
 			bikedata.determineLayerStatus ();
@@ -727,6 +731,35 @@ var bikedata = (function ($) {
 			
 			// Show the dialog
 			vex.dialog.alert ({unsafeMessage: message});
+		},
+		
+		
+		// Function to create a message area, and provide methods to manipulate it
+		messageArea: function ()
+		{
+			// Create the control
+			_message = L.control({position:'bottomleft'});
+			
+			// Define its contents
+			_message.onAdd = function (map) {
+			    this._div = L.DomUtil.create('div', 'message');
+			    return this._div;
+			};
+			
+			// Register a method to set and show the message
+			_message.show = function (html) {
+				this._div.innerHTML = '<p>' + html + '</p>';
+				$('.message').show ();
+			};
+			
+			// Register a method to blank the message area
+			_message.hide = function () {
+				this._div.innerHTML = '';
+				$('.message').hide ();
+			}
+			
+			// Add to the map
+			_message.addTo(_map);
 		},
 		
 		

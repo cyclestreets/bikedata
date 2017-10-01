@@ -181,6 +181,10 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 /* Tooltips */
 .ui-tooltip {padding: 3px 5px; position: absolute; z-index: 9999; max-width: 300px; border-width: 2px; background-color: white; font-size: 0.74em; border-radius: 3px; box-shadow: 0 0 10px rgba(0,0,0,1);}
 
+/* Message area */
+.message {display: none; width: 200px; _height: 40px; padding: 12px; font-size: 1.2em; background: white; background: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; color: red;}
+.message p {margin: 0; padding: 0;}
+
 
 /* Mobile styles; see: https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions */
 #nav-mobile {display: none;}
