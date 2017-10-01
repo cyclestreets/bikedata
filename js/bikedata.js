@@ -894,8 +894,10 @@ var bikedata = (function ($) {
 			// Show or hide the message
 			if (_map.getZoom () < _layerConfig[layerId].fullZoom) {
 				_message.show ('Zoom in to show all ' + bikedata.layerNameFromId (layerId).toLowerCase() + ' markers - only a selection are shown due to the volume.');
+				$('nav #selector li.' + layerId + ' p.total').hide();
 			} else {
 				_message.hide ();
+				$('nav #selector li.' + layerId + ' p.total').show();
 			}
 		},
 		
