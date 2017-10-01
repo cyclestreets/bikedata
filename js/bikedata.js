@@ -602,7 +602,7 @@ var bikedata = (function ($) {
 			var title = _title;
 			var layerTitles = [];
 			$.each (enabledLayers, function (index, layerId) {
-				layerTitles.push ($('#selector li.' + layerId + ' a').text().toLowerCase());
+				layerTitles.push (bikedata.layerNameFromId (layerId).toLowerCase());
 			});
 			if (layerTitles) {
 				title += ': ' + layerTitles.join(', ');
@@ -610,6 +610,13 @@ var bikedata = (function ($) {
 			
 			// Push the URL state
 			history.pushState (enabledLayers, title, url);
+		},
+		
+		
+		// Function to get the layer name from its ID
+		layerNameFromId: function (layerId)
+		{
+			return $('#selector li.' + layerId + ' a').text();
 		},
 		
 		
