@@ -741,7 +741,7 @@ var bikedata = (function ($) {
 			_message = L.control({position:'bottomleft'});
 			
 			// Define its contents
-			_message.onAdd = function (map) {
+			_message.onAdd = function () {
 			    this._div = L.DomUtil.create('div', 'message');
 			    return this._div;
 			};
@@ -867,6 +867,14 @@ var bikedata = (function ($) {
 				});
 			}
 			
+			// Register to show/hide message based on zoom level
+			if (_layerConfig[layerId].fullZoom) {
+				bikedata.fullZoomMessage (layerId);
+				_map.on ('zoomend', function (e) {
+					bikedata.fullZoomMessage (layerId);
+				});
+			}
+			
 			// Reload the data, using a rescan of the form parameters when any change is made
 			$('form#data #sections :input, form#data #drawing :input').change (function () {
 				_parameters[layerId] = bikedata.parseFormValues (layerId);
@@ -876,6 +884,18 @@ var bikedata = (function ($) {
 				_parameters[layerId] = bikedata.parseFormValues (layerId);
 				bikedata.getData (layerId, _parameters[layerId]);
 			});
+		},
+		
+		
+		// Function to create a zoom message for a layer
+		fullZoomMessage: function (layerId)
+		{
+			// Show or hide the message
+			if (_map.getZoom () < _layerConfig[layerId].fullZoom) {
+				_message.show ('Zoom in to show all ' + bikedata.layerNameFromId (layerId).toLowerCase() + ' markers - only a selection are shown due to the volume.');
+			} else {
+				_message.hide ();
+			}
 		},
 		
 		
