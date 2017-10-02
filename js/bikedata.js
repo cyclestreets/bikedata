@@ -287,7 +287,7 @@ var bikedata = (function ($) {
 		
 		// https://www.cyclestreets.net/api/v2/mapdata/
 		'cycleability': {
-			'apiCall': 'https://api.cyclestreets.net/v2/mapdata',
+			'apiCall': '/v2/mapdata',
 			'apiFixedParameters': {
 				'limit': 400,
 				'types': 'way'
@@ -726,7 +726,7 @@ var bikedata = (function ($) {
 			
 			// Define a welcome message
 			var message =
-			   '<p>Welcome to Bikedata, from CycleStreets.</p>'
+			   '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
 			 + '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
 			 + '<p>Please note that this site is work-in-progress beta.</p>';
 			
