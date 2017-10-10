@@ -1402,7 +1402,7 @@ var bikedata = (function ($) {
 			bikedata.removeLayer (layerId, true);
 			
 			// Determine the field in the feature.properties data that specifies the icon to use
-			var field = _layerConfig[layerId].iconField;
+			var iconField = _layerConfig[layerId].iconField;
 			
 			// Convert from flat JSON to GeoJSON if required
 			if (_layerConfig[layerId].flatJson) {
@@ -1422,9 +1422,9 @@ var bikedata = (function ($) {
 					if (_layerConfig[layerId].iconUrl) {
 						iconUrl = _layerConfig[layerId].iconUrl;
 					} else if (_layerConfig[layerId].icons) {
-						iconUrl = _layerConfig[layerId].icons[feature.properties[field]];
+						iconUrl = _layerConfig[layerId].icons[feature.properties[iconField]];
 					} else {
-						iconUrl = feature.properties[field];
+						iconUrl = feature.properties[iconField];
 					}
 					
 					var icon = L.marker (latlng, {
