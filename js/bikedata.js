@@ -1410,6 +1410,14 @@ var bikedata = (function ($) {
 				//console.log(data);
 			}
 			
+			// If marker importance is defined, define the zIndex offset values for each marker type, to be based on the iconField
+			if (_layerConfig[layerId].markerImportance) {
+				var markerZindexOffsets = [];
+				$.each (_layerConfig[layerId].markerImportance, function (index, iconFieldValue) {
+					markerZindexOffsets[iconFieldValue] = 1000 + (100 * index);	// See: http://leafletjs.com/reference-1.2.0.html#marker-zindexoffset
+				});
+			}
+			
 			// Define the data layer
 			var totalItems = 0;
 			_currentDataLayer[layerId] = L.geoJson(data, {
@@ -1434,6 +1442,14 @@ var bikedata = (function ($) {
 							iconSize: [38, 42]
 						})
 					});
+					
+					// Set the icon zIndexOffset if required
+					if (_layerConfig[layerId].markerImportance) {
+						var fieldValue = feature.properties[iconField];
+						icon.setZIndexOffset (markerZindexOffsets[fieldValue]);
+					}
+					
+					// Return the icon
 					return icon;
 				},
 				
