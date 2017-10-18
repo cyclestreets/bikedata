@@ -153,7 +153,7 @@ var bikedata = (function ($) {
 		},
 		
 		'planningapplications': {
-			'apiCall': 'https://planitproxy.cyclestreets.net/api/applics/geojson',
+			'apiCall': 'https://www.planit.org.uk/api/applics/geojson',
 			'apiFixedParameters': {
 				'pg_sz': 100,
 				'limit': 100
