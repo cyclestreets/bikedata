@@ -329,9 +329,7 @@
 							<h3>Filter:</h3>
 							
 							<div id="dateRange">
-								<h4>
-									<label for="enableDateRange">Between dates:</label>
-								</h4>
+								<h4>Between dates:</h4>
 								<div class="controls">
 									<label for="start_date">From: </label><input type="date" name="start_date" /><br />
 									<label for="end_date">To: </label><input type="date" name="end_date" />
@@ -373,10 +371,19 @@
 						<div class="filters">
 							<h3>Filter to:</h3>
 							
+							<div id="dateRecent">
+								<h4>Since:</h4>
+								<select name="recent">
+									<option value="">Recent</option>
+									<option value="56">8 weeks</option>
+									<option value="91">13 weeks</option>
+									<option value="112">16 weeks</option>
+								</select>
+								<p><a href="https://www.gov.uk/guidance/determining-a-planning-application" target="_blank">Read more about consultation time limits.</a></p>
+							</div>
+							
 							<div id="dateRange">
-								<h4>
-									<label for="enableDateRange">Between dates:</label>
-								</h4>
+								<h4>Between dates:</h4>
 								<div class="controls">
 									<label for="start_date">From: </label><input type="date" name="start_date" /><br />
 									<label for="end_date">To: </label><input type="date" name="end_date" />
