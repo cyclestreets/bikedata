@@ -1187,7 +1187,7 @@ var bikedata = (function ($) {
 					var divId = layerId + 'details';
 					html = '<div id="' + divId + '">' + html + '</div>';
 					vex.dialog.buttons.YES.text = 'Close';
-					vex.dialog.alert ({unsafeMessage: html, className: 'vex vex-theme-plain wider'});
+					vex.dialog.alert ({unsafeMessage: html, showCloseButton: true, className: 'vex vex-theme-plain wider'});
 				});
 				
 				e.preventDefault ();
@@ -1730,7 +1730,7 @@ var bikedata = (function ($) {
 			
 			$('a.feedback').click (function (e) {
 				html = '<div id="feedbackbox">' + html + '</div>';
-				vex.dialog.alert ({unsafeMessage: html, className: 'vex vex-theme-plain feedback'});
+				vex.dialog.alert ({unsafeMessage: html, showCloseButton: true, showCloseButton: true, className: 'vex vex-theme-plain feedback'});
 				
 				// Create the form handler, which submits to the API
 				$('#feedbackbox form').submit (function(event) {	// #feedbackbox form used as #feedbackform doesn't seem to exist in the DOM properly in this context
