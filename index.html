@@ -52,7 +52,7 @@
 	<!-- Heatmap -->
 	<script type="text/javascript" src="/js/lib/Leaflet.heat/leaflet-heat.js"></script>
 	
-	<!-- Bike data application and its config -->
+	<!-- Bikedata application and its config -->
 	<script type="text/javascript" src="/.config.js"></script>
 	<script type="text/javascript" src="/js/bikedata.js?171001"></script>
 	<script type="text/javascript">
@@ -610,9 +610,40 @@
 	</main>
 	
 	<footer>
-		<p>Created by <a href="https://www.cyclestreets.net/">CycleStreets</a> &nbsp;||&nbsp; <a href="https://www.cyclestreets.net/donate/">Donate &#9825;</a> &nbsp;||&nbsp; Thanks to funder <a href="https://outlandish.com/">Outlandish</a> &nbsp;||&nbsp; Uses <a href="https://www.cyclestreets.net/api/">CycleStreets API</a> and other APIs &nbsp;||&nbsp; An open source project - <a href="https://www.github.com/cyclestreets/bikedata/">contribute on Github</a></p>
+		<p>Created by <a href="https://www.cyclestreets.net/">CycleStreets</a> &nbsp;||&nbsp; <a href="https://www.cyclestreets.net/donate/">Donate &#9825;</a> &nbsp;||&nbsp; <a class="feedback" href="https://www.cyclestreets.net/feedback/">Feedback</a> &nbsp;||&nbsp; Thanks to funder <a href="https://outlandish.com/">Outlandish</a> &nbsp;||&nbsp; Uses <a href="https://www.cyclestreets.net/api/">CycleStreets API</a> and other APIs &nbsp;||&nbsp; An open source project - <a href="https://www.github.com/cyclestreets/bikedata/">contribute on Github</a></p>
 	</footer>
 
+	<div id="feedback">
+		
+		<h2>Give feedback</h2>
+		<form method="post" id="feedbackform" name="feedbackform" action="https://www.cyclestreets.net/feedback/" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+			<table>
+				<tr>
+					<td colspan="2">
+						<p>We welcome your feedback!</p>
+					</td>
+				</tr>
+				<tr>
+					<td>Comments:</td>
+					<td><textarea name="comments" cols="60" rows="5" required="required"></textarea></td>
+				</tr>
+				<tr>
+					<td>Your name:</td>
+					<td><input type="text" name="name" size="40" maxlength="255" required="required" /></td>
+				</tr>
+				<tr>
+					<td>E-mail:</td>
+					<td><input type="email" name="email" size="40" maxlength="255" required="required" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Submit!" class="button" /></td>
+			</table>
+			<input type="hidden" name="type" value="other" />
+		</form>
+		
+	</div>
+	
 </body>
 
 </html>

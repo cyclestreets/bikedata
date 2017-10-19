@@ -1,5 +1,6 @@
 /* Layout */
 html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+body {background-color: white;}
 #globalsites {position: fixed; height: 30px; z-index: 9999; width: 100%; border-top: 2px solid #ddd;}
 main {position: fixed; width: 100%; height: calc(100% - 32px - 25px); top: 32px;}
 main form {width: 100%; height: 100%;}
@@ -8,7 +9,7 @@ nav {position: absolute; right: 0; width: 335px; height: 100%; z-index: 1000;}
 footer {position: fixed; width: 100%; height: 25px; z-index: 9999; bottom: 0; padding: 0;}
 
 /* Typography */
-body {background-color: white; font-family: 'Raleway', Arial, Helvetica, sans-serif;} /* https://www.google.com/fonts */
+body, input, textarea {font-family: 'Raleway', Arial, Helvetica, sans-serif; font-size: 1em;} /* https://www.google.com/fonts */
 
 /* IE9 image link fix */
 a img {border: 0;}
@@ -185,6 +186,15 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 .message {display: none; width: 200px; _height: 40px; padding: 12px; font-size: 1.2em; background: white; background: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; color: red;}
 .message p {margin: 0; padding: 0;}
 
+/* Feedback handling */
+#feedback {display: none;}
+.feedback.vex.vex-theme-plain .vex-content {width: 550px; max-width: 90%;}
+.feedback.vex.vex-theme-plain .vex-dialog-buttons {display: none;}
+.feedback table td {vertical-align: top;}
+.feedback textarea, .feedback input[type='text'], .feedback input[type='email'] {width: 100%;}
+.feedback input[type='submit'] {margin-top: 1.2em;}
+.feedback.vex.vex-theme-plain .vex-content p.success {color: green;}
+.feedback.vex.vex-theme-plain .vex-content p.error {color: red;}
 
 /* Mobile styles; see: https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions */
 #nav-mobile {display: none;}

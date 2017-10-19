@@ -392,6 +392,9 @@ var bikedata = (function ($) {
 			// Create a message area, and provide methods to manipulate it
 			bikedata.messageArea ();
 			
+			// Enable feedback handler
+			bikedata.feedbackHandler ();
+			
 			// Determine the enabled layers
 			bikedata.determineLayerStatus ();
 			
@@ -1184,7 +1187,7 @@ var bikedata = (function ($) {
 					var divId = layerId + 'details';
 					html = '<div id="' + divId + '">' + html + '</div>';
 					vex.dialog.buttons.YES.text = 'Close';
-					vex.dialog.alert ({unsafeMessage: html, showCloseButton: true, className: 'vex vex-theme-plain wider'});
+					vex.dialog.alert ({unsafeMessage: html, className: 'vex vex-theme-plain wider'});
 				});
 				
 				e.preventDefault ();
@@ -1715,6 +1718,55 @@ var bikedata = (function ($) {
 			// Undo button
 			$('.edit-undo').click(function() {
 				drawnItems.revertLayers();
+			});
+		},
+		
+		
+		// Feedback box and handler
+		feedbackHandler: function ()
+		{
+			// Obtain the HTML from the page
+			var html = $('#feedback').html();
+			
+			$('a.feedback').click (function (e) {
+				html = '<div id="feedbackbox">' + html + '</div>';
+				vex.dialog.alert ({unsafeMessage: html, className: 'vex vex-theme-plain feedback'});
+				
+				// Create the form handler, which submits to the API
+				$('#feedbackbox form').submit (function(event) {	// #feedbackbox form used as #feedbackform doesn't seem to exist in the DOM properly in this context
+					var resultHtml;
+					
+					var form = $(this);
+					
+					$.ajax({
+						url: _settings.apiBaseUrl + '/v2/feedback.add?key=' + _settings.apiKey,
+						type: form.attr('method'),
+						data: form.serialize()
+					}).done (function (result) {
+						
+						// Detect API error
+						if ('error' in result) {
+							resultHtml = "<p class=\"error\">Sorry, an error occured. The API said: <em>" + result.error + '</em></p>';
+							$('#feedbackbox').replaceWith (resultHtml);
+						
+						// Normal result; NB result.id is the feedback number
+						} else {
+							resultHtml  = '<p class="success">&#10004; Thank you for submitting feedback.</p>';
+							resultHtml += '<p>We read all submissions and, despite being a small organisation, endeavour to respond to all feedback.</p>';
+							$('#feedbackbox').replaceWith (resultHtml);
+						}
+						
+					}).fail (function (failure) {
+						resultHtml = '<p>There was a problem contacting the server; please try again later. The failure was: <em>' + failure.responseText + '</em>.</p>';
+						$('#feedbackbox').replaceWith (resultHtml);
+					});
+					
+					// Prevent normal submit
+					event.preventDefault();
+				});
+				
+				// Prevent following link to contact page
+				return false;
 			});
 		}
 	};
