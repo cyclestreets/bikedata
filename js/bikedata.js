@@ -44,7 +44,7 @@ var bikedata = (function ($) {
 				'OpenStreetMap style'
 			],
 			'osopendata': [
-				'https://{s}.tile.cyclestreets.net/osopendata/sv/{z}/{x}/{y}.png',
+				'https://{s}.tile.cyclestreets.net/osopendata/{z}/{x}/{y}.png',
 				{maxZoom: 19, attribution: 'Contains Ordnance Survey data &copy; Crown copyright and database right 2010'},
 				'OS Open Data'
 			],
