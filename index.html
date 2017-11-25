@@ -106,6 +106,12 @@
 							<input type="checkbox" name="show[]" id="show_cycleability" />
 							<a href="#cycleability" title="Cycleability ratings layer" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Cycleability ratings</a>
 						</li>
+						<li class="widths">
+							<img src="/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_widths" />
+							<a href="#widths" title="Ride widths" class="tooltip"><img src="/images/icons/cycleways_neutral.svg" alt="" /><br />Road/path widths</a>
+						</li>
 						<!--
 						<li class="cyclingrates unavailable">
 							<img src="/images/spinner.svg" class="loading" />
@@ -589,6 +595,22 @@
 					<div id="cycleability">
 						<h2>Cycleability ratings</h2>
 						<p>This layer shows ratings of the cycleability rating of every street and path. Data comes from the CycleStreets routing engine.</p>
+					</div>
+					
+					<div id="widths">
+						<h2>Roadpath widths</h2>
+						<p>This layer shows a calculation of road/path widths. Data is processed by the CyIPT project and comes from DCLG / OS.</p>
+						
+						<div class="filters">
+							<h3>Show:</h3>
+							<div class="controls">
+								<select name="widthlayer">
+									<option value="road">Road only</option>
+									<option value="path">Road and roadside</option>
+								</select>
+							</div>
+						</div>
+						
 					</div>
 					
 					<div id="groups">

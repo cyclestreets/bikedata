@@ -286,6 +286,34 @@ var bikedata = (function ($) {
 			]
 		},
 		
+		// https://www.cyipt.bike/api/#width
+		'widths': {
+			'apiCall': 'https://www.cyipt.bike/api/v1/width.json',
+			'sendZoom': true,
+			'lineColourField': 'width',
+			'lineColourStops': [
+				[14, '#4575b4'],
+				[12, '#74add1'],
+				[10, '#abd9e9'],
+				[8, '#e0f3f8'],
+				[6, '#fee090'],
+				[4, '#fdae61'],
+				[2, '#f46d43'],
+				[0, '#d73027']
+			],
+			'lineWidthField': 'width',
+			'lineWidthStops': [
+				[21, 8],
+				[14, 7],
+				[8, 6],
+				[5, 5],
+				[3, 4],
+				[0, 3],
+			],
+			'popupHtml':
+				  '<p>Width: {properties.width}</p>'
+		},
+		
 		// https://www.cyclestreets.net/api/v2/mapdata/
 		'cycleability': {
 			'apiCall': '/v2/mapdata',
