@@ -28,6 +28,11 @@ var bikedata = (function ($) {
 		// BBOX for autocomplete results biasing
 		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
 		
+		// First-run welcome message
+		firstRunMessageHtml: '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
+			+ '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
+			+ '<p>Please note that this site is work-in-progress beta.</p>',
+		
 		// Google API key for Street View images
 		gmapApiKey: 'YOUR_API_KEY',
 		
@@ -749,6 +754,9 @@ var bikedata = (function ($) {
 		// Function to show a welcome message on first run
 		welcomeFirstRun: function ()
 		{
+			// End if no welcome message
+			if (!_settings.firstRunMessageHtml) {return;}
+			
 			// End if cookie already set
 			var name = 'welcome';
 			if (Cookies.get(name)) {return;}
@@ -756,14 +764,8 @@ var bikedata = (function ($) {
 			// Set the cookie
 			Cookies.set(name, '1', {expires: 14});
 			
-			// Define a welcome message
-			var message =
-			   '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
-			 + '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
-			 + '<p>Please note that this site is work-in-progress beta.</p>';
-			
 			// Show the dialog
-			vex.dialog.alert ({unsafeMessage: message});
+			vex.dialog.alert ({unsafeMessage: _settings.firstRunMessageHtml});
 		},
 		
 		
