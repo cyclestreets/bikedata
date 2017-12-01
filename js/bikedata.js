@@ -1804,7 +1804,7 @@ var bikedata = (function ($) {
 						// Normal result; NB result.id is the feedback number
 						} else {
 							resultHtml  = '<p class="success">&#10004; Thank you for submitting feedback.</p>';
-							resultHtml += '<p>We read all submissions and, despite being a small organisation, endeavour to respond to all feedback.</p>';
+							resultHtml += '<p>We read all submissions and endeavour to respond to all feedback.</p>';
 							$('#feedbackbox').replaceWith (resultHtml);
 						}
 						
