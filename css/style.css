@@ -210,6 +210,7 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 	#selector ul li a {font-size: 0.83em;}
 	#sections {width: 150px; padding: 0 10px 20px; font-size: 0.83em;}
 	#map .leaflet-control-attribution {margin-right: 0;}
+	.leaflet-control-locate.leaflet-bar a {padding: 3px;}
 	.leaflet-control-locate {position: fixed; top: 80px; right: 15px;}
 	.leaflet-control-locate.leaflet-bar {box-shadow: 3px 3px 3px #aaa;}
 	.leaflet-control-locate.leaflet-bar, .leaflet-control-locate.leaflet-bar a:first-child, .leaflet-control-locate.leaflet-bar a:last-child {border-radius: 20px;}
