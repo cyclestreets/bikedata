@@ -76,19 +76,6 @@ var bikedata = (function ($) {
 		}
 	};
 	
-	// Internal class properties
-	var _map = null;
-	var _layers = {};	// Layer status registry
-	var _currentDataLayer = {};
-	var _tileOverlayLayers = {};
-	var _heatmapOverlayLayers = {};
-	var _parameters = {};
-	var _xhrRequests = {};
-	var _requestCache = {};
-	var _title = false;
-	var _embedMode = false;
-	var _message = null;
-	
 	// Layer definitions
 	var _layerConfig = {
 		
@@ -350,6 +337,20 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
 		}
 	};
+	
+	
+	// Internal class properties
+	var _map = null;
+	var _layers = {};	// Layer status registry
+	var _currentDataLayer = {};
+	var _tileOverlayLayers = {};
+	var _heatmapOverlayLayers = {};
+	var _parameters = {};
+	var _xhrRequests = {};
+	var _requestCache = {};
+	var _title = false;
+	var _embedMode = false;
+	var _message = null;
 	
 	
 	return {
