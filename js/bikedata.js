@@ -44,37 +44,37 @@ var bikedata = (function ($) {
 		
 		// Tileserver URLs, each as [path, options, label]
 		tileUrls: {
-			'opencyclemap': [
+			opencyclemap: [
 				'https://{s}.tile.cyclestreets.net/opencyclemap/{z}/{x}/{y}@2x.png',
 				{maxZoom: 21, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; <a href="https://www.thunderforest.com/">Thunderforest</a>'},
 				'OpenCycleMap'
 			],
-			'mapnik': [
+			mapnik: [
 				'https://{s}.tile.cyclestreets.net/mapnik/{z}/{x}/{y}.png',
 				{maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'},
 				'OpenStreetMap style'
 			],
-			'osopendata': [
+			osopendata: [
 				'https://{s}.tile.cyclestreets.net/osopendata/{z}/{x}/{y}.png',
 				{maxZoom: 19, attribution: 'Contains Ordnance Survey data &copy; Crown copyright and database right 2010'},
 				'OS Open Data'
 			],
-			'bartholomew': [
+			bartholomew: [
 				'https://{s}.tile.cyclestreets.net/bartholomew/{z}/{x}/{-y}@2x.png',
 				{maxZoom: 15, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
 				'NLS - Bartholomew Half Inch, 1897-1907'
 			],
-			'os6inch': [
+			os6inch: [
 				'https://{s}.tile.cyclestreets.net/os6inch/{z}/{x}/{-y}@2x.png',
 				{maxZoom: 15, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
 				'NLS - OS 6-inch County Series 1888-1913'
 			],
-			'os1to25k1stseries': [
+			os1to25k1stseries: [
 				'https://{s}.tile.cyclestreets.net/os1to25k1stseries/{z}/{x}/{-y}@2x.png',
 				{maxZoom: 16, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
 				'NLS - OS 1:25,000 Provisional / First Series 1937-1961',
 			],
-			'os1inch7thseries': [
+			os1inch7thseries: [
 				'https://{s}.tile.cyclestreets.net/os1inch7thseries/{z}/{x}/{-y}@2x.png',
 				{maxZoom: 16, attribution: '&copy; <a href="http://maps.nls.uk/copyright.html">National Library of Scotland</a>'},
 				'NLS - OS 1-inch 7th Series 1955-1961'
@@ -85,23 +85,23 @@ var bikedata = (function ($) {
 	// Layer definitions
 	var _layerConfig = {
 		
-		'collisions': {
-			'apiCall': '/v2/collisions.locations',
-			'apiFixedParameters': {
-				'jitter': '1',
-				'datetime': 'friendly'
+		collisions: {
+			apiCall: '/v2/collisions.locations',
+			apiFixedParameters: {
+				jitter: '1',
+				datetime: 'friendly'
 			},
-			'fullZoom': 17,
-			'parameterNamespace': 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
-			'sendZoom': true,	// Needed for jitter support
-			'iconField': 'severity',
-			'icons': {
-				'slight':  '/images/icons/icon_collision_slight.svg',
-				'serious': '/images/icons/icon_collision_serious.svg',
-				'fatal':   '/images/icons/icon_collision_fatal.svg'
+			fullZoom: 17,
+			parameterNamespace: 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
+			sendZoom: true,	// Needed for jitter support
+			iconField: 'severity',
+			icons: {
+				slight:  '/images/icons/icon_collision_slight.svg',
+				serious: '/images/icons/icon_collision_serious.svg',
+				fatal:   '/images/icons/icon_collision_fatal.svg'
 			},
-			'markerImportance': ['slight', 'serious', 'fatal'],
-			'popupHtml':
+			markerImportance: ['slight', 'serious', 'fatal'],
+			popupHtml:
 				  '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full, detailed report</a></strong></p>'
 				+ '<p>Reference: <strong>{properties.id}</strong></p>'
 				+ '<p>'
@@ -113,20 +113,20 @@ var bikedata = (function ($) {
 				+ '</p>'
 		},
 		
-		'taxidata': {
-			'apiCall': '/v2/advocacydata.taxis',
-			'iconUrl': '/images/icons/road_neutral.svg',
-			'heatmap': true
+		taxidata: {
+			apiCall: '/v2/advocacydata.taxis',
+			iconUrl: '/images/icons/road_neutral.svg',
+			heatmap: true
 		},
 		
-		'trafficcounts': {
-			'apiCall': '/v2/trafficcounts.locations',
-			'apiFixedParameters': {
-				'groupyears': '1'
+		trafficcounts: {
+			apiCall: '/v2/trafficcounts.locations',
+			apiFixedParameters: {
+				groupyears: '1'
 			},
-			'iconUrl': '/images/icons/icon_congestion_bad.svg',
-			'lineColourField': 'car_pcu',	// #!# Fixme - currently no compiled all_motors_pcu value
-			'lineColourStops': [
+			iconUrl: '/images/icons/icon_congestion_bad.svg',
+			lineColourField: 'car_pcu',	// #!# Fixme - currently no compiled all_motors_pcu value
+			lineColourStops: [
 				[40000, '#ff0000'],	// Colour and line values based on GMCC site
 				[20000, '#d43131'],
 				[10000, '#e27474'],
@@ -134,15 +134,15 @@ var bikedata = (function ($) {
 				[2000, '#fce8af'],
 				[0, '#61fa61']
 			],
-			'lineWidthField': 'cycle_pcu',	// #!# Fixme - should be Daily cycles
-			'lineWidthStops': [
+			lineWidthField: 'cycle_pcu',	// #!# Fixme - should be Daily cycles
+			lineWidthStops: [
 				[1000, 5],
 				[500, 4],
 				[100, 3],
 				[10, 2],
 				[0, 1],
 			],
-			'popupHtml':	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
+			popupHtml:	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
 				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
 				+ '[macro:yearstable({properties.minyear}, {properties.maxyear}, cycles;p2w;cars;buses;lgvs;mgvs;hgvs;all_motors;all_motors_pcu, Cycles;P2W;Cars;Buses;LGVs;MGVs;HGVs;Motors;Motor PCU)]'
@@ -150,15 +150,15 @@ var bikedata = (function ($) {
 				+ '</div>'
 		},
 		
-		'planningapplications': {
-			'apiCall': 'https://www.planit.org.uk/api/applics/geojson',
-			'apiFixedParameters': {
-				'pg_sz': 100,
-				'limit': 100
+		planningapplications: {
+			apiCall: 'https://www.planit.org.uk/api/applics/geojson',
+			apiFixedParameters: {
+				pg_sz: 100,
+				limit: 100
 			},
-			'apiKey': false,
-			'iconUrl': '/images/icons/signs_neutral.svg',
-			'popupHtml':
+			apiKey: false,
+			iconUrl: '/images/icons/signs_neutral.svg',
+			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
 				+ '<p>{properties.address}</p>'
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
@@ -167,22 +167,22 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
-		'triplengths': {
-			'apiCall': '/v2/usage.journeylengths',
-			'polygonStyle': 'grid',
-			'popupHtml':
+		triplengths: {
+			apiCall: '/v2/usage.journeylengths',
+			polygonStyle: 'grid',
+			popupHtml:
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
 		
-		'cycleparking': {
-			'apiCall': '/v2/pois.locations',
-			'apiFixedParameters': {
-				'type': 'cycleparking',
-				'fields': 'id,name,osmTags[capacity,access,bicycle_parking,covered],nodeId',
-				'limit': 400
+		cycleparking: {
+			apiCall: '/v2/pois.locations',
+			apiFixedParameters: {
+				type: 'cycleparking',
+				fields: 'id,name,osmTags[capacity,access,bicycle_parking,covered],nodeId',
+				limit: 400
 			},
-			'iconUrl': '/images/icons/cycleparking_good.svg',
-			'popupHtml':
+			iconUrl: '/images/icons/cycleparking_good.svg',
+			popupHtml:
 				  '<p><strong>Cycle parking</strong></p>'
 				+ '<table>'
 				+ '<tr><td>Spaces:</td><td>{properties.Capacity}</td></tr>'
@@ -195,15 +195,15 @@ var bikedata = (function ($) {
 		
 		// https://data.police.uk/docs/method/crime-street/
 		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
-		'cycletheft': {
-			'apiCall': 'https://data.police.uk/api/crimes-street/bicycle-theft',
-			'retrievalStrategy': 'polygon',
-			'flatJson': ['location.latitude', 'location.longitude'],
-			'apiKey': false,
-			'apiBoundaryField': 'poly',
-			'apiBoundaryFormat': 'latlon-comma-colons',
-			'iconUrl': '/images/icons/icon_enforcement_bad.svg',
-			'popupHtml':
+		cycletheft: {
+			apiCall: 'https://data.police.uk/api/crimes-street/bicycle-theft',
+			retrievalStrategy: 'polygon',
+			flatJson: ['location.latitude', 'location.longitude'],
+			apiKey: false,
+			apiBoundaryField: 'poly',
+			apiBoundaryFormat: 'latlon-comma-colons',
+			iconUrl: '/images/icons/icon_enforcement_bad.svg',
+			popupHtml:
 				  '<p>Crime no.: <strong>{properties.persistent_id}</strong></p>'
 				+ '<p>'
 				+ 'Date: <strong>{properties.month}</strong><br />'
@@ -214,16 +214,16 @@ var bikedata = (function ($) {
 		},
 		
 		// https://www.cyclescape.org/api
-		'issues': {
-			'apiCall': 'https://www.cyclescape.org/api/issues.json',
-			'apiKey': false,
-			'apiFixedParameters': {
-				'page': 1,
-				'per_page': 100
+		issues: {
+			apiCall: 'https://www.cyclescape.org/api/issues.json',
+			apiKey: false,
+			apiFixedParameters: {
+				page: 1,
+				per_page: 100
 			},
-			'iconUrl': '/images/icons/destinations_bad.svg',
-			'polygonStyle': 'red',
-			'popupHtml':
+			iconUrl: '/images/icons/destinations_bad.svg',
+			polygonStyle: 'red',
+			popupHtml:
 				  '<p><strong><a href="{properties.cyclescape_url}">{properties.title}</a></strong></p>'
 				+ '<div class="scrollable">'
 				+ '{properties.description}'	// Already HTML
@@ -231,16 +231,16 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.cyclescape_url}">Full details</a></p>'
 		},
 		
-		'photomap': {
-			'apiCall': '/v2/photomap.locations',
-			'apiFixedParameters': {
-				'fields': 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl',
-				'limit': 150,
-				'thumbnailsize': 300,
-				'datetime': 'friendlydate'
+		photomap: {
+			apiCall: '/v2/photomap.locations',
+			apiFixedParameters: {
+				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl',
+				limit: 150,
+				thumbnailsize: 300,
+				datetime: 'friendlydate'
 			},
-			'iconField': 'iconUrl',		// icons specified in the field value
-			'popupHtml':
+			iconField: 'iconUrl',		// icons specified in the field value
+			popupHtml:
 				  '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
 				+ '<div class="scrollable">'
 				+ '<strong>{properties.captionHtml}</strong>'
@@ -251,8 +251,8 @@ var bikedata = (function ($) {
 				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
 				+ '</table>'
 				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
-			'detailsOverlay': 'apiUrl',
-			'overlayHtml':
+			detailsOverlay: 'apiUrl',
+			overlayHtml:
 				  '<table class="fullimage">'
 				+ '<tr>'
 				+ '<td>'
@@ -274,10 +274,10 @@ var bikedata = (function ($) {
 		},
 		
 		// https://wiki.openstreetmap.org/wiki/Strava
-		'strava': {
-			'apiCall': false,
-			'apiKey': false,
-			'tileLayer': [
+		strava: {
+			apiCall: false,
+			apiKey: false,
+			tileLayer: [
 				'https://globalheat.strava.com/tiles/cycling/{%style}/{z}/{x}/{y}.png',   // E.g. https://globalheat.strava.com/tiles/cycling/color1/15/16370/10922.png
 				{maxZoom: 17, attribution: 'Strava heatmap (used experimentally), not for tracing'},
 				'Strava heatmap'
@@ -285,11 +285,11 @@ var bikedata = (function ($) {
 		},
 		
 		// https://www.cyipt.bike/api/#width
-		'widths': {
-			'apiCall': 'https://www.cyipt.bike/api/v1/width.json',
-			'sendZoom': true,
-			'lineColourField': 'width',
-			'lineColourStops': [
+		widths: {
+			apiCall: 'https://www.cyipt.bike/api/v1/width.json',
+			sendZoom: true,
+			lineColourField: 'width',
+			lineColourStops: [
 				[14, '#4575b4'],
 				[12, '#74add1'],
 				[10, '#abd9e9'],
@@ -299,8 +299,8 @@ var bikedata = (function ($) {
 				[2, '#f46d43'],
 				[0, '#d73027']
 			],
-			'lineWidthField': 'width',
-			'lineWidthStops': [
+			lineWidthField: 'width',
+			lineWidthStops: [
 				[21, 8],
 				[14, 7],
 				[8, 6],
@@ -308,19 +308,19 @@ var bikedata = (function ($) {
 				[3, 4],
 				[0, 3],
 			],
-			'popupHtml':
+			popupHtml:
 				  '<p>Width: {properties.width}</p>'
 		},
 		
 		// https://www.cyclestreets.net/api/v2/mapdata/
-		'cycleability': {
-			'apiCall': '/v2/mapdata',
-			'apiFixedParameters': {
-				'limit': 400,
-				'types': 'way'
+		cycleability: {
+			apiCall: '/v2/mapdata',
+			apiFixedParameters: {
+				limit: 400,
+				types: 'way'
 			},
-			'sendZoom': true,
-			'popupHtml':
+			sendZoom: true,
+			popupHtml:
 				  '<table>'
 				+ '<tr><td>Name:</td><td><strong>{properties.name}</strong></td></tr>'
 				+ '<tr><td>OSM ID:</td><td><a href="https://www.openstreetmap.org/way/{properties.id}" target="_blank" title="[Link opens in a new window]">{properties.id}</a></td></tr>'
@@ -333,11 +333,11 @@ var bikedata = (function ($) {
 		},
 		
 		// https://www.cyclescape.org/api
-		'groups': {
-			'apiCall': 'https://www.cyclescape.org/api/groups.json',
-			'apiKey': false,
-			'polygonStyle': 'green',
-			'popupHtml':
+		groups: {
+			apiCall: 'https://www.cyclescape.org/api/groups.json',
+			apiKey: false,
+			polygonStyle: 'green',
+			popupHtml:
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
