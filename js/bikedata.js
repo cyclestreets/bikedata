@@ -867,13 +867,7 @@ var bikedata = (function ($) {
 		geocoder: function ()
 		{
 			// Geocoder URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}, {%autocompleteBbox}
-			var geocoderApiUrl = _settings.geocoderApiUrl;
-			var placeholder;
-			var supportedPlaceholders = ['apiBaseUrl', 'apiKey', 'autocompleteBbox'];
-			$.each(supportedPlaceholders, function (index, field) {
-				placeholder = '{%' + field + '}';
-				geocoderApiUrl = geocoderApiUrl.replace(placeholder, _settings[field]);
-			});
+			var geocoderApiUrl = bikedata.placeholderSubstitution (_settings.geocoderApiUrl, ['apiBaseUrl', 'apiKey', 'autocompleteBbox']);
 			
 			// Attach the autocomplete library behaviour to the location control
 			autocomplete.addTo ('#geocoder input', {
@@ -884,6 +878,21 @@ var bikedata = (function ($) {
 					event.preventDefault();
 				}
 			});
+		},
+		
+		
+		// Helper function to implement placeholder substitution in a string
+		placeholderSubstitution: function (string, supportedPlaceholders)
+		{
+			// Substitute each placeholder
+			var placeholder;
+			$.each(supportedPlaceholders, function (index, field) {
+				placeholder = '{%' + field + '}';
+				string = string.replace(placeholder, _settings[field]);
+			});
+			
+			// Return the modified string
+			return string;
 		},
 		
 		
