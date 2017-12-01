@@ -25,6 +25,9 @@ var bikedata = (function ($) {
 		// Default layers ticked
 		defaultLayers: ['collisions', 'photomap'],
 		
+		// Geocoder URL; re-use of settings values represented as placeholders {%apiBaseUrl}, {%apiKey}, {%autocompleteBbox}, are supported
+		geocoderUrl: '{%apiBaseUrl}/v2/geocoder?key={%apiKey}&bounded=1&bbox={%autocompleteBbox}',
+		
 		// BBOX for autocomplete results biasing
 		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
 		
@@ -863,9 +866,18 @@ var bikedata = (function ($) {
 		// Wrapper function to add a geocoder control
 		geocoder: function ()
 		{
+			// Geocoder URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}, {%autocompleteBbox}
+			var geocoderUrl = _settings.geocoderUrl;
+			var placeholder;
+			var supportedPlaceholders = ['apiBaseUrl', 'apiKey', 'autocompleteBbox'];
+			$.each(supportedPlaceholders, function (index, field) {
+				placeholder = '{%' + field + '}';
+				geocoderUrl = geocoderUrl.replace(placeholder, _settings[field]);
+			});
+			
 			// Attach the autocomplete library behaviour to the location control
 			autocomplete.addTo ('#geocoder input', {
-				sourceUrl: _settings.apiBaseUrl + '/v2/geocoder' + '?key=' + _settings.apiKey + '&bounded=1&bbox=' + _settings.autocompleteBbox,
+				sourceUrl: geocoderUrl,
 				select: function (event, ui) {
 					var bbox = ui.item.feature.properties.bbox.split(',');
 					_map.fitBounds([ [bbox[1], bbox[0]], [bbox[3], bbox[2]] ]);
