@@ -867,7 +867,7 @@ var bikedata = (function ($) {
 		geocoder: function ()
 		{
 			// Geocoder URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}, {%autocompleteBbox}
-			var geocoderApiUrl = bikedata.placeholderSubstitution (_settings.geocoderApiUrl, ['apiBaseUrl', 'apiKey', 'autocompleteBbox']);
+			var geocoderApiUrl = bikedata.settingsPlaceholderSubstitution (_settings.geocoderApiUrl, ['apiBaseUrl', 'apiKey', 'autocompleteBbox']);
 			
 			// Attach the autocomplete library behaviour to the location control
 			autocomplete.addTo ('#geocoder input', {
@@ -881,8 +881,8 @@ var bikedata = (function ($) {
 		},
 		
 		
-		// Helper function to implement placeholder substitution in a string
-		placeholderSubstitution: function (string, supportedPlaceholders)
+		// Helper function to implement settings placeholder substitution in a string
+		settingsPlaceholderSubstitution: function (string, supportedPlaceholders)
 		{
 			// Substitute each placeholder
 			var placeholder;
