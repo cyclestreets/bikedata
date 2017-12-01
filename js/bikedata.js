@@ -31,6 +31,9 @@ var bikedata = (function ($) {
 		// BBOX for autocomplete results biasing
 		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
 		
+		// Feedback API URL; re-use of settings values represented as placeholders {%apiBaseUrl}, {%apiKey}, are supported
+		feedbackApiUrl: '{%apiBaseUrl}/v2/feedback.add?key={%apiKey}',
+		
 		// First-run welcome message
 		firstRunMessageHtml: '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
 			+ '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
@@ -1788,10 +1791,12 @@ var bikedata = (function ($) {
 				$('#feedbackbox form').submit (function(event) {	// #feedbackbox form used as #feedbackform doesn't seem to exist in the DOM properly in this context
 					var resultHtml;
 					
-					var form = $(this);
+					// Feedback URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}
+					var feedbackApiUrl = bikedata.settingsPlaceholderSubstitution (_settings.feedbackApiUrl, ['apiBaseUrl', 'apiKey']);
 					
+					var form = $(this);
 					$.ajax({
-						url: _settings.apiBaseUrl + '/v2/feedback.add?key=' + _settings.apiKey,
+						url: feedbackApiUrl,
 						type: form.attr('method'),
 						data: form.serialize()
 					}).done (function (result) {
