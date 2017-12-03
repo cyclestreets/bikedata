@@ -262,6 +262,9 @@ var layerviewer = (function ($) {
 			// Add tooltip support
 			layerviewer.tooltips ();
 			
+			// Set dialog style
+			vex.defaultOptions.className = 'vex-theme-plain';
+			
 			// Show first-run welcome message if the user is new to the site
 			layerviewer.welcomeFirstRun ();
 			
