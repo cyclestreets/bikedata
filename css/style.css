@@ -1,47 +1,14 @@
 /* Layout */
 html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
-body {background-color: white;}
-#globalsites {position: fixed; height: 30px; z-index: 9999; width: 100%; border-top: 2px solid #ddd;}
-main {position: fixed; width: 100%; height: calc(100% - 32px - 25px); top: 32px;}
-main form {width: 100%; height: 100%;}
 #map {width: 100%; height: 100%; position: relative;}
-nav {position: absolute; right: 0; width: 335px; height: 100%; z-index: 1000;}
-footer {position: fixed; width: 100%; height: 25px; z-index: 9999; bottom: 0; padding: 0;}
-
-/* Typography */
-body, input, textarea {font-family: 'Raleway', Arial, Helvetica, sans-serif; font-size: 1em;} /* https://www.google.com/fonts */
 
 /* IE9 image link fix */
 a img {border: 0;}
 
-/* Global navigation */
-#globalsites {background-color: gray;}
-#globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}
-#globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
-#globalsites p {float: left; color: white; padding: 4px 11px 0;}
-#globalsites ul {height: 100%; margin-left: 200px;}
-#globalsites ul li {height: 100%; float: left; margin: 0; padding: 0; list-style: none;}
-#globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
-#globalsites ul li.cyclestreets a {border-color: LightGoldenRodYellow;}
-#globalsites ul li.cyclestreets a:hover {background-color: LightGoldenRodYellow; color: gray;}
-#globalsites ul li.cyclescape a {border-color: green;}
-#globalsites ul li.cyclescape a:hover {background-color: green;}
-#globalsites ul li.bikedata a {border-color: purple;}
-#globalsites ul li.bikedata a:hover {background-color: purple;}
-#globalsites ul li.bikedata.selected a {background: rgba(128,0,128,0.4);}
-#globalsites ul li.urbancycleparking a {border-color: red;}
-#globalsites ul li.urbancycleparking a:hover {background-color: red;}
-#globalsites ul li.blog a {border-color: #999;}
-#globalsites ul li.blog a:hover {background-color: #999;}
-
-
-nav {color: white;}
-nav a {color: white; text-decoration: none;}
-
+/* Tile layers */
 #map .leaflet-tile-container {opacity: 0.7;}
-#map .leaflet-control-attribution {margin-right: 335px;}
-#map .leaflet-control-layers {right: 335px;}
 
+/* Popups */
 #map .leaflet-popup {min-width: 350px;}
 #map .leaflet-popup .scrollable {max-height: 200px; overflow-y: auto; margin-top: 0;}
 #map .leaflet-popup .scrollable p:first-child {margin-top: 0;}
@@ -52,14 +19,6 @@ nav a {color: white; text-decoration: none;}
 #map .leaflet-popup span.unknown {color: #ccc; font-style: italic;}
 #map .leaflet-popup p.edit {text-align: right;}
 #map .leaflet-popup p.edit a {color: #ccc; text-decoration: none;}
-
-/* Layer-specific popup styling */
-#map .leaflet-popup.trafficcounts {min-width: 500px;}
-#map .leaflet-popup.trafficcounts table td, #map .leaflet-popup.trafficcounts table th {font-size: 0.83em;}
-#map .leaflet-popup.trafficcounts table td {text-align: right;}
-
-/* Form styling */
-input[type=checkbox] {margin-right: 5px;}
 
 /* Geocoder */
 #geocoder {position: absolute; top: 10px; left: 55px; z-index: 1001;}
@@ -72,68 +31,9 @@ input[type=checkbox] {margin-right: 5px;}
 .ui-autocomplete li a span {color: gray; font-size: 0.81em;}
 .ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #f7f7f7;}
 
-
-h2 {margin-bottom: 2px; padding-bottom: 0;}
-
-
-#selector {float: left; width: 95px; height: 100%; background-color: #333; opacity: 0.85; overflow-y: auto;}
-
-#selector ul {height: 100%; list-style: none; width: 100%; margin: 0; padding: 0;}
-#selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray; border-left: 4px solid gray; position: relative;}
-#selector ul li:first-child {border-top: 0;}
-#selector ul li:last-child {border-bottom: 1px solid gray;}
-#selector ul li.selected {background-color: black; border-left: 4px solid brown;}
-#selector ul li a {font-size: 0.9em; padding: 17px 7px; display: block; text-align: center;}
-#selector ul li:hover {background-color: #111;}
-#selector ul li.selected:hover {background-color: black;}
-#selector ul li a img {width: 40px;}
-
-#selector input {position: absolute; left: 6px; top: 6px;}
-
+/* Loading / totals */
 #selector li img.loading {display: none; position: absolute; right: -2px; top: 4px; width: 32px; height: 32px;}
-
 #selector li p.total {position: absolute; right: 4px; font-size: 0.76em; color: gray;}
-
-
-/* Toolbar */
-#sections {width: 200px; height: calc(100% - 20px); position: absolute; right: 0; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
-
-/* Sections */
-#sections #compare > div {opacity: 0.5;}
-#sections #compare div.enabled {opacity: 1;}
-#sections #compare div p {margin-bottom: 4px;}
-#sections #compare div .controls label {width: 45px; display: inline-block;}
-
-#sections div.filters {background: rgba(255,255,255,0.1); padding: 0 0 5px; margin: 20px 0 15px;}
-#sections div.filters h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
-#sections div.filters p {margin: 0;}
-#sections div.filters > div {padding: 5px 5px;}
-#sections div.filters > h4 {padding-left: 5px; padding-right: 5px;}
-
-#sections h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
-#sections .controls {padding: 0; margin: 0;}
-
-#sections .button {height: 20px;}
-#sections .button p {line-height: 20px; opacity: 0.2; border: 1px solid gray; padding: 2px 5px; float: right; margin: 0; font-size: 0.9em;}
-#sections .button p.enabled {opacity: 1;}
-#sections .button p img {vertical-align: middle;}
-#sections .button p span.symbol {font-size: 1.4em;}
-
-/* Header */
-header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
-header h1 {padding-top: 0; font-weight: normal; margin-top: 15px; margin-bottom: 5px;}
-header p {margin: 0;}
-
-
-footer {background-color: gray;}
-footer p {margin: 5px 20px 5px 5px; padding: 0; text-align: right; color: #eee; font-size: 0.78em; white-space: nowrap;}
-footer p a {color: #ccc; text-decoration: none;}
-
-/* Tabs */
-ul.tabs {margin-left: 0; padding-left: 0; }
-ul.tabs li {display: inline; margin-right: 5px;}
-ul.tabs li a {padding: 2px 10px; color: gray; border: 1px solid white; border-bottom: 0;}
-ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 
 /* Drawing overlay */
 #drawing {position:absolute;bottom:30px;right:350px;height:120px;width:250px;background:rgba(0,0,0,0.8);z-index:95}
@@ -169,9 +69,7 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 #drawing #drawingcontrols ul li a {padding: 6px;}
 
 /* Embed view */
-.embed #drawing, .embed #selector, .embed header, .embed footer, .embed #sponsor, .embed .export {display: none;}
-.embed #map .leaflet-control-layers {right: calc(335px - 95px);}
-.embed nav {width: 240px;}
+.embed #drawing, .embed #selector, .embed .export {display: none;}
 
 /* Details overlay */
 .vex.vex-theme-plain.wider .vex-content {width: auto; height: auto; position: absolute; top: 3em; right: 40px; bottom: 2em; left: 40px;}
@@ -200,6 +98,129 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 #nav-mobile {display: none;}
 @media only screen and (min-width: 320px) and (max-width: 768px) {
 	.leaflet-control-zoom {display: none;}
+	#map .leaflet-control-attribution {margin-right: 0;}
+	.leaflet-control-locate.leaflet-bar a {padding: 3px;}
+	.leaflet-control-locate {position: fixed; top: 80px; right: 15px;}
+	.leaflet-control-locate.leaflet-bar {box-shadow: 3px 3px 3px #aaa;}
+	.leaflet-control-locate.leaflet-bar, .leaflet-control-locate.leaflet-bar a:first-child, .leaflet-control-locate.leaflet-bar a:last-child {border-radius: 20px;}
+}
+
+
+
+
+
+/* Layout */
+html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+body {background-color: white;}
+#globalsites {position: fixed; height: 30px; z-index: 9999; width: 100%; border-top: 2px solid #ddd;}
+main {position: fixed; width: 100%; height: calc(100% - 32px - 25px); top: 32px;}
+main form {width: 100%; height: 100%;}
+nav {position: absolute; right: 0; width: 335px; height: 100%; z-index: 1000;}
+header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
+footer {position: fixed; width: 100%; height: 25px; z-index: 9999; bottom: 0; padding: 0;}
+
+/* Typography */
+body, input, textarea {font-family: 'Raleway', Arial, Helvetica, sans-serif; font-size: 1em;} /* https://www.google.com/fonts */
+
+/* Header */
+header h1 {padding-top: 0; font-weight: normal; margin-top: 15px; margin-bottom: 5px;}
+header p {margin: 0;}
+
+/* Footer */
+footer {background-color: gray;}
+footer p {margin: 5px 20px 5px 5px; padding: 0; text-align: right; color: #eee; font-size: 0.78em; white-space: nowrap;}
+footer p a {color: #ccc; text-decoration: none;}
+
+/* Global properties navigation */
+#globalsites {background-color: gray;}
+#globalsites p, #globalsites ul {margin: 0; padding: 0; position: relative; top: -2px; font-size: 0.93em; overflow: hidden;}
+#globalsites p, #globalsites ul li a {color: white; text-decoration: none;}
+#globalsites p {float: left; color: white; padding: 4px 11px 0;}
+#globalsites ul {height: 100%; margin-left: 200px;}
+#globalsites ul li {height: 100%; float: left; margin: 0; padding: 0; list-style: none;}
+#globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
+#globalsites ul li.cyclestreets a {border-color: LightGoldenRodYellow;}
+#globalsites ul li.cyclestreets a:hover {background-color: LightGoldenRodYellow; color: gray;}
+#globalsites ul li.cyclescape a {border-color: green;}
+#globalsites ul li.cyclescape a:hover {background-color: green;}
+#globalsites ul li.bikedata a {border-color: purple;}
+#globalsites ul li.bikedata a:hover {background-color: purple;}
+#globalsites ul li.bikedata.selected a {background: rgba(128,0,128,0.4);}
+#globalsites ul li.urbancycleparking a {border-color: red;}
+#globalsites ul li.urbancycleparking a:hover {background-color: red;}
+#globalsites ul li.blog a {border-color: #999;}
+#globalsites ul li.blog a:hover {background-color: #999;}
+
+/* Main controls */
+nav {color: white;}
+nav a {color: white; text-decoration: none;}
+#map .leaflet-control-attribution {margin-right: 335px;}
+#map .leaflet-control-layers {right: 335px;}
+
+/* Layer-specific popup styling */
+#map .leaflet-popup.trafficcounts {min-width: 500px;}
+#map .leaflet-popup.trafficcounts table td, #map .leaflet-popup.trafficcounts table th {font-size: 0.83em;}
+#map .leaflet-popup.trafficcounts table td {text-align: right;}
+
+/* Form styling */
+input[type=checkbox] {margin-right: 5px;}
+
+
+h2 {margin-bottom: 2px; padding-bottom: 0;}
+
+
+#selector {float: left; width: 95px; height: 100%; background-color: #333; opacity: 0.85; overflow-y: auto;}
+
+#selector ul {height: 100%; list-style: none; width: 100%; margin: 0; padding: 0;}
+#selector ul li {margin-left: auto; margin-right: 0; border-top: 1px solid gray; border-left: 4px solid gray; position: relative;}
+#selector ul li:first-child {border-top: 0;}
+#selector ul li:last-child {border-bottom: 1px solid gray;}
+#selector ul li.selected {background-color: black; border-left: 4px solid brown;}
+#selector ul li a {font-size: 0.9em; padding: 17px 7px; display: block; text-align: center;}
+#selector ul li:hover {background-color: #111;}
+#selector ul li.selected:hover {background-color: black;}
+#selector ul li a img {width: 40px;}
+
+#selector input {position: absolute; left: 6px; top: 6px;}
+
+/* Toolbar */
+#sections {width: 200px; height: calc(100% - 20px); position: absolute; right: 0; background-color: black; opacity: 0.85; margin-top: 0; padding: 0 20px 20px; font-size: 0.92em; overflow: scroll;}
+
+/* Sections */
+#sections #compare > div {opacity: 0.5;}
+#sections #compare div.enabled {opacity: 1;}
+#sections #compare div p {margin-bottom: 4px;}
+#sections #compare div .controls label {width: 45px; display: inline-block;}
+
+#sections div.filters {background: rgba(255,255,255,0.1); padding: 0 0 5px; margin: 20px 0 15px;}
+#sections div.filters h3 {background-color: rgba(255,255,255,0.2); padding: 2px 5px; margin: 0; font-size: 1.1em;}
+#sections div.filters p {margin: 0;}
+#sections div.filters > div {padding: 5px 5px;}
+#sections div.filters > h4 {padding-left: 5px; padding-right: 5px;}
+
+#sections h4 {font-size: 1em; font-weight: normal; padding: 0; margin: 12px 0 2px;}
+#sections .controls {padding: 0; margin: 0;}
+
+#sections .button {height: 20px;}
+#sections .button p {line-height: 20px; opacity: 0.2; border: 1px solid gray; padding: 2px 5px; float: right; margin: 0; font-size: 0.9em;}
+#sections .button p.enabled {opacity: 1;}
+#sections .button p img {vertical-align: middle;}
+#sections .button p span.symbol {font-size: 1.4em;}
+
+/* Tabs */
+ul.tabs {margin-left: 0; padding-left: 0; }
+ul.tabs li {display: inline; margin-right: 5px;}
+ul.tabs li a {padding: 2px 10px; color: gray; border: 1px solid white; border-bottom: 0;}
+ul.tabs li.ui-state-active a {background-color: #333; color: white;}
+
+/* Embed view */
+.embed header, .embed footer {display: none;}
+.embed #map .leaflet-control-layers {right: calc(335px - 95px);}
+.embed nav {width: 240px;}
+
+/* Mobile styles; see: https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions */
+#nav-mobile {display: none;}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
 	#nav-mobile {display: block; cursor: pointer; position: absolute; top: 40px; left: 10px; background: white url(../images/hamburger.svg) no-repeat center center; opacity: 0.9; height: 10px; width: 10px; padding: 17px; border-radius: 20px; box-shadow: 5px 5px 5px #aaa;}
 	#geocoder {top: 14px; left: 64px; right: 25px;}
 	#geocoder input {width: 100%;}
@@ -209,10 +230,5 @@ table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
 	#selector {width: 90px;}
 	#selector ul li a {font-size: 0.83em;}
 	#sections {width: 150px; padding: 0 10px 20px; font-size: 0.83em;}
-	#map .leaflet-control-attribution {margin-right: 0;}
-	.leaflet-control-locate.leaflet-bar a {padding: 3px;}
-	.leaflet-control-locate {position: fixed; top: 80px; right: 15px;}
-	.leaflet-control-locate.leaflet-bar {box-shadow: 3px 3px 3px #aaa;}
-	.leaflet-control-locate.leaflet-bar, .leaflet-control-locate.leaflet-bar a:first-child, .leaflet-control-locate.leaflet-bar a:last-child {border-radius: 20px;}
 }
 
