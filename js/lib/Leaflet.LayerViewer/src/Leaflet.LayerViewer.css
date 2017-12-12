@@ -1,0 +1,107 @@
+/* Layout */
+html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+#map {width: 100%; height: 100%; position: relative;}
+
+/* IE9 image link fix */
+a img {border: 0;}
+
+/* Tile layers */
+#map .leaflet-tile-container {opacity: 0.7;}
+
+/* Popups */
+#map .leaflet-popup {min-width: 350px;}
+#map .leaflet-popup .scrollable {max-height: 200px; overflow-y: auto; margin-top: 0;}
+#map .leaflet-popup .scrollable p:first-child {margin-top: 0;}
+#map .leaflet-popup p {margin: 0.5em 0; padding: 0;}
+#map .leaflet-popup table {border-collapse: collapse; margin: 10px 0 15px;}
+#map .leaflet-popup table td {border-bottom: 1px solid #e9e9e9; padding: 2px 10px 2px 0; vertical-align: top; text-align: left;}
+#map .leaflet-popup table tr:first-child {border-top: 1px solid #e9e9e9;}
+#map .leaflet-popup span.unknown {color: #ccc; font-style: italic;}
+#map .leaflet-popup p.edit {text-align: right;}
+#map .leaflet-popup p.edit a {color: #ccc; text-decoration: none;}
+
+/* Geocoder */
+#geocoder {position: absolute; top: 10px; left: 55px; z-index: 1001;}
+#geocoder input {padding: 5px; font-size: 1em; color: #603; width: 250px;}
+#geocoder input.ui-autocomplete-loading {background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;}
+#geocoder input, .ui-autocomplete {border: 1px solid #eee; box-shadow: 5px 5px 10px 0px rgba(28,28,28,0.5);}
+.ui-autocomplete {background-color: white; z-index: 1000; width: 200px; list-style: none; margin-left: 0; padding-left: 0;}
+.ui-autocomplete li {list-style: none; margin-left: 0; padding-left: 0;}
+.ui-autocomplete li a {padding: 7px; display: block; color: #603;}
+.ui-autocomplete li a span {color: gray; font-size: 0.81em;}
+.ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #f7f7f7;}
+
+/* Loading / totals */
+#selector li img.loading {display: none; position: absolute; right: -2px; top: 4px; width: 32px; height: 32px;}
+#selector li p.total {position: absolute; right: 4px; font-size: 0.76em; color: gray;}
+
+/* Drawing overlay */
+#drawing {position:absolute;bottom:30px;right:350px;height:120px;width:250px;background:rgba(0,0,0,0.8);z-index:95}
+#drawing #drawingcontrols ul {float: left; margin:0;padding:0;list-style-type:none;overflow:hidden}
+#drawing #drawingcontrols ul li {list-style-type:none;padding:0;margin:0;border:0;float:left;display:inline}
+#drawing #drawingcontrols ul li a {float:left;display:block}
+#drawing #drawingcontrols ul li a {display:block;color:#e6e6e6;height:80px;width:50px;cursor:pointer;font-weight:bold;font-size:10px;text-align:center;text-transform:uppercase;letter-spacing:1px}
+#drawing #drawingcontrols ul li a span {width:50px;height:50px;display:block;border:1px solid #1a1a1a;background:#e6e6e6 url(../images/geometrydrawing.png) 4px -534px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
+#drawing #drawingcontrols ul li a span.area {background-position:4px -534px}
+#drawing #drawingcontrols ul li a span.route {background-position:4px -616px}
+#drawing #drawingcontrols ul li a span.point {background-position:13px -706px}
+#drawing #drawingcontrols ul li a:hover {text-decoration:none}
+#drawing #drawingcontrols ul li a:hover span {background-color:#eee}
+#drawing #drawingcontrols ul li a.current span {-webkit-box-shadow:inset rgba(0,0,0,0.7) 0 0 8px;-moz-box-shadow:inset rgba(0,0,0,0.7) 0 0 8px;box-shadow:inset rgba(0,0,0,0.7) 0 0 8px}
+#drawing .panes {padding:10px}
+#drawing .panes .pane h3 {margin: 0;}
+#drawing .panes .pane h3, #drawing .panes .pane p {color:#e6e6e6}
+#drawing .panes .pane p {display:block;margin-bottom:10px;font-weight:normal;font-size:13px;font-style:italic}
+#drawing ul.undo-clear {float: right; margin:0;padding:0;list-style-type:none;overflow:hidden;}
+#drawing ul.undo-clear li {list-style-type:none;padding:0;margin:0;border:0;float:left;display:inline}
+#drawing ul.undo-clear li a {float:left;display:block}
+#drawing ul.undo-clear li {float:left;margin-right:10px}
+#drawing ul.undo-clear li a {display:block;width:80px;height:32px;cursor:pointer}
+#drawing ul.undo-clear li a span.txt {color:#e6e6e6;float:right;margin-top:5px;font-weight:bold;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-align:right}
+#drawing ul.undo-clear li a span.icon-undo,#drawing ul.undo-clear li a span.icon-clear {float:left;width:30px;height:30px;display:block;border:1px solid #999;background:url(../images/geometrydrawing.png) 3px -780px no-repeat;-webkit-border-radius:8px;-moz-border-radius:8px;-ms-border-radius:8px;-o-border-radius:8px;border-radius:8px}
+#drawing ul.undo-clear li a span.icon-clear {background-position:4px -825px}
+#drawing ul.undo-clear li a:hover {text-decoration:none}
+#drawing ul.undo-clear li a:hover span.icon-undo,#drawing ul.undo-clear li a:hover span.icon-clear {border:1px solid #e6e6e6}
+#drawing #drawingcontrols ul li a span.browse {background-position:4px -327px;}
+#drawing {background: #000; opacity: 0.9;}
+#drawing {-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)'; filter: alpha(opacity=80); -moz-opacity: 0.8; -khtml-opacity: 0.8;}	/* Vendor-specific hacks */
+#drawing {z-index: 95;}
+#drawing #drawingcontrols ul li a {padding: 6px;}
+
+/* Embed view */
+.embed #drawing, .embed #selector, .embed .export {display: none;}
+
+/* Details overlay */
+.vex.vex-theme-plain.wider .vex-content {width: auto; height: auto; position: absolute; top: 3em; right: 40px; bottom: 2em; left: 40px;}
+table.fullimage {width: 100%;}
+table.fullimage > tbody > tr > td {vertical-align: top; padding: 20px;}
+#streetview {margin-top: 30px; width: 100%; height: 300px;}
+
+/* Tooltips */
+.ui-tooltip {padding: 3px 5px; position: absolute; z-index: 9999; max-width: 300px; border-width: 2px; background-color: white; font-size: 0.74em; border-radius: 3px; box-shadow: 0 0 10px rgba(0,0,0,1);}
+
+/* Message area */
+.message {display: none; width: 200px; _height: 40px; padding: 12px; font-size: 1.2em; background: white; background: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; color: red;}
+.message p {margin: 0; padding: 0;}
+
+/* Feedback handling */
+#feedback {display: none;}
+.feedback.vex.vex-theme-plain .vex-content {width: 550px; max-width: 90%;}
+.feedback.vex.vex-theme-plain .vex-dialog-buttons {display: none;}
+.feedback table td {vertical-align: top;}
+.feedback textarea, .feedback input[type='text'], .feedback input[type='email'] {width: 100%;}
+.feedback input[type='submit'] {margin-top: 1.2em;}
+.feedback.vex.vex-theme-plain .vex-content p.success {color: green;}
+.feedback.vex.vex-theme-plain .vex-content p.error {color: red;}
+
+/* Mobile styles; see: https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions */
+#nav-mobile {display: none;}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+	.leaflet-control-zoom {display: none;}
+	#map .leaflet-control-attribution {margin-right: 0;}
+	.leaflet-control-locate.leaflet-bar a {padding: 3px;}
+	.leaflet-control-locate {position: fixed; top: 80px; right: 15px;}
+	.leaflet-control-locate.leaflet-bar {box-shadow: 3px 3px 3px #aaa;}
+	.leaflet-control-locate.leaflet-bar, .leaflet-control-locate.leaflet-bar a:first-child, .leaflet-control-locate.leaflet-bar a:last-child {border-radius: 20px;}
+}
+
