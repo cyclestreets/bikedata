@@ -25,6 +25,9 @@ var bikedata = (function ($) {
 		// Default layers ticked
 		defaultLayers: ['collisions', 'photomap'],
 		
+		// Icon size, set globally for all layers
+		iconSize: [38, 42],
+		
 		// First-run welcome message
 		firstRunMessageHtml: '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
 			+ '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
