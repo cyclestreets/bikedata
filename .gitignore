@@ -1,1 +1,4 @@
 .config.js
+
+# Leaflet.LayerViewer library comes from separate repo at https://github.com/cyclestreets/Leaflet.LayerViewer
+js/lib/Leaflet.LayerViewer/
