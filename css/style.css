@@ -101,6 +101,9 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 .embed #map .leaflet-control-layers {right: calc(335px - 95px);}
 .embed nav {width: 240px;}
 
+/* Autocomplete */
+.ui-autocomplete-loading {background: white url("/images/ui-anim_basic_16x16.gif") right center no-repeat;}
+
 /* Mobile styles; see: https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions */
 #nav-mobile {display: none;}
 @media only screen and (min-width: 320px) and (max-width: 768px) {

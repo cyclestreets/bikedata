@@ -313,6 +313,37 @@ var bikedata = (function ($) {
 			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
+			
+			// Autocomplete
+			bikedata.autocomplete ();
+		},
+		
+		
+		// Autocomplete
+		autocomplete: function ()
+		{
+			// Enable autocomplete for Photomap tags; see: https://stackoverflow.com/a/21398000/180733
+			$('#photomap input[name="tags"]').autocomplete({
+				minLength: 3,
+				source: function (request, response) {
+					$.ajax({
+						dataType: 'json',
+						type : 'GET',
+						url: _settings.apiBaseUrl + '/v2/photomap.tags?key=' + _settings.apiKey + '&limit=10',
+						data: {
+							match: request.term
+						},
+						success: function (data) {
+							response ($.map (data, function (item) {
+								return {
+									label: item.tag,
+									value: item.tag
+								}
+							}));
+						}
+					});
+				}
+			});
 		}
 	};
 	
