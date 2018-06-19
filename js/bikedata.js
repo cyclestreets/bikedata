@@ -262,6 +262,7 @@ var bikedata = (function ($) {
 			],
 			popupHtml:
 				  '<p>Width: {properties.width}</p>'
+				+ '{%streetview}'
 		},
 		
 		// https://www.cyclestreets.net/api/v2/mapdata/
