@@ -28,6 +28,9 @@ var bikedata = (function ($) {
 		// Icon size, set globally for all layers
 		iconSize: [38, 42],
 		
+		// Enable scale bar
+		enableScale: true,
+		
 		// First-run welcome message
 		firstRunMessageHtml: '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
 			+ '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
