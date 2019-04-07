@@ -91,11 +91,11 @@ var bikedata = (function ($) {
 			],
 			lineWidthField: 'cycle_pcu',	// #!# Fixme - should be Daily cycles
 			lineWidthStops: [
-				[1000, 5],
-				[500, 4],
-				[100, 3],
-				[10, 2],
-				[0, 1],
+				[1000, 10],
+				[500, 8],
+				[100, 6],
+				[10, 4],
+				[0, 2],
 			],
 			popupHtml:	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
