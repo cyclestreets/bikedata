@@ -246,8 +246,8 @@ var bikedata = (function ($) {
 			apiCall: false,
 			apiKey: false,
 			tileLayer: [
-				'https://heatmap-external-c.strava.com/tiles/ride/{%style}/{z}/{x}/{y}.png?v=19',	// E.g. https://heatmap-external-c.strava.com/tiles/ride/blue/11/1026/674.png?v=19
-				{maxZoom: 17, attribution: 'Strava heatmap (used experimentally), not for tracing'},
+				'https://tile.cyclestreets.net/strava/ride/{%style}/{z}/{x}/{y}@2x.png',	// E.g. https://heatmap-external-c.strava.com/tiles/ride/blue/11/1026/674.png?v=19
+				{maxZoom: 12, attribution: 'Strava heatmap', tileSize: 512},
 				'Strava heatmap'
 			]
 		},
