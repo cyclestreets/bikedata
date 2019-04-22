@@ -122,6 +122,19 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
+		bikeshare: {
+			apiCall: '/v2/pois.locations',
+			apiFixedParameters: {
+				type: 'londoncyclehire',	// NB This value likely to be changed (generalised) in future
+				limit: 400
+			},
+			iconUrl: '/images/icons/bicycles_good.svg',
+			popupHtml:
+				  '<p><strong>Cycle hire dock</strong></p>'
+				+ '<p>{properties.name}</p>'
+				+ '<p>{properties.notes}</p>'
+		},
+		
 		triplengths: {
 			apiCall: '/v2/usage.journeylengths',
 			polygonStyle: 'grid',
