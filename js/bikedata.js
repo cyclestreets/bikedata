@@ -128,7 +128,7 @@ var bikedata = (function ($) {
 				type: 'londoncyclehire',	// NB This value likely to be changed (generalised) in future
 				limit: 400
 			},
-			iconUrl: '/images/icons/bicycles_good.svg',
+			iconField: 'iconUrl',
 			popupHtml:
 				  '<p><strong>Cycle hire dock</strong></p>'
 				+ '<p>{properties.name}</p>'
