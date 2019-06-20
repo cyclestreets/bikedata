@@ -43,13 +43,14 @@ footer p a {color: #ccc; text-decoration: none;}
 /* Main controls */
 nav {color: white;}
 nav a {color: white; text-decoration: none;}
-#map .leaflet-control-attribution {margin-right: 335px;}
-#map .leaflet-control-layers {right: 335px;}
+#map .mapboxgl-ctrl-attrib {margin-right: 335px;}
+#map #styleswitcher {position: relative; right: 340px;}
 
 /* Layer-specific popup styling */
-#map .leaflet-popup.trafficcounts {min-width: 500px;}
-#map .leaflet-popup.trafficcounts table td, #map .leaflet-popup.trafficcounts table th {font-size: 0.83em;}
-#map .leaflet-popup.trafficcounts table td {text-align: right;}
+#map .mapboxgl-popup.trafficcounts .mapboxgl-popup-content {min-width: 500px; max-width: 500px;}
+#map .mapboxgl-popup.trafficcounts table td, #map .mapboxgl-popup.trafficcounts table th {font-size: 0.83em;}
+#map .mapboxgl-popup.trafficcounts table th {text-align: left; line-height: 2em;}
+#map .mapboxgl-popup.trafficcounts table td {text-align: right;}
 
 /* Form styling */
 input[type=checkbox] {margin-right: 5px;}

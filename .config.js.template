@@ -3,6 +3,9 @@ var config = {};
 // CycleStreets key
 config.apiKey = 'YOUR_API_KEY';		// Obtain at https://www.cyclestreets.net/api/apply/
 
+// Mapbox API key
+config.mapboxApiKey = 'YOUR_API_KEY';
+
 // Google Maps API key (for Street View)
 config.gmapApiKey = 'YOUR_API_KEY';
 

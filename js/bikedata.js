@@ -14,6 +14,9 @@ var bikedata = (function ($) {
 		apiBaseUrl: 'https://api.cyclestreets.net',
 		apiKey: 'YOUR_API_KEY',
 		
+		// Mapbox API key
+		mapboxApiKey: 'YOUR_MAPBOX_API_KEY',
+		
 		// Initial lat/lon/zoom of map and tile layer
 		defaultLocation: {
 			latitude: 51.51137,
@@ -245,11 +248,13 @@ var bikedata = (function ($) {
 		strava: {
 			apiCall: false,
 			apiKey: false,
-			tileLayer: [
-				'https://tile.cyclestreets.net/strava/ride/{%style}/{z}/{x}/{y}@2x.png',	// E.g. https://heatmap-external-c.strava.com/tiles/ride/blue/11/1026/674.png?v=19
-				{maxZoom: 12, attribution: 'Strava heatmap', tileSize: 512},
-				'Strava heatmap'
-			]
+			tileLayer: {
+				tiles: 'https://tile.cyclestreets.net/strava/ride/{%style}/{z}/{x}/{y}@2x.png',	// E.g. https://heatmap-external-c.strava.com/tiles/ride/blue/11/1026/674.png?v=19
+				maxZoom: 11.999,
+				attribution: 'Strava heatmap',
+				tileSize: 512,
+				label: 'Strava heatmap'
+			}
 		},
 		
 		// https://www.cyipt.bike/api/#width
