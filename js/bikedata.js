@@ -304,6 +304,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>Pause</td><td>{properties.pause}</td></tr>'
 				+ '<tr><td>Type</td><td>{properties.ridingSurface}</td></tr>'
 				+ '</table>'
+				+ '<p>{%osmeditlink}</p>'
 		},
 		
 		// https://www.cyclescape.org/api
