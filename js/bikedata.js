@@ -1,7 +1,7 @@
 // Bikedata implementation code
 
 /*jslint browser: true, white: true, single: true, for: true */
-/*global $, alert, console, window */
+/*global $, alert, console, window, osm2geo */
 
 var bikedata = (function ($) {
 	
@@ -316,6 +316,24 @@ var bikedata = (function ($) {
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
+		},
+		
+		// OpenStreetMap; see: https://wiki.openstreetmap.org/wiki/API_v0.6
+		osm: {
+			apiCall: 'https://www.openstreetmap.org/api/0.6/map',	// Will return XML; see: https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
+			bbox: true,
+			dataType: 'xml',
+			minZoom: 19,
+			fullZoom: 19,
+			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
+			style: {
+				color: 'red'
+			},
+			convertData: function (osmXml) {
+				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
+				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString') });	// See: https://stackoverflow.com/a/2722213
+				return geojson;
+			}
 		}
 	};
 	

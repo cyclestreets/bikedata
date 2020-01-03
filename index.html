@@ -35,6 +35,9 @@
 	<!-- GeoJSON extent library; see: https://github.com/mapbox/geojson-extent -->
 	<script src="/js/lib/geojson-extent/geojson-extent.js"></script>
 	
+	<!-- OSM to GeoJSON library -->
+	<script src="/js/lib/osm2geo/osm2geo.js"></script>
+	
 	<!-- LayerViewer library, providing the application logic -->
 	<script type="text/javascript" src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.css" />
@@ -165,6 +168,12 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_groups" />
 							<a href="#groups" title="Cycle campaign groups" class="tooltip"><img src="/images/icons/dutchcycleways_good.svg" alt="" /><br />Campaign groups</a>
+						</li>
+						<li class="osm">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_osm" />
+							<a href="#osm" title="OpenStreetMap data" class="tooltip"><img src="/images/icons/icon_linked_points_neutral.svg" alt="" /><br />OSM</a>
 						</li>
 					</ul>
 				</div>
@@ -635,6 +644,13 @@
 							
 							<input type="checkbox" name="national" id="groups_national" value="1" /><label for="groups_national">Include national organisations</label>
 						</div>
+					</div>
+					
+					<div id="osm">
+						<h2>OSM data</h2>
+						<p>For ease of comparison with other data, this layer provides a live feed data from OpenStreetMap, limited to Ways only at present.</p>
+						<p>OSM data is only shown at zoom 19 or above, to avoid load on the OSM servers. Please enable the layer and zoom in closely.</p>
+						<p>Data licensed &copy; OpenStreetMap contributors.</p>
 					</div>
 					
 				</div>
