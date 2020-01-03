@@ -79,6 +79,12 @@
 							<input type="checkbox" name="show[]" id="show_collisions" />
 							<a href="#collisions" title="Collisions" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a>
 						</li>
+						<li class="tflcid">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_tflcid" />
+							<a href="#tflcid" title="TfL CID" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />TfL CID</a>
+						</li>
 						<li class="trafficcounts">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -632,6 +638,38 @@
 						
 						<div class="export button">
 							<p>Export: <img class="csv" src="/js/lib/Mapboxgljs.LayerViewer/images/page_excel.png" alt="Spreadsheet" /></p>
+						</div>
+					</div>
+					
+					<div id="tflcid">
+						<h2>TfL Cycling Infrastructure Database (CID)</h2>
+						
+						<p>TfL's CID is a comprehensive and attribute-rich dataset of all cycle infrastructure throughout London. The data is a snapshot in time ranging between January 2017 and May 2018.</p>
+						<p>The <a href="https://cycling.data.tfl.gov.uk/CyclingInfrastructure/documentation/cid_database_schema.xlsx">TfL CID schema</a> is available, as is a <a href="https://www.cyclestreets.net/api/v2/#infrastructuredatasetauditing">GeoJSON API</a> for developers. <a href="https://cycling.data.tfl.gov.uk/">Raw data downloads</a> are available from TfL.</p>
+						
+						<div class="filters">
+
+							<h3>Feature type:</h3>
+							
+							<div class="controls">
+								<select name="type">
+									<option value="">[All assets - no filter]</option>
+									<option value="advanced_stop_line">Advanced stop line</option>
+									<option value="crossing">Crossing</option>
+									<option value="cycle_lane_track">Cycle lane/track</option>
+									<option value="cycle_parking">Cycle parking</option>
+									<option value="restricted_point">Restricted point</option>
+									<option value="restricted_route">Restricted route</option>
+									<option value="signage">Signage</option>
+									<option value="signal">Signals</option>
+									<option value="traffic_calming">Traffic calming</option>
+								</select>
+							</div>
+							<div id="featuretypedescription">
+								<p class="smaller"></p>
+							</div>
+							<div id="featuretypefilters">
+							</div>
 						</div>
 					</div>
 					

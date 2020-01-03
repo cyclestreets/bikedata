@@ -318,6 +318,120 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
 		},
 		
+		// https://www.cyclestreets.net/api/v2/infrastructure.locations/
+		tflcid: {
+			apiCall: '/v2/infrastructure.locations',
+			apiFixedParameters: {
+				dataset: 'tflcid'
+			},
+			iconSize: [24, 24],
+			iconField: 'iconUrl',
+			style: {
+				color: 'red'
+			},
+			popupImagesField: 'images',
+			popupLabels: {
+				ss_road: 'Road marking',
+				ss_patch: 'Coloured patch on surface',
+				ss_facing: 'Facing off-side',
+				ss_nocyc: 'No cycling',
+				ss_noveh: 'No vehicles',
+				ss_circ: 'Circular/Rectangular',
+				ss_exempt: 'Exemption',
+				ss_noleft: 'No left turn exception',
+				ss_norigh: 'No right turn exception',
+				ss_left: 'Compulsory turn left exception',
+				ss_right: 'Compulsory turn right exception',
+				ss_noexce: 'No straight ahead exception',
+				ss_dismou: 'Cyclists dismount',
+				ss_end: 'End of Route',
+				ss_cycsmb: 'Cycle symbol',
+				ss_pedsmb: 'Pedestrian symbol',
+				ss_bussmb: 'Bus symbol',
+				ss_smb: 'Other vehicle symbol',
+				ss_lnsign: 'Line on sign',
+				ss_arrow: 'Direction arrow',
+				ss_nrcol: 'Road marking or Sign includes a number in a box',
+				ss_ncn: 'National Cycle Network',
+				ss_lcn: 'London Cycle Network',
+				ss_superh: 'Cycle Superhighway',
+				ss_quietw: 'Quietway',
+				ss_greenw: 'Greenway',
+				ss_routen: 'Route Number',
+				ss_destn: 'Destination',
+				ss_access: 'Access times',
+				ss_name: 'TSRGD Sign number',
+				sig_head: 'Cycle signal head',
+				sig_separa: 'Separate stage for cyclists',
+				sig_early: 'Early release',
+				sig_twostg: 'Two stage turn',
+				sig_gate: 'Cycle gate/Bus gate',
+				trf_raised: 'Raised table',
+				trf_entry: 'Raised side road entry treatment',
+				trf_cushi: 'Speed cushions',
+				trf_hump: 'Speed hump',
+				trf_sinuso: 'Sinusoidal',
+				trf_barier: 'Barrier',
+				trf_narow: 'Carriageway narrowing',
+				trf_calm: 'Other traffic calming',
+				rst_steps: 'Steps',
+				rst_lift: 'Lift',
+				prk_carr: 'Carriageway',
+				prk_cover: 'Covered',
+				prk_secure: 'Secure',
+				prk_locker: 'Locker',
+				prk_sheff: 'Sheffield',
+				prk_mstand: 'M stand',
+				prk_pstand: 'P stand',
+				prk_hoop: 'Cyclehoop',
+				prk_post: 'Post',
+				prk_buterf: 'Butterfly',
+				prk_wheel: 'Wheel rack',
+				prk_hangar: 'Bike hangar',
+				prk_tier: 'Two tier',
+				prk_other: 'Other / unknown',
+				prk_provis: 'Provision',
+				prk_cpt: 'Capacity',
+				clt_carr: 'On / Off Carriageway',
+				clt_segreg: 'Segregated lane / track',
+				clt_stepp: 'Stepped lane / track',
+				clt_parseg: 'Partially segregated lane / track',
+				clt_shared: 'Shared lane or footway',
+				clt_mandat: 'Mandatory cycle lane',
+				clt_advis: 'Advisory cycle lane',
+				clt_priori: 'Cycle lane/track priority',
+				clt_contra: 'Contraflow lane/track',
+				clt_bidire: 'Bi-directional',
+				clt_cbypas: 'Cycle bypass',
+				clt_bbypas: 'Continuous cycle facilities at bus stop',
+				clt_parkr: 'Park route',
+				clt_waterr: 'Waterside route',
+				clt_ptime: 'Full-time / Part-time',
+				clt_access: 'Access times',
+				asl_fdr: 'Feeder lane',
+				asl_fdrlft: 'Feeder lane on left',
+				asl_fdcent: 'Feeder Lane in centre',
+				asl_fdrigh: 'Feeder lane on right',
+				asl_shared: 'Shared nearside lane',
+				crs_signal: 'Signal controlled crossing',
+				crs_segreg: 'Segregated cycles and pedestrians',
+				crs_cygap: 'Cycle gap',
+				crs_pedest: 'Pedestrian Only Crossing',
+				crs_level: 'Level Crossing',
+				res_pedest: 'Pedestrian only route',
+				res_bridge: 'Pedestrian bridge',
+				res_tunnel: 'Pedestrian tunnel',
+				res_steps: 'Steps',
+				res_lift: 'Lift',
+				colour: 'Surface colour',
+				road_name: 'Road name',
+				osm_id: 'OSM way ID assignment'
+			},
+			popupFormatters: {
+				osm_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';}
+			}
+		},
+		
 		// OpenStreetMap; see: https://wiki.openstreetmap.org/wiki/API_v0.6
 		osm: {
 			apiCall: 'https://www.openstreetmap.org/api/0.6/map',	// Will return XML; see: https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
@@ -357,6 +471,9 @@ var bikedata = (function ($) {
 			
 			// Autocomplete
 			bikedata.autocomplete ();
+			
+			// Layer-specific behaviour
+			bikedata.tflCid ();
 		},
 		
 		
@@ -385,6 +502,96 @@ var bikedata = (function ($) {
 					});
 				}
 			});
+		},
+		
+		
+		// Layer-specific behaviour
+		tflCid: function ()
+		{
+			// Provide drop-down filters based on feature type, firstly getting the schema from the server
+			$.ajax({
+				url: _settings.apiBaseUrl + '/v2/infrastructure.schema?dataset=tflcid&key=' + _settings.apiKey,
+				success: function (schema) {
+					
+					// Load description for type dropdown and filters
+					var field = $("form #tflcid select[name='type']").val ();
+					bikedata.setFilters (schema, field);
+					$("form #tflcid select[name='type']").on ('change', function () {
+						bikedata.setFilters (schema, this.value);
+					});
+				}
+			});
+		},
+		
+		
+		// Helper function to set the field
+		setFilters: function (schema, field)
+		{
+			// If no field selected (i.e. blank option), set HTML to be empty
+			if (!field) {
+				$('#featuretypedescription p').html ('All feature types are shown. Change the box above to filter to particular asset types.');
+				$('#featuretypefilters').html ('');
+				return;
+			}
+			
+			// Set description for type dropdown
+			$('#featuretypedescription p').html (schema[field]['description']);
+			
+			// Obtain the selected fields
+			var fields = schema[field]['fields'];
+			
+			// Create HTML controls for each field
+			var html = '<p>Filter to:</p>';
+			$.each (fields, function (field, attributes) {
+				var fieldname = 'field:' + field;
+				
+				// Parse out the form field
+				var matches = attributes.datatype.match (/^([A-Z]+)\((.+)\)$/);
+				var type = matches[1];
+				var option = matches[2];
+				var widgetHtml = '';
+				switch (type) {
+					case 'VARCHAR':
+						widgetHtml = '<input name="' + fieldname + '" type="text" maxlength=' + option + '" />';
+						break;
+					case 'INT':
+						widgetHtml = '<input name="' + fieldname + '" type="number" maxlength=' + option + '" step="1" min="0" style="width: 4em;" />';
+						break;
+					case 'ENUM':
+						var matches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
+						if (matches) {
+							for (var i=0, len=matches.length; i<len; i++) {
+								matches[i] = matches[i].replace(/'/g, '');
+							}
+						}
+						widgetHtml  = '<select name="' + fieldname + '">';
+						widgetHtml += '<option value="">';
+						$.each (matches, function (index, value) {
+							widgetHtml += '<option value="' + value + '">' + value + '</option>'
+						});
+						widgetHtml += '</select>';
+				}
+				
+				// Assemble the HTML
+				html += '<hr />';
+				html += '<p>' + layerviewer.htmlspecialchars (attributes.field) + ':</p>';
+				html += '<p>' + widgetHtml + '</p>';
+				html += '<p class="smaller">' + layerviewer.htmlspecialchars (attributes.description) + '</p>';
+			});
+			
+			// Add reset link
+			// #!# Doesn't currently force a form/URL rescan
+			html = '<p class="smaller right"><a id="resetfilters" href="#">[Reset filters]</a></p>' + html;
+			$(document).on ('click', '#resetfilters', function (e) {
+				$.each (fields, function (field, attributes) {
+					var fieldname = 'field:' + field;
+					$('input[name="' + fieldname + '"], select[name="' + fieldname + '"]').val (function() {return this.defaultValue;} );	// https://stackoverflow.com/a/8668089/180733
+				});
+				e.preventDefault ();
+			});
+			
+			// Show the HTML
+			$('#featuretypefilters').html (html);
 		}
 	};
 	
