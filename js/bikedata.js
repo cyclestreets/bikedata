@@ -322,7 +322,8 @@ var bikedata = (function ($) {
 		tflcid: {
 			apiCall: '/v2/infrastructure.locations',
 			apiFixedParameters: {
-				dataset: 'tflcid'
+				dataset: 'tflcid',
+				thumbnailsize: 400
 			},
 			iconSize: [24, 24],
 			iconField: 'iconUrl',
