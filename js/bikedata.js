@@ -365,6 +365,7 @@ var bikedata = (function ($) {
 				ss_destn: 'Destination',
 				ss_access: 'Access times',
 				ss_name: 'TSRGD Sign number',
+				ss_colour: 'Colour of Patch',
 				sig_head: 'Cycle signal head',
 				sig_separa: 'Separate stage for cyclists',
 				sig_early: 'Early release',
@@ -429,7 +430,8 @@ var bikedata = (function ($) {
 				res_lift: 'Lift',
 				colour: 'Surface colour',
 				road_name: 'Road name',
-				osm_id: 'OSM way ID assignment'
+				osm_id: 'OSM way ID assignment',
+				'_type': 'Asset type'
 			},
 			popupFormatters: {
 				osm_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';}
