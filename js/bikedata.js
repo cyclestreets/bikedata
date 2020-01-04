@@ -327,7 +327,9 @@ var bikedata = (function ($) {
 			iconSize: [24, 24],
 			iconField: 'iconUrl',
 			style: {
-				color: 'red'
+				LineString: {
+					'line-color': 'red'
+				}
 			},
 			popupImagesField: 'images',
 			popupLabels: {
@@ -441,7 +443,9 @@ var bikedata = (function ($) {
 			fullZoom: 19,
 			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
 			style: {
-				color: 'red'
+				LineString: {
+					'line-color': 'red'
+				}
 			},
 			convertData: function (osmXml) {
 				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
