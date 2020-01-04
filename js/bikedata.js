@@ -328,7 +328,8 @@ var bikedata = (function ($) {
 			iconField: 'iconUrl',
 			style: {
 				LineString: {
-					'line-color': 'red'
+					'line-color': 'red',
+					'line-width': 3
 				}
 			},
 			popupImagesField: 'images',
@@ -444,7 +445,8 @@ var bikedata = (function ($) {
 			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
 			style: {
 				LineString: {
-					'line-color': 'red'
+					'line-color': 'red',
+					'line-width': 3
 				}
 			},
 			convertData: function (osmXml) {
