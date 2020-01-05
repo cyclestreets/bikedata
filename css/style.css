@@ -118,5 +118,6 @@ ul.tabs li.ui-state-active a {background-color: #333; color: white;}
 	#selector {width: 90px;}
 	#selector ul li a {font-size: 0.83em;}
 	#sections {width: 150px; padding: 0 10px 20px; font-size: 0.83em;}
+	#map .mapboxgl-ctrl-attrib {margin-right: 10px /* default */;}
 }
 
