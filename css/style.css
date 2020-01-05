@@ -46,7 +46,6 @@ footer p a {color: #ccc; text-decoration: none;}
 nav {color: white;}
 nav a {color: white; text-decoration: none; border-bottom: 1px solid gray;}
 #map .mapboxgl-ctrl-attrib {margin-right: 335px;}
-#map #styleswitcher {position: relative; right: 340px;}
 
 /* Layer-specific popup styling */
 #map .mapboxgl-popup.trafficcounts .mapboxgl-popup-content {min-width: 500px; max-width: 500px;}
