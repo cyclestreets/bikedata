@@ -132,6 +132,7 @@ var bikedata = (function ($) {
 				limit: 400
 			},
 			iconField: 'iconUrl',
+			iconSize: [28, 28],
 			popupHtml:
 				  '<p><strong>Cycle hire dock</strong></p>'
 				+ '<p>{properties.name}</p>'
@@ -153,6 +154,7 @@ var bikedata = (function ($) {
 				limit: 400
 			},
 			iconUrl: '/images/icons/cycleparking_good.svg',
+			iconSize: [24, 24],
 			popupHtml:
 				  '<p><strong>Cycle parking</strong></p>'
 				+ '<table>'
