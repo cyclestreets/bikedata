@@ -119,6 +119,9 @@ var bikedata = (function ($) {
 			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
 				+ '<p>{properties.address}</p>'
+				+ '<p>Size of development: <strong>{properties.app_size}</strong><br />'
+				+ 'Type of development: <strong>{properties.app_type}</strong><br />'
+				+ 'Status: <strong>{properties.app_state}</strong></p>'
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
 				+ 'Local Authority: {properties.authority_name}<br />'
 				+ 'Date: {properties.start_date}</p>'
