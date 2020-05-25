@@ -177,6 +177,12 @@
 							<input type="checkbox" name="show[]" id="show_groups" />
 							<a href="#groups" title="Cycle campaign groups" class="tooltip"><img src="/images/icons/dutchcycleways_good.svg" alt="" /><br />Campaign groups</a>
 						</li>
+						<li class="howfar">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_howfar" />
+							<a href="#howfar" title="How far can I cycle?" class="tooltip"><img src="/images/icons/routesigns_good.svg" alt="" /><br />How far?</a>
+						</li>
 						<li class="osm">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -709,6 +715,36 @@
 							<h3>Filter:</h3>
 							
 							<input type="checkbox" name="national" id="groups_national" value="1" /><label for="groups_national">Include national organisations</label>
+						</div>
+					</div>
+					
+					<div id="howfar">
+						<h2>How far can I cycle?</h2>
+						<p>This chart shows you how far you can cycle from a point you specify.</p>
+						<p>Drag the marker to set the location.</p>
+						<p class="small">Note that the supported area is currently limited to London.</p>
+						
+						<div class="filters">
+							<h3>Journey details:</h3>
+							
+							<!-- Marker location -->
+							<input type="hidden" name="lonlat" value="-0.13220,51.51549" />
+							
+							<h4>Distance(s):</h4>
+							<ul class="controls">
+								<!--<li><input type="checkbox" name="timeSecondsCsv[]" id="timeSecondsCsv_600" value="600" /><label for="timeSecondsCsv_600">10 minutes</label></li>-->
+								<li><input type="checkbox" checked="checked" name="timeSecondsCsv[]" id="timeSecondsCsv_1200" value="1200" /><label for="timeSecondsCsv_1200">20 minutes</label></li>
+								<li><input type="checkbox" name="timeSecondsCsv[]" id="timeSecondsCsv_1800" value="1800" /><label for="timeSecondsCsv_1800">30 minutes</label></li>
+								<li><input type="checkbox" name="timeSecondsCsv[]" id="timeSecondsCsv_2700" value="2700" /><label for="timeSecondsCsv_1800">45 minutes</label></li>
+								<li><input type="checkbox" name="timeSecondsCsv[]" id="timeSecondsCsv_3600" value="3600" /><label for="timeSecondsCsv_3600">60 minutes</label></li>
+							</ul>
+							
+							<h4>Route type:</h4>
+							<select name="plan" id="plan">
+								<option value="balanced" id="plan_balanced">Balanced route</option>
+								<option value="fastest" id="plan_fastest">Fastest route</option>
+								<option value="quietest" id="plan_quietest">Quietest route</option>
+							</select>
 						</div>
 					</div>
 					

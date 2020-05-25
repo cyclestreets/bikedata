@@ -329,6 +329,14 @@ var bikedata = (function ($) {
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
 		},
 		
+		// https://www.cyclestreets.net/api/v2/isochrones.show/
+		howfar: {
+			apiCall: '/v2/isochrones.show',
+			iconUrl: '/images/icons/destinations_good.svg',
+			setMarker: 'lonlat',
+			polygonStyle: 'blue'
+		},
+		
 		// https://www.cyclestreets.net/api/v2/infrastructure.locations/
 		tflcid: {
 			apiCall: '/v2/infrastructure.locations',
