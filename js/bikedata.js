@@ -116,6 +116,12 @@ var bikedata = (function ($) {
 			},
 			apiKey: false,
 			iconUrl: '/images/icons/signs_neutral.svg',
+			iconSizeField: 'app_size',
+			iconSizes: {
+				'Small': [24, 24],
+				'Medium': [36, 36],
+				'Large': [50, 50],
+			},
 			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
 				+ '<p>{properties.address}</p>'
