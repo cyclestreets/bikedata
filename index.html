@@ -249,24 +249,16 @@
 								<input type="checkbox" name="field:casualties[]" id="casualties_Car_occupant" value="Car occupant" /><label for="casualties_Car_occupant">Car occupant</label><br />
 							</div>
 							
-							<div class="controls">
-								In year <select name="accyr" id="accyr">
-									<option value="" id="accyr___NULL">All</option>
-									<option value="2017" id="severity_2017">2017</option>
-									<option value="2016" id="severity_2016">2016</option>
-									<option value="2015" id="severity_2015">2015</option>
-									<option value="2014" id="severity_2014">2014</option>
-									<option value="2013" id="severity_2013">2013</option>
-									<option value="2012" id="severity_2012">2012</option>
-									<option value="2011" id="severity_2011">2011</option>
-									<option value="2010" id="severity_2010">2010</option>
-									<option value="2009" id="severity_2009">2009</option>
-									<option value="2008" id="severity_2008">2008</option>
-									<option value="2007" id="severity_2007">2007</option>
-									<option value="2006" id="severity_2006">2006</option>
-									<option value="2005" id="severity_2005">2005</option>
+							<h4>Date range:</h4>
+							<p>&nbsp;
+								<select name="since" data-yearly-range-since-sqldate="2005,2017">
+									<option value=""></option>
 								</select>
-							</div>
+								-
+								<select name="until" data-yearly-range-until-sqldate="2005,2017">
+									<option value=""></option>
+								</select>
+							</p>
 							
 							<!--
 							<h4>With a:</h4>
