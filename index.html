@@ -226,13 +226,13 @@
 						<h2>Collisions</h2>
 						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure. Data is from DfT/police STATS19, from 2005-2017.</p>
 						<p>Zoom in to see all - while zoomed out only a selection is shown due to the volume.</p>
-
+						
 						<div class="filters">
 							<h3>Filter to:</h3>
-								
+							
 							<h4>Severity:</h4>
 							<div class="controls">
-								<select name="severity" id="severity">
+								<select name="field:severity" id="severity">
 									<option value="" id="severity___NULL">All</option>
 									<option value="fatal" id="severity_fatal">Fatal</option>
 									<option value="fatal,serious" id="severity_fatalserious">Fatal / serious</option>
@@ -244,9 +244,9 @@
 							
 							<h4>Casualty:</h4>
 							<div class="controls">
-								<input type="checkbox" checked="checked" name="casualties[]" id="casualties_Cyclist" value="Cyclist" /><label for="casualties_Cyclist">Cyclist</label><br />
-								<input type="checkbox" name="casualties[]" id="casualties_Pedestrian" value="Pedestrian" /><label for="casualties_Pedestrian">Pedestrian</label><br />
-								<input type="checkbox" name="casualties[]" id="casualties_Car_occupant" value="Car occupant" /><label for="casualties_Car_occupant">Car occupant</label><br />
+								<input type="checkbox" checked="checked" name="field:casualties[]" id="casualties_Cyclist" value="Cyclist" /><label for="casualties_Cyclist">Cyclist</label><br />
+								<input type="checkbox" name="field:casualties[]" id="casualties_Pedestrian" value="Pedestrian" /><label for="casualties_Pedestrian">Pedestrian</label><br />
+								<input type="checkbox" name="field:casualties[]" id="casualties_Car_occupant" value="Car occupant" /><label for="casualties_Car_occupant">Car occupant</label><br />
 							</div>
 							
 							<div class="controls">
@@ -271,18 +271,18 @@
 							<!--
 							<h4>With a:</h4>
 							<div class="controls">
-								<input type="checkbox" checked="checked" name="involved[]" id="involved_Car_occupant" value="Driver" /><label for="involved_Car_occupant">Driver</label>
-								<input type="checkbox" name="involved[]" id="involved_Cyclist" value="Cyclist" /><label for="involved_Cyclist">Cyclist</label>
-								<input type="checkbox" name="involved[]" id="involved_Pedestrian" value="Pedestrian" /><label for="involved_Pedestrian">Ped</label><br />
+								<input type="checkbox" checked="checked" name="field:involved[]" id="involved_Car_occupant" value="Driver" /><label for="involved_Car_occupant">Driver</label>
+								<input type="checkbox" name="field:involved[]" id="involved_Cyclist" value="Cyclist" /><label for="involved_Cyclist">Cyclist</label>
+								<input type="checkbox" name="field:involved[]" id="involved_Pedestrian" value="Pedestrian" /><label for="involved_Pedestrian">Ped</label><br />
 							</div>
 							-->
 							
 							<h4>Limit to:</h4>
 							<div class="controls">
-								<input type="checkbox" name="Junction_Detail" value="1,2,3,5,6,7" id="junctions" /><label for="junctions">Junctions</label><br />
-								<input type="checkbox" name="Road_Type" value="2" id="onewaystreets" /><label for="onewaystreets">One-way streets</label><br />
-								<input type="checkbox" name="1st_Road_Class" value="1,2,3" id="aroads" /><label for="aroads" title="A, A(M), and motorways">A-roads</label><br />
-								<select name="Speed_limit" id="speedlimit">
+								<input type="checkbox" name="field:Junction_Detail" value="1,2,3,5,6,7" id="junctions" /><label for="junctions">Junctions</label><br />
+								<input type="checkbox" name="field:Road_Type" value="2" id="onewaystreets" /><label for="onewaystreets">One-way streets</label><br />
+								<input type="checkbox" name="field:1st_Road_Class" value="1,2,3" id="aroads" /><label for="aroads" title="A, A(M), and motorways">A-roads</label><br />
+								<select name="field:Speed_limit" id="speedlimit">
 									<option value="" id="speedlimit___NULL">All</option>
 									<option value="20" id="speedlimit_20">20 mph</option>
 									<option value="20,30" id="speedlimit_20_30">20/30mph</option>

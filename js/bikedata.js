@@ -50,7 +50,6 @@ var bikedata = (function ($) {
 				datetime: 'friendly'
 			},
 			fullZoom: 17,
-			parameterNamespace: 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/
 			sendZoom: true,	// Needed for jitter support
 			iconField: 'severity',
 			icons: {
