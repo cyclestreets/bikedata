@@ -117,6 +117,12 @@
 							<input type="checkbox" name="show[]" id="show_bikeshare" />
 							<a href="#bikeshare" title="Bikeshare" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Bikeshare</a>
 						</li>
+						<li class="popupcycleways">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_popupcycleways" />
+							<a href="#popupcyclewayssuggested" title="Popup cycleways" class="tooltip"><img src="/images/icons/roadworks_good.svg" alt="" /><br />Popup cycleways</a>
+						</li>
 						<li class="widths">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -447,6 +453,13 @@
 						<p>Data here currently covers only London and Barcelona, but will be extended in due course.</p>
 					</div>
 					
+					<div id="popupcycleways">
+						<h2>Popup cycleways - suggested</h2>
+						<p>This layer shows potential suggested popup cycleways, arising from research at Leeds University.</p>
+						<p>For full details, see the <a target="_blank" href="https://www.cyipt.bike/rapid/">Rapid Cycleway Prioritisation Tool</a>.</p>
+					</div>
+					
+
 					<!--
 					<div id="taxidata">
 						<h2>Taxi data</h2>

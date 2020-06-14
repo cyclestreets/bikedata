@@ -147,6 +147,17 @@ var bikedata = (function ($) {
 				+ '<p>{properties.notes}</p>'
 		},
 		
+		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.suggested/
+		popupcycleways: {
+			apiCall: '/v2/advocacydata.popupcycleways.suggested',
+			minZoom: 9,
+			style: {
+				LineString: {
+					'line-color': 'purple'
+				}
+			},
+		},
+		
 		triplengths: {
 			apiCall: '/v2/usage.journeylengths',
 			polygonStyle: 'grid',
