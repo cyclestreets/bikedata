@@ -117,11 +117,17 @@
 							<input type="checkbox" name="show[]" id="show_bikeshare" />
 							<a href="#bikeshare" title="Bikeshare" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Bikeshare</a>
 						</li>
+						<li class="popupcyclewaylocations">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_popupcyclewaylocations" />
+							<a href="#popupcyclewaylocations" title="Popup cycleway locations" class="tooltip"><img src="/images/icons/roadworks_good.svg" alt="" /><br />Popup cycleway locations</a>
+						</li>
 						<li class="popupcycleways">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_popupcycleways" />
-							<a href="#popupcycleways" title="Popup cycleways" class="tooltip"><img src="/images/icons/roadworks_good.svg" alt="" /><br />Popup cycleways</a>
+							<a href="#popupcycleways" title="Popup cycleways" class="tooltip"><img src="/images/icons/roadworks_good.svg" alt="" /><br />Popup cycleway suggestions</a>
 						</li>
 						<li class="widths">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
@@ -457,6 +463,13 @@
 						<h2>Popup cycleways - suggested</h2>
 						<p>This layer shows potential suggested popup cycleways, arising from research at Leeds University.</p>
 						<p>For full details, see the <a target="_blank" href="https://www.cyipt.bike/rapid/">Rapid Cycleway Prioritisation Tool</a>.</p>
+					</div>
+					
+					<div id="popupcyclewaylocations">
+						<h2>Popup cycleways - locations being implemented</h2>
+						<p>This layer shows potential popup cycleways being implemented by councils.</p>
+						<p>Many thanks to Cycling UK for their work collecting this data, whose <a href="https://www.google.com/maps/d/viewer?mid=1CbqvW6Q-FQaPzIeXwnzmS4l2pDJjtWry" target="_blank">map</a> we have used.</p>
+						<p>Nothing from your council on this map? <a href="https://action.cyclinguk.org/page/59646/action/1?ea.tracking.id=bikedata" target="_blank">E-mail them now.</a></p>
 					</div>
 					
 
