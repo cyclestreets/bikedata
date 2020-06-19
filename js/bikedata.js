@@ -338,7 +338,7 @@ var bikedata = (function ($) {
 			apiFixedParameters: {
 				limit: 400,
 				types: 'way',
-				wayFields: 'name,ridingSurface,id,cyclableText,quietness,speed,pause,color,id'
+				wayFields: 'name,ridingSurface,id,cyclableText,quietness,speedMph,speedKmph,pause,color,id'
 			},
 			sendZoom: true,
 			popupHtml:
@@ -347,7 +347,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>Type:</td><td>{properties.ridingSurface}</td></tr>'
 				+ '<tr><td>Cyclable?:</td><td>{properties.cyclableText}</td></tr>'
 				+ '<tr><td>Quietness:</td><td><strong>{properties.quietness}%</strong></td></tr>'
-				+ '<tr><td>Speed (max achievable):</td><td><strong>{properties.speed} km/h</strong></td></tr>'
+				+ '<tr><td>Speed (max achievable):</td><td><strong>{properties.speedMph} mph</strong><br />({properties.speedKmph} km/h)</td></tr>'
 				+ '<tr><td>Pause:</td><td>{properties.pause}</td></tr>'
 				+ '<tr><td>Full details:</td><td>OSM #<a href="https://www.openstreetmap.org/way/{properties.id}" target="_blank" title="[Link opens in a new window]">{properties.id}</a></td></tr>'
 				+ '</table>'
