@@ -195,6 +195,12 @@
 							<input type="checkbox" name="show[]" id="show_howfar" />
 							<a href="#howfar" title="How far can I cycle?" class="tooltip"><img src="/images/icons/routesigns_good.svg" alt="" /><br />How far?</a>
 						</li>
+						<li class="tflcid2osm">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_tflcid2osm" />
+							<a href="#tflcid2osm" title="TfL CID as OSM format" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />TfL CID as OSM</a>
+						</li>
 						<li class="osm">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" />
 							<p class="total"></p>
@@ -767,6 +773,64 @@
 								<option value="fastest" id="plan_fastest">Fastest route</option>
 								<option value="quietest" id="plan_quietest">Quietest route</option>
 							</select>
+						</div>
+					</div>
+					
+					<div id="tflcid2osm">
+						<h2>TfL Cycling Infrastructure Database (CID) as OSM format</h2>
+						
+						<p>TfL's CID is a comprehensive and attribute-rich dataset of all cycle infrastructure throughout London. The data is a snapshot in time ranging between January 2017 and May 2018.</p>
+						<p>This layer shows the CID data converted as an OSM-compatible dataset, matched to geometries and with properties converted.</p>
+						<p>The <a href="https://github.com/cyclestreets/tflcid-conversion" target="_blank">conversion script and resulting data</a> are available on Github.</p>
+						
+						<div class="filters">
+
+							<h3>Feature type:</h3>
+							
+							<div class="controls">
+								<select name="type">
+									<optgroup label="Crossings">
+										<option value="crossings_junctions">crossings_junctions (264)</option>
+										<option value="crossings_rail">crossings_rail (21)</option>
+										<option value="crossings_tags_changed">crossings_tags_changed (296)</option>
+										<option value="crossings_to_check">crossings_to_check (242)</option>
+									</optgroup>
+									<optgroup label="Cycle lane/track">
+										<option value="clt_footways_full">clt_footways_full (180)</option>
+										<option value="clt_footways_partial">clt_footways_partial (322)</option>
+										<option value="clt_roads_contra">clt_roads_contra (711)</option>
+										<option value="clt_roads_full">clt_roads_full (824)</option>
+										<option value="clt_roads_partial">clt_roads_partial (7,973)</option>
+										<option value="clt_roads_separate">clt_roads_separate (286)</option>
+										<option value="clt_roads_unmatched">clt_roads_unmatched (645)</option>
+										<option value="clt_tracks_new">clt_tracks_new (1,447)</option>
+									</optgroup>
+									<optgroup label="Cycle parking">
+										<option value="parking_new">parking_new (18,480)</option>
+									</optgroup>
+									<optgroup label="Restricted route">
+										<option value="restricted_routes_cycleways">restricted_routes_cycleways (220)</option>
+										<option value="restricted_routes_new">restricted_routes_new (643)</option>
+									</optgroup>
+									<optgroup label="Traffic calming">
+										<option value="barriers_cycleways">barriers_cycleways (182)</option>
+										<option value="barriers_new">barriers_new (231)</option>
+										<option value="barriers_to_check">barriers_to_check (43)</option>
+										<option value="bumps_cycleway">bumps_cycleway (130)</option>
+										<option value="bumps_road">bumps_road (45,695)</option>
+										<option value="bumps_to_check">bumps_to_check (790)</option>
+										<option value="chicanes_islands">chicanes_islands (37)</option>
+										<option value="chicanes_new">chicanes_new (556)</option>
+										<option value="chicanes_to_check">chicanes_to_check (9)</option>
+										<option value="sideroads_at_junctions">sideroads_at_junctions (787)</option>
+										<option value="sideroads_existing">sideroads_existing (355)</option>
+										<option value="sideroads_new">sideroads_new (6,422)</option>
+										<option value="sideroads_to_check">sideroads_to_check (129)</option>
+										<option value="tables">tables (2,909)</option>
+										<option value="tables_to_check">tables_to_check (135)</option>
+									</optgroup>
+								</select>
+							</div>
 						</div>
 					</div>
 					

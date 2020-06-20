@@ -493,6 +493,22 @@ var bikedata = (function ($) {
 			}
 		},
 		
+		tflcid2osm: {
+			apiCall: '/v2/advocacydata.tflcid2osm',
+			iconUrl: '/images/icons/bicycles_good.svg',
+			style: {
+				LineString: {
+					'line-color': 'purple',
+					'line-width': 12
+				}
+			},
+			popupImagesField: 'images',
+			popupFormatters: {
+				osm_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/' + (feature.geometry.type == 'Point' ? 'node' : 'way') + '/' + value + '" target="_blank">' + value + '</a>';},
+				osm_way_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';}
+			}
+		},
+		
 		// OpenStreetMap; see: https://wiki.openstreetmap.org/wiki/API_v0.6
 		osm: {
 			apiCall: 'https://www.openstreetmap.org/api/0.6/map',	// Will return XML; see: https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
