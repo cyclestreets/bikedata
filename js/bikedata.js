@@ -338,7 +338,7 @@ var bikedata = (function ($) {
 			apiFixedParameters: {
 				limit: 400,
 				types: 'way',
-				wayFields: 'name,ridingSurface,id,cyclableText,quietness,speedMph,speedKmph,pause,color,id'
+				wayFields: 'name,ridingSurface,id,cyclableText,quietness,speedMph,speedKmph,pause,color'
 			},
 			sendZoom: true,
 			popupHtml:
