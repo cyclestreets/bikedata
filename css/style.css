@@ -32,8 +32,12 @@ footer p a {color: #ccc; text-decoration: none;}
 #globalsites ul li a {display: block; height: 28px; padding: 2px 20px; margin: 0; border-top: 2px solid white;}
 #globalsites ul li.cyclestreets a {border-color: LightGoldenRodYellow;}
 #globalsites ul li.cyclestreets a:hover {background-color: LightGoldenRodYellow; color: gray;}
+#globalsites ul li.widenmypath a {border-color: #683047;}
+#globalsites ul li.widenmypath a:hover {background-color: #4d0026;}
 #globalsites ul li.cyclescape a {border-color: green;}
 #globalsites ul li.cyclescape a:hover {background-color: green;}
+#globalsites ul li.streetfocus a {border-color: lightblue;}
+#globalsites ul li.streetfocus a:hover {background-color: lightblue;}
 #globalsites ul li.bikedata a {border-color: purple;}
 #globalsites ul li.bikedata a:hover {background-color: purple;}
 #globalsites ul li.bikedata.selected a {background: rgba(128,0,128,0.4);}
