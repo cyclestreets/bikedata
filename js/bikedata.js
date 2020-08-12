@@ -504,8 +504,12 @@ var bikedata = (function ($) {
 			},
 			popupImagesField: 'images',
 			popupFormatters: {
-				osm_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/' + (feature.geometry.type == 'Point' ? 'node' : 'way') + '/' + value + '" target="_blank">' + value + '</a>';},
-				osm_way_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';}
+				osm_id: function (value, feature) {
+					return '<a href="https://www.openstreetmap.org/' + (feature.geometry.type == 'Point' ? 'node' : 'way') + '/' + value + '" target="_blank">' + value + '</a>';
+				},
+				osm_way_id: function (value, feature) {
+					return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';
+				}
 			}
 		},
 		
