@@ -20,7 +20,7 @@
 	
 	<script src="/js/lib/Full-Tilt/dist/fulltilt.min.js"></script>
 	
-	<script type="text/javascript" src="/js/lib/mapbox-gl-draw/mapbox-gl-draw.js"></script>
+	<script src="/js/lib/mapbox-gl-draw/mapbox-gl-draw.js"></script>
 	<link rel="stylesheet" href="/js/lib/mapbox-gl-draw/mapbox-gl-draw.css" rel="stylesheet" />
 	
 	<script src="/js/lib/js-cookie/js.cookie.js"></script>
@@ -41,15 +41,15 @@
 	<script src="/js/lib/osm2geo/osm2geo.js"></script>
 	
 	<!-- LayerViewer library, providing the application logic -->
-	<script type="text/javascript" src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js"></script>
+	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.css" />
-	<script type="text/javascript" src="/js/lib/Mapboxgljs.LayerViewer/lib/geocoder.js"></script>
+	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/geocoder.js"></script>
 	
 	<!-- Bikedata application and its config, implementing the LayerViewer library -->
-	<script type="text/javascript" src="/.config.js"></script>
-	<script type="text/javascript" src="/js/bikedata.js?200616"></script>
+	<script src="/.config.js"></script>
+	<script src="/js/bikedata.js?200616"></script>
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
-	<script type="text/javascript">
+	<script>
 		$(function() {
 			bikedata.initialise (config);
 		});
@@ -318,7 +318,7 @@
 						<div id="compare" class="filters">
 							<h3>&#10018; Comparison charts:</h3>
 						
-							<script type="text/javascript">
+							<script>
 								$(function() {
 									$(':checkbox.enable').on('change', function() {
 										$(this).closest('div').toggleClass('enabled', this.checked);
