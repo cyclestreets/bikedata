@@ -130,7 +130,7 @@ var bikedata = (function ($) {
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
 				+ 'Local Authority: {properties.authority_name}<br />'
 				+ 'Date: {properties.start_date}</p>'
-				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
+				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
 		bikeshare: {
@@ -267,7 +267,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
 				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
 				+ '</table>'
-				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
+				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
 			detailsOverlay: 'apiUrl',
 			overlayHtml:
 				  '<table class="fullimage">'
