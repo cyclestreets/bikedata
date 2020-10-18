@@ -373,6 +373,24 @@ var bikedata = (function ($) {
 			polygonStyle: 'blue'
 		},
 		
+		// https://footways.london/map#digital
+		footways: {
+			apiCall: 'https://www.google.com/maps/d/kml?forcekml=1&mid=1djPyfTHyWyHfqVNNIqStpRbvXZ7yabk0',
+			dataType: 'kml',
+			bbox: false,
+			style: {
+				LineString: {
+					'line-color': '#3e97a8',
+					'line-width': 10
+				},
+				Point: {
+					'circle-color': '#3e97a8',
+					'circle-radius': 10
+				}
+			},
+			popupHtml: '<p>{properties.name}</p>'
+		},
+		
 		// https://www.cyclestreets.net/api/v2/infrastructure.locations/
 		tflcid: {
 			apiCall: '/v2/infrastructure.locations',

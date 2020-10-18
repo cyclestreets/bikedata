@@ -40,6 +40,9 @@
 	<!-- OSM to GeoJSON library -->
 	<script src="/js/lib/osm2geo/osm2geo.js"></script>
 	
+	<!-- KML/etc. to GeoJSON library; see: https://github.com/mapbox/togeojson -->
+	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/togeojson/togeojson.min.js"></script>
+	
 	<!-- LayerViewer library, providing the application logic -->
 	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?201017"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.css" />
@@ -190,6 +193,12 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_howfar" />
 							<a href="#howfar" title="How far can I cycle?" class="tooltip"><img src="/images/icons/routesigns_good.svg" alt="" /><br />How far?</a>
+						</li>
+						<li class="footways">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_footways" />
+							<a href="#footways" title="Footways London" class="tooltip"><img src="/images/icons/track_neutral.svg" alt="" /><br />Footways London</a>
 						</li>
 						<li class="tflcid">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
@@ -776,6 +785,12 @@
 								<option value="quietest" id="plan_quietest">Quietest route</option>
 							</select>
 						</div>
+					</div>
+					
+					<div id="footways">
+						<h2>Footways London</h2>
+						<p>Footways is a network of quiet and interesting streets for walking in central London.</p>
+						<p>For more information, see <a href="https://footways.london/" target="_blank">footways.london</a>.</p>
 					</div>
 					
 					<div id="tflcid2osm">
