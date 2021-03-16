@@ -373,6 +373,21 @@ var bikedata = (function ($) {
 			polygonStyle: 'blue'
 		},
 		
+		// LTNs
+		ltns: {
+			apiCall: '/v2/advocacydata.ltns',
+			lineColourApiField: 'colour',
+			zoomInitial: 14,
+			name: 'LTNs',
+			description: 'LTNs and rat-runs - experimental data',
+			legend: [
+				['LTN', '#4d4'],
+				['Traffic-calmed', '#f80'],
+				['Rat-runs', '#d44'],
+				['Main roads', '#888']
+			]
+		},
+		
 		// https://footways.london/map#digital
 		footways: {
 			apiCall: 'https://www.google.com/maps/d/kml?forcekml=1&mid=1djPyfTHyWyHfqVNNIqStpRbvXZ7yabk0',
