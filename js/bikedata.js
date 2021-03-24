@@ -380,16 +380,6 @@ var bikedata = (function ($) {
 			zoomInitial: 14,
 			name: 'LTNs',
 			description: 'LTNs and rat-runs - experimental data',
-			iconUrl: '/images/icons/obstructions_neutral.svg',
-			/*
-			iconField: 'modalfilter',
-			icons: {
-				bollard: '/images/icons/roadworks_neutral.svg',
-				gate: '/images/icons/obstructions_neutral.svg',
-				gap: '/images/icons/bikeshare_neutral.svg',
-			},
-			*/
-			iconSize: [28, 28],
 			legend: [
 				['LTN', '#4d4'],
 				['Traffic-calmed', '#f80'],
