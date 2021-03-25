@@ -376,6 +376,7 @@ var bikedata = (function ($) {
 		// LTNs
 		ltns: {
 			apiCall: '/v2/advocacydata.ltns',
+			sendZoom: true,
 			lineColourApiField: 'colour',
 			zoomInitial: 14,
 			name: 'LTNs',
