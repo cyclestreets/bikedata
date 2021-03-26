@@ -31,6 +31,9 @@ var bikedata = (function ($) {
 		// Icon size, set globally for all layers
 		iconSize: [38, 42],
 		
+		// Zoom position
+		zoomPosition: 'top-left',
+		
 		// Enable scale bar
 		enableScale: true,
 		
