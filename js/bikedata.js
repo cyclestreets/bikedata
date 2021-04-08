@@ -389,7 +389,8 @@ var bikedata = (function ($) {
 				['Traffic-calmed', '#f80'],
 				['Rat-runs', '#d44'],
 				['Main roads', '#888']
-			]
+			],
+			streetview: true
 		},
 		
 		// https://footways.london/map#digital
