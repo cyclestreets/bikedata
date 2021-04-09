@@ -382,8 +382,8 @@ var bikedata = (function ($) {
 			sendZoom: true,
 			lineColourApiField: 'colour',
 			zoomInitial: 14,
-			name: 'LTNs',
-			description: 'LTNs and rat-runs - experimental data',
+			name: 'LTNs and modal filters',
+			description: 'LTNs/rat-runs and modal filters - experimental data. Filters shown in blue, and streets shown as:',
 			legend: [
 				['LTN', '#4d4'],
 				['Traffic-calmed', '#f80'],
