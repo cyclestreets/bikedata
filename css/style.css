@@ -96,6 +96,9 @@ h2 {margin-bottom: 2px; padding-bottom: 0;}
 #sections .controls {padding: 0; margin: 0;}
 #sections div.filters ul {list-style: none; margin: 0; padding: 0;}
 
+/* Legend */
+#legend {background-color: #515151; color: #ffffff; padding: 15px; border-radius: 10px; opacity: 0.85; width: auto; max-width: 140px;}
+
 /* Tabs */
 ul.tabs {margin-left: 0; padding-left: 0; }
 ul.tabs li {display: inline; margin-right: 5px;}
