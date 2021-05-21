@@ -200,12 +200,20 @@
 							<input type="checkbox" name="show[]" id="show_footways" />
 							<a href="#footways" title="Footways London" class="tooltip"><img src="/images/icons/track_neutral.svg" alt="" /><br />Footways London</a>
 						</li>
+						<!--
+						<li class="modalfilters">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_modalfilters" />
+							<a href="#modalfilters" title="Modal filters" class="tooltip"><img src="/images/icons/closure_good.svg" alt="" /><br />Modal filters</a>
+						</li>
 						<li class="ltns">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_ltns" />
-							<a href="#ltns" title="LTNs" class="tooltip"><img src="/images/icons/closure_good.svg" alt="" /><br />LTNs</a>
+							<a href="#ltns" title="LTNs" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />LTNs</a>
 						</li>
+						-->
 						<li class="tflcid">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -799,18 +807,33 @@
 						<p>For more information, see <a href="https://footways.london/" target="_blank">footways.london</a>.</p>
 					</div>
 					
+					<!--
+					<div id="modalfilters">
+						<h2>Modal filters</h2>
+						<p>Modal filters (or 'point closures') are measures to restrict through-traffic. These facilitate safer streets for cycling and walking, as well as improving residential amenity.</p>
+						<p>Various types are shown:</p>
+						<ul>
+							<li>Bollards/gates within a street, that prevent through-traffic but allow walking and cycling</li>
+							<li>Gaps within a street that form a short section of cycleway/walkway, similarly preventing through-traffic</li>
+							<li>Streets abutting main roads but with only a cycleway/pavement between them</li>
+							<li>Bus gates, which allow bus and cycle access to particular areas</li>
+						</ul>
+						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
+						<p>We continue to refine the analysis to remove false-positives and to add additional types.</p>
+					</div>
+					
 					<div id="ltns">
 						<h2>Low-Traffic Neighbourhoods (LTNs)</h2>
-						<p>This experimental data shows whether each street in one of 35 areas is either an LTN/no-through traffic, a rat-run/through-route, or a traffic-calmed rat-run.</p>
-						<div class="filters">
-							<h3>Show</h3>
-							<select name="type" id="ltns_type">
-								<option value="all" id="ltns_type_all">Streets and modal filters</option>
-								<option value="streets" id="ltns_type_streets">Streets</option>
-								<option value="modalfilters" id="ltns_type_modalfilters">Modal filters</option>
-							</select>
-						</div>
+						<p>This experimental data shows whether each street is either:</p>
+						<ul>
+							<li>An LTN / no-through traffic</li>
+							<li>A through-route (i.e. rat-running possible)</li>
+							<li>A through-route, but with traffic calming</li>
+						</ul>
+						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
+						<p>This work is highly experimental at present, with known bugs. We continue to refine the analysis.</li>
 					</div>
+					-->
 					
 					<div id="tflcid2osm">
 						<h2>TfL Cycling Infrastructure Database (CID) as OSM format</h2>

@@ -376,21 +376,60 @@ var bikedata = (function ($) {
 			polygonStyle: 'blue'
 		},
 		
-		// LTNs
+		// LTNs - modal filters
+		modalfilters: {
+			apiCall: '/v2/advocacydata.ltns',
+			apiFixedParameters: {
+				type: 'modalfilters',
+			},
+			sendZoom: true,
+			pointSize: 12,
+			pointColourApiField: 'colour',
+			zoomInitial: 14,
+			name: 'Modal filters',
+			description: 'Modal filters',
+			legend: [
+				['bollard', '#888'],
+				['gate', '#952'],
+				['gap', '#444'],
+				['bus gate', '#f33']
+			],
+			popupHtml:
+				  '<h2>Modal filter</h2>'
+				+ '<table>'
+				+ '<tr><td>Type:</td><td><strong>{properties.modalfilter}</strong></td></tr>'
+				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+		},
+		
+		// LTNs - streets
 		ltns: {
 			apiCall: '/v2/advocacydata.ltns',
+			apiFixedParameters: {
+				type: 'streets',
+			},
 			sendZoom: true,
 			lineColourApiField: 'colour',
 			zoomInitial: 14,
-			name: 'LTNs and modal filters',
-			description: 'LTNs/rat-runs and modal filters - experimental data. Filters shown in blue, and streets shown as:',
+			name: 'LTNs',
+			description: 'LTNs/rat-runs - experimental data',
 			legend: [
 				['LTN', '#4d4'],
 				['Traffic-calmed', '#f80'],
 				['Rat-runs', '#d44'],
 				['Main roads', '#888']
 			],
-			streetview: true
+			streetview: true,
+			popupHtml:
+				  '<table>'
+				+ '<tr><td>Through-traffic possible?</td><td><strong>{properties.ratrun}</strong></td></tr>'
+				+ '<tr><td>Traffic-calming?</td><td><strong>{properties.traffic_calmed}</strong></td></tr>'
+				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
 		},
 		
 		// https://footways.london/map#digital
