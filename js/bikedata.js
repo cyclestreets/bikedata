@@ -387,7 +387,7 @@ var bikedata = (function ($) {
 			pointColourApiField: 'colour',
 			zoomInitial: 14,
 			name: 'Modal filters',
-			description: 'Modal filters',
+			description: 'Type of modal filter:',
 			legend: [
 				['bollard', '#888'],
 				['gate', '#952'],
