@@ -397,8 +397,8 @@ var bikedata = (function ($) {
 			popupHtml:
 				  '<h2>Modal filter</h2>'
 				+ '<table>'
-				+ '<tr><td>Type:</td><td><strong>{properties.modalfilter}</strong></td></tr>'
 				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>Type:</td><td><strong>{properties.modalfilter}</strong></td></tr>'
 				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
 				+ '</table>'
 				+ '{%streetview}'
@@ -424,9 +424,9 @@ var bikedata = (function ($) {
 			streetview: true,
 			popupHtml:
 				  '<table>'
+				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
 				+ '<tr><td>Through-traffic possible?</td><td><strong>{properties.ratrun}</strong></td></tr>'
 				+ '<tr><td>Traffic-calming?</td><td><strong>{properties.traffic_calmed}</strong></td></tr>'
-				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
 				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
 				+ '</table>'
 				+ '{%streetview}'
