@@ -389,6 +389,7 @@ var bikedata = (function ($) {
 				['bollard', '#888'],
 				['gate', '#952'],
 				['gap', '#444'],
+				['cycleway filter', '#a6a'],
 				['bus gate', '#f33']
 			],
 			popupHtml:
