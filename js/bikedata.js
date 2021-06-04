@@ -378,10 +378,7 @@ var bikedata = (function ($) {
 		
 		// LTNs - modal filters
 		modalfilters: {
-			apiCall: '/v2/advocacydata.ltns',
-			apiFixedParameters: {
-				type: 'modalfilters',
-			},
+			apiCall: '/v2/advocacydata.modalfilters',
 			sendZoom: true,
 			pointSize: 12,
 			pointColourApiField: 'colour',
@@ -407,9 +404,6 @@ var bikedata = (function ($) {
 		// LTNs - streets
 		ltns: {
 			apiCall: '/v2/advocacydata.ltns',
-			apiFixedParameters: {
-				type: 'streets',
-			},
 			sendZoom: true,
 			lineColourApiField: 'colour',
 			zoomInitial: 14,
