@@ -81,12 +81,15 @@
 				// Create a point
 				var point = new google.maps.LatLng(get['latitude'], get['longitude']);
 				
-				// Initialise (but do not immediately display) the panorama at the specified location
+				// Initialise (but do not immediately display) the panorama at the specified location; various controls disabled to declutter the small space
 				var panoramaOptions = {
 					position: point,
-					visible: false
+					visible: false,
+					panControl: false,
+					fullscreenControl: false,
+					addressControl: false
 				};
-				var panorama = new google.maps.StreetViewPanorama(document.getElementById("map-canvas"), panoramaOptions);
+				var panorama = new google.maps.StreetViewPanorama (document.getElementById ('map-canvas'), panoramaOptions);
 				
 				// Instantiate the Street View service so that the heading can be looked up
 				var streetViewService = new google.maps.StreetViewService();
