@@ -379,10 +379,8 @@ var bikedata = (function ($) {
 		// LTNs - modal filters
 		modalfilters: {
 			apiCall: '/v2/advocacydata.modalfilters',
-			sendZoom: true,
 			pointSize: 12,
 			pointColourApiField: 'colour',
-			zoomInitial: 14,
 			name: 'Modal filters',
 			description: 'Type of modal filter:',
 			legend: [
@@ -397,7 +395,7 @@ var bikedata = (function ($) {
 				+ '<table>'
 				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
 				+ '<tr><td>Type:</td><td><strong>{properties.modalfilter}</strong></td></tr>'
-				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
 				+ '</table>'
 				+ '{%streetview}'
 		},
@@ -407,12 +405,19 @@ var bikedata = (function ($) {
 			apiCall: '/v2/advocacydata.ltns',
 			sendZoom: true,
 			lineColourApiField: 'colour',
+			lineWidthField: 'ratrun',
+			lineWidthValues: {
+				'main': 5,
+				'yes': 3,
+				'calmed': 3,
+				'no': 3
+			},
 			zoomInitial: 14,
 			name: 'LTNs',
 			description: 'LTNs/rat-runs - experimental data',
 			legend: [
-				['LTN', '#4d4'],
-				['Traffic-calmed', '#f80'],
+				['LTN', '#8bb'],
+				['Traffic-calmed', '#966'],
 				['Rat-runs', '#d44'],
 				['Main roads', '#888']
 			],
@@ -422,7 +427,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>Location:</td><td><strong>{properties.name}</strong></tr>'
 				+ '<tr><td>Through-traffic possible?</td><td><strong>{properties.ratrun}</strong></td></tr>'
 				+ '<tr><td>Traffic-calming?</td><td><strong>{properties.traffic_calmed}</strong></td></tr>'
-				+ '<tr><td>OSM data</td><td><a href="https://www.openstreetmap.org/{properties.osmType}/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
 				+ '</table>'
 				+ '{%streetview}'
 		},
