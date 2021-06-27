@@ -390,6 +390,7 @@ var bikedata = (function ($) {
 				['cycleway filter', '#a6a'],
 				['bus gate', '#f33']
 			],
+			popupFeedbackButton: 'Not a modal filter?',
 			popupHtml:
 				  '<h2>Modal filter</h2>'
 				+ '<table>'

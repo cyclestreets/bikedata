@@ -913,7 +913,26 @@
 	<footer>
 		<p>Created by <a href="https://www.cyclestreets.org/">CycleStreets</a> &nbsp;||&nbsp; <a class="embed" href="#">Embed this map</a> &nbsp;||&nbsp; <a href="https://www.cyclestreets.org/donate/">Donate &#9825;</a> &nbsp;||&nbsp; <a class="feedback" href="https://www.cyclestreets.net/feedback/">Feedback</a> &nbsp;||&nbsp; Thanks to funder <a href="https://outlandish.com/">Outlandish</a> &nbsp;||&nbsp; Uses <a href="https://www.cyclestreets.net/api/">CycleStreets API</a> and other APIs &nbsp;||&nbsp; An open source project - <a href="https://www.github.com/cyclestreets/bikedata/">contribute on Github</a></p>
 	</footer>
-
+	
+	
+	<!-- In-popup feedback contents -->
+	<div id="popupfeedbackmodalfilters" class="popupfeedback">
+		<h2>Give feedback on this location</h2>
+		<p>Please let us know if this location has been incorrectly determined as an LTN:</p>
+		<form method="post" action="{%apiBaseUrl}/v2/advocacydata.modalfilters.feedback?key={%apiKey}">
+			<p><label>Comment:<br /><textarea name="notes" rows="5" required="required"></textarea></label></p>
+			<p><label>E-mail (used only if we need to clarify something):<br /><input type="email" name="email" required="required" /></label></p>
+			<p><input type="hidden" name="modification" value="remove" />
+			<p><input type="hidden" name="osmid" data-value="properties.osmId" />
+			<p><input type="hidden" name="modalfilter" data-value="properties.modalfilter" />
+			<p><input type="hidden" name="longitude" data-value="geometry.coordinates.0" />
+			<p><input type="hidden" name="latitude" data-value="geometry.coordinates.1" />
+			<p><input type="submit" /></p>
+		</form>
+	</div>
+	
+	
+	<!-- General feedback form -->
 	<div id="feedback">
 		
 		<h2>Give feedback</h2>
