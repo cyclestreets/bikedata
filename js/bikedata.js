@@ -1,7 +1,7 @@
 // Bikedata implementation code
 
 /*jslint browser: true, white: true, single: true, for: true, unordered: true, long: true */
-/*global $, alert, console, window, osm2geo */
+/*global $, alert, console, window, osm2geo, layerviewer, jQuery */
 
 var bikedata = (function ($) {
 	
@@ -716,6 +716,7 @@ var bikedata = (function ($) {
 				var widgetHtml = '';
 				var i;
 				var enumMatches;
+				var len;
 				switch (type) {
 					case 'VARCHAR':
 						widgetHtml = '<input name="' + fieldname + '" type="text" maxlength=' + option + '" />';
@@ -726,16 +727,18 @@ var bikedata = (function ($) {
 					case 'ENUM':
 						enumMatches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
 						if (enumMatches) {
-							for (i = 0; len=enumMatches.length; i<len; i++) {
+							len = enumMatches.length;
+							for (i = 0; i < len; i++) {
 								enumMatches[i] = enumMatches[i].replace(/'/g, '');
 							}
 						}
 						widgetHtml  = '<select name="' + fieldname + '">';
 						widgetHtml += '<option value="">';
 						$.each (enumMatches, function (index, value) {
-							widgetHtml += '<option value="' + value + '">' + value + '</option>'
+							widgetHtml += '<option value="' + value + '">' + value + '</option>';
 						});
 						widgetHtml += '</select>';
+						break;
 				}
 				
 				// Assemble the HTML
