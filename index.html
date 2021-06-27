@@ -918,7 +918,7 @@
 	<!-- In-popup feedback contents -->
 	<div id="popupfeedbackmodalfilters" class="popupfeedback">
 		<h2>Give feedback on this location</h2>
-		<p>Please let us know if this location has been incorrectly determined as an LTN:</p>
+		<p>Please let us know if this location has been incorrectly determined as a modal filter:</p>
 		<form method="post" action="{%apiBaseUrl}/v2/advocacydata.modalfilters.feedback?key={%apiKey}">
 			<p><label>Comment:<br /><textarea name="notes" rows="5" required="required"></textarea></label></p>
 			<p><label>E-mail (used only if we need to clarify something):<br /><input type="email" name="email" required="required" /></label></p>
@@ -927,6 +927,32 @@
 			<p><input type="hidden" name="modalfilter" data-value="properties.modalfilter" />
 			<p><input type="hidden" name="longitude" data-value="geometry.coordinates.0" />
 			<p><input type="hidden" name="latitude" data-value="geometry.coordinates.1" />
+			<p><input type="submit" /></p>
+		</form>
+	</div>
+	
+	<!-- Location-specification feedback contents -->
+	<div id="locatefeedbackmodalfilters" class="locatefeedback">
+		<h2>Missing modal filter</h2>
+		<p>Please let us know if this location is a modal filter but has been missed out in our analysis:</p>
+		<form method="post" action="{%apiBaseUrl}/v2/advocacydata.modalfilters.feedback?key={%apiKey}">
+			<p>
+				<label>What type of modal filter is missing here?:<br />
+				<select name="modalfilter" required="required">
+					<option value=""></option>
+					<option value="bollard">Bollard</option>
+					<option value="gate">Gate</option>
+					<option value="gap">Gap</option>
+					<option value="cycleway filter">Cycleway filter</option>
+					<option value="bus gate">Bus gate</option>
+				</select>
+				</label>
+			</p>
+			<p><label>Comment:<br /><textarea name="notes" rows="5" required="required"></textarea></label></p>
+			<p><label>E-mail (used only if we need to clarify something):<br /><input type="email" name="email" required="required" /></label></p>
+			<p><input type="hidden" name="modification" value="add" />
+			<p><input type="hidden" name="longitude" />
+			<p><input type="hidden" name="latitude" />
 			<p><input type="submit" /></p>
 		</form>
 	</div>
