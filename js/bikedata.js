@@ -1,6 +1,6 @@
 // Bikedata implementation code
 
-/*jslint browser: true, white: true, single: true, for: true */
+/*jslint browser: true, white: true, single: true, for: true, unordered: true, long: true */
 /*global $, alert, console, window, osm2geo */
 
 var bikedata = (function ($) {
@@ -100,7 +100,7 @@ var bikedata = (function ($) {
 				[500, 8],
 				[100, 6],
 				[10, 4],
-				[0, 2],
+				[0, 2]
 			],
 			popupHtml:	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
@@ -122,7 +122,7 @@ var bikedata = (function ($) {
 			iconSizes: {
 				'Small': [24, 24],
 				'Medium': [36, 36],
-				'Large': [50, 50],
+				'Large': [50, 50]
 			},
 			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
@@ -162,7 +162,7 @@ var bikedata = (function ($) {
 				'Council consultation - have your say':	'/images/icons/popup_cyclinguk_council_consultation.png',
 				'Council considering potential': 		'/images/icons/popup_cyclinguk_council_considering_potential.png',
 				'Plans produced': 						'/images/icons/popup_cyclinguk_plans_produced.png',
-				'Council action - comprehensive': 		'/images/icons/popup_cyclinguk_council_action_comprehensive.png',
+				'Council action - comprehensive': 		'/images/icons/popup_cyclinguk_council_action_comprehensive.png'
 			},
 			popupHtml:
 				  '<table>'
@@ -183,7 +183,7 @@ var bikedata = (function ($) {
 				LineString: {
 					'line-color': 'purple'
 				}
-			},
+			}
 		},
 		
 		triplengths: {
@@ -328,7 +328,7 @@ var bikedata = (function ($) {
 				[8, 6],
 				[5, 5],
 				[3, 4],
-				[0, 3],
+				[0, 3]
 			],
 			popupHtml:
 				  '<p>Width: {properties.width}</p>'
@@ -609,7 +609,7 @@ var bikedata = (function ($) {
 			},
 			convertData: function (osmXml) {
 				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
-				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString') });	// See: https://stackoverflow.com/a/2722213
+				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
 		}
@@ -660,7 +660,7 @@ var bikedata = (function ($) {
 								return {
 									label: item.tag,
 									value: item.tag
-								}
+								};
 							}));
 						}
 					});
@@ -699,10 +699,10 @@ var bikedata = (function ($) {
 			}
 			
 			// Set description for type dropdown
-			$('#featuretypedescription p').html (schema[field]['description']);
+			$('#featuretypedescription p').html (schema[field].description);
 			
 			// Obtain the selected fields
-			var fields = schema[field]['fields'];
+			var fields = schema[field].fields;
 			
 			// Create HTML controls for each field
 			var html = '<p>Filter to:</p>';
@@ -714,6 +714,8 @@ var bikedata = (function ($) {
 				var type = matches[1];
 				var option = matches[2];
 				var widgetHtml = '';
+				var i;
+				var enumMatches;
 				switch (type) {
 					case 'VARCHAR':
 						widgetHtml = '<input name="' + fieldname + '" type="text" maxlength=' + option + '" />';
@@ -722,15 +724,15 @@ var bikedata = (function ($) {
 						widgetHtml = '<input name="' + fieldname + '" type="number" maxlength=' + option + '" step="1" min="0" style="width: 4em;" />';
 						break;
 					case 'ENUM':
-						var matches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
-						if (matches) {
-							for (var i=0, len=matches.length; i<len; i++) {
-								matches[i] = matches[i].replace(/'/g, '');
+						enumMatches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
+						if (enumMatches) {
+							for (i = 0; len=enumMatches.length; i<len; i++) {
+								enumMatches[i] = enumMatches[i].replace(/'/g, '');
 							}
 						}
 						widgetHtml  = '<select name="' + fieldname + '">';
 						widgetHtml += '<option value="">';
-						$.each (matches, function (index, value) {
+						$.each (enumMatches, function (index, value) {
 							widgetHtml += '<option value="' + value + '">' + value + '</option>'
 						});
 						widgetHtml += '</select>';
