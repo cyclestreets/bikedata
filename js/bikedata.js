@@ -34,6 +34,9 @@ var bikedata = (function ($) {
 		// Zoom position
 		zoomPosition: 'top-left',
 		
+		// Geolocation position
+		geolocationPosition: 'top-left',
+		
 		// Enable scale bar
 		enableScale: true,
 		
