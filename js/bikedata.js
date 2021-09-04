@@ -117,7 +117,8 @@ var bikedata = (function ($) {
 			apiCall: 'https://www.planit.org.uk/api/applics/geojson',
 			apiFixedParameters: {
 				pg_sz: 100,
-				limit: 100
+				limit: 100,
+				select: 'location,description,address,app_size,app_type,app_state,uid,area_name,start_date,url'
 			},
 			apiKey: false,
 			iconUrl: '/images/icons/signs_neutral.svg',
