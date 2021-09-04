@@ -134,7 +134,7 @@ var bikedata = (function ($) {
 				+ 'Type of development: <strong>{properties.app_type}</strong><br />'
 				+ 'Status: <strong>{properties.app_state}</strong></p>'
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
-				+ 'Local Authority: {properties.authority_name}<br />'
+				+ 'Local Authority: {properties.area_name}<br />'
 				+ 'Date: {properties.start_date}</p>'
 				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
