@@ -631,7 +631,40 @@ var bikedata = (function ($) {
 				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
-		}
+		},
+
+	    // Cyclable network
+		cyclablenetwork: {
+			apiCall: '/v2/advocacydata.cyclablenetwork',
+			sendZoom: true,	// Allows geometry simplification and reduced data
+			lineColour: 'orange',
+			lineColourField: 'category',
+			lineColourValues: {
+			    'onroad':		'#ff338f',	// Pink
+			    'segregated':	'#8929ff',	// Purple
+			    'general':		'#ba705a'	// Brown
+			},
+			lineWidthField: 'category',
+			lineWidthValues: {
+				'onroad':	4,
+				'segregated':	4,
+				'general':	1.5
+			},
+		    legend: [
+				['Roads with cycle infrastructure', '#ff338f'],
+				['Cycleways', '#8929ff'],
+				['General off-road paths', '#ba705a']
+			],
+		    fillOpacity: 0.7,
+			popupHtml:
+				  '<h3>Cyclable network</h3>'
+				+ '<table>'
+				+ '<tr><td>Way:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>Category:</td><td><strong>{properties.category}</strong></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+		}		
 	};
 	
 	

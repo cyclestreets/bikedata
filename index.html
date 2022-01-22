@@ -237,6 +237,12 @@
 							<input type="checkbox" name="show[]" id="show_osm" />
 							<a href="#osm" title="OpenStreetMap data" class="tooltip"><img src="/images/icons/icon_linked_points_neutral.svg" alt="" /><br />OSM</a>
 						</li>
+						<li class="cyclablenetwork">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_cyclablenetwork" />
+							<a href="#cyclablenetwork" title="Cycleways and paths" class="tooltip"><img src="/images/icons/routesigns_good.svg" alt="" /><br />Cycleways and paths</a>
+						</li>
 					</ul>
 				</div>
 				
@@ -917,6 +923,29 @@
 						<p>Open data licensed &copy; OpenStreetMap contributors, ODbL license.</p>
 					</div>
 					
+					<div id="cyclablenetwork">
+						<h2>Cyclable network</h2>
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
+						<p>A dataset which contains the 'cycle network' beyond the general road network.</p>
+						<div class="filters">
+							<h4>Show categories:</h4>
+							<div class="controls">
+								<select name="category">
+									<option value="" selected="selected">All</option>
+									<option value="onroad">Roads with cycle infrastructure</option>
+									<option value="segregated">Cycleways</option>
+									<option value="general">General off-road paths</option>
+								</select>
+								<br />
+								<p>Filter by selected category.</p>
+							</div>
+						</div>
+						<div class="export button">
+							<p>Export: <img class="csv" src="/js/lib/Mapboxgljs.LayerViewer/images/page_excel.png" alt="Spreadsheet" /></p>
+						</div>
+
+					</div>
+
 				</div>
 			</nav>
 			
