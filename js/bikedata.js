@@ -438,6 +438,21 @@ var bikedata = (function ($) {
 				+ '{%streetview}'
 		},
 		
+		// One-way streets without contraflows
+		nocontraflows: {
+			apiCall: '/v2/advocacydata.nocontraflows',
+			sendZoom: true,
+			lineColour: '#808',
+			lineWidth: 5,
+			streetview: true,
+			popupHtml:
+				  '<table>'
+				+ '<tr><td>Name:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+		},
+		
 		// https://footways.london/map#digital
 		footways: {
 			apiCall: 'https://www.google.com/maps/d/kml?forcekml=1&mid=1djPyfTHyWyHfqVNNIqStpRbvXZ7yabk0',
