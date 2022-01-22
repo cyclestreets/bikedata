@@ -633,9 +633,9 @@ var bikedata = (function ($) {
 			}
 		},
 
-	    // Cycleways and paths
+		// Cycleways and paths
 		cyclewayspaths: {
-			apiCall: '/v2/advocacydata.cyclablenetwork',
+			apiCall: '/v2/advocacydata.cyclewayspaths',
 			sendZoom: true,	// Allows geometry simplification and reduced data
 			lineColour: 'orange',
 			lineColourField: 'category',
@@ -649,16 +649,16 @@ var bikedata = (function ($) {
 			lineWidthValues: {
 				'onroad':	4,
 				'cycleways':	4,
-			    'unsegregated':	1.5,
+				'unsegregated':	1.5,
 				'foot':		1.5
 			},
-		    legend: [
+			legend: [
 				['Roads with cycle infrastructure', '#ff338f'],
 				['Cycleways', '#8929ff'],
 			['General off-road paths', '#ba705a'],
 				['General off road paths that are not cyclable', '#76ba5a']
 			],
-		    fillOpacity: 0.7,
+			fillOpacity: 0.7,
 			popupHtml:
 				  '<h3>Cycleways and paths</h3>'
 				+ '<table>'
