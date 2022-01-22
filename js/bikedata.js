@@ -634,7 +634,7 @@ var bikedata = (function ($) {
 		},
 
 	    // Cycleways and paths
-		cyclablenetwork: {
+		cyclewayspaths: {
 			apiCall: '/v2/advocacydata.cyclablenetwork',
 			sendZoom: true,	// Allows geometry simplification and reduced data
 			lineColour: 'orange',
