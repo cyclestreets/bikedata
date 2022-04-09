@@ -173,14 +173,13 @@
 							<a href="#strava" title="Strava athlete heatmap layer" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Strava athelete</a>
 						</li>
 						-->
-						<!--
-						<li class="taxidata">
+						<!-- This option is experimental and is activated by a url pattern -->
+						<li class="taxidata" style="display:none">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_taxidata" />
 							<a href="#taxidata" title="Taxi data" class="tooltip"><img src="/images/icons/road_neutral.svg" alt="" /><br />Taxi data</a>
 						</li>
-						-->
 						<li class="groups">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -237,7 +236,8 @@
 							<input type="checkbox" name="show[]" id="show_osm" />
 							<a href="#osm" title="OpenStreetMap data" class="tooltip"><img src="/images/icons/icon_linked_points_neutral.svg" alt="" /><br />OSM</a>
 						</li>
-						<li class="cyclewayspaths">
+						<!-- This option is experimental and is activated by a url pattern -->
+						<li class="cyclewayspaths" style="display:none">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_cyclewayspaths" />
@@ -515,7 +515,6 @@
 					</div>
 					
 
-					<!--
 					<div id="taxidata">
 						<h2>Taxi data</h2>
 						<p>Where are taxis travelling? An experimental layer created at Cambridge Hack Transport (2017).</p>
@@ -555,7 +554,6 @@
 							</select>
 						</div>
 					</div>
-					-->
 					
 					<!--
 					<div id="cyclingrates">
@@ -923,6 +921,7 @@
 						<p>Open data licensed &copy; OpenStreetMap contributors, ODbL license.</p>
 					</div>
 					
+<!--
 					<div id="cyclewayspaths">
 						<h2>Cycleways and paths</h2>
 						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
@@ -946,6 +945,7 @@
 						</div>
 
 					</div>
+-->
 
 				</div>
 			</nav>

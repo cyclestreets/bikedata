@@ -684,6 +684,10 @@ var bikedata = (function ($) {
 					_settings[setting] = config[setting];
 				}
 			});
+
+			// Show these options if they are in the url
+			if (window.location.href.indexOf("taxidata") > -1) {$("li.taxidata").show();}
+			if (window.location.href.indexOf("cyclewayspaths") > -1) {$("li.cyclewayspaths").show();}
 			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
