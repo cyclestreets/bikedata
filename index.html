@@ -44,7 +44,7 @@
 	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/togeojson/togeojson.min.js"></script>
 	
 	<!-- LayerViewer library, providing the application logic -->
-	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?210627"></script>
+	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?211206"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.css?210627" />
 	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/geocoder.js"></script>
 	
@@ -67,7 +67,6 @@
 			<li class="streetfocus"><a href="https://www.streetfocus.uk/" title="Planning applications UK-wide">StreetFocus</a></li>
 			<li class="bikedata selected"><a href="https://bikedata.cyclestreets.net/" title="Data for cycle campaigning">Bikedata</a></li>
 			<li class="cyclescape"><a href="https://www.cyclescape.org/" title="Campaign toolkit">Cyclescape</a></li>
-			<li class="urbancycleparking"><a href="https://www.urbancycleparking.org.uk/" title="Tell us where cycle parking is needed">Urban Cycle Parking</a></li>
 			<li class="blog"><a href="https://www.cyclestreets.org/" title="About CycleStreets">About us</a></li>
 		</ul>
 	</div>
@@ -174,14 +173,13 @@
 							<a href="#strava" title="Strava athlete heatmap layer" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Strava athelete</a>
 						</li>
 						-->
-						<!--
-						<li class="taxidata">
+						<!-- This option is experimental and is activated by a url pattern -->
+						<li class="taxidata" style="display:none">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_taxidata" />
 							<a href="#taxidata" title="Taxi data" class="tooltip"><img src="/images/icons/road_neutral.svg" alt="" /><br />Taxi data</a>
 						</li>
-						-->
 						<li class="groups">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -200,6 +198,7 @@
 							<input type="checkbox" name="show[]" id="show_footways" />
 							<a href="#footways" title="Footways London" class="tooltip"><img src="/images/icons/track_neutral.svg" alt="" /><br />Footways London</a>
 						</li>
+<!--
 						<li class="modalfilters">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -211,6 +210,13 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_ltns" />
 							<a href="#ltns" title="LTNs" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />LTNs</a>
+						</li>
+-->
+						<li class="nocontraflows">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_nocontraflows" />
+							<a href="#nocontraflows" title="One-way streets without contraflows" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />No contraflows</a>
 						</li>
 						<li class="tflcid">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
@@ -229,6 +235,13 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_osm" />
 							<a href="#osm" title="OpenStreetMap data" class="tooltip"><img src="/images/icons/icon_linked_points_neutral.svg" alt="" /><br />OSM</a>
+						</li>
+						<!-- This option is experimental and is activated by a url pattern -->
+						<li class="cyclewayspaths" style="display:none">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_cyclewayspaths" />
+							<a href="#cyclewayspaths" title="Cycleways and paths" class="tooltip"><img src="/images/icons/routesigns_good.svg" alt="" /><br />Cycleways and paths</a>
 						</li>
 					</ul>
 				</div>
@@ -265,7 +278,7 @@
 					
 					<div id="collisions">
 						<h2>Collisions</h2>
-						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure. Data is from DfT/police STATS19, from 2005-2019. See <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/230596/stats20-2011.pdf" target="_blank">definitions</a>.</p>
+						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure. Data is from DfT/police STATS19, from 1999-2020. See <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/230596/stats20-2011.pdf" target="_blank">definitions</a>.</p>
 						<p>Zoom in to see all - while zoomed out only a selection is shown due to the volume.</p>
 						
 						<div class="filters">
@@ -292,11 +305,11 @@
 							
 							<h4>Date range:</h4>
 							<p>&nbsp;
-								<select name="since" data-yearly-range-since-sqldate="2005,2019">
+								<select name="since" data-yearly-range-since-sqldate="1999,2020">
 									<option value="">&nbsp;</option>
 								</select>
 								-
-								<select name="until" data-yearly-range-until-sqldate="2005,2019">
+								<select name="until" data-yearly-range-until-sqldate="1999,2020">
 									<option value="">&nbsp;</option>
 								</select>
 							</p>
@@ -312,10 +325,10 @@
 							
 							<h4>Limit to:</h4>
 							<div class="controls">
-								<input type="checkbox" name="field:Junction_Detail" value="1,2,3,5,6,7" id="junctions" /><label for="junctions">Junctions</label><br />
-								<input type="checkbox" name="field:Road_Type" value="2" id="onewaystreets" /><label for="onewaystreets">One-way streets</label><br />
-								<input type="checkbox" name="field:1st_Road_Class" value="1,2,3" id="aroads" /><label for="aroads" title="A, A(M), and motorways">A-roads</label><br />
-								<select name="field:Speed_limit" id="speedlimit">
+								<input type="checkbox" name="field:junction_detail" value="1,2,3,5,6,7" id="junctions" /><label for="junctions">Junctions</label><br />
+								<input type="checkbox" name="field:road_type" value="2" id="onewaystreets" /><label for="onewaystreets">One-way streets</label><br />
+								<input type="checkbox" name="field:first_road_class" value="1,2,3" id="aroads" /><label for="aroads" title="A, A(M), and motorways">A-roads</label><br />
+								<select name="field:speed_limit" id="speedlimit">
 									<option value="" id="speedlimit___NULL">All</option>
 									<option value="20" id="speedlimit_20">20 mph</option>
 									<option value="20,30" id="speedlimit_20_30">20/30mph</option>
@@ -502,7 +515,6 @@
 					</div>
 					
 
-					<!--
 					<div id="taxidata">
 						<h2>Taxi data</h2>
 						<p>Where are taxis travelling? An experimental layer created at Cambridge Hack Transport (2017).</p>
@@ -510,6 +522,23 @@
 						<div class="filters">
 							<h3>Filter to:</h3>
 							
+							<h4>Volume of data:</h4>
+							<select name="samplepercent">
+								<option value="">All</option>
+								<option value="0.01">0.01%</option>
+								<option value="0.02">0.02%</option>
+								<option value="0.05">0.05%</option>
+								<option value="0.1">0.1%</option>
+								<option value="0.2">0.2%</option>
+								<option value="0.5">0.5%</option>
+								<option value="1">1%</option>
+								<option value="2">2%</option>
+								<option value="5">5%</option>
+								<option value="10">10%</option>
+								<option value="20">20%</option>
+								<option value="50">50%</option>
+							</select>
+
 							<h4>Vehicle speed:</h4>
 							<select name="speed">
 								<option value="">All</option>
@@ -542,7 +571,6 @@
 							</select>
 						</div>
 					</div>
-					-->
 					
 					<!--
 					<div id="cyclingrates">
@@ -805,7 +833,9 @@
 						<p>For more information, see <a href="https://footways.london/" target="_blank">footways.london</a>.</p>
 					</div>
 					
+<!--
 					<div id="modalfilters">
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right; top: 20px;" />
 						<h2>Modal filters</h2>
 						<p>Modal filters (or 'point closures') are measures to restrict through-traffic. These facilitate safer streets for cycling and walking, as well as improving residential amenity.</p>
 						<p>Various types are shown:</p>
@@ -822,6 +852,7 @@
 					
 					<div id="ltns">
 						<h2>Low-Traffic Neighbourhoods (LTNs)</h2>
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
 						<p>This experimental data shows whether each street is either:</p>
 						<ul>
 							<li>An LTN / no-through traffic</li>
@@ -830,6 +861,16 @@
 						</ul>
 						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
 						<p>This work is highly experimental at present, with known bugs. We continue to refine the analysis.</p>
+					</div>
+-->
+					
+					<div id="nocontraflows">
+						<h2>One-way streets without contraflows</h2>
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
+						<p>This experimental data shows one-way streets that do not yet allow two-way cycling.</p>
+						<p>Allowing two-way cycling on local streets is a simple way to make cycling easier, and there is little evidence of any safety issue. Have a look at <a href="#12.49/52.209/0.15577">Cambridge</a> to see how few are now left.</p>
+						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
+						<p>This work in beta at present, with known bugs. We continue to refine the analysis.</p>
 					</div>
 					
 					<div id="tflcid2osm">
@@ -897,6 +938,32 @@
 						<p>Open data licensed &copy; OpenStreetMap contributors, ODbL license.</p>
 					</div>
 					
+
+					<div id="cyclewayspaths">
+						<h2>Cycleways and paths</h2>
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
+						<p>A dataset which contains the 'cycle network' beyond the general road network.</p>
+						<div class="filters">
+							<h4>Show categories:</h4>
+							<div class="controls">
+								<select name="category">
+									<option value="" selected="selected">All</option>
+									<option value="onroad">Roads with cycle infrastructure</option>
+									<option value="cycleways">Cycleways</option>
+									<option value="unsegregated">General off-road paths</option>
+									<option value="foot">General off road paths that are not cyclable</option>
+								</select>
+								<br />
+								<p>Filter by selected category.</p>
+							</div>
+						</div>
+						<div class="export button">
+							<p>Export: <img class="csv" src="/js/lib/Mapboxgljs.LayerViewer/images/page_excel.png" alt="Spreadsheet" /></p>
+						</div>
+
+					</div>
+
+
 				</div>
 			</nav>
 			

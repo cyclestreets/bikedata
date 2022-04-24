@@ -34,6 +34,9 @@ var bikedata = (function ($) {
 		// Zoom position
 		zoomPosition: 'top-left',
 		
+		// Geolocation position
+		geolocationPosition: 'top-left',
+		
 		// Enable scale bar
 		enableScale: true,
 		
@@ -68,8 +71,8 @@ var bikedata = (function ($) {
 				+ 'Date and time: <strong>{properties.datetime}</strong><br />'
 				+ 'Severity: <strong>{properties.severity}</strong><br />'
 				+ 'Casualties: <strong>{properties.casualties}</strong><br />'
-				+ 'No. of Casualties: <strong>{properties.Number_of_Casualties}</strong><br />'
-				+ 'No. of Vehicles: <strong>{properties.Number_of_Vehicles}</strong>'
+				+ 'No. of Casualties: <strong>{properties.number_of_casualties}</strong><br />'
+				+ 'No. of Vehicles: <strong>{properties.number_of_vehicles}</strong>'
 				+ '</p>'
 		},
 		
@@ -114,7 +117,8 @@ var bikedata = (function ($) {
 			apiCall: 'https://www.planit.org.uk/api/applics/geojson',
 			apiFixedParameters: {
 				pg_sz: 100,
-				limit: 100
+				limit: 100,
+				select: 'location,description,address,app_size,app_type,app_state,uid,area_name,start_date,url'
 			},
 			apiKey: false,
 			iconUrl: '/images/icons/signs_neutral.svg',
@@ -131,7 +135,7 @@ var bikedata = (function ($) {
 				+ 'Type of development: <strong>{properties.app_type}</strong><br />'
 				+ 'Status: <strong>{properties.app_state}</strong></p>'
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
-				+ 'Local Authority: {properties.authority_name}<br />'
+				+ 'Local Authority: {properties.area_name}<br />'
 				+ 'Date: {properties.start_date}</p>'
 				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
@@ -434,6 +438,21 @@ var bikedata = (function ($) {
 				+ '{%streetview}'
 		},
 		
+		// One-way streets without contraflows
+		nocontraflows: {
+			apiCall: '/v2/advocacydata.nocontraflows',
+			sendZoom: true,
+			lineColour: '#808',
+			lineWidth: 5,
+			streetview: true,
+			popupHtml:
+				  '<table>'
+				+ '<tr><td>Name:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+		},
+		
 		// https://footways.london/map#digital
 		footways: {
 			apiCall: 'https://www.google.com/maps/d/kml?forcekml=1&mid=1djPyfTHyWyHfqVNNIqStpRbvXZ7yabk0',
@@ -612,7 +631,43 @@ var bikedata = (function ($) {
 				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
-		}
+		},
+
+		// Cycleways and paths
+		cyclewayspaths: {
+			apiCall: '/v2/advocacydata.cyclewayspaths',
+			sendZoom: true,	// Allows geometry simplification and reduced data
+			lineColour: 'orange',
+			lineColourField: 'category',
+			lineColourValues: {
+			    'onroad':		'#ff338f',	// Pink
+			    'cycleways':	'#8929ff',	// Purple
+			    'unsegregated':	'#ba705a',	// Brown
+			    'foot':		'#76ba5a'	// Green
+			},
+			lineWidthField: 'category',
+			lineWidthValues: {
+				'onroad':	4,
+				'cycleways':	4,
+				'unsegregated':	1.5,
+				'foot':		1.5
+			},
+			legend: [
+				['Roads with cycle infrastructure', '#ff338f'],
+				['Cycleways', '#8929ff'],
+			['General off-road paths', '#ba705a'],
+				['General off road paths that are not cyclable', '#76ba5a']
+			],
+			fillOpacity: 0.7,
+			popupHtml:
+				  '<h3>Cycleways and paths</h3>'
+				+ '<table>'
+				+ '<tr><td>Way:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>Category:</td><td><strong>{properties.category}</strong></tr>'
+				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+		}		
 	};
 	
 	
@@ -629,6 +684,10 @@ var bikedata = (function ($) {
 					_settings[setting] = config[setting];
 				}
 			});
+
+			// Show these options if they are in the url
+			if (window.location.href.indexOf("taxidata") > -1) {$("li.taxidata").show();}
+			if (window.location.href.indexOf("cyclewayspaths") > -1) {$("li.cyclewayspaths").show();}
 			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
