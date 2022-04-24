@@ -1,0 +1,8 @@
+{
+  "name": "bikedata",
+  "version": "1.0.0",
+  "description": "Cycling-related data platform",
+  "repository": "https://github.com/cyclestreets/bikedata/",
+  "author": "CycleStreets Ltd",
+  "license": "GPL-3.0-only"
+}
