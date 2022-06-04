@@ -4,5 +4,8 @@
   "description": "Cycling-related data platform",
   "repository": "https://github.com/cyclestreets/bikedata/",
   "author": "CycleStreets Ltd",
-  "license": "GPL-3.0-only"
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "Mapboxgljs.LayerViewer": "https://github.com/cyclestreets/Mapboxgljs.LayerViewer/"
+  }
 }
