@@ -732,6 +732,7 @@ var bikedata = (function ($) {
 		tflCid: function ()
 		{
 			// Provide drop-down filters based on feature type, firstly getting the schema from the server
+			// #!# Filters in the URL are not persistent as this is not set early enough - need to move setFilters behaviour upstream
 			$.ajax({
 				url: _settings.apiBaseUrl + '/v2/infrastructure.schema?dataset=tflcid&key=' + _settings.apiKey,
 				success: function (schema) {
@@ -804,7 +805,7 @@ var bikedata = (function ($) {
 				html += '<hr />';
 				html += '<p>' + layerviewer.htmlspecialchars (attributes.field) + ':</p>';
 				html += '<p>' + widgetHtml + '</p>';
-				html += '<p class="smaller">' + layerviewer.htmlspecialchars (attributes.description) + '</p>';
+				html += '<p class="smaller">' + layerviewer.nl2br (layerviewer.htmlspecialchars (attributes.description)) + '</p>';
 			});
 			
 			// Add reset link
