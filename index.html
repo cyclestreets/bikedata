@@ -44,13 +44,13 @@
 	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/togeojson/togeojson.min.js"></script>
 	
 	<!-- LayerViewer library, providing the application logic -->
-	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?211206"></script>
+	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?220605"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.css?210627" />
 	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/geocoder.js"></script>
 	
 	<!-- Bikedata application and its config, implementing the LayerViewer library -->
 	<script src="/.config.js"></script>
-	<script src="/js/bikedata.js?210627"></script>
+	<script src="/js/bikedata.js?220605"></script>
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 	<script>
 		$(function() {
@@ -108,6 +108,24 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_planningapplications" />
 							<a href="#planningapplications" title="Planning applications" class="tooltip"><img src="/images/icons/signs_neutral.svg" alt="" /><br />Planning applications</a>
+						</li>
+						<li class="modalfilters">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_modalfilters" />
+							<a href="#modalfilters" title="Modal filters" class="tooltip"><img src="/images/icons/closure_good.svg" alt="" /><br />Modal filters</a>
+						</li>
+						<li class="ltns">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_ltns" />
+							<a href="#ltns" title="LTNs" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />LTNs</a>
+						</li>
+						<li class="ltnstatistics">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_ltnstatistics" />
+							<a href="#ltnstatistics" title="LTN statistics" class="tooltip"><img src="/images/icons/signs_bad.svg" alt="" /><br />LTN statistics</a>
 						</li>
 						<li class="bikeshare">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
@@ -206,20 +224,6 @@
 							<input type="checkbox" name="show[]" id="show_footways" />
 							<a href="#footways" title="Footways London" class="tooltip"><img src="/images/icons/track_neutral.svg" alt="" /><br />Footways London</a>
 						</li>
-<!--
-						<li class="modalfilters">
-							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
-							<p class="total"></p>
-							<input type="checkbox" name="show[]" id="show_modalfilters" />
-							<a href="#modalfilters" title="Modal filters" class="tooltip"><img src="/images/icons/closure_good.svg" alt="" /><br />Modal filters</a>
-						</li>
-						<li class="ltns">
-							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
-							<p class="total"></p>
-							<input type="checkbox" name="show[]" id="show_ltns" />
-							<a href="#ltns" title="LTNs" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />LTNs</a>
-						</li>
--->
 						<li class="nocontraflows">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -849,11 +853,24 @@
 						<p>For more information, see <a href="https://footways.london/" target="_blank">footways.london</a>.</p>
 					</div>
 					
-<!--
 					<div id="modalfilters">
 						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right; top: 20px;" />
 						<h2>Modal filters</h2>
 						<p>Modal filters (or 'point closures') are measures to restrict through-traffic. These facilitate safer streets for cycling and walking, as well as improving residential amenity.</p>
+						<p>You can give feedback on a location, by using the button in the popup, or right-click to add a missing location.</p>
+						<div class="filters">
+							<h4>Show types:</h4>
+							<div class="controls">
+								<select name="type" required="required">
+									<option value="" selected="selected">All</option>
+									<option value="bollard">Bollard</option>
+									<option value="gate">Gate</option>
+									<option value="gap">Gap</option>
+									<option value="cyclewayfilter">Cycleway filter</option>
+									<option value="busgate">Bus gate</option>
+								</select>
+							</div>
+						</div>
 						<p>Various types are shown:</p>
 						<ul>
 							<li>Bollards/gates within a street, that prevent through-traffic but allow walking and cycling</li>
@@ -861,9 +878,9 @@
 							<li>Streets abutting main roads but with only a cycleway/pavement between them</li>
 							<li>Bus gates, which allow bus and cycle access to particular areas</li>
 						</ul>
+						<p>For performance reasons, a maximum of 2,000 locations are shown. Zoom in to avoid this limit being hit.</p>
 						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
 						<p>We continue to refine the analysis to remove false-positives and to add additional types.</p>
-						<p>You can give feedback on a location, by using the button in the popup, or right-click to add a missing location.</p>
 					</div>
 					
 					<div id="ltns">
@@ -875,10 +892,32 @@
 							<li>A through-route (i.e. rat-running possible)</li>
 							<li>A through-route, but with traffic calming</li>
 						</ul>
+						<p>We treat classified roads (i.e. C roads and bigger) as the roads which divide up areas, as those have historically been considered to intend through-driving, though there are exceptions.</p>
 						<p>The data shown here is the result of automated analysis of OpenStreetMap data, undertaken by CycleStreets.</p>
 						<p>This work is highly experimental at present, with known bugs. We continue to refine the analysis.</p>
 					</div>
--->
+					<div id="ltnstatistics">
+						<h2>Low-Traffic Neighbourhoods (LTN) statistics</h2>
+						<img src="https://www.cyclestreets.net/images/logo/beta.svg" width="48" height="48" style="float: right;" />
+						<p>Statistics by Highway Authority area.</p>
+						<p>This work is highly experimental at present, with known bugs. We continue to refine the analysis.</p>
+						<div class="filters">
+							<h4>Show types:</h4>
+							<div class="controls">
+								<select name="type" required="required">
+									<option value="wards">Wards / Electoral Divisions</option>
+									<option value="districts" selected="selected">District/Unitaries*</option>
+									<option value="highwayauthorities">Highway Authorities</option>
+								</select>
+								<br />
+								<br />
+								<p>* This option also includes London Boroughs and Metropolitan Districts.</p>
+							</div>
+						</div>
+						<div class="export button">
+							<p>Export: <img class="csv" src="/js/lib/Mapboxgljs.LayerViewer/images/page_excel.png" alt="Spreadsheet" /></p>
+						</div>
+					</div>
 					
 					<div id="nocontraflows">
 						<h2>One-way streets without contraflows</h2>

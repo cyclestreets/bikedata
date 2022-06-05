@@ -403,6 +403,8 @@ var bikedata = (function ($) {
 			apiCall: '/v2/advocacydata.modalfilters',
 			pointSize: 12,
 			pointColourApiField: 'colour',
+			// #!# Buggy as should be min
+			zoomInitial: 10,
 			name: 'Modal filters',
 			description: 'Type of modal filter:',
 			legend: [
@@ -436,7 +438,8 @@ var bikedata = (function ($) {
 				'calmed': 3,
 				'no': 3
 			},
-			zoomInitial: 14,
+			// #!# Buggy as should be min
+			zoomInitial: 10,
 			name: 'LTNs',
 			description: 'LTNs/rat-runs - experimental data',
 			legend: [
@@ -454,6 +457,57 @@ var bikedata = (function ($) {
 				+ '<tr><td>OSM data:</td><td><a href="https://www.openstreetmap.org/way/{properties.osmId}" target="_blank">View in OSM</a></tr>'
 				+ '</table>'
 				+ '{%streetview}'
+		},
+		
+		// LTNs - statistics
+		ltnstatistics: {
+			apiCall: '/v2/advocacydata.ltnstatistics',
+			sendZoom: true,	// Allows geometry simplification and reduced data
+			lineColour: 'purple',
+			fillOpacity: 0.7,
+			polygonColourField: 'noThroughStreetLengthPercent',
+			polygonColourStops: [
+				[80, '#030a92'],
+				[70, '#313695'],
+				[65, '#4575b4'],
+				[60, '#abd9e9'],
+				[55, '#fee090'],
+				[50, '#f46d43'],
+				[30, '#d73027'],
+				[0, 'red']
+			],
+			legend: [
+				['â‰¥80%', '#030a92'],
+				['â‰¥70%', '#313695'],
+				['â‰¥65%', '#4575b4'],
+				['â‰¥60%', '#abd9e9'],
+				['â‰¥55%', '#fee090'],
+				['â‰¥50%', '#f46d43'],
+				['â‰¥30%', '#d73027'],
+				['â‰¥0%', 'red']
+			],
+			popupHtml:
+				  '<h3>Area statistics</h3>'
+				+ '<table>'
+				+ '<tr><td>Highway authority:</td><td><strong>{properties.name}</strong></tr>'
+				+ '<tr><td>Area type:</td><td><strong>{properties.area_description}</strong></tr>'
+				+ '<tr><td>Census code:</td><td><strong>{properties.census_code}</strong></tr>'
+				+ '<tr><td>Streets:</td><td><strong><a href="{properties.dataUrl}">Download GIS data</a></strong></tr>'
+				+ '</table>'
+				+ '<h4>Percentage of streets by length:</h4>'
+				+ '<table>'
+				+ '<tr><td width="175">Not through-traffic (LTN):</td><td><strong>{properties.noThroughStreetLengthPercent}%</strong></tr>'
+				+ '<tr><td>Through-traffic possible:</td><td><strong>{properties.throughStreetLengthPercent}%</strong></tr>'
+				+ '<tr><td>Through-traffic but with traffic calming:</td><td><strong>{properties.calmedThroughStreetLengthPercent}%</strong></tr>'
+				+ '<tr><td>Main roads (C &amp; above):</td><td><strong>{properties.mainRoadLengthPercent}%</strong></tr>'
+				+ '</table>'
+				+ '<h4>Total length in metres:</h4>'
+				+ '<table>'
+				+ '<tr><td width="175">Not through-traffic (LTN):</td><td><strong>{properties.noThroughStreetLengthMetres}m</strong></tr>'
+				+ '<tr><td>Through-traffic possible:</td><td><strong>{properties.throughStreetLengthMetres}m</strong></tr>'
+				+ '<tr><td>Through-traffic possible but with traffic calming:</td><td><strong>{properties.calmedThroughStreetLengthMetres}m</strong></tr>'
+				+ '<tr><td>Main roads (C &amp; above):</td><td><strong>{properties.mainRoadLengthMetres}m</strong></tr>'
+				+ '</table>'
 		},
 		
 		// One-way streets without contraflows
