@@ -155,6 +155,24 @@ var bikedata = (function ($) {
 		},
 		
 		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.locations/
+		pollingstations: {
+			apiCall: '/v2/pois.locations',
+			apiFixedParameters: {
+				type: 'pollingstations',
+				limit: 400,
+				iconsize: 24,
+			},
+			iconField: 'iconUrl',
+			iconSize: [24, 24],
+			popupHtml:
+				  '<p><strong>Polling station</strong></p>'
+				+ '<p>{properties.name}</p>'
+				+ '<p>{properties.notes}</p>'
+				+ '<p><a href="{properties.website}" target="_blank">{properties.website}</a></p>'
+				+ '<p><a href="https://www.cyclestreets.net/journey/to/{geometry.coordinates.1},{geometry.coordinates.0},14/Polling+station/" target="_blank"><strong>Get cycle directions here!</strong></a></p>'
+		},
+		
+		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.locations/
 		popupcyclewaylocations: {
 			apiCall: '/v2/advocacydata.popupcycleways.locations',
 			bbox: false,

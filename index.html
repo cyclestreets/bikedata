@@ -115,6 +115,12 @@
 							<input type="checkbox" name="show[]" id="show_bikeshare" />
 							<a href="#bikeshare" title="Bikeshare" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Bikeshare</a>
 						</li>
+						<li class="pollingstations">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_pollingstations" />
+							<a href="#pollingstations" title="Polling stations" class="tooltip"><img src="/images/icons/bicycles_good.svg" alt="" /><br />Polling stations</a>
+						</li>
 						<li class="popupcyclewaylocations">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -499,6 +505,12 @@
 						<h2>Bikeshare schemes</h2>
 						<p>Automated cycle hire schemes enable people to use a bike without needing to own one.</p>
 						<p>Data here currently covers only London and Barcelona, but will be extended in due course.</p>
+					</div>
+					
+					<div id="pollingstations">
+						<h2>Polling stations</h2>
+						<p>Vote bike! Get directions to your nearest polling station.</p>
+						<p>Thanks to Democracy Club and their volunteers for collecting the polling station locations - see <a href="https://wheredoivote.co.uk/" target="_blank">Where Do I Vote?</a>.</p>
 					</div>
 					
 					<div id="popupcycleways">
