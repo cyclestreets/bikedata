@@ -154,7 +154,7 @@ var bikedata = (function ($) {
 				+ '<p>{properties.notes}</p>'
 		},
 		
-		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.locations/
+		// https://www.cyclestreets.net/api/v2/pois.locations/
 		pollingstations: {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
