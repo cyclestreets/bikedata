@@ -74,6 +74,7 @@ var bikedata = (function ($) {
 				+ 'No. of Casualties: <strong>{properties.number_of_casualties}</strong><br />'
 				+ 'No. of Vehicles: <strong>{properties.number_of_vehicles}</strong>'
 				+ '</p>'
+				+ '{%streetview}'
 		},
 		
 		taxidata: {
