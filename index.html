@@ -9,8 +9,6 @@
 	<meta name="apple-mobile-web-app-title" content="Bikedata" />
 	<link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png">
 	
-	<link rel="stylesheet" href="/css/fonts.css" type="text/css" />
-	
 	<link rel="stylesheet" href="/js/lib/mapbox-gl/dist/mapbox-gl.css" />
 	<script src="/js/lib/mapbox-gl/dist/mapbox-gl.js"></script>
 	
@@ -86,6 +84,12 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_collisions" />
 							<a href="#collisions" title="Collisions" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a>
+						</li>
+						<li class="collisionsheatmap">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_collisionsheatmap" />
+							<a href="#collisionsheatmap" title="Collisions heatmap" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions heatmap</a>
 						</li>
 						<li class="trafficcounts">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
@@ -411,6 +415,10 @@
 						-->
 					</div>
 					
+					<div id="collisionsheatmap">
+						<h2>Collisions heatmap</h2>
+					</div>
+					
 					<div id="issues">
 						<h2>Issues</h2>
 						<p>Issues reported by Cyclescape users, representing problems on the cycle network. These include traffic schemes, planning applications, and more.</p>
@@ -474,28 +482,28 @@
 							
 							<h4>Size of development:</h4>
 							<ul class="controls">
-								<li><label><input type="checkbox" name="app_size[]" value="Small">Small</label></li>
-								<li><label><input type="checkbox" name="app_size[]" value="Medium">Medium</label></li>
-								<li><label><input type="checkbox" name="app_size[]" value="Large">Large</label></li>
+								<li><label><input type="checkbox" name="size[]" value="Small">Small</label></li>
+								<li><label><input type="checkbox" name="size[]" value="Medium">Medium</label></li>
+								<li><label><input type="checkbox" name="size[]" value="Large">Large</label></li>
 							</ul>
 							
 							<h4>Application type:</h4>
 							<ul class="controls">
-								<li><label><input type="checkbox" name="app_type[]" value="Full">Full</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Outline">Outline</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Amendment">Amendment</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Heritage">Heritage</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Trees">Trees</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Advertising">Advertising</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Telecoms">Telecoms</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Other">Other</label></li>
-								<li><label><input type="checkbox" name="app_type[]" value="Conditions">Conditions</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Full">Full</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Outline">Outline</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Amendment">Amendment</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Heritage">Heritage</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Trees">Trees</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Advertising">Advertising</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Telecoms">Telecoms</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Other">Other</label></li>
+								<li><label><input type="checkbox" name="type[]" value="Conditions">Conditions</label></li>
 							</ul>
 							
 							<h4>Status</h4>
 							<ul class="controls">
-								<li><label><input type="checkbox" checked="checked" name="app_state[]" value="Undecided" />Current</label></li>
-								<li><label><input type="checkbox" name="app_state[]" value="Permitted,Conditions,Rejected,Withdrawn,Other" />Decided</label></li>
+								<li><label><input type="checkbox" checked="checked" name="state[]" value="Undecided" />Current</label></li>
+								<li><label><input type="checkbox" name="state[]" value="Permitted,Conditions,Rejected,Withdrawn,Other" />Decided</label></li>
 							</ul>
 							
 							<div id="dateRange">

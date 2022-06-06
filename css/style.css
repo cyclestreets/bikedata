@@ -8,6 +8,32 @@ nav {position: absolute; right: 0; width: 335px; height: 100%; z-index: 1000;}
 header {position: relative; left: -8px; padding: 5px 8px 20px; margin: 0; background: rgba(255,255,255,0.2);}
 footer {position: fixed; width: 100%; height: 25px; z-index: 9999; bottom: 0; padding: 0;}
 
+/* Font definitions */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(//fonts.gstatic.com/s/raleway/v11/bIcY3_3JNqUVRAQQRNVteQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway Bold'), local('Raleway-Bold'), url(//fonts.gstatic.com/s/raleway/v11/JbtMzqLaYbbbCL9X6EvaIy3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Raleway Italic'), local('Raleway-Italic'), url(//fonts.gstatic.com/s/raleway/v11/IIm-lPOtfVKQy0GMiczF_6CWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Raleway Bold Italic'), local('Raleway-BoldItalic'), url(//fonts.gstatic.com/s/raleway/v11/lFxvRPuGFG5ktd7P0WRwKonF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
+}
+
 /* Typography */
 body, input, textarea {font-family: 'Raleway', Arial, Helvetica, sans-serif; font-size: 1em;} /* https://www.google.com/fonts */
 p.smaller {font-size: 0.73em;}
