@@ -6,6 +6,7 @@
   "author": "CycleStreets Ltd",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "Mapboxgljs.LayerViewer": "https://github.com/cyclestreets/Mapboxgljs.LayerViewer/"
+    "Mapboxgljs.LayerViewer": "https://github.com/cyclestreets/Mapboxgljs.LayerViewer/",
+    "osmtogeojson": "^3.0.0-beta.4"
   }
 }

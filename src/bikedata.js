@@ -1,7 +1,7 @@
 // Bikedata implementation code
 
 /*jslint browser: true, white: true, single: true, for: true, unordered: true, long: true */
-/*global $, alert, console, window, osm2geo, layerviewer, jQuery */
+/*global $, alert, console, window, osmtogeojson, layerviewer, jQuery */
 
 var bikedata = (function ($) {
 	
@@ -700,12 +700,12 @@ var bikedata = (function ($) {
 				}
 			},
 			convertData: function (osmXml) {
-				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
+				var geojson = osmtogeojson (osmXml);		// Requires osmtogeojson from https://github.com/tyrasd/osmtogeojson/
 				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
 		},
-
+		
 		// Cycleways and paths
 		cyclewayspaths: {
 			apiCall: '/v2/advocacydata.cyclewayspaths',
