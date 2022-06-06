@@ -695,7 +695,7 @@ var bikedata = (function ($) {
 			fullZoomMessage: 'OSM data is only available from zoom 17 - please zoom in further.',
 			style: {
 				LineString: {
-					'line-color': 'red',
+					'line-color': 'purple',
 					'line-width': 3
 				}
 			},
