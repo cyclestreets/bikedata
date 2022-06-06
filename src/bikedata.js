@@ -690,9 +690,9 @@ var bikedata = (function ($) {
 			apiKey: false,
 			bbox: true,
 			dataType: 'xml',
-			minZoom: 19,
-			fullZoom: 19,
-			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
+			minZoom: 17,
+			fullZoom: 17,
+			fullZoomMessage: 'OSM data is only available from zoom 17 - please zoom in further.',
 			style: {
 				LineString: {
 					'line-color': 'red',
