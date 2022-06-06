@@ -41,6 +41,8 @@ footer p a {color: #ccc; text-decoration: none;}
 #globalsites ul li.bikedata a {border-color: purple;}
 #globalsites ul li.bikedata a:hover {background-color: purple;}
 #globalsites ul li.bikedata.selected a {background: rgba(128,0,128,0.4);}
+#globalsites ul li.lowtrafficneighbourhoods a {border-color: red;}
+#globalsites ul li.lowtrafficneighbourhoods a:hover {background-color: red;}
 #globalsites ul li.urbancycleparking a {border-color: red;}
 #globalsites ul li.urbancycleparking a:hover {background-color: red;}
 #globalsites ul li.blog a {border-color: #999;}
