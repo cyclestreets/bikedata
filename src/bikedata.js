@@ -404,8 +404,7 @@ var bikedata = (function ($) {
 			apiCall: '/v2/advocacydata.modalfilters',
 			pointSize: 12,
 			pointColourApiField: 'colour',
-			// #!# Buggy as should be min
-			zoomInitial: 10,
+			zoomInitialMin: 10,
 			name: 'Modal filters',
 			description: 'Type of modal filter:',
 			legend: [
@@ -439,8 +438,7 @@ var bikedata = (function ($) {
 				'calmed': 3,
 				'no': 3
 			},
-			// #!# Buggy as should be min
-			zoomInitial: 10,
+			zoomInitialMin: 10,
 			name: 'LTNs',
 			description: 'LTNs/rat-runs - experimental data',
 			legend: [
