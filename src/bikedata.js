@@ -1,7 +1,7 @@
 // Bikedata implementation code
 
 /*jslint browser: true, white: true, single: true, for: true, unordered: true, long: true */
-/*global $, alert, console, window, osm2geo, layerviewer, jQuery */
+/*global $, alert, console, window, osmtogeojson, layerviewer, jQuery */
 
 var bikedata = (function ($) {
 	
@@ -107,8 +107,8 @@ var bikedata = (function ($) {
 				[0, 2]
 			],
 			popupHtml:	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
-				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
-				+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
+				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}.</p>'
+			//	+ 'Located in {properties.wardname} in {properties.boroughname}<br />'
 				+ '[macro:yearstable({properties.minyear}, {properties.maxyear}, cycles;p2w;cars;buses;lgvs;mgvs;hgvs;all_motors;all_motors_pcu, Cycles;P2W;Cars;Buses;LGVs;MGVs;HGVs;Motors;Motor PCU)]'
 				+ '<p><strong>{properties.maxyear} PCU breakdown -</strong> Cycles: {properties.cycle_pcu}, P2W: {properties.p2w_pcu}, Cars: {properties.car_pcu}, Buses: {properties.bus_pcu}, LGVs: {properties.lgv_pcu}, MGVs: {properties.mgv_pcu}, HGVs: {properties.hgv_pcu}</p>'
 				+ '</div>'
@@ -405,8 +405,7 @@ var bikedata = (function ($) {
 			apiCall: '/v2/advocacydata.modalfilters',
 			pointSize: 12,
 			pointColourApiField: 'colour',
-			// #!# Buggy as should be min
-			zoomInitial: 10,
+			zoomInitialMin: 10,
 			name: 'Modal filters',
 			description: 'Type of modal filter:',
 			legend: [
@@ -440,8 +439,7 @@ var bikedata = (function ($) {
 				'calmed': 3,
 				'no': 3
 			},
-			// #!# Buggy as should be min
-			zoomInitial: 10,
+			zoomInitialMin: 10,
 			name: 'LTNs',
 			description: 'LTNs/rat-runs - experimental data',
 			legend: [
@@ -479,14 +477,14 @@ var bikedata = (function ($) {
 				[0, 'red']
 			],
 			legend: [
-				['â‰¥80%', '#030a92'],
-				['â‰¥70%', '#313695'],
-				['â‰¥65%', '#4575b4'],
-				['â‰¥60%', '#abd9e9'],
-				['â‰¥55%', '#fee090'],
-				['â‰¥50%', '#f46d43'],
-				['â‰¥30%', '#d73027'],
-				['â‰¥0%', 'red']
+				['≥80%', '#030a92'],
+				['≥70%', '#313695'],
+				['≥65%', '#4575b4'],
+				['≥60%', '#abd9e9'],
+				['≥55%', '#fee090'],
+				['≥50%', '#f46d43'],
+				['≥30%', '#d73027'],
+				['≥0%', 'red']
 			],
 			popupHtml:
 				  '<h3>Area statistics</h3>'
@@ -691,22 +689,22 @@ var bikedata = (function ($) {
 			apiKey: false,
 			bbox: true,
 			dataType: 'xml',
-			minZoom: 19,
-			fullZoom: 19,
-			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
+			minZoom: 17,
+			fullZoom: 17,
+			fullZoomMessage: 'OSM data is only available from zoom 17 - please zoom in further.',
 			style: {
 				LineString: {
-					'line-color': 'red',
+					'line-color': 'purple',
 					'line-width': 3
 				}
 			},
 			convertData: function (osmXml) {
-				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
+				var geojson = osmtogeojson (osmXml);		// Requires osmtogeojson from https://github.com/tyrasd/osmtogeojson/
 				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
 		},
-
+		
 		// Cycleways and paths
 		cyclewayspaths: {
 			apiCall: '/v2/advocacydata.cyclewayspaths',

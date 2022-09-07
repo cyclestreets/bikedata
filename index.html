@@ -37,10 +37,10 @@
 	<script src="/js/lib/@mapbox/geojson-extent/geojson-extent.js"></script>
 	
 	<!-- OSM to GeoJSON library -->
-	<script src="/lib/osm2geo.js"></script>
+	<script src="/js/lib/osmtogeojson/osmtogeojson.js"></script>
 	
-	<!-- KML/etc. to GeoJSON library; see: https://github.com/mapbox/togeojson -->
-	<script src="/js/lib/Mapboxgljs.LayerViewer/lib/togeojson/togeojson.min.js"></script>
+	<!-- KML/etc. to GeoJSON library; see: https://github.com/placemark/togeojson forked from @mapbox/togeojson at https://github.com/mapbox/togeojson -->
+	<script src="/js/lib/@tmcw/togeojson/dist/togeojson.umd.js"></script>
 	
 	<!-- LayerViewer library, providing the application logic -->
 	<script src="/js/lib/Mapboxgljs.LayerViewer/src/layerviewer.js?220605"></script>
@@ -296,7 +296,7 @@
 					
 					<div id="collisions">
 						<h2>Collisions</h2>
-						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure. Data is from DfT/police STATS19, from 1999-2020. See <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/230596/stats20-2011.pdf" target="_blank">definitions</a>.</p>
+						<p>Although cycling is not an inherently unsafe activity, collisions are more frequent than they should be due to lack of cycle infrastructure. Data is from DfT/police STATS19, from 1999-2020. See <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/995423/stats20-2011.pdf" target="_blank">definitions</a>.</p>
 						<p>Zoom in to see all - while zoomed out only a selection is shown due to the volume.</p>
 						
 						<div class="filters">
