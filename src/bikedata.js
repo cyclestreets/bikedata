@@ -226,14 +226,15 @@ var bikedata = (function ($) {
 			iconUrl: '/images/icons/cycleparking_good.svg',
 			iconSize: [24, 24],
 			popupHtml:
-				  '<p><strong>Cycle parking</strong></p>'
+				  '<h3>Cycle parking</h3>'
 				+ '<table>'
 				+ '<tr><td>Spaces:</td><td>{properties.Capacity}</td></tr>'
 				+ '<tr><td>Access:</td><td>{properties.Access}</tr>'
 				+ '<tr><td>Type:</td><td>{properties.Bicycle_parking}</tr>'
 				+ '<tr><td>Covered?:</td><td>{properties.Covered}</tr>'
 				+ '</table>'
-				+ '<p class="edit"><a href="https://www.openstreetmap.org/edit?node={properties.nodeId}" target="_blank">Add/edit details</a></p>'
+				+ '<p class="edit right"><a href="https://www.openstreetmap.org/edit?node={properties.nodeId}" target="_blank">Add/edit details</a></p>'
+				+ '{%streetview}'
 		},
 		
 		// https://data.police.uk/docs/method/crime-street/
