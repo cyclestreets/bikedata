@@ -43,7 +43,8 @@ var bikedata = (function ($) {
 		// First-run welcome message
 		firstRunMessageHtml: '<p>Welcome to Bikedata, from CycleStreets, the journey planning people.</p>'
 			+ '<p>Here, you can find data useful for cycle campaigning, by enabling the layers on the right.</p>'
-			+ '<p>Please note that this site is work-in-progress beta.</p>'
+			+ '<p>Please note that this site is work-in-progress beta.</p>',
+		firstRunMessageEmbedMode: false
 	};
 	
 	// Layer definitions
