@@ -404,7 +404,15 @@ var bikedata = (function ($) {
 		// LTNs - modal filters
 		modalfilters: {
 			apiCall: '/v2/advocacydata.modalfilters',
-			pointSize: 12,
+			pointSize: {
+				'base': 4,
+				'stops': [
+					[0, 4],
+					[12, 6],
+					[14, 12],
+					[18, 20]
+				]
+			},
 			pointColourApiField: 'colour',
 			zoomInitialMin: 10,
 			name: 'Modal filters',
