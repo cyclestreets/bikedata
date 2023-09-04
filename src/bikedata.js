@@ -501,7 +501,7 @@ var bikedata = (function ($) {
 				+ '<tr><td>Highway authority:</td><td><strong>{properties.name}</strong></tr>'
 				+ '<tr><td>Area type:</td><td><strong>{properties.area_description}</strong></tr>'
 				+ '<tr><td>Census code:</td><td><strong>{properties.census_code}</strong></tr>'
-				+ '<tr><td>Streets:</td><td><strong><a href="{properties.dataUrl}">Download GIS data</a></strong></tr>'
+				// + '<tr><td>Streets:</td><td><strong><a href="{properties.dataUrl}">Download GIS data</a></strong></tr>'
 				+ '</table>'
 				+ '<h4>Percentage of streets by length:</h4>'
 				+ '<table>'
