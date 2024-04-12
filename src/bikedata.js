@@ -793,7 +793,7 @@ var bikedata = (function ($) {
 						type : 'GET',
 						url: _settings.apiBaseUrl + '/v2/photomap.tags?key=' + _settings.apiKey + '&limit=10',
 						data: {
-							match: request.term
+							term: request.term
 						},
 						success: function (data) {
 							response ($.map (data, function (item) {
