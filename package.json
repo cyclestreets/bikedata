@@ -7,6 +7,6 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "Mapboxgljs.LayerViewer": "https://github.com/cyclestreets/Mapboxgljs.LayerViewer/",
-    "osmtogeojson": "^3.0.0-beta.5"
+    "osmtogeojson": "https://github.com/tyrasd/osmtogeojson#snyk-fix-65371a4c4920389f7e5127c141088511"
   }
 }
