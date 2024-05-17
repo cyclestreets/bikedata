@@ -85,12 +85,6 @@
 							<input type="checkbox" name="show[]" id="show_collisions" />
 							<a href="#collisions" title="Collisions" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions</a>
 						</li>
-						<li class="collisionsheatmap">
-							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
-							<p class="total"></p>
-							<input type="checkbox" name="show[]" id="show_collisionsheatmap" />
-							<a href="#collisionsheatmap" title="Collisions heatmap" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions heatmap</a>
-						</li>
 						<li class="trafficcounts">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
 							<p class="total"></p>
@@ -235,6 +229,12 @@
 							<p class="total"></p>
 							<input type="checkbox" name="show[]" id="show_nocontraflows" />
 							<a href="#nocontraflows" title="One-way streets without contraflows" class="tooltip"><img src="/images/icons/congestion_neutral.svg" alt="" /><br />No contraflows</a>
+						</li>
+						<li class="collisionsheatmap">
+							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
+							<p class="total"></p>
+							<input type="checkbox" name="show[]" id="show_collisionsheatmap" />
+							<a href="#collisionsheatmap" title="Collisions heatmap" class="tooltip"><img src="/images/icons/icon_collision_slight.svg" alt="" /><br />Collisions heatmap</a>
 						</li>
 						<li class="tflcid">
 							<img src="/js/lib/Mapboxgljs.LayerViewer/images/spinner.svg" class="loading" alt="" />
@@ -838,10 +838,6 @@
 						-->
 					</div>
 					
-					<div id="collisionsheatmap">
-						<h2>Collisions heatmap</h2>
-					</div>
-					
 					<div id="issues">
 						<h2>Issues</h2>
 						<p>Issues reported by Cyclescape users, representing problems on the cycle network. These include traffic schemes, planning applications, and more.</p>
@@ -1206,6 +1202,12 @@
 						<div class="export button">
 							<p>Export: <img class="csv" src="/js/lib/Mapboxgljs.LayerViewer/images/page_excel.png" alt="Spreadsheet" /></p>
 						</div>
+					</div>
+					
+					<div id="collisionsheatmap">
+						<h2>Collisions heatmap</h2>
+						<p>An experimental rendering of collision data.</p>
+						<p>Only available for the <a href="#14.15/52.19752/0.14153">Cambridge area</a>.</p>
 					</div>
 					
 					<div id="tflcid">

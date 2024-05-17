@@ -78,6 +78,11 @@ var bikedata = (function ($) {
 				+ '{%streetview}'
 		},
 		
+		collisionsheatmap: {
+			apiCall: 'https://www.cyclestreets.net/data/allCambridgeCollisions.json',
+			heatmap: true
+		},
+		
 		taxidata: {
 			apiCall: '/v2/advocacydata.taxis',
 			iconUrl: '/images/icons/road_neutral.svg',
