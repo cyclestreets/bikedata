@@ -121,15 +121,12 @@ var bikedata = (function ($) {
 		},
 		
 		planningapplications: {
-			apiCall: 'https://www.planit.org.uk/api/applics/geojson',
+			apiCall: '/v2/planningapplications.locations',
 			apiFixedParameters: {
-				pg_sz: 100,
-				limit: 100,
-				select: 'location,description,address,app_size,app_type,app_state,uid,area_name,start_date,url'
+				limit: 400
 			},
-			apiKey: false,
 			iconUrl: '/images/icons/signs_neutral.svg',
-			iconSizeField: 'app_size',
+			iconSizeField: 'size',
 			iconSizes: {
 				'Small': [24, 24],
 				'Medium': [36, 36],
@@ -138,12 +135,13 @@ var bikedata = (function ($) {
 			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
 				+ '<p>{properties.address}</p>'
-				+ '<p>Size of development: <strong>{properties.app_size}</strong><br />'
-				+ 'Type of development: <strong>{properties.app_type}</strong><br />'
-				+ 'Status: <strong>{properties.app_state}</strong></p>'
-				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
-				+ 'Local Authority: {properties.area_name}<br />'
-				+ 'Date: {properties.start_date}</p>'
+				+ '<p>Size of development: <strong>{properties.size}</strong><br />'
+				+ 'Type of development: <strong>{properties.type}</strong><br />'
+				+ 'Status: <strong>{properties.state}</strong></p>'
+				+ '<p>Reference: <a href="{properties.url}">{properties.id}</a><br />'
+				+ 'Local Authority: {properties.area}<br />'
+				+ 'Date: {properties.startdate}</p>'
+				+ 'Decision: {properties.decideddate}</p>'
 				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
