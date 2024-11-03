@@ -3,12 +3,12 @@
 /*jslint browser: true, white: true, single: true, for: true, unordered: true, long: true */
 /*global $, alert, console, window, osmtogeojson, layerviewer, jQuery */
 
-var bikedata = (function ($) {
+const bikedata = (function ($) {
 	
 	'use strict';
 	
 	// Settings defaults
-	var _settings = {
+	const _settings = {
 		
 		// CycleStreets API; obtain a key at https://www.cyclestreets.net/api/apply/
 		apiBaseUrl: 'https://api.cyclestreets.net',
@@ -48,7 +48,7 @@ var bikedata = (function ($) {
 	};
 	
 	// Layer definitions
-	var _layerConfig = {
+	const _layerConfig = {
 		
 		collisions: {
 			apiCall: '/v2/collisions.locations',
@@ -711,7 +711,7 @@ var bikedata = (function ($) {
 				}
 			},
 			convertData: function (osmXml) {
-				var geojson = osmtogeojson (osmXml);		// Requires osmtogeojson from https://github.com/tyrasd/osmtogeojson/
+				const geojson = osmtogeojson (osmXml);		// Requires osmtogeojson from https://github.com/tyrasd/osmtogeojson/
 				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
@@ -822,7 +822,7 @@ var bikedata = (function ($) {
 				success: function (schema) {
 					
 					// Load description for type dropdown and filters
-					var field = $("form #tflcid select[name='type']").val ();
+					const field = $("form #tflcid select[name='type']").val ();
 					bikedata.setFilters (schema, field);
 					$("form #tflcid select[name='type']").on ('change', function () {
 						bikedata.setFilters (schema, this.value);
@@ -846,21 +846,18 @@ var bikedata = (function ($) {
 			$('#featuretypedescription p').html (schema[field].description);
 			
 			// Obtain the selected fields
-			var fields = schema[field].fields;
+			const fields = schema[field].fields;
 			
 			// Create HTML controls for each field
-			var html = '<p>Filter to:</p>';
+			let html = '<p>Filter to:</p>';
 			$.each (fields, function (field, attributes) {
-				var fieldname = 'field:' + field;
+				const fieldname = 'field:' + field;
 				
 				// Parse out the form field
-				var matches = attributes.datatype.match (/^([A-Z]+)\((.+)\)$/);
-				var type = matches[1];
-				var option = matches[2];
-				var widgetHtml = '';
-				var i;
-				var enumMatches;
-				var len;
+				const matches = attributes.datatype.match (/^([A-Z]+)\((.+)\)$/);
+				const type = matches[1];
+				const option = matches[2];
+				letwidgetHtml = '';
 				switch (type) {
 					case 'VARCHAR':
 						widgetHtml = '<input name="' + fieldname + '" type="text" maxlength=' + option + '" />';
@@ -869,9 +866,10 @@ var bikedata = (function ($) {
 						widgetHtml = '<input name="' + fieldname + '" type="number" maxlength=' + option + '" step="1" min="0" style="width: 4em;" />';
 						break;
 					case 'ENUM':
-						enumMatches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
+						const enumMatches = option.match(/'[^']*'/g);		// https://stackoverflow.com/a/11227539/180733
 						if (enumMatches) {
-							len = enumMatches.length;
+							const len = enumMatches.length;
+							let i;
 							for (i = 0; i < len; i++) {
 								enumMatches[i] = enumMatches[i].replace(/'/g, '');
 							}
@@ -897,7 +895,7 @@ var bikedata = (function ($) {
 			html = '<p class="smaller right"><a id="resetfilters" href="#">[Reset filters]</a></p>' + html;
 			$(document).on ('click', '#resetfilters', function (e) {
 				$.each (fields, function (field, attributes) {
-					var fieldname = 'field:' + field;
+					const fieldname = 'field:' + field;
 					$('input[name="' + fieldname + '"], select[name="' + fieldname + '"]').val (function() {return this.defaultValue;} );	// https://stackoverflow.com/a/8668089/180733
 				});
 				e.preventDefault ();
