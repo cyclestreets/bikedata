@@ -857,7 +857,7 @@ const bikedata = (function ($) {
 				const matches = attributes.datatype.match (/^([A-Z]+)\((.+)\)$/);
 				const type = matches[1];
 				const option = matches[2];
-				letwidgetHtml = '';
+				let widgetHtml = '';
 				switch (type) {
 					case 'VARCHAR':
 						widgetHtml = '<input name="' + fieldname + '" type="text" maxlength=' + option + '" />';
