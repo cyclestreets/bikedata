@@ -177,42 +177,6 @@ const bikedata = (function ($) {
 				+ '<p><a href="https://www.cyclestreets.net/journey/to/{geometry.coordinates.1},{geometry.coordinates.0},14/Polling+station/" target="_blank"><strong>Get cycle directions here!</strong></a></p>'
 		},
 		
-		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.locations/
-		popupcyclewaylocations: {
-			apiCall: '/v2/advocacydata.popupcycleways.locations',
-			bbox: false,
-			iconField: 'type',
-			iconSize: [40, 40],
-			icons: {
-				'Council action': 						'/images/icons/popup_cyclinguk_council_action.png',
-				'Coming soon': 							'/images/icons/popup_cyclinguk_coming_soon.png',
-				'Council consultation - have your say':	'/images/icons/popup_cyclinguk_council_consultation.png',
-				'Council considering potential': 		'/images/icons/popup_cyclinguk_council_considering_potential.png',
-				'Plans produced': 						'/images/icons/popup_cyclinguk_plans_produced.png',
-				'Council action - comprehensive': 		'/images/icons/popup_cyclinguk_council_action_comprehensive.png'
-			},
-			popupHtml:
-				  '<table>'
-				+ '<tr><td>Area:</td><td><strong>{properties.area}</strong></td></tr>'
-				+ '<tr><td>Description:</td><td><strong>{properties.description}</strong></tr>'
-				+ '<tr><td>Location:</td><td>{properties.location}</tr>'
-				+ '<tr><td>Type:</td><td>{properties.type}</tr>'
-				+ '<tr><td></td><td><a href="{properties.link}">More info</a></tr>'
-				+ '</table>'
-				//+ '{%streetview}'
-		},
-		
-		// https://www.cyclestreets.net/api/v2/advocacydata.popupcycleways.suggested/
-		popupcycleways: {
-			apiCall: '/v2/advocacydata.popupcycleways.suggested',
-			minZoom: 9,
-			style: {
-				LineString: {
-					'line-color': 'purple'
-				}
-			}
-		},
-		
 		triplengths: {
 			apiCall: '/v2/usage.journeylengths',
 			polygonStyle: 'grid',
