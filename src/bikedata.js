@@ -251,6 +251,7 @@ const bikedata = (function ($) {
 				thumbnailsize: 300,
 				datetime: 'friendlydate'
 			},
+			sendZoom: true,				// Helps optimize spread algorithm
 			iconField: 'iconUrl',		// icons specified in the field value
 			popupHtml:
 				  '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
